@@ -1,4 +1,11 @@
 {
+  DARK_FOREST_GREEN: '#000c0a',
+  GREYISH_TEAL: '#7f8584',
+  LIGHT_SKY_BLUE: '#ccf1f5',
+  LIGHT_TAN: '#fbe2d5',
+  PALE_MAUVE: '#ffecf9',
   PALE_SALMON: '#ffba9c',
   REDDISH_ORANGE: '#ea6625',
+  SILVER: '#ccd6d6',
+  TEAL_BLUE: '#009999',
 }
