@@ -5,6 +5,8 @@ import Storage from 'local-storage-fallback'
 import {AllActions} from './actions'
 import {computeNeedsAssistanceNow, isProbablySick} from './symptoms'
 
+// TODO(sil): Remove this test.
+
 const today = new Date()
 const SAVED_USER_COOKIE = 'user-info'
 const SAVED_OLD_CONTACTS_COOKIE = 'contact-list'
