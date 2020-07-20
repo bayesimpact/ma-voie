@@ -23,7 +23,7 @@ import SplashPage from 'components/pages/splash'
 import TermsPage from 'components/pages/terms'
 
 import 'styles/fonts/Lato/font.css'
-import 'styles/fonts/Poppins/font.css'
+import 'styles/fonts/ProximaSoft/font.css'
 
 // TODO(sil): Clean the store and everything else.
 require('styles/app.css')

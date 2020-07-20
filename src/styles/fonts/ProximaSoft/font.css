@@ -1,0 +1,22 @@
+/* Proxima Soft Regular */
+@font-face {
+  font-family: 'ProximaSoft';
+  font-style: normal;
+  font-weight: 400;
+  src: url('Proxima Soft Regular.eot'); /* IE9 Compat Modes */
+  src: local('Proxima Soft Regular'), local('Proxima-Soft-Regular'),
+       url('Proxima Soft Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('Proxima Soft Regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('Proxima Soft Regular.woff') format('woff'); /* Modern Browsers */
+}
+/* Proxima Soft Bold */
+@font-face {
+  font-family: 'ProximaSoft';
+  font-style: normal;
+  font-weight: 700;
+  src: url('Proxima Soft Bold.eot'); /* IE9 Compat Modes */
+  src: local('Proxima Soft Bold'), local('Proxima-Soft-Bold'),
+       url('Proxima Soft Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('Proxima Soft Bold.woff2') format('woff2'), /* Super Modern Browsers */
+       url('Proxima Soft Bold.woff') format('woff'); /* Modern Browsers */
+}
