@@ -1,262 +1,140 @@
-# Conditions générales d'utilisation au 2 mai 2020
+## Définitions
+**Client** : tout professionnel ou personne physique capable au sens des articles 1123 et suivants du Code civil, ou personne morale, qui visite le Site objet des présentes conditions générales.
 
-### Préambule
+**Prestations et Services** : {{canonicalUrl}} met à disposition des Clients :
 
-Le 2 mai 2020
+**Contenu** : Ensemble des éléments constituants l’information présente sur le Site, notamment textes – images – vidéos.
 
-L'objectif du projet et le fonctionnement de l'association sont dédiés à l'intérêt général. Le Code Source du logiciel est mis à disposition en logiciel libre.
+**Informations clients** : Ci après dénommé « Information (s) » qui correspondent à l’ensemble des données personnelles susceptibles d’être détenues par {{canonicalUrl}} pour la gestion de votre compte, de la gestion de la relation client et à des fins d’analyses et de statistiques.
 
-Aucune donnée personnelle n'est stockée en dehors de l'interface de l'usager. Aucun traçage de l'usager n'est effectué, par GPS ou par bluetooth.
+**Utilisateur** : Internaute se connectant, utilisant le site susnommé.
 
-Les données personnelles de l'usager (comme ses éventuels symptômes ou sa liste de contacts) sont stockées sur son interface (téléphone ou ordinateur) , ne sont transmises à personne (pas même {{owner}}). Elles restent sous contrôle unique de l'usager de l'interface.
+**Informations personnelles** : « Les informations qui permettent, sous quelque forme que ce soit, directement ou non, l'identification des personnes physiques auxquelles elles s'appliquent » (article 4 de la loi n° 78-17 du 6 janvier 1978).
 
-Les données anonymisées d'utilisation des usagers (comme le nombre total de personnes effectuant le parcours de {{productName}} jusqu'au bout) permettent à {{owner}} l'amélioration continue du service et l'étude d'impact de {{productName}}. Ces données ne permettent en aucun cas l'identification d'un usager.
+Les termes « données à caractère personnel », « personne concernée », « sous traitant » et « données sensibles » ont le sens défini par le Règlement Général sur la Protection des Données (RGPD : n° 2016-679)
 
-Lorsque la fonction optionnelle et volontaire de suivi est activée par l'usager, celui-ci peut recevoir régulièrement des mails d'information. {{owner}} est alors amené à stocker l'adresse email de l'usager volontaire pour une durée maximale de 14 jours puis celle-ci est automatiquement supprimée. Si l'usager le souhaite, il peut à tout moment demander la suppression de cette adresse auprès de {{owner}} (à l'adresse : privacy@bayesimpact.org).
+## 1. Présentation du site internet.
+En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique, il est précisé aux utilisateurs du site internet {{canonicalUrl}} l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi:
 
-L'ensemble de ces données ne seront ni utilisées commercialement, ni cédées à des tiers.
+**Propriétaire** : {{owner}}
 
-## 1. Définitions
+**Responsable publication** : {{publisher}}
 
-« {{productName}} » ou « LE SERVICE » est une interface permettant d'aider, de façon non médicale, au diagnostic d'une infection au {{diseaseName}}, d'en connaître sa potentielle période de contagiosité. Elle facilite l'identification des personnes susceptibles d'avoir été rencontrées, et propose de les contacter anonymement ou non. Enfin, elle permet de bénéficier d'un suivi par email sur la base du volontariat lorsque la personne est susceptible d'être un cas-contact.
+**Webmaster** : {{webmaster}}
 
-Le développeur du site internet est l'association « {{owner}} ».
+**Hébergeur** : {{host}}
 
-L'hébergeur de la plate-forme est OVH.
+## 2. Conditions générales d’utilisation du site et des services proposés.
+Le Site constitue une œuvre de l’esprit protégée par les dispositions du Code de la Propriété Intellectuelle et des Réglementations Internationales applicables. Le Client ne peut en aucune manière réutiliser, céder ou exploiter pour son propre compte tout ou partie des éléments ou travaux du Site.
 
-Les « usagers » sont les personnes qui utilisent la plate-forme.
+L’utilisation du site {{canonicalUrl}} implique l’acceptation pleine et entière des conditions générales d’utilisation ci-après décrites. Ces conditions d’utilisation sont susceptibles d’être modifiées ou complétées à tout moment, les utilisateurs du site {{canonicalUrl}} sont donc invités à les consulter de manière régulière.
 
-Le service est accessible sur « LE SITE » à l'adresse : [{{canonicalUrl}}]({{canonicalUrl}})
+Ce site internet est normalement accessible à tout moment aux utilisateurs. Une interruption pour raison de maintenance technique peut être toutefois décidée par {{canonicalUrl}}, qui s’efforcera alors de communiquer préalablement aux utilisateurs les dates et heures de l’intervention. Le site web {{canonicalUrl}} est mis à jour régulièrement par {{canonicalUrl}} responsable. De la même façon, les mentions légales peuvent être modifiées à tout moment : elles s’imposent néanmoins à l’utilisateur qui est invité à s’y référer le plus souvent possible afin d’en prendre connaissance.
 
-## 2. Validité et acceptation
+## 3. Description des services fournis.
+Le site internet {{canonicalUrl}} a pour objet de fournir une information concernant l’ensemble des activités de l’Association Ma Voie. Toutefois, il ne pourra être tenu responsable des oublis, des inexactitudes et des carences dans la mise à jour, qu’elles soient de son fait ou du fait des tiers partenaires qui lui fournissent ces informations.
+Toutes les informations indiquées sur le site {{canonicalUrl}} sont données à titre indicatif, et sont susceptibles d’évoluer. Par ailleurs, les renseignements figurant sur le site {{canonicalUrl}} ne sont pas exhaustifs. Ils sont donnés sous réserve de modifications ayant été apportées depuis leur mise en ligne.
 
-Les présentes conditions sont accessibles à tout moment sur le site internet {{canonicalUrl}} et communiquées à tout usager qui en ferait la demande.
+## 4. Limitations contractuelles sur les données techniques.
+Le site utilise la technologie JavaScript. Le site Internet ne pourra être tenu responsable de dommages matériels liés à l’utilisation du site. De plus, l’utilisateur du site s’engage à accéder au site en utilisant un matériel récent, ne contenant pas de virus et avec un navigateur de dernière génération mis-à-jour .Le site {{canonicalUrl}} est hébergé chez un prestataire sur le territoire de l’Union Européenne conformément aux dispositions du Règlement Général sur la Protection des Données (RGPD : n° 2016-679).
 
-Elles régissent les relations entre les usagers et {{productName}} dans le cadre de l'utilisation du service.
+L’objectif est d’apporter une prestation qui assure le meilleur taux d’accessibilité. L’hébergeur assure la continuité de son service 24 Heures sur 24, tous les jours de l’année. Il se réserve néanmoins la possibilité d’interrompre le service d’hébergement pour les durées les plus courtes possibles notamment à des fins de maintenance, d’amélioration de ses infrastructures, de défaillance de ses infrastructures ou si les Prestations et Services génèrent un trafic réputé anormal.
 
-Les usagers reconnaissent avoir le droit d'exploiter le service.
+{{canonicalUrl}} et l’hébergeur ne pourront être tenus responsables en cas de dysfonctionnement du réseau Internet, des lignes téléphoniques ou du matériel informatique et de téléphonie lié notamment à l’encombrement du réseau empêchant l’accès au serveur.
+## 5. Propriété intellectuelle et contrefaçons.
 
-L'utilisation du service et l'exploitation des informations implique leur acceptation entière et sans réserve des conditions générales. Leur non-acceptation entraîne la renonciation à l'utilisation du service ainsi qu'à l'exploitation des informations.
+{{canonicalUrl}} est propriétaire des droits de propriété intellectuelle et détient les droits d’usage sur tous les éléments accessibles sur le site internet, notamment les textes, images, graphismes, logos, vidéos, icônes et sons. Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable de : {{canonicalUrl}}
 
-## 3. Champ d'application
+Toute exploitation non autorisée du site ou de l’un quelconque des éléments qu’il contient sera considérée comme constitutive d’une contrefaçon et poursuivie conformément aux dispositions des articles L.335-2 et suivants du Code de Propriété Intellectuelle.
+## 6. Limitations de responsabilité.
 
-Le présent contrat régit exclusivement l'utilisation de {{productName}} par les usagers.
+{{canonicalUrl}} agit en tant qu’éditeur du site. {{canonicalUrl}} est responsable de la qualité et de la véracité du Contenu qu’il publie.
+{{canonicalUrl}} ne pourra être tenu responsable des dommages directs et indirects causés au matériel de l’utilisateur, lors de l’accès au site internet {{canonicalUrl}}, et résultant soit de l’utilisation d’un matériel ne répondant pas aux spécifications indiquées au point 4, soit de l’apparition d’un bug ou d’une incompatibilité.
 
-Cette prestation est effectuée par {{owner}} gratuitement et sans autre contrepartie que le respect des présentes conditions d'utilisation.
+{{canonicalUrl}} ne pourra également être tenu responsable des dommages indirects (tels par exemple qu’une perte de marché ou perte d’une chance) consécutifs à l’utilisation du site {{canonicalUrl}}. Des espaces interactifs (possibilité de poser des questions dans l’espace contact) sont à la disposition des utilisateurs. {{canonicalUrl}} se réserve le droit de supprimer, sans mise en demeure préalable, tout contenu déposé dans cet espace qui contreviendrait à la législation applicable en France, en particulier aux dispositions relatives à la protection des données. Le cas échéant, {{canonicalUrl}} se réserve également la possibilité de mettre en cause la responsabilité civile et/ou pénale de l’utilisateur, notamment en cas de message à caractère raciste, injurieux, diffamant, ou pornographique, quel que soit le support utilisé (texte, photographie …).
 
-La responsabilité de {{owner}} se limite exclusivement à faciliter l'accès à la plate-forme.
+## 7. Gestion des données personnelles.
+Le Client est informé des réglementations concernant la communication marketing, la loi du 21 Juin 2014 pour la confiance dans l’Economie Numérique, la Loi Informatique et Liberté du 06 Août 2004 ainsi que du Règlement Général sur la Protection des Données (RGPD : n° 2016-679).
 
-{{owner}} ne saurait être tenue pour responsable en aucune manière d'une mauvaise utilisation du service.
+### 7.1 Responsables de la collecte des données personnelles
+Pour les Données Personnelles collectées dans le cadre de la création du compte personnel de l’Utilisateur et de sa navigation sur le Site, le responsable du traitement des Données Personnelles est : MaVoie.org {{canonicalUrl}} est représenté par l’Association MaVoie.
 
-## 4. Description du service
+En tant que responsable du traitement des données qu’il collecte, {{canonicalUrl}} s’engage à respecter le cadre des dispositions légales en vigueur. Il lui appartient notamment au Client d’établir les finalités de ses traitements de données, de fournir à ses prospects et clients, à partir de la collecte de leurs consentements, une information complète sur le traitement de leurs données personnelles et de maintenir un registre des traitements conforme à la réalité. Chaque fois que {{canonicalUrl}} traite des Données Personnelles, {{canonicalUrl}} prend toutes les mesures raisonnables pour s’assurer de l’exactitude et de la pertinence des Données Personnelles au regard des finalités pour lesquelles {{canonicalUrl}} les traite.
 
-{{productName}} est une plate-forme indépendante développée par l'association de loi 1901 {{owner}}.
+### 7.2 Finalité des données collectées
+{{canonicalUrl}} est susceptible de traiter tout ou partie des données :
+- pour permettre la navigation sur le Site et la gestion et la traçabilité des prestations et services commandés par l’utilisateur : données de connexion et d’utilisation du Site, facturation, historique des commandes, etc.
+- pour prévenir et lutter contre la fraude informatique (spamming, hacking…) : matériel informatique utilisé pour la navigation, l’adresse IP, le mot de passe (hashé)
+- pour améliorer la navigation sur le Site : données de connexion et d’utilisation
+- pour mener des enquêtes de satisfaction facultatives sur {{canonicalUrl}}  : adresse email
+- pour mener des campagnes de communication (sms, mail) : numéro de téléphone, adresse email
 
-Ce service suppose la validation de plusieurs étapes.
+{{canonicalUrl}} ne commercialise pas vos données personnelles qui sont donc uniquement utilisées par nécessité ou à des fins statistiques et d’analyses.
 
-### 4.1. Diagnostic non médical des symptômes
+### 7.3 Droit d’accès, de rectification et d’opposition
+Conformément à la réglementation européenne en vigueur, les Utilisateurs de {{canonicalUrl}} disposent des droits suivants:
+- droit d'accès (article 15 RGPD) et de rectification (article 16 RGPD), de mise à jour, de complétude des données des Utilisateurs droit de verrouillage ou d’effacement des données des Utilisateurs à caractère personnel (article 17 du RGPD), lorsqu’elles sont inexactes, incomplètes, équivoques, périmées, ou dont la collecte, l'utilisation, la communication ou la conservation est interdite
+- droit de retirer à tout moment un consentement (article 13-2c RGPD)
+- droit à la limitation du traitement des données des Utilisateurs (article 18 RGPD)
+- droit d’opposition au traitement des données des Utilisateurs (article 21 RGPD)
+- droit à la portabilité des données que les Utilisateurs auront fournies, lorsque ces données font l’objet de traitements automatisés fondés sur leur consentement ou sur un contrat (article 20 RGPD)
+- droit de définir le sort des données des Utilisateurs après leur mort et de choisir à qui {{canonicalUrl}}   devra communiquer (ou non) ses données à un tiers qu’il aura préalablement désigné
 
-En premier lieu, {{productName}} émet un diagnostic consultatif non médical à partir d'un algorithme sur la probabilité de contamination au {{diseaseName}} par l'usager à partir de l'étude des symptômes décrits par ce dernier. Cet avis ne saurait en aucun cas se substituer à celui d'un médecin, d'un membre du personnel soignant,une procédure de test certifiée ou d'une quelconque procédure agréée par les autorités.
+Dès que {{canonicalUrl}} a connaissance du décès d’un Utilisateur et à défaut d’instructions de sa part, {{canonicalUrl}} s’engage à détruire ses données, sauf si leur conservation s’avère nécessaire à des fins probatoires ou pour répondre à une obligation légale.
 
-Si l'individu a déjà été testé positif via un dispositif médical ou par le diagnostic d'un professionnel de santé, il pourra directement renseigner cette information auprès du site internet et n'aura pas à fournir des informations sur son état de santé pour bénéficier du service {{productName}}.
+Si l’Utilisateur souhaite savoir comment {{canonicalUrl}} utilise ses Données Personnelles, demander à les rectifier ou s’oppose à leur traitement, l’Utilisateur peut contacter {{canonicalUrl}} par écrit à l’adresse suivante : contact@mavoie.org
 
-Ce diagnostic non médical est basé sur l'état actuel des recherches scientifiques concernant le {{diseaseName}}. Il peut donc être amené à évoluer.
+Dans ce cas, l’Utilisateur doit indiquer les Données Personnelles qu’il souhaiterait que {{canonicalUrl}} corrige, mette à jour ou supprime, en s’identifiant précisément avec une copie d’une pièce d’identité (carte d’identité ou passeport).
 
-### 4.2. Indication de la période de contagiosité
+Les demandes de suppression de Données Personnelles seront soumises aux obligations qui sont imposées à {{canonicalUrl}} par la loi, notamment en matière de conservation ou d’archivage des documents. Enfin, les Utilisateurs de {{canonicalUrl}} peuvent déposer une réclamation auprès des autorités de contrôle, et notamment de la CNIL (https://www.cnil.fr/fr/plaintes).
 
-Suite à cette étape, le service dresse la probable période de contagiosité de l'individu afin de l'aider à se rappeler des personnes croisées durant ces quelques jours.
+### 7.4 Non-communication des données personnelles
+{{canonicalUrl}} s’interdit de traiter, héberger ou transférer les Informations collectées sur ses Clients vers un pays situé en dehors de l’Union européenne ou reconnu comme « non adéquat » par la Commission européenne sans en informer préalablement le client. Pour autant, {{canonicalUrl}} reste libre du choix de ses sous-traitants techniques et commerciaux à la condition qu’il présentent les garanties suffisantes au regard des exigences du Règlement Général sur la Protection des Données (RGPD : n° 2016-679).
 
-Cette période est purement indicative . Elle n'est nullement une donnée médicale certifiée.
+{{canonicalUrl}} s’engage à prendre toutes les précautions nécessaires afin de préserver la sécurité des Informations et notamment qu’elles ne soient pas communiquées à des personnes non autorisées. Cependant, si un incident impactant l’intégrité ou la confidentialité des Informations du Client est portée à la connaissance de {{canonicalUrl}}, celle-ci devra dans les meilleurs délais informer le Client et lui communiquer les mesures de corrections prises. Par ailleurs {{canonicalUrl}} ne collecte aucune « données sensibles ».
 
-Le dispositif de calcul de la période de contagiosité est également basé sur l'état actuel des recherches scientifiques concernant le {{diseaseName}} et peut donc être amené à évoluer.
+Les Données Personnelles de l’Utilisateur peuvent être traitées par des filiales de {{canonicalUrl}} et des sous-traitants (prestataires de services), exclusivement afin de réaliser les finalités de la présente politique.
 
-### 4.3. Aide à la recherche des personnes croisées durant la période de contagiosité
+Dans la limite de leurs attributions respectives et pour les finalités rappelées ci-dessus, les principales personnes susceptibles d’avoir accès aux données des Utilisateurs de {{canonicalUrl}} sont principalement les agents de notre service client.
 
-Le service {{productName}} propose par la suite d'aider l'usager à se rappeler de chaque personne croisée durant la période de contagion. Le service propose pour cela des aides-mémoires et des questions mémo-techniques récurrentes sur les activités de la journée.
+## 8. Notification d’incident
+Quels que soient les efforts fournis, aucune méthode de transmission sur Internet et aucune méthode de stockage électronique n'est complètement sûre. Nous ne pouvons en conséquence pas garantir une sécurité absolue. Si nous prenions connaissance d'une brèche de la sécurité, nous avertirions les utilisateurs concernés afin qu'ils puissent prendre les mesures appropriées. Nos procédures de notification d’incident tiennent compte de nos obligations légales, qu'elles se situent au niveau national ou européen. Nous nous engageons à informer pleinement nos clients de toutes les questions relevant de la sécurité de leur compte et à leur fournir toutes les informations nécessaires pour les aider à respecter leurs propres obligations réglementaires en matière de reporting.
 
-L'usager, si il le souhaite et l'approuve uniquement, peut donner accès à certaines informations personnelles (comme le calendrier, les contacts téléphoniques…) via des systèmes d'API.
+Aucune information personnelle de l'utilisateur du site {{canonicalUrl}} n'est publiée à l'insu de l'utilisateur, échangée, transférée, cédée ou vendue sur un support quelconque à des tiers. Seule l'hypothèse du rachat de {{canonicalUrl}} et de ses droits permettrait la transmission des dites informations à l'éventuel acquéreur qui serait à son tour tenu de la même obligation de conservation et de modification des données vis à vis de l'utilisateur du site {{canonicalUrl}}.
 
-Le service propose également deux questions permettant également d'évaluer via deux questions le niveau de proximité du contact, en se basant sur la durée du contact et la distance déclarée par l'usager entre les deux personnes durant le contact.
+### Sécurité
+Pour assurer la sécurité et la confidentialité des Données Personnelles et des Données Personnelles de Santé, {{canonicalUrl}} utilise des réseaux protégés par des dispositifs standards tels que par pare-feu, la pseudonymisation, l’encryption et mot de passe.
 
-L'ensemble de ces informations personnelles ne sont utilisées et stockées que localement sur l'appareil de l'utilisateur. Elles ne sont pas transmises, ni directement, ni sous aucune forme dérivée. Elles sont ainsi conservées par le seul utilisateur du service.
+Lors du traitement des Données Personnelles, {{canonicalUrl}} prend toutes les mesures raisonnables visant à les protéger contre toute perte, utilisation détournée, accès non autorisé, divulgation, altération ou destruction.
 
-### 4.4. Aide à la notification des personnes croisées durant la période de contagiosité
+## 9. Liens hypertextes « cookies » et balises (“tags”) internet
+Le site {{canonicalUrl}} contient un certain nombre de liens hypertextes vers d’autres sites, mis en place avec l’autorisation de {{canonicalUrl}}. Cependant, {{canonicalUrl}} n’a pas la possibilité de vérifier le contenu des sites ainsi visités, et n’assumera en conséquence aucune responsabilité de ce fait.
 
-Le service propose ensuite de notifier les personnes identifiées comme contact de l'usager (“les cas-contact”).
+Sauf si vous décidez de désactiver les cookies, vous acceptez que le site puisse les utiliser. Vous pouvez à tout moment désactiver ces cookies et ce gratuitement à partir des possibilités de désactivation qui vous sont offertes et rappelées ci-après, sachant que cela peut réduire ou empêcher l’accessibilité à tout ou partie des Services proposés par le site.
 
-Pour cela, l'usager peut copier le message généré automatiquement par le service et l'envoyer en le copiant dans la plateforme de messagerie de son choix, ou en passant volontairement par des API de son choix.
+### 9.1. « COOKIES »
+Un « cookie » est un petit fichier d’information envoyé sur le navigateur de l’Utilisateur et enregistré au sein du terminal de l’Utilisateur (ex : ordinateur, smartphone), (ci-après « Cookies »). Ce fichier comprend des informations telles que le nom de domaine de l’Utilisateur, le fournisseur d’accès Internet de l’Utilisateur, le système d’exploitation de l’Utilisateur, ainsi que la date et l’heure d’accès. Les Cookies ne risquent en aucun cas d’endommager le terminal de l’Utilisateur.
+‍
+{{canonicalUrl}}   est susceptible de traiter les informations de l’Utilisateur concernant sa visite du Site, telles que les pages consultées, les recherches effectuées. Ces informations permettent à {{canonicalUrl}} d’améliorer le contenu du Site, de la navigation de l’Utilisateur.
 
-L'usager peut aussi demander au service {{productName}}, un envoi anonyme de ce message à la personne en question. L'association {{owner}} et le service {{productName}} ne conservent aucune trace identifiable de ces interactions entre l'usager et son contact.
+Les Cookies facilitant la navigation et/ou la fourniture des services proposés par le Site, l’Utilisateur peut configurer son navigateur pour qu’il lui permette de décider s’il souhaite ou non les accepter de manière à ce que des Cookies soient enregistrés dans le terminal ou, au contraire, qu’ils soient rejetés, soit systématiquement, soit selon leur émetteur. L’Utilisateur peut également configurer son logiciel de navigation de manière à ce que l’acceptation ou le refus des Cookies lui soient proposés ponctuellement, avant qu’un Cookie soit susceptible d’être enregistré dans son terminal.{{canonicalUrl}} informe l’Utilisateur que, dans ce cas, il se peut que les fonctionnalités de son logiciel de navigation ne soient pas toutes disponibles.
 
-### 4.5 Suivi pour les cas contacts
+Si l’Utilisateur refuse l’enregistrement de Cookies dans son terminal ou son navigateur, ou si l’Utilisateur supprime ceux qui y sont enregistrés, l’Utilisateur est informé que sa navigation et son expérience sur le Site peuvent être limitées. Cela pourrait également être le cas lorsque {{canonicalUrl}} ou l’un de ses prestataires ne peut pas reconnaître, à des fins de compatibilité technique, le type de navigateur utilisé par le terminal, les paramètres de langue et d’affichage ou le pays depuis lequel le terminal semble connecté à Internet.
 
-Si une personne extérieure à l'utilisation initiale du service est identifiée comme “cas-contact” par un usager du service suspecté d'être porteur du {{diseaseName}}, cette dernière est invitée à accéder également au service.
+Le cas échéant, {{canonicalUrl}} décline toute responsabilité pour les conséquences liées au fonctionnement dégradé du Site et des services éventuellement proposés par {{canonicalUrl}}, résultant (i) du refus de Cookies par l’Utilisateur (ii) de l’impossibilité pour {{canonicalUrl}} d’enregistrer ou de consulter les Cookies nécessaires à leur fonctionnement du fait du choix de l’Utilisateur. Pour la gestion des Cookies et des choix de l’Utilisateur, la configuration de chaque navigateur est différente. Elle est décrite dans le menu d’aide du navigateur, qui permettra de savoir de quelle manière l’Utilisateur peut modifier ses souhaits en matière de Cookies.
 
-Un lien lui permet de prendre connaissance de son statut de probable “cas-contact” et l'invite à entreprendre une démarche de vérification des symptômes.
+À tout moment, l’Utilisateur peut faire le choix d’exprimer et de modifier ses souhaits en matière de Cookies.{{canonicalUrl}} pourra en outre faire appel aux services de prestataires externes pour l’aider à recueillir et traiter les informations décrites dans cette section.
 
-Si une contamination au {{diseaseName}} est présumée par le diagnostic non médical offert par le service {{productName}}, ce dernier est à son tour invité à effectuer le parcours d'identification et de signalement de ses propres cas-contacts comme tout usager.
+Enfin, en cliquant sur les icônes dédiées aux réseaux sociaux Twitter, Facebook, Linkedin et Google Plus figurant sur le Site de {{canonicalUrl}} ou dans son application mobile et si l’Utilisateur a accepté le dépôt de cookies en poursuivant sa navigation sur le Site Internet ou l’application mobile de {{canonicalUrl}}, Twitter, Facebook, Linkedin et Google Plus peuvent également déposer des cookies sur vos terminaux (ordinateur, tablette, téléphone portable).
 
-Si les symptômes déclarés ne permettent de supposer une contamination au {{diseaseName}}, il lui est proposé de communiquer son email afin de bénéficier de la fonction suivi. Pour rappel, cette dernière consiste en l'envoi régulier d'e-mails de conseils et de rappels à la vigilance sur les symptômes révélateurs du {{diseaseName}}. Cette démarche d'inscription à la fonction de suivi est volontaire et réversible.
+Ces types de cookies ne sont déposés sur vos terminaux qu’à condition que vous y consentiez, en continuant votre navigation sur le Site Internet ou l’application mobile de {{canonicalUrl}}. À tout moment, l’Utilisateur peut néanmoins revenir sur son consentement à ce que {{canonicalUrl}} dépose ce type de cookies.
 
-Au bout de 14 jours après l'inscription à la fonction suivi, cette dernière prend fin. L'email de l'utilisateur est alors automatiquement supprimé.
+### Article 9.2. BALISES (“TAGS”) INTERNET
+{{canonicalUrl}} peut employer occasionnellement des balises Internet (également appelées « tags », ou balises d’action, GIF à un pixel, GIF transparents, GIF invisibles et GIF un à un) et les déployer par l’intermédiaire d’un partenaire spécialiste d’analyses Web susceptible de se trouver (et donc de stocker les informations correspondantes, y compris l’adresse IP de l’Utilisateur) dans un pays étranger.
 
-## 5. Usage du service
+Ces balises sont placées à la fois dans les publicités en ligne permettant aux internautes d’accéder au Site, et sur les différentes pages de celui-ci.
+Cette technologie permet à {{canonicalUrl}} d’évaluer les réponses des visiteurs face au Site et l’efficacité de ses actions (par exemple, le nombre de fois où une page est ouverte et les informations consultées), ainsi que l’utilisation de ce Site par l’Utilisateur.
+Le prestataire externe pourra éventuellement recueillir des informations sur les visiteurs du Site et d’autres sites Internet grâce à ces balises, constituer des rapports sur l’activité du Site à l’attention de {{canonicalUrl}}, et fournir d’autres services relatifs à l’utilisation de celui-ci et d’Internet.
 
-### 5.1. Utilisation de {{productName}}
-
-Dans le cadre de leur utilisation de la plate-forme, les usagers s'engagent à respecter les lois et règlements en vigueur et à ne pas porter atteinte aux droits de tiers ou à l'ordre public.
-
-Les usagers sont seuls responsables du bon accomplissement de toutes les formalités administratives ou médicales nécessaires concernant leur état de santé. Concernant les procédures d'assistance ou de test médicales, il est de leur seule responsabilité d'obtenir les garanties et les moyens de les effectuer. A ce titre, la responsabilité de {{owner}} ne serait en aucun cas être engagée.
-
-Les usagers reconnaissent avoir pris connaissance des caractéristiques et contraintes, notamment techniques, de la plate-forme. Ils sont seuls responsables de son utilisation. Les usagers sont informés et acceptent que la mise en œuvre de la plate-forme nécessite une connexion à internet dont ils sont seuls responsables, et dont la qualité du service en dépend directement.
-
-Les usagers sont également seuls responsables des relations qu'ils pourront nouer avec les responsables des services, notamment les organismes d'assistance médicale ou de tests, auxquels ils feront appel en suivant les suggestions du service.
-
-### 5.2. Persistance des informations du parcours usager sur son navigateur web
-
-Via un système de cookies, l'usager peut interrompre et reprendre le parcours du service sur une même interface et à différents intervalles dans le temps. Cette persistance est optionnelle, l'usager peut choisir de ne pas en bénéficier. Cette persistance n'implique en rien le fait que les données personnelles de l'usage soient enregistrées par {{productName}}. Cette persistance ne peut pas être assimilée à une fonctionnalité de compte utilisateur.
-
-Comme {{productName}} n'enregistre aucune des données fournies, le service ne peut alors garantir les usagers en cas de perte éventuelle des informations remplies au cours du parcours. Il appartient aux usagers de sauvegarder une copie de leurs informations. Ils ne peuvent prétendre à aucun dédommagement en raison de quelque perte de données que ce soit.
-
-### 5.3. Gratuité de l'usage de {{productName}}
-
-L'usage de la plate-forme {{productName}} est gratuit.
-
-## 6. Responsabilités et garanties
-
-### 6.1. Absence de responsabilité au regard des recommandations et du diagnostic non médical
-
-Le diagnostic non médical de {{productName}} se base sur de nombreuses ressources médicales officielles, sur les recommandations et le suivi du comité scientifique appuyant l'initiative.
-
-Au vu de la crise sanitaire en cours, les recommandations affichées et le système de diagnostic non médical sont amenés à évoluer suivant l'état de l'art clinique et l'avis des autorités de santé.
-
-Par conséquent, les résultats affichés peuvent différer dans le temps, même si les données d'entrée sont identiques.
-
-{{productName}} n'est pas un dispositif médical. Il ne délivre pas d'avis médical, il ne remplace pas une consultation ni l'avis d'un médecin ou d'un pharmacien ou de tout autre professionnel de santé. Il ne saurait non plus se substituer aux recommandations des autorités compétentes.
-
-{{productName}} est un service d'information conçu pour répondre à une alerte sanitaire. Il ne peut pas être utilisé dans le cadre d'une télésurveillance médicale à domicile.
-
-### 6.2. Absence de responsabilité au regard du fonctionnement de {{productName}}
-
-{{productName}} ne peut garantir que son service ne subira aucune interruption. {{productName}} s'engage à fournir son service avec diligence et selon les règles de l'art, étant précisé qu'il ne s'agit que d'une obligation de moyens, excluant toute obligation de résultat.
-
-{{productName}} ne saurait être tenu responsable des difficultés ou impossibilités momentanées d'accès à la plate-forme qui auraient pour origine des circonstances qui lui sont extérieures, la force majeure, ou encore qui seraient dues à des perturbations des réseaux de télécommunication.
-
-Le service est fourni en l'état. {{productName}} ne peut garantir aux usagers qu'elle soit totalement exempte d'erreurs, de vices, de défauts. Le service est développé de façon standardisée pour l'ensemble des usagers. Elle n'est nullement conçue pour s'adapter à leurs contraintes personnelles.
-
-{{productName}} se réserve expressément la faculté d'interrompre momentanément l'accès à son service pour des raisons de maintenance.
-
-Si vous constatez une lacune, erreur ou ce qui paraît être un dysfonctionnement, nous vous invitons à nous le signaler par email à l'adresse suivante : [contact@briserlachaine.org](mailto:contact@briserlachaine.org)
-
-### 6.3. Comportements interdits
-
-Au-delà des autres interdictions prévues dans les présentes conditions, les usagers s'engagent à utiliser la plate-forme de façon vertueuse.
-
-Ils s'interdisent notamment d'utiliser la plate-forme aux fins suivantes : l'exercice d'activités illégales, frauduleuses ou portant atteinte aux droits ou à la sécurité des tiers ; l'atteinte à l'ordre public ou la violation des lois et règlements en vigueur ; l'intrusion dans le système informatique d'un tiers ou toute activité de nature à nuire, contrôler, interférer, ou intercepter tout ou partie du système informatique d'un tiers, en violer l'intégrité ou la sécurité ; l'envoi d'emails ou de sollicitations commerciales non sollicités ; les manipulations destinées à améliorer le référencement d'un site tiers ; l'aide ou l'incitation, sous quelque forme et de quelque manière que ce soit, à un ou plusieurs des actes et activités décrits ci-dessus ; et plus généralement toute pratique détournant le service à des fins autres que celles pour lesquelles il a été conçu.
-
-Les usagers s'engagent à respecter la continuité de service de la plate-forme. Ils s'interdisent notamment : tous comportements de nature à interrompre, suspendre, ralentir ou empêcher la continuité du service ; toutes intrusions ou tentatives d'intrusion dans le service ; tous détournements des ressources système du service ; toutes actions de nature à imposer une charge disproportionnée sur les infrastructures du service ; toutes atteintes aux mesures de sécurité et d'authentification ; tous actes de nature à porter atteinte aux droits et intérêts financiers, commerciaux ou moraux de {{productName}} ou des usagers du service.
-
-Les usagers s'engagent à respecter la valeur de la plate-forme. Ils s'interdisent de monnayer, vendre ou concéder tout ou partie de l'accès à la plate-forme.
-
-### 6.4. Garantie des usagers envers {{owner}}
-
-Les usagers garantissent {{owner}} contre toutes plaintes, réclamations, actions, revendications quelconques que {{owner}} pourrait subir du fait de la violation par eux de l'une quelconque de leurs obligations ou garanties aux termes des présentes conditions générales.
-
-Les usagers s'engagent à indemniser {{owner}} de tout préjudice subi et à payer tous les frais, charges, condamnations supportés de ce fait.
-
-## 7. Liens vers d'autres sites
-
-{{productName}} peut proposer des liens vers des sites internet de tiers. Les renvois vers des sites liés par hyperlien ne sauraient engager la responsabilité de {{owner}}, qui ne peut être tenu responsable de leur contenu et n'offre aucune garantie à leur égard. Il appartient aux usagers de faire toutes les vérifications nécessaires ou opportunes avant de procéder à une quelconque transaction avec l'un de ces tiers.
-
-Aucun lien commercial ou partenariat financier ne lie {{owner}} avec les tiers vers lesquels {{productName}} peut renvoyer ses usagers. Ces derniers sont proposés à titre purement indicatif et en tenant compte des recommandations en vigueur.
-
-## 8. Licence et propriété intellectuelle
-
-Les usagers reconnaissent expressément la propriété de {{owner}} sur l'ensemble de la plate-forme, et notamment sur les systèmes, logiciels, structures, infrastructures, bases de données et contenus de toute nature (textes, images, visuels, musiques, logos, marques, base de données, etc.) qui sont exploités par {{owner}} pour le service et sont protégés par les droits d'auteur, les droits de propriété intellectuelle, les droits de propriété industrielle ou les droits des producteurs de bases de données en vigueur.
-
-Le Code Source du logiciel est mis à disposition en logiciel libre.
-
-Les usagers s'interdisent de copier et de détourner à leurs fins ou à celles de tiers le concept, les technologies ou tout autre élément de la plate-forme. Tous désassemblages, décompilations, décryptages, extractions, réutilisations, copies et plus généralement, tous actes de reproduction, représentation, diffusion et utilisation de l'un quelconque de ces éléments, en tout ou partie, sans l'autorisation de {{owner}} sont strictement interdits et pourront faire l'objet de poursuites judiciaires.
-
-{{owner}} ne revendique aucune propriété sur les éventuels contenus mis en ligne par les usagers sur la plate-forme, ni sur leurs données personnelles.
-
-## 9. Données personnelles
-
-L'association {{owner}} est soucieuse de la protection des données personnelles. Elle s'engage à respecter le meilleur niveau de protection en conformité avec la réglementation Informatique et Libertés.
-
-Le responsable du traitement est l'association {{owner}}.
-
-Afin de proposer le service, {{productName}} demande, sans les enregistrer, des données personnelles sur les usagers, notamment : symptômes éventuelles, premier jour des symptômes, listes de contact croisés lors de la période contagieuse. Elles ne sont ni conservées par {{owner}} ou par {{productName}}, ni cédées à des tiers, ni exploitées à des fins commerciales.
-
-L'usager peut également donner accès, via un système d'API, à des fonctionnalités externes au fonctionnement de {{productName}} (comme l'accès à son agenda ou son historique d'appel). Cet accès est donné sur la base du consentement de l'usager. Il est notifié auprès de lui, demeure temporaire et les données ne sont pas non plus transmises à {{owner}}.
-
-Dans le cadre de la fonction “suivi”, les usagers acceptent de communiquer une adresse email afin d'être contactés pour recevoir des informations par {{productName}}. La durée maximum de cette fonction suivi est de 14 jours. {{owner}} s'engage à supprimer les adresses emails des usagers à la fin du suivi. Les usagers disposent à tout moment d'un droit d'accès, de rectification et de suppression de cette adresse email en adressant une demande à cet effet à : privacy@bayesimpact.org
-
-La désinscription à la fonction de suivi est effective immédiatement, à l'issue des 14 jours. Les adresses emails sont supprimées dès lors que le processus informatique est enclenché et ce dans un délai maximum de deux semaines.
-
-Les personnes identifiées par des usagers de {{productName}} comme des “cas-contacts” et contactées par {{productName}} bénéficient des mêmes standards concernant la protection des données.
-
-Afin de garantir au mieux la protection des données personnelles de ses usagers, l'association {{owner}} est dotée d'un Délégué à la Protection des Données.
-
-Pour plus de détails, une page dédiée à notre politique de protection et de gestion des données des usagers est disponible [ici]({{privacyPageUrl}}).
-
-## 10. Dispositions générales
-
-Au cas où des dispositions des présentes conditions seraient déclarées invalides ou inapplicables, les autres resteraient en vigueur et de plein effet.
-
-Les usagers conviennent que ni les présentes conditions, ni l'usage du service ne créent de société ou d'entreprise commune, de contrat de travail ou de mandat entre eux et {{owner}}.
-
-Dans l'hypothèse d'une traduction des présentes conditions dans une ou plusieurs langues, la langue d'interprétation sera la langue française en cas de contradiction ou de contestation sur la signification d'un terme ou d'une disposition.
-
-Les présentes conditions sont souscrites pour une durée indéterminée.
-
-## 11. Modification
-
-{{owner}} se réserve le droit de modifier les présentes conditions générales à tout moment.
-
-Les usagers seront informés de ces modifications par tout moyen utile, dont notamment la publication sur {{productName}}.
-
-La date de mise à jour sera toujours indiquée en haut et en bas des présentes conditions.
-
-L'utilisation du service après affichage des modifications des présentes conditions générales sur {{productName}} implique l'acceptation pleine et entière des conditions modifiées.
-
-La seule façon de refuser l'acceptation d'une modification des présentes conditions est de cesser d'utiliser {{productName}}.
-
-L'usager qui n'accepte pas les conditions générales modifiées ne peut bénéficier du service.
-
-Tout usager qui a recours au service postérieurement à l'entrée en vigueur des conditions générales modifiées est réputé avoir accepté ces modifications.
-
-## 12. Litiges
-
-{{owner}} se réserve le droit de prendre toute mesure appropriée en cas de manquement par les usagers aux présentes conditions, ou d'infraction aux lois et règlements en vigueur, et notamment :
-
- * publier tout message d'information utile ;
- * avertir toute autorité concernée ;
- * engager toute action judiciaire.
-
-L'utilisation du service est soumise à la loi française.
-
-En cas de litige, les tribunaux du ressort de Paris sont seuls compétents.
-
-Préalablement à tout recours au juge arbitral ou étatique, les usagers s'obligent à négocier avec {{owner}} dans un esprit de loyauté et de bonne foi un accord amiable en cas de survenance de tout conflit relatif à la plate-forme ou aux présentes conditions, y compris portant sur leur validité.
-
-Les usagers souhaitant mettre en œuvre le processus de négociation devront en informer {{owner}} par lettre recommandée avec accusé de réception en indiquant les éléments du conflit. Un temps d'échange physique ou par voie dématérialisée sera alors organisé entre les usagers et {{owner}}. Si, au terme d'un délai de six mois, les usagers et {{owner}} ne parvenaient pas à s'entendre, le différend sera soumis à la juridiction compétente désignée ci-dessus. Le cours de la prescription sera suspendu à compter de la mise en œuvre du processus de négociation soit la date de réception de l'acte d'information envoyé par lettre recommandée avec accusé de réception. La suspension du cours de la prescription prendra fin à la date de la signature du procès-verbal de conciliation ou de non-conciliation. En cas de refus des usagers ou de {{owner}} de signer ledit procès-verbal, l'autre partie peut prendre acte de ce refus en l'informant qu'à défaut de réaction de sa part dans un délai d'un mois, la saisine du juge compétent sera possible. Durant tout le processus de négociation et jusqu'à son issue, les usagers s'interdisent d'exercer toute action en justice contre {{owner}} pour le conflit objet de la négociation.
-
-## 13. Coordonnées du responsable et de l'hébergeur
-
-**Éditeur du site :**
-
-{{productName}} est édité par l'association {{owner}} domiciliée au 9 rue d'Alexandrie, 75002, Paris, 06 71 91 18 09
-
-**Responsable de la publication :**
-
-Le responsable de la publication est : Paul DUAN Adresse : 9 rue d'Alexandrie, 75002, Paris Contact mail : [contact@briserlachaine.org](contact@briserlachaine.org)
-
-**Hébergeur du site :**
-
-{{productName}} est hébergé par la société OVH, dont le siège est situé au 2 rue Kellermann, 59100, Roubaix, téléphone 09 72 10 10 07.
-Les serveurs d'OVH hébergeant {{productName}} sont situés à Gravelines, France.
-
-## 15. Date
-
-Les présentes conditions générales sont entrées en vigueur le 2 mai 2020
+## 10. Droit applicable et attribution de juridiction.
+Tout litige en relation avec l’utilisation du site {{canonicalUrl}} est soumis au droit français. En dehors des cas où la loi ne le permet pas, il est fait attribution exclusive de juridiction aux tribunaux compétents de Paris.
