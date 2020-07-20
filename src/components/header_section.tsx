@@ -1,6 +1,8 @@
 import React from 'react'
 import {Trans, useTranslation} from 'react-i18next'
 
+import orange6ArrowsImage from 'images/arrows-6.svg?stroke=#992f00'
+import orange13ArrowsImage from 'images/arrows-13.svg?stroke=#992f00'
 import logoImage from 'images/logo.svg'
 import screenshotImage from 'images/screenshot.svg'
 
@@ -37,6 +39,16 @@ const subTagLineStyle: React.CSSProperties = {
 const productNameStyle: React.CSSProperties = {
   color: '#fff',
 }
+const orange6ArrowsStyle: React.CSSProperties = {
+  bottom: -180,
+  left: -80,
+  position: 'absolute',
+}
+const orange13ArrowsStyle: React.CSSProperties = {
+  right: -80,
+  top: 60,
+  position: 'absolute',
+}
 const screenshotStyle: React.CSSProperties = {
   borderRadius: 31,
   bottom: -280,
@@ -55,7 +67,6 @@ const whiteTriangleStyle: React.CSSProperties = {
 
 
 const HeaderSection = (): React.ReactElement => {
-  // TODO(pascal): Add arrows.
   const {t} = useTranslation()
   return <section style={sectionStyle}>
     <h1 style={logoStyle}><img src={logoImage} alt={t('productName')} /></h1>
@@ -71,6 +82,8 @@ const HeaderSection = (): React.ReactElement => {
           $t(productName)
         </strong>
       </Trans>
+      <img src={orange6ArrowsImage} alt="" style={orange6ArrowsStyle} />
+      <img src={orange13ArrowsImage} alt="" style={orange13ArrowsStyle} />
       <img src={screenshotImage} style={screenshotStyle} alt="" />
     </div>
     <div style={whiteTriangleStyle} />
