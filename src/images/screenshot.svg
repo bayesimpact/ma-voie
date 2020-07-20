@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="287" height="476" viewBox="0 0 287 476">
+    <defs>
+        <filter id="7a9cg8989e" width="100%" height="100%" x="0%" y="0%" filterUnits="objectBoundingBox">
+            <feOffset in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feComposite in="shadowOffsetOuter1" in2="SourceAlpha" operator="out" result="shadowOffsetOuter1"/>
+            <feColorMatrix in="shadowOffsetOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+        </filter>
+        <filter id="lzend53tbh" width="100.4%" height="104.8%" x="-.2%" y="-1.2%" filterUnits="objectBoundingBox">
+            <feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feColorMatrix in="shadowOffsetOuter1" values="0 0 0 0 0.898039216 0 0 0 0 0.901960784 0 0 0 0 0.901960784 0 0 0 1 0"/>
+        </filter>
+        <filter id="rwgjl7jtpj">
+            <feColorMatrix in="SourceGraphic" values="0 0 0 0 0.000000 0 0 0 0 0.047059 0 0 0 0 0.039216 0 0 0 1.000000 0"/>
+        </filter>
+        <filter id="2irlpxm8tk">
+            <feColorMatrix in="SourceGraphic" values="0 0 0 0 0.000000 0 0 0 0 0.047059 0 0 0 0 0.039216 0 0 0 1.000000 0"/>
+        </filter>
+        <filter id="omwoq6aewm" width="124.5%" height="126.2%" x="-12.2%" y="-11.7%" filterUnits="objectBoundingBox">
+            <feOffset dy="3" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="8.5"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
+        </filter>
+        <filter id="xffby1awso">
+            <feColorMatrix in="SourceGraphic" values="0 0 0 0 0.917686 0 0 0 0 0.401884 0 0 0 0 0.143983 0 0 0 1.000000 0"/>
+        </filter>
+        <filter id="qftmk3rd3p">
+            <feColorMatrix in="SourceGraphic" values="0 0 0 0 0.000000 0 0 0 0 0.047059 0 0 0 0 0.039216 0 0 0 1.000000 0"/>
+        </filter>
+        <rect id="cdqud449pb" width="287" height="476" x="0" y="0" rx="31"/>
+        <rect id="mq275krnqc" width="267" height="476" x="10" y="10" rx="31"/>
+        <rect id="7cdpfi8zwl" width="220.5" height="205.8" x="21" y="112" rx="14.7"/>
+        <path id="rw9fdm9fof" d="M0 0H262.5V49H0z"/>
+        <path id="xcne8rd05g" d="M0 7.003C0 3.135 3.142 0 7.004 0h234.492c3.868 0 7.004 3.14 7.004 7.003v11.194c0 3.868-3.142 7.003-7.004 7.003H7.004C3.136 25.2 0 22.06 0 18.197V7.003z"/>
+        <path id="xq8ptdpzii" d="M0 49H262.5V91H0z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd" transform="translate(0 0)">
+        <use fill="#FFF" xlink:href="#cdqud449pb"/>
+        <mask id="x8b33e9vjd" fill="#fff">
+            <use xlink:href="#mq275krnqc"/>
+        </mask>
+        <g mask="url(#x8b33e9vjd)">
+            <g transform="translate(12 12)">
+                <path fill="#FFF" d="M0 0H262.5V466.9H0z"/>
+                <g>
+                    <use fill="#000" filter="url(#7a9cg8989e)" xlink:href="#rw9fdm9fof"/>
+                    <use fill="#F8F8F8" fill-opacity=".82" xlink:href="#rw9fdm9fof"/>
+                    <g transform="translate(7 16.8)">
+                        <use fill="#8E8E93" fill-opacity=".12" xlink:href="#xcne8rd05g"/>
+                    </g>
+                    <text fill="#030303" font-family="SFProText-Regular, SF Pro Text" font-size="11.9" letter-spacing="-.287">
+                        <tspan x="101.883" y="33.4">mavoie.org</tspan>
+                    </text>
+                    <path stroke="#000" stroke-linecap="round" stroke-width="1.4" d="M239.05 25.2l6.19 6.19 2.91 2.91m0-9.1l-6.19 6.19-2.91 2.91"/>
+                </g>
+                <g>
+                    <use fill="#000" filter="url(#lzend53tbh)" xlink:href="#xq8ptdpzii"/>
+                    <use fill="#FFF" xlink:href="#xq8ptdpzii"/>
+                </g>
+                <g>
+                    <path fill="#00E5FF" fill-rule="nonzero" d="M30.647 1.262l-.002-.04c0-.017 0-.035-.002-.052l-.008-.056c-.002-.012-.003-.024-.006-.035-.003-.02-.008-.038-.013-.057l-.009-.033c-.005-.018-.012-.036-.018-.053L30.576.9l-.022-.048c-.006-.012-.01-.024-.017-.036-.008-.016-.018-.03-.026-.045l-.022-.035c-.01-.017-.023-.032-.035-.048-.006-.009-.012-.018-.02-.027-.039-.048-.083-.093-.131-.132l-.031-.024c-.014-.01-.028-.022-.043-.031L30.188.45 30.15.427l-.044-.021-.04-.019-.044-.016-.042-.015c-.015-.005-.032-.008-.047-.012-.014-.004-.028-.008-.042-.01-.02-.005-.04-.007-.06-.01l-.03-.004c-.032-.004-.064-.005-.096-.005h-6.579c-.52 0-.94.424-.94.947 0 .25.1.492.275.67.177.177.416.277.665.277h4.311l-4.962 4.998c-.177.178-.276.419-.276.67 0 .25.1.492.276.67.367.37.962.37 1.329 0l4.963-5v4.344c0 .523.42.947.94.947s.94-.424.94-.947V1.262z" transform="translate(114.8 59.375)"/>
+                    <g filter="url(#rwgjl7jtpj)" transform="translate(114.8 59.375)">
+                        <g transform="translate(0 .125)">
+                            <rect width="1.88" height="8.524" x="21.434" y="12.123" fill="#000C0A" fill-rule="nonzero" rx=".94"/>
+                            <path fill="#000C0A" fill-rule="nonzero" d="M15.511 13.83c1.402 0 2.539 1.144 2.539 2.556 0 1.412-1.137 2.557-2.539 2.557-1.401 0-2.538-1.145-2.538-2.557.002-1.411 1.137-2.555 2.538-2.557m0-1.894c-2.44 0-4.418 1.993-4.418 4.451 0 2.458 1.978 4.451 4.418 4.451 2.44 0 4.419-1.993 4.419-4.45 0-2.46-1.978-4.452-4.419-4.452zM33.467 16.208l-.007-.099c-.18-2.28-1.957-4.068-4.12-4.068-2.133 0-3.887 1.735-4.112 3.964-.017.067-.025.135-.025.203 0 .03.001.06.004.089-.002.065-.004.13-.004.195 0 2.459 1.851 4.451 4.136 4.451 1.776 0 2.784-.55 3.486-1.335.177-.196.251-.464.2-.723-.051-.26-.221-.479-.459-.591l-.033-.016c-.338-.155-.738-.062-.974.228-.346.414-.923.733-2.22.733-1.325 0-2.067-.825-2.224-2.178h5.506c.468 0 .846-.382.846-.853zm-4.128-2.462c1.224 0 1.855.694 2.113 1.61h-4.229c.282-1.013.988-1.61 2.116-1.61zM19.554.191c-.405 0-.764.262-.892.648-.701-.559-1.62-.837-2.68-.837-2.441 0-4.137 1.993-4.137 4.451 0 2.458 1.696 4.451 4.136 4.451 1.06 0 1.98-.278 2.681-.837.146.44.587.71 1.042.635.455-.074.79-.47.79-.934v-6.63c0-.523-.421-.947-.94-.947zm-3.479 6.82c-1.4 0-2.35-1.148-2.35-2.558s.95-2.557 2.35-2.557c.678-.015 1.332.25 1.811.733.48.482.742 1.141.727 1.824 0 1.604-1.138 2.557-2.538 2.557zM10.339 2.841C10.303 1.201 9.454 0 7.662 0 6.899 0 6.183.422 5.6 1.03 5.168.39 4.453 0 3.43 0c-.6 0-1.173.263-1.673.671-.21-.375-.644-.56-1.057-.45C.288.33 0 .705 0 1.135v6.63c0 .523.42.947.94.947s.94-.424.94-.947V2.537c.221-.483.706-.788 1.235-.775.78 0 1.115.537 1.115 1.19v4.814c0 .523.42.947.94.947s.94-.424.94-.947V2.537c.221-.483.706-.788 1.235-.775.78 0 1.115.537 1.115 1.19v4.814c0 .523.421.947.94.947.52 0 .94-.424.94-.947V2.84h-.001z"/>
+                            <g filter="url(#2irlpxm8tk)">
+                                <path fill="#FFF" fill-rule="nonzero" d="M6.031 20.648h-.02c-.356-.008-.677-.217-.83-.541l-3.116-6.63c-.148-.306-.121-.67.07-.95.191-.281.518-.437.854-.408.337.029.633.238.775.547l2.312 4.917 2.587-4.953c.242-.463.81-.64 1.27-.397.46.244.636.817.394 1.28l-3.464 6.629c-.162.311-.483.506-.832.506z"/>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <path fill="#7F8584" d="M26.6 74.2c.387 0 .7.313.7.7 0 .387-.313.7-.7.7H14.7c-.387 0-.7-.313-.7-.7 0-.387.313-.7.7-.7h11.9zm0-4.9c.387 0 .7.313.7.7 0 .387-.313.7-.7.7H14.7c-.387 0-.7-.313-.7-.7 0-.387.313-.7.7-.7h11.9zm0-4.9c.387 0 .7.313.7.7 0 .387-.313.7-.7.7H14.7c-.387 0-.7-.313-.7-.7 0-.387.313-.7.7-.7h11.9z"/>
+                <text font-family="ProximaSoft-Regular, Proxima Soft" font-size="9.1">
+                    <tspan x="114.342" y="361.8" fill="#EA6625">ÉTAPE 2</tspan>
+                </text>
+                <text font-family="ProximaSoft-Bold, Proxima Soft" font-size="14" font-weight="bold">
+                    <tspan x="87.612" y="377.3" fill="#000C0A">Compétences</tspan>
+                </text>
+                <mask id="2t54ckxh6n" fill="#fff">
+                    <use xlink:href="#7cdpfi8zwl"/>
+                </mask>
+                <g>
+                    <use fill="#000" filter="url(#omwoq6aewm)" xlink:href="#7cdpfi8zwl"/>
+                    <use fill="#FFF" xlink:href="#7cdpfi8zwl"/>
+                </g>
+                <g mask="url(#2t54ckxh6n)">
+                    <g transform="translate(42 261.8)">
+                        <rect width="178.5" height="35" fill="#EA6625" rx="17.5"/>
+                        <text font-family="ProximaSoft-Bold, Proxima Soft" font-size="12.6" font-weight="bold">
+                            <tspan x="54.644" y="22.8" fill="#FFF">Commencer</tspan>
+                        </text>
+                    </g>
+                </g>
+                <text font-family="ProximaSoft-Regular, Proxima Soft" font-size="9.1" mask="url(#2t54ckxh6n)">
+                    <tspan x="115.097" y="166.5" fill="#EA6625">ÉTAPE 1</tspan>
+                </text>
+                <text font-family="ProximaSoft-Bold, Proxima Soft" font-size="14" font-weight="bold" mask="url(#2t54ckxh6n)">
+                    <tspan x="52.255" y="182" fill="#000C0A">Définition de votre projet</tspan>
+                </text>
+                <g mask="url(#2t54ckxh6n)">
+                    <g transform="translate(107.1 198.8)">
+                        <circle cx="24.5" cy="24.5" r="24.5" fill="#FBE0D3"/>
+                        <g transform="translate(9.1 9.1)">
+                            <rect width="30.8" height="30.8" fill="#FFF" rx="9.8"/>
+                            <g filter="url(#xffby1awso)">
+                                <rect width="30.8" height="30.8" fill="#000C0A" opacity=".2" rx="9.8"/>
+                                <g filter="url(#qftmk3rd3p)" transform="translate(5.6 5.6)">
+                                    <path fill="#000" fill-rule="nonzero" d="M9.281 5.009c-.731.664-1.156 1.6-1.173 2.588.04.9.374 1.76.951 2.45l-1.105 1.104c-.613.615-1.088 1.354-1.393 2.167-.261-.615-.639-1.173-1.111-1.645l-.83-.83-.578.577.83.83c.829.824 1.293 1.946 1.29 3.115v.046c0 .029-.004.057-.004.082l.01 2.525h.816l-.006-1.51v-1.1c.021-1.38.578-2.699 1.552-3.676l1.11-1.107c.4.314.85.559 1.332.726.36.122.736.186 1.115.188.977-.021 1.902-.443 2.558-1.167 2.45-2.45 2.517-7.231 2.519-7.432v-.408h-.408c-.19-.008-4.98-.017-7.475 2.477zm4.787 4.785c-1.001 1.116-2.712 1.225-3.847.245l2.859-2.858-.578-.577-2.858 2.858c-.433-.536-.684-1.195-.717-1.883.025-.766.363-1.488.935-1.999 1.844-1.845 5.274-2.172 6.469-2.23-.078 1.2-.446 4.627-2.263 6.444z"/>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <path fill="#099" d="M21 112H241.5V140H21z" mask="url(#2t54ckxh6n)"/>
+                <text font-family="ProximaSoft-Bold, Proxima Soft" font-size="9.1" font-weight="bold" mask="url(#2t54ckxh6n)">
+                    <tspan x="113.5" y="129.4" fill="#FFF">En cours</tspan>
+                </text>
+                <g mask="url(#2t54ckxh6n)">
+                    <g transform="translate(107.1 391.3)">
+                        <circle cx="24.5" cy="24.5" r="24.5" fill="#E5E6E6"/>
+                        <g>
+                            <path d="M0 0L16.8 0 16.8 16.8 0 16.8z" transform="translate(16.1 16.1)"/>
+                            <path fill="#000" fill-rule="nonzero" d="M13.3 7h.7c.387 0 .7.313.7.7v7c0 .387-.313.7-.7.7H2.8c-.387 0-.7-.313-.7-.7v-7c0-.387.313-.7.7-.7h.7v-.7c0-1.75.934-3.368 2.45-4.244 1.516-.875 3.384-.875 4.9 0 1.516.876 2.45 2.493 2.45 4.244V7zm-1.4 0v-.7c0-1.933-1.567-3.5-3.5-3.5S4.9 4.367 4.9 6.3V7h7zM7.7 9.8v2.8h1.4V9.8H7.7z" transform="translate(16.1 16.1)"/>
+                        </g>
+                    </g>
+                </g>
+                <text font-family="ProximaSoft-Bold, Proxima Soft" font-size="10.5" font-weight="bold" mask="url(#2t54ckxh6n)">
+                    <tspan x="88.3" y="457.3" fill="#000C0A">Terminez l&apos;étape 1</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
