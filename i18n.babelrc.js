@@ -2,7 +2,7 @@ const pluginOptions = {
   defaultContexts: [''],
   discardOldKeys: true,
   keySeparator: null,
-  locales: ['en', 'es', 'pt-BR'],
+  locales: ['en'],
   nsSeparator: null,
   outputPath: 'src/translations/{{locale}}/{{ns}}_i18next.json',
   tFunctionNames: ['prepareT', 't', 'defineAndGetPath'],

@@ -1,8 +1,7 @@
 // eslint-disable-next-line import/no-duplicates
 import {format as dateFormat, formatDistance} from 'date-fns'
-import {enUS as enDateLocale, es as esDateLocale, fr as frDateLocale,
 // eslint-disable-next-line import/no-duplicates
-  ptBR as ptBRDateLocale} from 'date-fns/locale'
+import {enUS as enDateLocale, fr as frDateLocale} from 'date-fns/locale'
 import i18next, {InitOptions, ReadCallback, ResourceKey, Services, TFunction,
   TOptions, i18n} from 'i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
@@ -39,9 +38,6 @@ class PromiseI18nBackend {
   }
 }
 
-// Whether this is the international version (with locale detection) or the French one.
-const isInternational = document.documentElement.getAttribute('lang') !== 'fr'
-
 const updateDomLang = (lang: string): void => {
   document.documentElement.setAttribute('lang', lang)
 }
@@ -56,7 +52,7 @@ const UpdateDocumentElementLang = {
   type: '3rdParty',
 } as const
 
-const whitelist = ['fr', 'en', 'es', 'pt', 'pt-BR'] as const
+const whitelist = ['fr', 'en'] as const
 type LocaleKey = (typeof whitelist)[number]
 
 const STATIC_NAMESPACE = 'static'
@@ -79,9 +75,9 @@ const init = (initOptions?: InitOptions): void => {
           import(`translations/${language}/${namespace}_i18next.json`),
       detection: {
         lookupQuerystring: 'hl',
-        ...isInternational ? {} : {order: ['querystring']},
+        order: ['querystring'],
       },
-      fallbackLng: isInternational ? 'en' : 'fr',
+      fallbackLng: 'fr',
       interpolation: {
         escapeValue: false,
       },
@@ -145,11 +141,8 @@ type PromiseImportFunc = (language: string, namespace: string) => Promise<{defau
 
 
 const locales: {[K in LocaleKey]: typeof enDateLocale} = {
-  'en': enDateLocale,
-  'es': esDateLocale,
-  'fr': frDateLocale,
-  'pt': ptBRDateLocale,
-  'pt-BR': ptBRDateLocale,
+  en: enDateLocale,
+  fr: frDateLocale,
 } as const
 
 interface RelativeLocale {
