@@ -11,7 +11,7 @@ You may need to work with an HTTPS certificate. Here's how to do it locally
   * Create or refresh a demo with the specified hostname, the tag does not matter as we only aim to create a server to get the certificate.
   * Download its certificate from the demo server using scp: `scp ma-voie-demo.bayes.org:/etc/ssl/certs/letsencrypt/localhost.ma-voie-dev.bayes.org/*.pem ssl/`
 * Update your `/etc/hosts` file and update the line containing `localhost` by appending ` localhost.ma-voie-dev.bayes.org`.
-* Develop from [ localhost.bayes.org:9707 ](https://localhost.ma-voie-dev.bayes.org:9707).
+* Develop from [ localhost.ma-voie-dev.bayes.org:9707 ](https://localhost.ma-voie-dev.bayes.org:9707).
 
 We recommend that you install the [React Developr
 Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
