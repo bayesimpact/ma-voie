@@ -13,7 +13,7 @@ function replace_string() {
 replace_string 'environment:"production"' 'environment:"demo"' "$JS_APP_FILES"
 
 # TODO(pascal): Read from const.json5 and const_dist.json5
-replace_string 'd789e78c35cf582b8a59175137eb53cb' 'a1067533ce6148de5bcac9df0ea0d508' "$JS_APP_FILES"
+replace_string '6d5d1f5cb15e3cc946cbe3783e5f9e7f' '174aeb9469460975d8d6a14b31b6f916' "$JS_APP_FILES"
 replace_string '1576288225722008' '1048782155234293' "$JS_APP_FILES"
 
 # TODO(pascal): Try to find a way to run the command if any.
