@@ -1,0 +1,188 @@
+{
+  "attributes": {
+    "owa": "desktop",
+    "passport": {
+      "ck-version": "5",
+      "id": "n3NiFI81fK7",
+      "revertLostLink": true
+    },
+    "version": "4.5.1"
+  },
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "content": "",
+          "id": "G30RlBXEQQU",
+          "tagName": "mj-preview"
+        }
+      ],
+      "id": "9B7zWSpv7lc",
+      "tagName": "mj-head"
+    },
+    {
+      "attributes": {
+        "background-color": "#F4F4F4",
+        "color": "#55575d",
+        "font-family": "Arial, sans-serif",
+        "passport": {
+          "id": "ppklCEhY_F"
+        }
+      },
+      "children": [
+        {
+          "attributes": {
+            "background-color": "#ffffff",
+            "background-repeat": "repeat",
+            "background-size": "auto",
+            "padding": "20px 0px 20px 0px",
+            "passport": {
+              "id": "fOPb3_KDNv"
+            },
+            "text-align": "center",
+            "vertical-align": "top"
+          },
+          "children": [
+            {
+              "attributes": {
+                "passport": {
+                  "id": "IYQL3I1k7b"
+                }
+              },
+              "children": [
+                {
+                  "attributes": {
+                    "align": "left",
+                    "alt": "",
+                    "border": "none",
+                    "height": "auto",
+                    "href": "https://www.briserlachaine.org",
+                    "padding": "10px 50px 10px 25px",
+                    "padding-left": "25px",
+                    "padding-right": "50px",
+                    "passport": {
+                      "id": "O3g6Ft3Ud",
+                      "image-id": 13407691,
+                      "mode": "image"
+                    },
+                    "src": "http://r.bob-emploi.fr/tplimg/6u2u/b/xjzpt/vvgux.png",
+                    "target": "_blank",
+                    "title": "",
+                    "width": "195px"
+                  },
+                  "id": "-4WRIXBEJmK",
+                  "tagName": "mj-image"
+                },
+                {
+                  "attributes": {
+                    "align": "left",
+                    "color": "#000000",
+                    "font-family": "Arial, sans-serif",
+                    "font-size": "14px",
+                    "letter-spacing": "normal",
+                    "padding": "0px 25px 0px 25px",
+                    "padding-bottom": "0px",
+                    "padding-top": "0px",
+                    "passport": {
+                      "id": "9naTf2oO--bp",
+                      "oldContentEditor": "<p style=\"margin: 10px 0; margin-top: 10px;; margin-top: 10px\">The content of your email goes here.</p><p style=\"margin: 10px 0; margin-bottom: 10px;; margin-bottom: 10px\">You can drag and drop blocks of text, images or other content elements to add them to your message. Customize the font and the colors. Add links to track clicks.</p>",
+                      "oldMjAttributes": "{\"line-height\":\"22px\",\"font-family\":\"Arial, sans-serif\",\"color\":\"#55575d\",\"padding\":\"0px 25px 0px 25px\",\"font-size\":\"13px\",\"align\":\"left\",\"padding-bottom\":\"0px\",\"padding-top\":\"0px\"}"
+                    }
+                  },
+                  "content": "<p class=\"text-build-content\" style=\"margin: 10px 0; margin-top: 10px;; margin-top: 10px\"><span style=\"color:#0C0C0C;font-size:13px;background-color:#ffffff;line-height:22px;\">Bonjour,</span></p><p class=\"text-build-content\" style=\"margin: 10px 0;\"><a target=\"_blank\" href=\"https://www.briserlachaine.org\"><span style=\"color:#0EB3FD;font-size:13px;background-color:#ffffff;line-height:22px;\"><u>Nous</u></span></a><span style=\"color:#0C0C0C;font-size:13px;background-color:#ffffff;line-height:22px;\"> vous écrivons de la part d’une personne porteuse du covid-19 qui a indiqué vous avoir croisé(e) récemment pendant sa période contagieuse.</span></p><p class=\"text-build-content\" style=\"margin: 10px 0;\"><span style=\"color:#0C0C0C;font-size:13px;background-color:#ffffff;line-height:22px;\">Le </span><a target=\"_blank\" href=\"https://www.briserlachaine.org/confidentialite\"><span style=\"color:#0EB3FD;font-size:13px;background-color:#ffffff;line-height:22px;\"><u>respect de la vie privée</u></span></a><span style=\"color:#0C0C0C;font-size:13px;background-color:#ffffff;line-height:22px;\"> de nos utilisateurs est notre priorité, voilà pourquoi votre connaissance est anonyme elle aussi.</span></p><p class=\"text-build-content\" style=\"margin: 10px 0;\"><span style=\"color:#0C0C0C;font-size:13px;background-color:#ffffff;line-height:22px;\"><b>Même si vous n’avez pas de symptômes aujourd’hui, il est possible que vous soyez porteur(se) du virus et que vous soyez déjà contagieux(se).</b></span></p><p class=\"text-build-content\" style=\"margin: 10px 0;\"><span style=\"color:#0C0C0C;font-size:13px;background-color:#ffffff;line-height:22px;\">Ne paniquez pas, nous sommes là pour vous aider. Afin de vous protéger ainsi que vos proches, il est indispensable que vous preniez toutes les précautions nécessaires <b>dès aujourd’hui</b>.</span></p><p class=\"text-build-content\" style=\"margin: 10px 0; margin-bottom: 10px;; margin-bottom: 10px\"><span style=\"color:#0C0C0C;font-size:13px;background-color:#ffffff;line-height:22px;\">Pour briser la chaîne de contamination, nous vous invitons à venir sur notre site où vous pourrez notamment vérifier vos symptômes et accéder à un suivi personnalisé.</span></p>",
+                  "id": "RJ46xyIKBXz",
+                  "tagName": "mj-text"
+                },
+                {
+                  "attributes": {
+                    "align": "center",
+                    "background-color": "#0c0c0c",
+                    "border": "10px solid #ffffff",
+                    "border-radius": "20px",
+                    "color": "#ffffff",
+                    "font-family": "Arial, sans-serif",
+                    "font-size": "13px",
+                    "font-weight": "normal",
+                    "href": "https://www.briserlachaine.org/{%if var:risk:\"low\" == \"high\"%}cas-probable{%else%}cas-possible{%endif%}",
+                    "inner-padding": "10px 25px 10px 25px",
+                    "padding": "10px 25px 10px 25px",
+                    "padding-left": "25px",
+                    "padding-right": "25px",
+                    "passport": {
+                      "id": "_hKdMGAdw"
+                    },
+                    "text-decoration": "none",
+                    "text-transform": "none",
+                    "vertical-align": "middle"
+                  },
+                  "content": "<span style=\"font-size:13px;\"><b>Briser la chaîne de contamination&nbsp;</b></span>",
+                  "id": "O99xwSyI9Sx",
+                  "tagName": "mj-button"
+                },
+                {
+                  "attributes": {
+                    "align": "left",
+                    "color": "#000000",
+                    "font-family": "Arial, sans-serif",
+                    "font-size": "13px",
+                    "letter-spacing": "normal",
+                    "padding": "10px 25px",
+                    "padding-bottom": "0px",
+                    "padding-top": "0px",
+                    "passport": {
+                      "id": "_hIF3q2zj"
+                    }
+                  },
+                  "content": "<p class=\"text-build-content\" style=\"margin: 10px 0;; margin-top: 10px\"><span style=\"color:#0C0C0C;font-size:13px;\">BriserLaChaîne.org est une site entièrement gratuit réalisé par </span><a target=\"_blank\" href=\"https://www.bayesimpact.org\"><span style=\"color:#0EB3FD;font-size:13px;\"><u>Bayes Impact</u></span><span style=\"color:#0000EE;font-size:13px;\">,</span></a><span style=\"color:#0C0C0C;font-size:13px;\"> une ONG citoyenne engagée dans la lutte contre la propagation du virus.&nbsp;</span></p><p class=\"text-build-content\" style=\"margin: 10px 0;\"><span style=\"color:#0C0C0C;font-size:13px;\">Ensemble, brisons la chaîne de contamination.</span></p><p class=\"text-build-content\" style=\"margin: 10px 0;\"><span style=\"color:#0C0C0C;font-size:13px;\">L’équipe de BriserLaChaîne.org,</span></p><p class=\"text-build-content\" style=\"margin: 10px 0; margin-bottom: 10px;; margin-bottom: 10px\"><span style=\"color:#0C0C0C;font-size:13px;\">Une initiative de l’ONG citoyenne Bayes Impact.</span></p>",
+                  "id": "d6iW4_6IVWz",
+                  "tagName": "mj-text"
+                },
+                {
+                  "attributes": {
+                    "border-color": "#E6E6E6",
+                    "border-style": "solid",
+                    "border-width": "2px",
+                    "padding": "10px 25px",
+                    "passport": {
+                      "id": "6Ed-9QZtG"
+                    },
+                    "width": "100%"
+                  },
+                  "id": "LDTZ-T9wwAg",
+                  "tagName": "mj-divider"
+                },
+                {
+                  "attributes": {
+                    "align": "left",
+                    "color": "#000000",
+                    "font-family": "Arial, sans-serif",
+                    "font-size": "13px",
+                    "letter-spacing": "normal",
+                    "padding": "10px 25px",
+                    "padding-bottom": "0px",
+                    "padding-top": "0px",
+                    "passport": {
+                      "id": "_dF2eQ9wb"
+                    }
+                  },
+                  "content": "<p class=\"text-build-content\" style=\"margin: 10px 0; margin-top: 10px; margin-bottom: 10px;; margin-top: 10px; margin-bottom: 10px\"><span style=\"font-size:13px;\"><i>N’hésitez pas à contacter votre médecin si vous avez des questions. En cas de difficultés respiratoires, contactez le 15 immédiatement.</i></span></p>",
+                  "id": "tkItcgG2oGt",
+                  "tagName": "mj-text"
+                }
+              ],
+              "id": "ONIDlh8w56x",
+              "tagName": "mj-column"
+            }
+          ],
+          "id": "QVD8TC9PulC",
+          "tagName": "mj-section"
+        }
+      ],
+      "id": "iIsspdWLV-T",
+      "tagName": "mj-body"
+    }
+  ],
+  "id": "p_72QRvDqut",
+  "tagName": "mjml"
+}

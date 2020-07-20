@@ -1,0 +1,18 @@
+[
+  {
+    "mailjetTemplate": "1389855",
+    "name": "referral"
+  },
+  {
+    "mailjetTemplate": "1480570",
+    "name": "personal-referral"
+  },
+  {
+    "mailjetTemplate": "1436540",
+    "name": "referral-en"
+  },
+  {
+    "mailjetTemplate": "1481692",
+    "name": "personal-referral-en"
+  }
+]

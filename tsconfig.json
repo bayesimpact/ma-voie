@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "lib": ["dom", "dom.iterable", "es5", "es2019.object"],
+    "module": "esNext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "paths": {
+      "analytics/*": [
+        "src/analytics/*"
+      ],
+      "components/*": [
+        "src/components/*"
+      ],
+      "images/*": [
+        "src/images/*"
+      ],
+      "hooks/*": [
+        "src/hooks/*"
+      ],
+      "store/*": [
+        "src/store/*"
+      ],
+      "translations/*": [
+        "src/translations/*"
+      ]
+    },
+    "resolveJsonModule": true,
+    "strict": true,
+    "target": "esNext"
+  },
+  "include": [
+    "cfg/colors.json",
+    "custom.d.ts",
+    "src",
+    "test"
+  ]
+}

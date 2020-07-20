@@ -1,0 +1,76 @@
+{
+  "folders": [
+    {
+      "folder_exclude_patterns": [".git", "dist", "node_modules"],
+      "path": "."
+    }
+  ],
+  "settings": {
+    "SublimeLinter.linters.eslint.args": [
+      "--ext",
+      "js,json5,jsx,ts,tsx",
+      "--rule",
+      "{\"import/no-unresolved\": \"off\"}"
+    ]
+  },
+  "build_systems": [
+    {
+      "name": "Eslint",
+      "file_regex": "^/usr/app/(.+)",
+      "line_regex": "^\\s*(\\d+):(\\d+)\\s*(?:error|warning)\\s*(.*)",
+      "selector": "source.js,source.jsx,source.ts,source.tsx",
+      "shell_cmd": "docker-compose run --rm dev lint:js",
+      "working_dir": "$project_path"
+    },
+    {
+      "name": "Test Node",
+      "file_regex": "(?:/usr/app/)?([^\\s()]+):(\\d+):(\\d+)",
+      "selector": "source.js,source.ts",
+      "shell_cmd": "docker-compose run --rm dev test:node",
+      "working_dir": "$project_path"
+    },
+    {
+      "name": "Test Webpack",
+      "file_regex": "webpack:///\\.(.+)\\?:(\\d+):(\\d+)",
+      "selector": "source.ts,source.tsx",
+      "shell_cmd": "docker-compose run --rm dev test",
+      "working_dir": "$project_path"
+    },
+    {
+        "name": "Translations",
+        "variants": [
+            {
+                "name": "Test",
+                "shell_cmd": "docker-compose run --rm dev test:node -- --grep /translation/i",
+                "file_regex": "webpack:///\\.(.+)\\?:(\\d+):(\\d+)"
+            },
+        ],
+        "shell_cmd": "docker-compose run --rm dev i18n",
+        "file_patterns": ["*_i18next.json", "*.tsx", "*.ts"],
+        "working_dir": "$project_path"
+    },
+    {
+      "name": "Typescript",
+      "file_regex": "^(.+)\\(([0-9]*),([0-9]*)\\): (.*)",
+      "selector": "source.ts,source.tsx",
+      "shell_cmd": "docker-compose run --rm dev check-types",
+      "working_dir": "$project_path"
+    },
+    {
+      "name": "Docker build",
+      "selector": "source.dockerfile",
+      "shell_cmd": "docker-compose build dev",
+      "variants": [
+        {
+          "name": "Pull",
+          "shell_cmd": "docker-compose build --pull dev"
+        },
+        {
+          "name": "Test",
+          "shell_cmd": "docker-compose build test"
+        }
+      ],
+      "working_dir": "$project_path"
+    }
+  ]
+}

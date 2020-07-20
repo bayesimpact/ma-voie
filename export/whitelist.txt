@@ -1,0 +1,33 @@
+# List all the files that must be exported and only them.
+# This file on its own defines all the exported files,
+# the blacklist only ensures we knowingly excluded the others.
+
+# Root files.
+/.babelrc
+/.eslintignore
+/.eslintrc.json
+/.gitignore
+/cas_contact.sublime-workspace
+/check-color-config.sh
+/custom.d.ts
+/diff_i18n_folder.sh
+/docker-compose.override.yml
+/docker-compose.yml
+/Dockerfile
+/entrypoint.sh
+/i18n.babelrc.js
+/jsonlint.sh
+/karma.conf.js
+/package.json
+/README.md
+/tsconfig.json
+
+# Frontend component.
+/src
+/test
+/cfg
+/vendor
+/release
+
+# Mailjet proxy
+/mailjet
