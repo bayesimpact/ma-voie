@@ -84,8 +84,8 @@ fi
 # TODO(cyrille): Add a HISTORY.md.
 if [ -f "${EXPORT_DIR}/HISTORY.md" ]; then
   echo "Cleaning up internal links and internal-only information from History"
-  sed -i -e "s/ - \\[\\w*\\]([^)]*cas-contact-internal[^)]*)//" "${EXPORT_DIR}/HISTORY.md"
-  sed -i -e "s/ - \\[\\w*\\]([^)]*cas-contact-demo.bayes.org[^)]*)//" "${EXPORT_DIR}/HISTORY.md"
+  sed -i -e "s/ - \\[\\w*\\]([^)]*ma-voie-internal[^)]*)//" "${EXPORT_DIR}/HISTORY.md"
+  sed -i -e "s/ - \\[\\w*\\]([^)]*ma-voie-demo.bayes.org[^)]*)//" "${EXPORT_DIR}/HISTORY.md"
 fi
 
 echo "Removing lines containing no-open-source"

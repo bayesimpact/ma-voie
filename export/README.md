@@ -1,7 +1,7 @@
 # Export to Open Source
 
 This folder helps you easily export our internal repo
-(https://github.com/bayesimpact/cas-contact-internal) to the Open Source one
+(https://github.com/bayesimpact/ma-voie-internal) to the Open Source one
 (https://github.com/bayesimpact/briser-la-chaine).
 
 We do not copy all files as we prefer to keep some parts to ourselves, at least
@@ -16,7 +16,7 @@ notes from every Git release in the internal repo.
 
 This setup is only needed the first time:
 
-* Clone the internal repo on your computer if it's not done yet (usually in ~/cas-contact-internal).
+* Clone the internal repo on your computer if it's not done yet (usually in ~/ma-voie-internal).
 * Clone the Open Source repo on your computer.
 * Make sure that you have GitHub credentials in ~/.config/hub (usually the case if you've installed the developer tools).
 
