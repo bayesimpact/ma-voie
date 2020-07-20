@@ -39,7 +39,7 @@ module.exports = {
     } : false,
     noInfo: false,
     port: 80,
-    public: 'localhost.cas-contact-dev.bayes.org:9394',
+    public: 'localhost.ma-voie-dev.bayes.org:9707',
     publicPath: '/',
   },
   module: {

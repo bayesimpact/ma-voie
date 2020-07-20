@@ -9,7 +9,7 @@ services:
     entrypoint: ./entrypoint.sh
     tty: true
     ports:
-      - "9394:80"
+      - "9707:80"
   test:
     image: bayesimpact/ma-voie-test:${CIRCLE_BUILD_NUM:-latest}
     build:
