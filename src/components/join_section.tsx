@@ -1,10 +1,11 @@
-import React from 'react'
+import React, {useCallback} from 'react'
 import {Trans, useTranslation} from 'react-i18next'
 
 
 const isMobileVersion = window.outerWidth < 800
 
 interface JoinCardProps {
+  topic: string
   text: React.ReactElement
   style: React.CSSProperties
 }
@@ -26,7 +27,7 @@ const textStyle: React.CSSProperties = {
   textAlign: 'center',
 }
 
-const JoinCardBase = ({text, style}: JoinCardProps): React.ReactElement => {
+const JoinCardBase = ({topic, text, style}: JoinCardProps): React.ReactElement => {
   const {t} = useTranslation()
   const containerStyle: React.CSSProperties = {
     alignItems: 'center',
@@ -39,9 +40,13 @@ const JoinCardBase = ({text, style}: JoinCardProps): React.ReactElement => {
     padding: isMobileVersion ? '20px 15px' : '50px 40px',
     ...style,
   }
+  const handleClick = useCallback((): void => {
+    window.open(
+      `mailto:?to=${config.contactEmail}&subject=${topic}&`, '_blank', 'noopener,noreferrer')
+  }, [topic])
   return <div style={containerStyle}>
     <div style={textStyle}>{text}</div>
-    <div style={buttonStyle}>
+    <div style={buttonStyle} onClick={handleClick}>
       {t('contactEmail')}
     </div>
   </div>
@@ -85,8 +90,8 @@ const JoinSection = (): React.ReactElement => {
     <div style={{margin: 'auto', maxWidth: 960}}>
       <h2 style={titleStyle}>{t('Vous souhaitez nous rejoindre\u00A0?')}</h2>
       <div style={{display: 'flex', flexDirection: isMobileVersion ? 'column' : 'row'}}>
-        <JoinCard text={serviceText} style={serviceStyle} />
-        <JoinCard text={supportText} style={supportStyle} />
+        <JoinCard topic={t('Proposition de service')} text={serviceText} style={serviceStyle} />
+        <JoinCard topic={t('Soutien')} text={supportText} style={supportStyle} />
       </div>
     </div>
   </section>
