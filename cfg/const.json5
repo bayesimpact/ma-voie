@@ -8,6 +8,6 @@
   numDaysContagious: 3,
   numDaysContagiousBeforeSymptoms: 1,
   productName: 'ma voie DEV',
-  sentryDsn: 'https://1423edf320fe498a8b3e5326737e3f06@o87797.ingest.sentry.io/5223962',
+  sentryDsn: 'https://dcffd91beab148b08d4e5bb5db2b3220@o87797.ingest.sentry.io/5352067',
 }
 
