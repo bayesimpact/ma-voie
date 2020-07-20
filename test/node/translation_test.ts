@@ -197,7 +197,7 @@ describe('Translation files', (): void => {
   })
 
   it('should have a known translation', (): void => {
-    expect(translationTree['en']['translation']['CGU']).to.eq('Terms of Use')
+    expect(translationTree['en']['url']['TERMS']).to.eq('terms')
   })
 })
 
