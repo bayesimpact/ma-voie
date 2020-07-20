@@ -13,6 +13,7 @@
         "plugin:@typescript-eslint/recommended"
     ],
     "rules": {
+        "@typescript-eslint/ban-ts-comment": 0,
         "@typescript-eslint/ban-ts-ignore": 0,
         "@typescript-eslint/explicit-function-return-type": "error",
         "indent": 0,
@@ -140,7 +141,7 @@
         ]
     }],
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "error",
+    "react-hooks/exhaustive-deps": ["error", {"additionalHooks": "useFastForward"}],
     // TODO(cyrille): Consider adding the analogue for objects.
     "react-perf/jsx-no-new-array-as-prop": "error",
     "react-perf/jsx-no-new-function-as-prop": "error",
@@ -170,6 +171,8 @@
     "unicorn/prefer-node-remove": 0,
     "unicorn/prefer-query-selector": 0,
     "unicorn/prevent-abbreviations": 0,
+    // We need our undefined for TypeScript.
+    "unicorn/no-useless-undefined": 0,
     // Lodash throttle has a useful cancel option, we'd rather use it than the default implementation.
     "you-dont-need-lodash-underscore/throttle": 0
   }
