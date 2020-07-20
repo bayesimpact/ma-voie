@@ -1,10 +1,8 @@
 import {addDays, eachDayOfInterval, format as dateFormat, isSameDay, formatRelative,
   min as minDates, subDays} from 'date-fns'
-import {useTranslation} from 'react-i18next'
 import {useSelector as reactUseSelector} from 'react-redux'
 
 import {LocaleOption, useDateOption} from 'store/i18n'
-import {Params, getPath} from 'store/url'
 
 const todayDate = new Date()
 const yesterdayDate = subDays(new Date(), 1)
@@ -64,16 +62,6 @@ const usePeopleToAlert = (): readonly bayes.casContact.Person[] => useSelector(g
 const useNumPeopleToAlert = (): number => useSelector((state: RootState): number =>
   getPeopleToAlert(state).length)
 
-const useReferralUrl = (unusedPersonId?: string): string => {
-  const chainDepth = useSelector(({user: {chainDepth = 0} = {}}): number => chainDepth)
-  const {t} = useTranslation()
-  const pathname = t('canonicalUrl') + getPath('HIGH_RISK_SPLASH', t)
-  if (!chainDepth) {
-    return pathname
-  }
-  return pathname + `?${encodeURIComponent(Params.DEPTH)}=${chainDepth}`
-}
-
 // TODO(sil): Update this for reduced days to review.
 // TODO(sil): Add a test.
 const getDaysToValidate = ({user}: RootState): readonly Date[] => {
@@ -103,7 +91,6 @@ export {
   useHasCache,
   useNumPeopleToAlert,
   usePeopleToAlert,
-  useReferralUrl,
   useSelector,
   useSymptomsOnsetDate,
 }

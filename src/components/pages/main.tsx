@@ -4,7 +4,7 @@ import {History, createBrowserHistory} from 'history'
 import React, {Suspense, useState} from 'react'
 import {useTranslation} from 'react-i18next'
 import {Provider} from 'react-redux'
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Redirect, Route} from 'react-router-dom'
 import {Store, createStore, applyMiddleware, combineReducers} from 'redux'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import createReduxSentryMiddleware from 'redux-sentry-middleware'
@@ -14,7 +14,7 @@ import {polyfill as smoothscrollPolyfill} from 'smoothscroll-polyfill'
 import {createAmplitudeMiddleware} from 'analytics/amplitude'
 import Logger from 'analytics/logger'
 import {alerts, contacts, people, user} from 'store/app_reducer'
-import {ACTIONS_TO_LOG, AllActions, pageIsLoaded, useDispatch} from 'store/actions'
+import {ACTIONS_TO_LOG, AllActions} from 'store/actions'
 import {init as i18nInit} from 'store/i18n'
 import {getPath as defineAndGetPath} from 'store/url'
 
@@ -25,7 +25,7 @@ import TermsPage from 'components/pages/terms'
 import 'styles/fonts/Lato/font.css'
 import 'styles/fonts/Poppins/font.css'
 
-//TODO(sil): Clean the store and everything else.
+// TODO(sil): Clean the store and everything else.
 require('styles/app.css')
 
 smoothscrollPolyfill()
@@ -42,6 +42,9 @@ const App = (): React.ReactElement => {
   return <Switch>
     <Route path={defineAndGetPath('SPLASH', t)} component={SplashPage} />
     <Route path={defineAndGetPath('TERMS', t)} component={TermsPage} />
+    <Route path={defineAndGetPath('ROOT', t)}>
+      <Redirect to={defineAndGetPath('SPLASH', t)} />
+    </Route>
   </Switch>
   // i18next-extract-mark-ns-stop url
 }
