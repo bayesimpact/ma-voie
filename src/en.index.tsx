@@ -1,4 +1,5 @@
-import snippetImage from 'images/snippet.en.png'
+// TODO(pascal): Fix the snippet if we launch in English.
+import snippetImage from 'images/snippet.png'
 
 import {makeIndexHtml} from '.'
 
