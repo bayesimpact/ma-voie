@@ -129,8 +129,11 @@
         {"char": "}", "alternatives": ["&#125;"]},
         {"char": "•", "alternatives": ["&bull;", "·"]}
     ]}],
-    "react/no-unused-prop-types": ["error", {"skipShapeProps": true}],
+    // TODO(pascal): Re-enable.
+    "react/no-unused-prop-types": ["warn", {"skipShapeProps": true}],
     "react/no-unused-state": "error",
+    // TODO(pascal): Re-enable.
+    "react/prop-types": "warn",
     "react/sort-comp": ["error", {
         "order":  [
             "static-variables",
