@@ -1,4 +1,6 @@
 {
+  DARK_FOREST_GREEN: '#000c0a',
+  GREY: '#8d8e8d',
   PALE_SALMON: '#ffba9c',
   REDDISH_ORANGE: '#ea6625',
 }
