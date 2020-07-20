@@ -8,6 +8,7 @@ import screenshotImage from 'images/screenshot.svg'
 const sectionStyle: React.CSSProperties = {
   backgroundColor: colors.REDDISH_ORANGE,
   color: '#fff',
+  fontFamily: 'ProximaSoft',
   overflow: 'hidden',
   padding: '150px 20px 280px',
   position: 'relative',
