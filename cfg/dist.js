@@ -116,11 +116,11 @@ module.exports = {
     ),
     new WebpackPwaManifest({
       // eslint-disable-next-line camelcase
-      background_color: colors.MINTY_GREEN,
+      background_color: colors.REDDISH_ORANGE,
       lang: 'fr-FR',
       name: finalDistConstants.productName,
       // eslint-disable-next-line camelcase
-      theme_color: colors.MINTY_GREEN,
+      theme_color: colors.REDDISH_ORANGE,
     }),
     new RenameOutputWebpackPlugin(fromPairs(
       Object.keys(entrypoints).filter(key => !entrypoints[key].htmlFilename).
