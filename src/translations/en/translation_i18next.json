@@ -28,6 +28,9 @@
   "Une évaluation de vos besoins de <1>formation</1>": "Une évaluation de vos besoins de <1>formation</1>",
   "Vomissement": "Vomiting",
   "canonicalUrl": "www.conotify.org",
+  "compétences": "",
+  "définition": "",
+  "formation": "",
   "mailjetEmailOnBehalfTemplateId": "1481692",
   "mailjetEmailTemplateId": "1436540",
   "mailjetSmsOnBehalfTemplateId": "high_personal_en",
@@ -35,6 +38,7 @@
   "phoneInternationalPrefix": "1",
   "phoneTrunkPrefix": "1",
   "productName": "my path",
+  "valorisation": "",
   "{{dayOfWeek}} 'dernier'": "'last' {{dayOfWeek}}",
   "{{dayOfWeek}} 'prochain'": "'next' {{dayOfWeek}}",
   "{{productName}} — Briser les chaînes de contamination du {{diseaseName}}": "{{productName}} — Break the {{diseaseName}} chains of transmission"

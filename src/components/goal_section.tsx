@@ -2,6 +2,10 @@ import React, {useMemo} from 'react'
 import {Trans, useTranslation} from 'react-i18next'
 
 import {colorToAlpha} from 'components/colors'
+import competencesIcon from 'images/competences-ico.svg'
+import definitionIcon from 'images/definition-ico.svg'
+import formationIcon from 'images/formation-ico.svg'
+import valorisationIcon from 'images/valorisation-ico.svg'
 
 const sectionStyle: React.CSSProperties = {
   color: colors.GREYISH_TEAL,
@@ -32,11 +36,13 @@ const keyStepsStyle: React.CSSProperties = {
 interface CardProps {
   children: React.ReactNode
   color: string
+  icon: string
   index: number
+  name: string
   style?: React.CSSProperties
 }
 
-const CardBase = ({children, color, index, style}: CardProps): React.ReactElement => {
+const CardBase = ({children, color, icon, index, name, style}: CardProps): React.ReactElement => {
   const cardStyle: React.CSSProperties = useMemo(() => ({
     borderRadius: 20,
     boxShadow: '0 16px 35px 0 rgba(0,0,0,.1)',
@@ -46,8 +52,11 @@ const CardBase = ({children, color, index, style}: CardProps): React.ReactElemen
     ...style,
   }), [style])
   const headerStyle: React.CSSProperties = {
+    alignItems: 'center',
     backgroundColor: color,
+    display: 'flex',
     height: 70,
+    justifyContent: 'center',
   }
   const contentStyle: React.CSSProperties = {
     minHeight: 100,
@@ -56,7 +65,7 @@ const CardBase = ({children, color, index, style}: CardProps): React.ReactElemen
   }
   // TODO(cyrille): Add icons.
   return <div style={cardStyle}>
-    <header style={headerStyle}></header>
+    <header style={headerStyle}><img src={icon} alt={name} /></header>
     <div style={contentStyle}>
       {children}
       <div style={indexStyle}>{index}</div>
@@ -79,22 +88,32 @@ const GoalSection = (): React.ReactElement => {
     </div>
     <div style={{display: 'flex', minWidth: 480}}>
       <div style={{marginRight: 40}}>
-        <Card style={{marginBottom: 40}} color={colors.LIGHT_TAN} index={1}><Trans parent={null}>
+        <Card
+          style={{marginBottom: 40}} color={colors.LIGHT_TAN} index={1}
+          icon={definitionIcon} name={t('définition')}>
+          <Trans parent={null}>
           Une définition de votre <strong style={strongStyle}>projet professionnel</strong>
-        </Trans></Card>
-        <Card color={colors.LIGHT_SKY_BLUE} index={3}><Trans parent={null}>
-          Une évaluation de vos besoins de <strong style={strongStyle}>formation</strong>
-        </Trans></Card>
+          </Trans>
+        </Card>
+        <Card color={colors.LIGHT_SKY_BLUE} index={3} icon={formationIcon} name={t('formation')}>
+          <Trans parent={null}>
+            Une évaluation de vos besoins de <strong style={strongStyle}>formation</strong>
+          </Trans>
+        </Card>
       </div>
       <div>
-        <Card style={{margin: '70px 0 40px'}} color={colors.SILVER} index={2}>
+        <Card
+          style={{margin: '70px 0 40px'}} color={colors.SILVER} index={2}
+          icon={competencesIcon} name={t('compétences')}>
           <Trans parent={null}>
             Une analyse de vos <strong style={strongStyle}>compétences</strong>
           </Trans>
         </Card>
-        <Card color={colors.PALE_MAUVE} index={4}><Trans parent={null}>
-          <strong style={strongStyle}>La valorisation</strong> de vos compétences
-        </Trans></Card>
+        <Card color={colors.PALE_MAUVE} index={4} icon={valorisationIcon} name={t('valorisation')}>
+          <Trans parent={null}>
+            <strong style={strongStyle}>La valorisation</strong> de vos compétences
+          </Trans>
+        </Card>
       </div>
     </div>
   </section>
