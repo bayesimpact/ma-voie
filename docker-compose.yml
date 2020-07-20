@@ -1,7 +1,7 @@
 version: "3.4"
 services:
   dev:
-    image: bayesimpact/cas-contact-dev:${CIRCLE_BUILD_NUM:-latest}
+    image: bayesimpact/ma-voie-dev:${CIRCLE_BUILD_NUM:-latest}
     build:
       context: .
       target: dev
@@ -11,28 +11,16 @@ services:
     ports:
       - "9394:80"
   test:
-    image: bayesimpact/cas-contact-test:${CIRCLE_BUILD_NUM:-latest}
+    image: bayesimpact/ma-voie-test:${CIRCLE_BUILD_NUM:-latest}
     build:
       context: .
       args:
         - REACT_BASE_TAG
       target: test
   nginx:
-    image: bayesimpact/cas-contact:${CIRCLE_BUILD_NUM:-latest}
+    image: bayesimpact/ma-voie:${CIRCLE_BUILD_NUM:-latest}
     build:
       context: .
       target: nginx
     ports:
       - 80
-  mailjet-proxy:
-    image: bayesimpact/mailjet-proxy:${CIRCLE_BUILD_NUM:-latest}
-    build:
-      context: mailjet
-      target: proxy
-    ports:
-      - 80
-  mailjet-proxy-test:
-    build:
-      context: mailjet
-      target: test
-    network_mode: none

@@ -28,17 +28,3 @@ services:
     environment:
       TUNNEL_TESTING:
       CLIENT_VERSION: dev
-  mailjet-proxy:
-    environment:
-      MAILJET_APIKEY_PUBLIC:
-      MAILJET_SECRET:
-      MAILJET_SMS_TOKEN:
-      MAIL_SENDER_EMAIL: contact@briserlachaine.org
-      MAIL_SENDER_NAME: "Briser la chaîne"
-      SMS_SENDER: "BayesImpact"
-      SMS_TEMPLATE_risky: "Un(e) de vos proches vous a croisé alors qu'il ou elle était contagieux(se). Pour briser la chaine de contagion: www.briserlachaine.org"
-    volumes:
-      - ./mailjet:/usr/app:ro
-  mailjet-proxy-test:
-    volumes:
-      - ./mailjet:/usr/app:ro
