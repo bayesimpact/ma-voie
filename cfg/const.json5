@@ -1,6 +1,7 @@
 {
   amplitudeToken: 'a1067533ce6148de5bcac9df0ea0d508',
   canonicalUrl: 'www.mavoie.org',
+  contactEmail: 'contact@mavoie.org',
   diseaseName: 'COVID-19',
   facebookSSOAppId: '1048782155234293',
   followUpMail: 'suivi@briserlachaine.org',

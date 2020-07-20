@@ -40,6 +40,7 @@ declare const colors: typeof import('./cfg/colors.json')
 declare const config: {
   amplitudeToken: string
   canonicalUrl: string
+  contactEmail: string
   clientVersion: string
   diseaseName: string
   environment: string
