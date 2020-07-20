@@ -1,7 +1,5 @@
 import {AllActions} from 'store/actions'
-import {getDaysToValidate, getPeopleToAlert} from 'store/selections'
-
-import {getPage} from 'store/url'
+import {getPeopleToAlert} from 'store/selections'
 
 import {AmplitudeLogger, Properties} from './amplitude'
 
@@ -26,20 +24,12 @@ export default class Logger implements AmplitudeLogger<AllActions, RootState> {
     return this.actionTypesToLog[action.type] || action.type
   }
 
-  getEventProperties(action: AllActions, state: RootState): Properties {
+  getEventProperties(action: AllActions, unusedState: RootState): Properties {
     if (action.type === 'PAGE_IS_LOADED') {
       const properties: Properties = {}
       if (this.isFirstPage) {
         properties.isFirstPage = true
         this.isFirstPage = false
-      }
-      if (getPage(action.pathname) === 'CONTACTS_SEARCH') {
-        properties.numDaysToValidate = getDaysToValidate(state).length
-      }
-      if (getPage(action.pathname) === 'CONTACTS_LIST') {
-        const {alerts} = state
-        properties.numPeopleLeftToAlert =
-          getPeopleToAlert(state).length - Object.keys(alerts).length
       }
       return properties
     }
