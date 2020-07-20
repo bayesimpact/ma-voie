@@ -25,13 +25,11 @@ const partnerCardStyle: React.CSSProperties = {
   display: 'flex',
   justifyContent: 'center',
 }
-// TODO(sil): Fix image size.
 const partnerImageStyle: React.CSSProperties = {
   height: 99,
   width: 219,
 }
 
-// TODO(sil): Update syling.
 const PartnerCardBase = ({image, name, url}: PartnerProps): React.ReactElement => {
   return <div style={partnerCardStyle}>
     <a href={url}><img src={image} alt={name} style={partnerImageStyle} /></a>
@@ -40,7 +38,6 @@ const PartnerCardBase = ({image, name, url}: PartnerProps): React.ReactElement =
 const PartnerCard = React.memo(PartnerCardBase)
 
 
-// TODO(sil): Update syling.
 const PartnersSection = (): React.ReactElement => {
   const {t} = useTranslation()
   return <div>
