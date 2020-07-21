@@ -104,7 +104,7 @@ const renderers = {
 const TermsPage = (): React.ReactElement => {
   const {t} = useTranslation()
   const [translate] = useTranslation(STATIC_NAMESPACE)
-  const email = 'contact@mavoie.org'
+  const email = config.contactEmail
   return <React.Fragment>
     <section style={titleSectionStyle}>
       <Link style={logoStyle} to={getPath('SPLASH', t)}>
