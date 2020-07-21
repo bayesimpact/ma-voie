@@ -47,23 +47,26 @@ const keyStepsStyle: React.CSSProperties = {
   color: colors.TEAL_BLUE,
   fontWeight: 'bold',
 }
-const firstCardStyle: React.CSSProperties = {
-  marginBottom: 40,
-}
-const secondCardStyle: React.CSSProperties = {
-  margin: '70px 0 40px',
-}
-const mobileCardStyle: React.CSSProperties = {
+const cardOuterStyle: React.CSSProperties = {
+  alignSelf: isMobileVersion ? 'flex-start' : 'stretch',
+  marginLeft: isMobileVersion ? 0 : 40,
   marginTop: 40,
+}
+const evenCardOuterStyle: React.CSSProperties = {
+  ...cardOuterStyle,
+  ...isMobileVersion ? {alignSelf: 'flex-end'} : {transform: 'translateY(70px)'},
 }
 const arrowsStyle: React.CSSProperties = {
   bottom: 70,
   left: 0,
   position: 'absolute',
 }
-const mobileCardsContainerStyle: React.CSSProperties = {
+const cardsContainerStyle: React.CSSProperties = {
   display: 'flex',
-  flexDirection: 'column',
+  flexDirection: isMobileVersion ? 'column' : 'row',
+  flexWrap: 'wrap',
+  margin: isMobileVersion ? 0 : '-40px 0 70px -40px',
+  minWidth: isMobileVersion ? 'initial' : 480,
 }
 
 interface CardProps {
@@ -117,14 +120,13 @@ const CardBase = ({color, content, icon, index, name, style}: DisplayCardProps):
 React.ReactElement => {
   const [translate] = useTranslation()
   const cardStyle: React.CSSProperties = useMemo(() => ({
-    alignSelf: index % 2 === 0 ? 'flex-end' : 'flex-start',
     borderRadius: 20,
     boxShadow: '0 16px 35px 0 rgba(0,0,0,.1)',
     fontSize: 16,
     maxWidth: 220,
     overflow: 'hidden',
     ...style,
-  }), [index, style])
+  }), [style])
   const headerStyle: React.CSSProperties = {
     alignItems: 'center',
     backgroundColor: color,
@@ -167,19 +169,11 @@ const GoalSection = (): React.ReactElement => {
         </Trans>
         {isMobileVersion ? null : <img style={arrowsStyle} src={grey6ArrowsImage} alt="" />}
       </div>
-      {isMobileVersion ? <div style={mobileCardsContainerStyle}>
-        {CARDS.map((card, index) =>
-          <Card key={index} index={index + 1} {...card} style={mobileCardStyle} />)}
-      </div> : <div style={{display: 'flex', minWidth: 480}}>
-        <div style={{marginRight: 40}}>
-          <Card {...CARDS[0]} index={1} style={firstCardStyle} />
-          <Card {...CARDS[2]} index={3} />
-        </div>
-        <div>
-          <Card {...CARDS[1]} index={2} style={secondCardStyle} />
-          <Card {...CARDS[3]} index={4} />
-        </div>
-      </div>}
+      <div style={cardsContainerStyle}>
+        {CARDS.map((card, index) => <Card
+          key={index} index={index + 1} {...card}
+          style={index % 2 ? evenCardOuterStyle : cardOuterStyle} />)}
+      </div>
     </section>
   </div>
 }
