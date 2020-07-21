@@ -37,10 +37,11 @@ const footerLinkStyle: React.CSSProperties = {
   paddingLeft: 30,
   paddingTop: 14,
   textDecoration: 'none',
+  whiteSpace: 'nowrap',
 }
 const footerLinkSelectedStyle: React.CSSProperties = {
   ...footerLinkStyle,
-  color: 'white',
+  color: '#fff',
 }
 
 const Footer = (): React.ReactElement => {
@@ -65,14 +66,12 @@ const Footer = (): React.ReactElement => {
         <div>
           <Link
             to={getPath('SPLASH', t)}
-            style={isSplash ? footerLinkSelectedStyle : footerLinkStyle}
-          >
+            style={isSplash ? footerLinkSelectedStyle : footerLinkStyle}>
             {t('Accueil')}
           </Link>
           <Link
             to={getPath('TERMS', t)}
-            style={isTerms ? footerLinkSelectedStyle : footerLinkStyle}
-          >
+            style={isTerms ? footerLinkSelectedStyle : footerLinkStyle}>
             {t('Mentions légales')}
           </Link>
         </div>
