@@ -19,8 +19,8 @@ interface PartnerProps {
 const PARTNERS = [
   {image: logoChance, name: 'Chance', url: 'https://www.chance.co/'},
   {image: logoBayes, name: 'Bayes Impact', url: 'https://www.bayesimpact.org/fr/'},
-  {image: logoGeneration, name: 'Generation', url: 'https://www.jobready.fr/'},
-  {image: logoJobready, name: 'Jobready', url: 'https://france.generation.org/'},
+  {image: logoGeneration, name: 'Generation', url: 'https://france.generation.org/'},
+  {image: logoJobready, name: 'Jobready', url: 'https://www.jobready.fr/'},
 ]
 
 const partnerCardStyle: React.CSSProperties = {
