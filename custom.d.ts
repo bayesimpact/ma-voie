@@ -47,13 +47,7 @@ declare const config: {
   canonicalUrl: string
   contactEmail: string
   clientVersion: string
-  diseaseName: string
   environment: string
-  facebookSSOAppId: string
-  followUpMail: string
-  mailjetProxyUrl: string
-  numDaysContagious: number
-  numDaysContagiousBeforeSymptoms: number
   productName: string
   sentryDsn: string
 }

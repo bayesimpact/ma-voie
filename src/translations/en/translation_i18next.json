@@ -1,5 +1,6 @@
 {
   "$t(productName) est une initiative portée par quatre acteurs du secteur de l'emploi et de la technologie": "$t(productName) est une initiative portée par quatre acteurs du secteur de l'emploi et de la technologie",
+  "$t(productName) — Prenez le bon virage vers l'emploi": "$t(productName) — Prenez le bon virage vers l'emploi",
   "<0>20</0><br/>septembre": "<0>20</0><br/>septembre",
   "<0>27</0><br/>novembre": "<0>27</0><br/>novembre",
   "<0><0>De septembre à novembre 2020</0>, lorsque les conséquences de la crise seront encore plus visibles, 100 personnes - dont vous ferez peut-être partie - pourront profiter du lancement de $t(productName).</0><p>$t(productName) invitera par ailleurs ces premières personnes inscrites à participer à l'amélioration du parcours.</p><2><0>Vous serez accompagné</0> tout au long du parcours par les services d'appui les plus adaptés à votre situation et à vos besoins.</2>": "<0><0>De septembre à novembre 2020</0>, lorsque les conséquences de la crise seront encore plus visibles, 100 personnes - dont vous ferez peut-être partie - pourront profiter du lancement de $t(productName).</0><p>$t(productName) invitera par ailleurs ces premières personnes inscrites à participer à l'amélioration du parcours.</p><2><0>Vous serez accompagné</0> tout au long du parcours par les services d'appui les plus adaptés à votre situation et à vos besoins.</2>",
@@ -11,11 +12,11 @@
   "La période que nous vivons<br/>a mis un coup d'arrêt à votre<br/>recherche d'emploi ?": "La période que nous vivons<br/>a mis un coup d'arrêt à votre<br/>recherche d'emploi?",
   "Mentions légales": "Legal notice",
   "Nos partenaires": "Our partners",
-  "Nous vous aidons à contacter les personnes croisées pendant votre période contagieuse en quelques minutes.": "We're going to help you notify the people you've come into contact with during your contagious period. It will just take a few minutes.",
   "On cherche nos<br/>100 premiers bénéficiaires": "On cherche nos<br/>100 premiers bénéficiaires",
   "Proposition de service": "Proposition de service",
   "Soutien": "Soutien",
-  "Sur la route de l’emploi et en ligne, <1>$t(productName)</1> vous offre un parcours personnalisé à vos besoin à travers <3>4 étapes clefs</3>": "Sur la route de l’emploi et en ligne, <1>$t(productName)</1> vous offre un parcours personnalisé à vos besoin à travers <3>4 étapes clefs</3>",
+  "Sur la route de l'emploi et en ligne, $t(productName) vous offre un parcours adapté à vos besoins.": "Sur la route de l'emploi et en ligne, $t(productName) vous offre un parcours adapté à vos besoins.",
+  "Sur la route de l’emploi et en ligne, <1>$t(productName)</1> vous offre un parcours personnalisé à vos besoins à travers <3>4 étapes clefs</3>": "Sur la route de l’emploi et en ligne, <1>$t(productName)</1> vous offre un parcours personnalisé à vos besoins à travers <3>4 étapes clefs</3>",
   "Un projet soutenu par": "A project supported by",
   "Une analyse de vos <1>compétences</1>": "Une analyse de vos <1>compétences</1>",
   "Une définition de votre <1>projet professionnel</1>": "Une définition de votre <1>projet professionnel</1>",
@@ -28,6 +29,5 @@
   "définition": "définition",
   "formation": "formation",
   "productName": "my path",
-  "valorisation": "valorisation",
-  "{{productName}} — Briser les chaînes de contamination du {{diseaseName}}": "{{productName}} — Break the {{diseaseName}} chains of transmission"
+  "valorisation": "valorisation"
 }
