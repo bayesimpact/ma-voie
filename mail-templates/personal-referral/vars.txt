@@ -1,4 +1,0 @@
-contagiousEndDate
-contagiousStartDate
-risk
-userName

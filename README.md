@@ -1,5 +1,5 @@
 # ma-voie-internal
-An app to help people trace and warn people they've recently been in contact with, in relation with the COVID-19 spread.
+TODO(cyrille): Add a description.
 
 ### Running the application locally (development mode)
 
