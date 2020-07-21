@@ -2,8 +2,7 @@
 'use strict'
 require('@babel/polyfill')
 
-// TODO(cyrille): Add a translations_test to check that all plural strings have "translations" in
-// French.
+// TODO(cyrille): Add tests in the folder.
 
 // Add support for all files in the test directory.
 const testsContext = require.context('.', true, /_(test|helper)\.[jt]sx?$/)
