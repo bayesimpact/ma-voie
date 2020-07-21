@@ -108,6 +108,7 @@ workflows:
               only: /.*/
             branches:
               ignore: /.*/
+          context: Deploy
 
   test-for-base-change:
     jobs:
