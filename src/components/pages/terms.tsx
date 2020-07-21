@@ -119,7 +119,8 @@ const TermsPage = (): React.ReactElement => {
       <div style={contentStyle}>
         <ReactMarkdown source={translate('termsOfService', {
           canonicalUrl: t('canonicalUrl'),
-          host: 'gandi – 63-65 Boulevard Masséna 75013 Paris 01 70 37 76 61',
+          host: 'Amazon France Services - 67 Boulevard du Général Leclerc, 92110 Clichy, France ' +
+            '- 01 46 17 10 00',
           owner: 'Chance / MaVoie.org',
           productName: t('productName').toLocaleUpperCase(),
           publisher: `MaVoie.org – ${email} Le responsable publication ` +
