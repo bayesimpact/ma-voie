@@ -2,7 +2,10 @@ import React from 'react'
 import {Trans} from 'react-i18next'
 
 const sectionStyle: React.CSSProperties = {
-  backgroundColor: colors.TEAL_BLUE,
+  backgroundImage:
+  // 3.2214rad = PI + atan(0.08)
+  `linear-gradient(3.2214rad, transparent, transparent 8vw, ${colors.TEAL_BLUE} 8.1vw, ` +
+  `${colors.TEAL_BLUE})`,
   color: '#fff',
   overflow: 'hidden',
   padding: '120px 20px 100px',
@@ -19,14 +22,6 @@ const tagLineStyle: React.CSSProperties = {
   fontWeight: 'bold',
   lineHeight: 1.06,
   marginBottom: 50,
-}
-const whiteTriangleStyle: React.CSSProperties = {
-  borderLeft: 'solid transparent 100vw',
-  borderTop: 'solid #fff 8vw',
-  left: 0,
-  position: 'absolute',
-  top: 0,
-  zIndex: 1,
 }
 // TODO(Émilie): handle small screens
 const blocsStyle: React.CSSProperties = {
@@ -73,7 +68,6 @@ const blocDateSeparatorStyle: React.CSSProperties = {
 }
 const BeneficiariesSection = (): React.ReactElement => {
   return <section style={sectionStyle}>
-    <div style={whiteTriangleStyle} />
     <div style={contentStyle}>
       <Trans style={tagLineStyle}>
         On cherche nos<br />
