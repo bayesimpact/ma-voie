@@ -48,7 +48,6 @@ declare const config: {
   contactEmail: string
   clientVersion: string
   environment: string
-  productName: string
   sentryDsn: string
 }
 
