@@ -27,9 +27,6 @@ COPY .babelrc diff_i18n_folder.sh i18n.babelrc.js entrypoint.sh .eslintrc.json .
 COPY vendor/patch-babel-plugin-i18next-extract.sh ./vendor/patch-babel-plugin-i18next-extract.sh
 RUN ./vendor/patch-babel-plugin-i18next-extract.sh
 
-# TODO(pascal): Fix once date-fns allows to have multiple typings.
-RUN rm -r node_modules/@types/react-datepicker/node_modules/date-fns
-
 FROM dev AS test
 CMD ./entrypoint.sh npm run checks
 
