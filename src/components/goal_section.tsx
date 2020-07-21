@@ -99,7 +99,7 @@ const GoalSection = (): React.ReactElement => {
         <Trans>
           Sur la route de l’emploi et en
           ligne, <strong style={strongStyle}>$t(productName)</strong> vous offre un parcours
-          personnalisé à vos besoin à travers <span style={keyStepsStyle}>4 étapes clefs</span>
+          personnalisé à vos besoins à travers <span style={keyStepsStyle}>4 étapes clefs</span>
         </Trans>
         {/* TODO(cyrille): Add arrows. */}
       </div>

@@ -41,13 +41,7 @@ declare const config: {
   amplitudeToken: string
   canonicalUrl: string
   clientVersion: string
-  diseaseName: string
   environment: string
-  facebookSSOAppId: string
-  followUpMail: string
-  mailjetProxyUrl: string
-  numDaysContagious: number
-  numDaysContagiousBeforeSymptoms: number
   productName: string
   sentryDsn: string
 }
