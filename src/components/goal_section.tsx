@@ -2,6 +2,7 @@ import React, {useMemo} from 'react'
 import {Trans, useTranslation} from 'react-i18next'
 
 import {colorToAlpha} from 'components/colors'
+import grey6ArrowsImage from 'images/arrows-6.svg?stroke=#cccece'
 import competencesIcon from 'images/competences-ico.svg'
 import definitionIcon from 'images/definition-ico.svg'
 import formationIcon from 'images/formation-ico.svg'
@@ -47,6 +48,11 @@ const firstCardStyle: React.CSSProperties = {
 const secondCardStyle: React.CSSProperties = {
   margin: '70px 0 40px',
 }
+const arrowsStyle: React.CSSProperties = {
+  bottom: 70,
+  left: 0,
+  position: 'absolute',
+}
 
 interface CardProps {
   children: React.ReactNode
@@ -75,7 +81,8 @@ const CardBase = ({children, color, icon, index, name, style}: CardProps): React
   }
   const contentStyle: React.CSSProperties = {
     minHeight: 100,
-    padding: 30,
+    // TODO(cyrille): Find a nicer way to ensure this is always on two lines.
+    padding: '30px 29px',
     textAlign: 'center',
   }
   // TODO(cyrille): Add icons.
@@ -94,14 +101,14 @@ const GoalSection = (): React.ReactElement => {
   const {t} = useTranslation()
   return <div style={safeSidesStyle}>
     <section style={sectionStyle}>
-      <div style={{maxWidth: 480, paddingRight: 90}}>
+      <div style={{maxWidth: 480, paddingRight: 90, position: 'relative'}}>
         <h2 style={titleStyle}>{t("C'est quoi\u00A0?")}</h2>
         <Trans>
           Sur la route de l’emploi et en
           ligne, <strong style={strongStyle}>$t(productName)</strong> vous offre un parcours
           personnalisé à vos besoin à travers <span style={keyStepsStyle}>4 étapes clefs</span>
         </Trans>
-        {/* TODO(cyrille): Add arrows. */}
+        <img style={arrowsStyle} src={grey6ArrowsImage} alt="" />
       </div>
       <div style={{display: 'flex', minWidth: 480}}>
         <div style={{marginRight: 40}}>

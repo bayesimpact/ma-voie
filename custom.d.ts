@@ -8,6 +8,11 @@ declare module '*.svg?stroke=#992f00' {
   export default content
 }
 
+declare module '*.svg?stroke=#cccece' {
+  const content: string
+  export default content
+}
+
 declare module '*.png' {
   const content: string
   export default content
