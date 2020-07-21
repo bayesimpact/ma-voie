@@ -125,6 +125,7 @@
     "url-loader": "^4.x.x",
     "webpack": "^4.x.x",
     "webpack-cli": "^3.x.x",
+    "webpack-deadcode-plugin": "^0.1.x",
     "webpack-dev-server": "^3.x.x",
     "webpack-pwa-manifest": "^4.x.x",
     "whatwg-fetch": "^3.x.x"
