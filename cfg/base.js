@@ -114,9 +114,12 @@ module.exports = {
         use: 'raw-loader',
       },
       {
+        loader: 'json5-loader',
+        options: {
+          esModule: false,
+        },
         test: /\.json$/,
         type: 'javascript/auto',
-        use: 'json5-loader',
       },
     ],
   },
