@@ -10,11 +10,6 @@ import {useEffect, useMemo, useState} from 'react'
 import {UseTranslationResponse, UseTranslationOptions, initReactI18next,
   useTranslation} from 'react-i18next'
 
-import pngLogo from 'images/logo.png'
-import pngLogoEn from 'images/logo-en.png'
-import svgLogo from 'images/logo.svg'
-import svgLogoEn from 'images/logo-en.svg'
-
 
 // Backend for i18next to load resources for languages only when they are needed.
 // It takes a backend config with a promise per language and per namespace.
@@ -211,15 +206,6 @@ function joinDays(
   return formattedDays.slice(0, -1).join(separator) + lastSeparator + formattedDays.slice(-1)[0]
 }
 
-const IMAGE_NAMESPACE = 'image'
-i18next.on('initialized', () => {
-  i18next.addResourceBundle('en', IMAGE_NAMESPACE, {
-    [pngLogo]: pngLogoEn,
-    [svgLogo]: svgLogoEn,
-  })
-})
-
-
 // TODO(cyrille): Fix useTranslation in react-i18next.
 const useFixedTranslation = (ns: string | string[] | undefined, options?: UseTranslationOptions):
 UseTranslationResponse => {
@@ -230,4 +216,4 @@ UseTranslationResponse => {
 }
 
 export {init, useDateOption, getLanguage, joinDays, localizeOptions, prepareT, prepareNamespace,
-  IMAGE_NAMESPACE, STATIC_NAMESPACE, useFixedTranslation}
+  STATIC_NAMESPACE, useFixedTranslation}
