@@ -14,8 +14,8 @@ const SplashPage = (): React.ReactElement => {
   return <React.Fragment>
     <HeaderSection />
     <GoalSection />
-    <PartnersSection />
     <BeneficiariesSection />
+    <PartnersSection />
     <JoinSection />
     <Footer />
   </React.Fragment>
