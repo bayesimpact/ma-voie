@@ -52,18 +52,16 @@ export const Template = (props: TemplateProps): React.ReactElement => {
         name="viewport" id="viewport" />
       <meta property="og:type" content="website" />
       <meta
-        property="og:title" content={t(
-          '{{productName}} \u2014 Briser les chaînes de contamination du {{diseaseName}}',
-          {diseaseName: config.diseaseName, productName: t('productName')},
-        )} />
+        property="og:title"
+        content={t("$t(productName) \u2014 Prenez le bon virage vers l'emploi")} />
       <meta
         property="og:description" name="description"
-        content={t('Nous vous aidons à contacter les personnes croisées pendant votre période ' +
-          'contagieuse en quelques minutes.')} />
+        content={t("Sur la route de l'emploi et en ligne, $t(productName) vous offre un parcours " +
+          'adapté à vos besoins.')} />
       <meta
         property="og:image" content={`https://${t('canonicalUrl')}${snippetImage}`} />
       <meta property="og:url" content={`https://${t('canonicalUrl')}`} />
-      <meta property="fb:app_id" content={config.facebookSSOAppId} />
+
       <link rel="icon" href={faviconImage} type="image/png" />
     </head>
     <body style={{margin: 0}}>
