@@ -19,7 +19,7 @@ const sectionStyle: React.CSSProperties = {
 }
 const titleStyle: React.CSSProperties = {
   color: colors.REDDISH_ORANGE,
-  fontFamily: 'Proxima Soft',
+  fontFamily: 'ProximaSoft',
   fontSize: 47,
   margin: '70px 0 50px',
 }
