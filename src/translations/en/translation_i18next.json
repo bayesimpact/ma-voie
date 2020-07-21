@@ -1,9 +1,5 @@
 {
   "$t(productName) est une initiative portée par quatre acteurs du secteur de l'emploi et de la technologie": "$t(productName) est une initiative portée par quatre acteurs du secteur de l'emploi et de la technologie",
-  "'aujourd''hui'": "'today'",
-  "'demain''": "'tomorrow'",
-  "'hier'": "'yesterday'",
-  "<0></0>, <1></1> et <2></2>": "<0></0>, <1></1> and <2></2>",
   "<0>La valorisation</0> de vos compétences": "<0>La valorisation</0> de vos compétences",
   "Accueil": "Homepage",
   "C'est quoi ?": "What is it?",
@@ -23,7 +19,5 @@
   "formation": "formation",
   "productName": "my path",
   "valorisation": "valorisation",
-  "{{dayOfWeek}} 'dernier'": "'last' {{dayOfWeek}}",
-  "{{dayOfWeek}} 'prochain'": "'next' {{dayOfWeek}}",
   "{{productName}} — Briser les chaînes de contamination du {{diseaseName}}": "{{productName}} — Break the {{diseaseName}} chains of transmission"
 }
