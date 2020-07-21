@@ -2,15 +2,11 @@ const {expect} = require('chai')
 const glob = require('glob')
 const path = require('path')
 require('json5/lib/register')
-const devConfig = require('../../cfg/const.json5')
-const distConfig = require('../../cfg/const_dist.json5')
 const babelExtractConfig = require('../../i18n.babelrc.js')
 
 const extractedLangs: ReadonlySet<string> = new Set(babelExtractConfig.plugins.
   find((plugin: unknown[]) => plugin[0] === 'i18next-extract')[1].locales)
 
-
-const prodConfig = {...devConfig, ...distConfig}
 
 const HTML_TAG_REGEX = /<(\d+)>/g
 const INTERPOLATION_REGEX = /{{(\w+)}}/g
@@ -227,12 +223,6 @@ describe('French translations', (): void => {
         }
       })
     })
-  })
-
-  it('should have a consistent product name and canonical URL', (): void => {
-    const mainFrTranslation = translationTree.fr.translation
-    expect(mainFrTranslation.canonicalUrl).to.eq(prodConfig.canonicalUrl)
-    expect(mainFrTranslation.productName).to.eq(prodConfig.productName)
   })
 })
 
