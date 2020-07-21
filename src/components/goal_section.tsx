@@ -1,6 +1,8 @@
 import React, {useMemo} from 'react'
 import {Trans, useTranslation} from 'react-i18next'
 
+import {prepareT} from 'store/i18n'
+
 import {colorToAlpha} from 'components/colors'
 import grey6ArrowsImage from 'images/arrows-6.svg?stroke=#cccece'
 import competencesIcon from 'images/competences-ico.svg'
@@ -8,12 +10,15 @@ import definitionIcon from 'images/definition-ico.svg'
 import formationIcon from 'images/formation-ico.svg'
 import valorisationIcon from 'images/valorisation-ico.svg'
 
+const isMobileVersion = window.outerWidth <= 800
+
 const safeSidesStyle: React.CSSProperties = {
   padding: '0 20px',
 }
 const sectionStyle: React.CSSProperties = {
   color: colors.GREYISH_TEAL,
   display: 'flex',
+  flexDirection: isMobileVersion ? 'column' : 'row',
   fontSize: 18,
   margin: '0 auto',
   maxWidth: 960,
@@ -48,30 +53,78 @@ const firstCardStyle: React.CSSProperties = {
 const secondCardStyle: React.CSSProperties = {
   margin: '70px 0 40px',
 }
+const mobileCardStyle: React.CSSProperties = {
+  marginTop: 40,
+}
 const arrowsStyle: React.CSSProperties = {
   bottom: 70,
   left: 0,
   position: 'absolute',
 }
+const mobileCardsContainerStyle: React.CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+}
 
 interface CardProps {
-  children: React.ReactNode
   color: string
+  content: React.ReactNode
   icon: string
-  index: number
   name: string
+}
+
+const CARDS: readonly (CardProps & {index?: never})[] = [
+  {
+    color: colors.LIGHT_TAN,
+    content: <Trans parent={null}>
+      Une définition de votre <strong style={strongStyle}>projet professionnel</strong>
+    </Trans>,
+    icon: definitionIcon,
+    name: prepareT('définition'),
+  },
+  {
+    color: colors.SILVER,
+    content: <Trans parent={null}>
+      Une analyse de vos <strong style={strongStyle}>compétences</strong>
+    </Trans>,
+    icon: competencesIcon,
+    name: prepareT('compétences'),
+  },
+  {
+    color: colors.LIGHT_SKY_BLUE,
+    content: <Trans parent={null}>
+      Une évaluation de vos besoins de <strong style={strongStyle}>formation</strong>
+    </Trans>,
+    icon: formationIcon,
+    name: prepareT('formation'),
+  },
+  {
+    color: colors.PALE_MAUVE,
+    content: <Trans parent={null}>
+      <strong style={strongStyle}>La valorisation</strong> de vos compétences
+    </Trans>,
+    icon: valorisationIcon,
+    name: prepareT('valorisation'),
+  },
+]
+
+interface DisplayCardProps extends CardProps {
+  index: number
   style?: React.CSSProperties
 }
 
-const CardBase = ({children, color, icon, index, name, style}: CardProps): React.ReactElement => {
+const CardBase = ({color, content, icon, index, name, style}: DisplayCardProps):
+React.ReactElement => {
+  const [translate] = useTranslation()
   const cardStyle: React.CSSProperties = useMemo(() => ({
+    alignSelf: index % 2 === 0 ? 'flex-end' : 'flex-start',
     borderRadius: 20,
     boxShadow: '0 16px 35px 0 rgba(0,0,0,.1)',
     fontSize: 16,
     maxWidth: 220,
     overflow: 'hidden',
     ...style,
-  }), [style])
+  }), [index, style])
   const headerStyle: React.CSSProperties = {
     alignItems: 'center',
     backgroundColor: color,
@@ -85,11 +138,10 @@ const CardBase = ({children, color, icon, index, name, style}: CardProps): React
     padding: '30px 29px',
     textAlign: 'center',
   }
-  // TODO(cyrille): Add icons.
   return <div style={cardStyle}>
-    <header style={headerStyle}><img src={icon} alt={name} /></header>
+    <header style={headerStyle}><img src={icon} alt={translate(name)} /></header>
     <div style={contentStyle}>
-      {children}
+      {content}
       <div style={indexStyle}>{index}</div>
     </div>
   </div>
@@ -99,48 +151,35 @@ const Card = React.memo(CardBase)
 // TODO(cyrille): Fix on mobile.
 const GoalSection = (): React.ReactElement => {
   const {t} = useTranslation()
+  const presentationStyle: React.CSSProperties = isMobileVersion ? {} : {
+    maxWidth: 480,
+    paddingRight: 90,
+    position: 'relative',
+  }
   return <div style={safeSidesStyle}>
     <section style={sectionStyle}>
-      <div style={{maxWidth: 480, paddingRight: 90, position: 'relative'}}>
+      <div style={presentationStyle}>
         <h2 style={titleStyle}>{t("C'est quoi\u00A0?")}</h2>
         <Trans>
           Sur la route de l’emploi et en
           ligne, <strong style={strongStyle}>$t(productName)</strong> vous offre un parcours
           personnalisé à vos besoins à travers <span style={keyStepsStyle}>4 étapes clefs</span>
         </Trans>
-        <img style={arrowsStyle} src={grey6ArrowsImage} alt="" />
+        {isMobileVersion ? null : <img style={arrowsStyle} src={grey6ArrowsImage} alt="" />}
       </div>
-      <div style={{display: 'flex', minWidth: 480}}>
+      {isMobileVersion ? <div style={mobileCardsContainerStyle}>
+        {CARDS.map((card, index) =>
+          <Card key={index} index={index + 1} {...card} style={mobileCardStyle} />)}
+      </div> : <div style={{display: 'flex', minWidth: 480}}>
         <div style={{marginRight: 40}}>
-          <Card
-            style={firstCardStyle} color={colors.LIGHT_TAN} index={1}
-            icon={definitionIcon} name={t('définition')}>
-            <Trans parent={null}>
-            Une définition de votre <strong style={strongStyle}>projet professionnel</strong>
-            </Trans>
-          </Card>
-          <Card color={colors.LIGHT_SKY_BLUE} index={3} icon={formationIcon} name={t('formation')}>
-            <Trans parent={null}>
-              Une évaluation de vos besoins de <strong style={strongStyle}>formation</strong>
-            </Trans>
-          </Card>
+          <Card {...CARDS[0]} index={1} style={firstCardStyle} />
+          <Card {...CARDS[2]} index={3} />
         </div>
         <div>
-          <Card
-            style={secondCardStyle} color={colors.SILVER} index={2}
-            icon={competencesIcon} name={t('compétences')}>
-            <Trans parent={null}>
-              Une analyse de vos <strong style={strongStyle}>compétences</strong>
-            </Trans>
-          </Card>
-          <Card
-            color={colors.PALE_MAUVE} index={4} icon={valorisationIcon} name={t('valorisation')}>
-            <Trans parent={null}>
-              <strong style={strongStyle}>La valorisation</strong> de vos compétences
-            </Trans>
-          </Card>
+          <Card {...CARDS[1]} index={2} style={secondCardStyle} />
+          <Card {...CARDS[3]} index={4} />
         </div>
-      </div>
+      </div>}
     </section>
   </div>
 }
