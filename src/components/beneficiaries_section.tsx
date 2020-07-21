@@ -1,6 +1,8 @@
 import React from 'react'
 import {Trans} from 'react-i18next'
 
+const isMobileVersion = window.outerWidth < 800
+
 const sectionStyle: React.CSSProperties = {
   backgroundImage:
   // 3.2214rad = PI + atan(0.08)
@@ -8,7 +10,7 @@ const sectionStyle: React.CSSProperties = {
   `${colors.TEAL_BLUE})`,
   color: '#fff',
   overflow: 'hidden',
-  padding: '120px 20px 100px',
+  padding: isMobileVersion ? '80px 20px 150px' : '120px 20px 100px',
   position: 'relative',
 }
 const contentStyle: React.CSSProperties = {
@@ -26,6 +28,7 @@ const tagLineStyle: React.CSSProperties = {
 // TODO(Émilie): handle small screens
 const blocsStyle: React.CSSProperties = {
   display: 'flex',
+  flexDirection: isMobileVersion ? 'column' : 'row',
   justifyContent: 'space-between',
 }
 const blocDescriptionStyle: React.CSSProperties = {
@@ -33,7 +36,8 @@ const blocDescriptionStyle: React.CSSProperties = {
   borderRadius: 5,
   color: colors.LIGHT_SKY_BLUE,
   fontSize: 18,
-  width: 481,
+  padding: isMobileVersion ? '5px 0' : '0',
+  width: isMobileVersion ? '100%' : 481,
 }
 const textDescriptionStyle: React.CSSProperties = {
   lineHeight: 1.22,
@@ -44,10 +48,13 @@ const blockDescriptionEmphasisStyle: React.CSSProperties = {
   fontWeight: 'bold',
 }
 const blocDatesStyle: React.CSSProperties = {
+  alignItems: isMobileVersion ? 'center' : 'flex-start',
   display: 'flex',
+  flexDirection: isMobileVersion ? 'column' : 'row',
   fontFamily: 'ProximaSoft',
   height: 94,
   paddingTop: 15,
+  textAlign: isMobileVersion ? 'center' : 'left',
 }
 const blockDatesDayStyle: React.CSSProperties = {
   fontSize: 47,
@@ -57,22 +64,25 @@ const blockDatesDayStyle: React.CSSProperties = {
 const blocDateStyle: React.CSSProperties = {
   color: colors.DARK_TEAL,
   fontSize: 32,
-  textAlign: 'left',
+  textAlign: isMobileVersion ? 'center' : 'left',
   textTransform: 'uppercase',
 }
 const blocDateSeparatorStyle: React.CSSProperties = {
   backgroundColor: colors.DARK_TEAL,
   borderRadius: 2.5,
+  height: '100%',
   margin: '0 38px',
   width: 3,
 }
 const BeneficiariesSection = (): React.ReactElement => {
   return <section style={sectionStyle}>
     <div style={contentStyle}>
-      <Trans style={tagLineStyle}>
-        On cherche nos<br />
-        100 premiers bénéficiaires
-      </Trans>
+      <h2>
+        <Trans style={tagLineStyle}>
+          On cherche nos<br />
+          100 premiers bénéficiaires
+        </Trans>
+      </h2>
       <div style={blocsStyle}>
         <div style={blocDescriptionStyle}>
           <Trans style={textDescriptionStyle}>
