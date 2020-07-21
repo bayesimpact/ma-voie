@@ -2,7 +2,7 @@
 // Use this file to edit settings that are the same for all environments (dev, test, prod).
 const fs = require('fs')
 const path = require('path')
-const DeadCodePlugin = require('webpack-deadcode-plugin')
+const {UnusedFilesWebpackPlugin} = require('unused-files-webpack-plugin')
 const entrypoints = require('./entrypoints')
 const imageMinJpg = require('imagemin-mozjpeg')
 const imageMinPng = require('imagemin-optipng')
@@ -121,14 +121,12 @@ module.exports = {
     ],
   },
   plugins: [
-    new DeadCodePlugin({
-      exclude: [
-        '**/README.md',
-        '**/*.d.ts',
-      ],
-      failOnHint: process.env.REACT_WEBPACK_ENV === 'dist',
-      patterns: ['src/**/*.*'],
-    }),
+    new UnusedFilesWebpackPlugin({patterns: [
+      'src/**/*.*',
+      '!**/README.md',
+      '!src/config/*.*',
+      '!**/*.d.ts',
+    ]}),
   ],
   resolve: {
     alias: Object.fromEntries(mainSrcFolders.map(name => [name, path.join(srcPath, name)])),
