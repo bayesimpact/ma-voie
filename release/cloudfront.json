@@ -1,9 +1,10 @@
 {
   "Aliases": {
     "Items": [
-      "ma-voie.bayesimpact.org"
+      "www.mavoie.org",
+      "mavoie.org"
     ],
-    "Quantity": 1
+    "Quantity": 2
   },
   "CacheBehaviors": {
     "Items": [
@@ -63,9 +64,15 @@
         "ErrorCode": 404,
         "ResponseCode": "200",
         "ResponsePagePath": "/index.html"
+      },
+      {
+        "ErrorCachingMinTTL": 300,
+        "ErrorCode": 403,
+        "ResponseCode": "200",
+        "ResponsePagePath": "/index.html"
       }
     ],
-    "Quantity": 1
+    "Quantity": 2
   },
   "DefaultCacheBehavior": {
     "AllowedMethods": {
@@ -147,8 +154,8 @@
     }
   },
   "ViewerCertificate": {
-    "ACMCertificateArn": "arn:aws:acm:us-east-1:951168128976:certificate/74fbf913-235a-40f3-81fe-62ee65a89698",
-    "Certificate": "arn:aws:acm:us-east-1:951168128976:certificate/74fbf913-235a-40f3-81fe-62ee65a89698",
+    "ACMCertificateArn": "arn:aws:acm:us-east-1:951168128976:certificate/ae822efc-e9c8-4b1e-894f-68646cadf928",
+    "Certificate": "arn:aws:acm:us-east-1:951168128976:certificate/ae822efc-e9c8-4b1e-894f-68646cadf928",
     "CertificateSource": "acm",
     "MinimumProtocolVersion": "TLSv1.2_2018",
     "SSLSupportMethod": "sni-only"
