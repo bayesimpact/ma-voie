@@ -8,6 +8,7 @@ import {init as i18nInit} from 'store/i18n'
 import {getPath as defineAndGetPath} from 'store/url'
 
 import SplashPage from 'components/pages/splash'
+import StepsPage from 'components/pages/steps'
 import TermsPage from 'components/pages/terms'
 
 import 'styles/fonts/Lato/font.css'
@@ -25,6 +26,7 @@ const App = (): React.ReactElement => {
   // i18next-extract-mark-ns-start url
   return <Switch>
     <Route path={defineAndGetPath('SPLASH', t)} component={SplashPage} />
+    <Route path={defineAndGetPath('STEPS', t)} component={StepsPage} />
     <Route path={defineAndGetPath('TERMS', t)} component={TermsPage} />
     <Route path={defineAndGetPath('ROOT', t)}>
       <Redirect to={defineAndGetPath('SPLASH', t)} />
