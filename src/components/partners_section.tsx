@@ -2,7 +2,7 @@ import React from 'react'
 import {Trans, useTranslation} from 'react-i18next'
 
 import logoBayes from 'images/logo-bayes.png'
-import logoChance from 'images/logo-chance.png'
+import logoChance from 'images/logo-chance.svg'
 import logoGeneration from 'images/logo-generation.png'
 import logoJobready from 'images/logo-jobready.png'
 
