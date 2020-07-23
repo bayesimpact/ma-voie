@@ -2,8 +2,6 @@ import React, {useCallback} from 'react'
 import {Trans, useTranslation} from 'react-i18next'
 
 
-// TODO(sil): Import Lato bold instead of semi-bold.
-
 const isMobileVersion = window.outerWidth < 800
 
 interface JoinCardProps {
@@ -90,7 +88,6 @@ const JoinSection = (): React.ReactElement => {
     <strong>Envoyez-nous un message</strong>
   </Trans>
 
-  // TODO(sil): Add a mailto.
   return <section style={sectionStyle}>
     <div style={{margin: 'auto', maxWidth: 960}}>
       <h2 style={titleStyle}>{t('Vous souhaitez nous rejoindre\u00A0?')}</h2>
