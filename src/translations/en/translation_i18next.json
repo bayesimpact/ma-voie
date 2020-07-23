@@ -8,8 +8,10 @@
   "<strong>Vous proposez un service d’accompagnement</strong><br/>et souhaitez être référencé sur $t(productName)": "<strong>Vous proposez un service d’accompagnement</strong><br/>et souhaitez être référencé sur $t(productName)",
   "Accueil": "Homepage",
   "C'est quoi ?": "What is it?",
+  "Commencez": "Start",
   "Compétences": "Compétences",
   "Définition de votre projet": "Définition de votre projet",
+  "En cours": "En cours",
   "Face à la crise prenez le bon virage<br/>vers l'emploi avec <3>$t(productName)</3>": "Face à la crise prenez le bon virage<br/>vers l'emploi avec <3>$t(productName)</3>",
   "Formations": "Formations",
   "La période que nous vivons<br/>a mis un coup d'arrêt à votre<br/>recherche d'emploi ?": "La période que nous vivons<br/>a mis un coup d'arrêt à votre<br/>recherche d'emploi?",
@@ -20,6 +22,8 @@
   "Soutien": "Soutien",
   "Sur la route de l'emploi et en ligne, $t(productName) vous offre un parcours adapté à vos besoins.": "Sur la route de l'emploi et en ligne, $t(productName) vous offre un parcours adapté à vos besoins.",
   "Sur la route de l’emploi et en ligne, <1>$t(productName)</1> vous offre un parcours personnalisé à vos besoins à travers <3>4 étapes clefs</3>": "Sur la route de l’emploi et en ligne, <1>$t(productName)</1> vous offre un parcours personnalisé à vos besoins à travers <3>4 étapes clefs</3>",
+  "Terminez l'étape précédente": "Terminez l'étape précédente",
+  "Terminez l'étape précédente_plural": "Terminez les étapes précédentes",
   "Un projet soutenu par": "A project supported by",
   "Une analyse de vos <1>compétences</1>": "Une analyse de vos <1>compétences</1>",
   "Une définition de votre <1>projet professionnel</1>": "Une définition de votre <1>projet professionnel</1>",
@@ -32,5 +36,6 @@
   "définition": "définition",
   "formation": "formation",
   "productName": "My Path",
-  "valorisation": "valorisation"
+  "valorisation": "valorisation",
+  "étape {{index}}": "step {{index}}"
 }
