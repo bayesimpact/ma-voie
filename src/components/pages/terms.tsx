@@ -50,7 +50,7 @@ const linkStyle: React.CSSProperties = {
 
 
 const CustomLink = <T extends Record<string, unknown>>(props: T): React.ReactElement => {
-  return <a {...props} rel="noopener noreferer" blank="_target" style={linkStyle} />
+  return <a {...props} rel="noopener noreferer" target="_blank" style={linkStyle} />
 }
 
 
@@ -118,14 +118,14 @@ const TermsPage = (): React.ReactElement => {
     <div style={{padding: '55px 20px 100px'}}>
       <div style={contentStyle}>
         <ReactMarkdown source={translate('termsOfService', {
-          canonicalUrl: t('canonicalUrl'),
+          canonicalUrl: `[${t('canonicalUrl')}](https://${t('canonicalUrl')})`,
           host: 'Amazon France Services - 67 Boulevard du Général Leclerc, 92110 Clichy, France ' +
             '- 01 46 17 10 00',
           owner: 'Chance / MaVoie.org',
           productName: t('productName').toLocaleUpperCase(),
-          publisher: `MaVoie.org – ${email} Le responsable publication ` +
+          publisher: `MaVoie.org – [${email}](mailto:${email}) Le responsable publication ` +
           'est une personne physique ou une personne morale.',
-          webmaster: `John Métois – ${email}`,
+          webmaster: `John Métois – [${email}](mailto:${email})`,
         })} renderers={renderers} />
       </div>
     </div>
