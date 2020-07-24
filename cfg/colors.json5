@@ -11,6 +11,7 @@
   PALE_SALMON: '#ffba9c',
   REDDISH_ORANGE: '#ea6625',
   SILVER: '#ccd6d6',
+  SILVER_TWO: '#e5e6e6',
   TEAL_BLUE: '#009999',
   TURQUOISE_BLUE: '#00b7cc',
 }
