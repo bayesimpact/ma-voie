@@ -62,7 +62,6 @@ const titleSectionStyle: React.CSSProperties = {
   position: 'relative',
 }
 const titleStyle: React.CSSProperties = {
-  fontFamily: 'ProximaSoft',
   fontSize: 47,
   fontWeight: 'bold',
   margin: '0 auto',
@@ -115,7 +114,7 @@ const TermsPage = (): React.ReactElement => {
       </h1>
       <div style={whiteTriangleStyle} />
     </section>
-    <div style={{padding: '55px 20px 100px'}}>
+    <div style={{fontFamily: 'Lato, Helvetica', padding: '55px 20px 100px'}}>
       <div style={contentStyle}>
         <ReactMarkdown source={translate('termsOfService', {
           canonicalUrl: t('canonicalUrl'),
