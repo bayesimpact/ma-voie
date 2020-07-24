@@ -4,7 +4,7 @@ import {Trans, useTranslation} from 'react-i18next'
 import {prepareT} from 'store/i18n'
 
 import {colorToAlpha} from 'components/colors'
-import grey6ArrowsImage from 'images/arrows-6.svg?stroke=#cccece'
+import grey6ArrowsImage from 'images/arrows-6.svg?stroke=#cccece' // colors.SILVER_THREE
 import competencesIcon from 'images/competences-ico.svg'
 import definitionIcon from 'images/definition-ico.svg'
 import formationIcon from 'images/formation-ico.svg'

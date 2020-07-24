@@ -24,16 +24,18 @@ const titleStyle: React.CSSProperties = {
   fontWeight: 'bold',
 }
 const buttonStyle: React.CSSProperties = {
+  alignItems: 'center',
   alignSelf: 'stretch',
   backgroundColor: colors.REDDISH_ORANGE,
   border: 0,
   borderRadius: 25,
   color: '#fff',
   cursor: 'pointer',
-  fontFamily: 'ProximaSoft',
+  display: 'flex',
   fontSize: 18,
   fontWeight: 'bold',
   height: 50,
+  justifyContent: 'center',
 }
 const forbiddenStyle: React.CSSProperties = {
   fontSize: 15,
@@ -77,7 +79,7 @@ const Step = ({children, color, icon, index, isOpen, style}: Props): React.React
       <div style={indexStyle}>{t('étape {{index}}', {index})}</div>
       <div style={titleStyle}>{children}</div>
       <img style={iconStyle} src={isOpen ? icon : lockIcon} alt="" />
-      {isOpen ? <button onClick={notAvailable} style={buttonStyle}>{t('Commencez')}</button> :
+      {isOpen ? <div onClick={notAvailable} style={buttonStyle}>{t('Commencez')}</div> :
         // TODO(cyrille): Replace with the list of steps to complete beforehand.
         <span style={forbiddenStyle}>{t("Terminez l'étape précédente", {count: index - 1})}</span>}
     </div>
