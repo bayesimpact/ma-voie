@@ -1,6 +1,7 @@
 import React from 'react'
 import {useTranslation} from 'react-i18next'
 
+import Header from 'components/header'
 import Step from 'components/step'
 import competencesIcon from 'images/competences-ico.svg'
 import definitionIcon from 'images/definition-ico.svg'
@@ -14,6 +15,7 @@ const StepsPage = (): React.ReactElement => {
   // TODO(cyrille): Add outer style to steps.
   // TODO(cyrille): Add step 4.
   return <div style={{fontFamily: 'ProximaSoft'}}>
+    <Header />
     <Step color={colors.LIGHT_TAN} icon={definitionIcon} isOpen={true} index={1}>
       {t('Définition de votre projet')}
     </Step>

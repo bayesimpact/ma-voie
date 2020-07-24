@@ -81,6 +81,7 @@
     "karma-webpack": "^4.x.x",
     "local-storage-fallback": "^4.x.x",
     "lodash": "^4.x.x",
+    "mdi-react": "^7.x.x",
     "mocha": "^8.x.x",
     "normalize.css": "^8.x.x",
     "npm-run-all": "^4.x.x",
