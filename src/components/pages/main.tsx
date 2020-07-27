@@ -7,6 +7,7 @@ import {logPage} from 'analytics/amplitude'
 import {init as i18nInit} from 'store/i18n'
 import {getPath as defineAndGetPath} from 'store/url'
 
+import ComponentsPage from 'components/pages/components'
 import SplashPage from 'components/pages/splash'
 import StepsPage from 'components/pages/steps'
 import TermsPage from 'components/pages/terms'
@@ -28,6 +29,7 @@ const App = (): React.ReactElement => {
     <Route path={defineAndGetPath('SPLASH', t)} component={SplashPage} />
     <Route path={defineAndGetPath('STEPS', t)} component={StepsPage} />
     <Route path={defineAndGetPath('TERMS', t)} component={TermsPage} />
+    <Route path={defineAndGetPath('COMPONENTS', t)} component={ComponentsPage} />
     <Route path={defineAndGetPath('ROOT', t)}>
       <Redirect to={defineAndGetPath('SPLASH', t)} />
     </Route>
