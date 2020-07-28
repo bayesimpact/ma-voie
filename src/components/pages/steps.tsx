@@ -4,7 +4,7 @@ import {useTranslation} from 'react-i18next'
 
 import {prepareT} from 'store/i18n'
 
-import Header from 'components/header'
+import Layout from 'components/layout'
 import Step from 'components/step'
 import competencesIcon from 'images/competences-ico.svg'
 import definitionIcon from 'images/definition-ico.svg'
@@ -29,8 +29,7 @@ const STEPS = [
   },
 ] as const
 const stepsStyle: React.CSSProperties = {
-  fontFamily: 'ProximaSoft',
-  padding: 30,
+  padding: '30px 0',
 }
 const arrowStyle: React.CSSProperties = {
   display: 'block',
@@ -41,15 +40,14 @@ const arrowStyle: React.CSSProperties = {
 const StepsPage = (): React.ReactElement => {
   const [translate] = useTranslation()
   // TODO(cyrille): Add step 4.
-  return <React.Fragment>
-    <Header />
+  return <Layout>
     <div style={stepsStyle}>
       {STEPS.map(({title, ...step}, index) => <React.Fragment key={index}>
         {index ? <ArrowDownIcon style={arrowStyle} color={colors.SILVER_THREE} /> : null}
         <Step index={index + 1} {...step}>{translate(title)}</Step>
       </React.Fragment>)}
     </div>
-  </React.Fragment>
+  </Layout>
 }
 
 export default React.memo(StepsPage)
