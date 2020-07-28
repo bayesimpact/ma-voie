@@ -14,6 +14,8 @@ const headerStyle: React.CSSProperties = {
   alignItems: 'center',
   boxShadow: `0 1px 0 0 ${colors.SILVER_TWO}`,
   display: 'flex',
+  fontSize: 15,
+  fontWeight: 'bold',
   padding: '15px 20px',
 }
 const buttonStyle: React.CSSProperties = {
