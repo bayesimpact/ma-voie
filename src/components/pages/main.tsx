@@ -19,6 +19,9 @@ import LostPage from 'components/pages/definition/lost'
 import RedefinePage from 'components/pages/definition/redefine'
 import WhatPage from 'components/pages/definition/what'
 import WherePage from 'components/pages/definition/where'
+import SkillsGoPage from 'components/pages/skills/go'
+import SkillsListPage from 'components/pages/skills/list'
+import SkillsTrainingPage from 'components/pages/skills/training'
 
 import 'styles/fonts/Lato/font.css'
 import 'styles/fonts/ProximaSoft/font.css'
@@ -46,6 +49,9 @@ const App = (): React.ReactElement => {
     <Route path={defineAndGetPath('STEPS', t)} component={StepsPage} />
     <Route path={defineAndGetPath('TERMS', t)} component={TermsPage} />
     <Route path={defineAndGetPath('COMPONENTS', t)} component={ComponentsPage} />
+    <Route path={defineAndGetPath('SKILLS_GO', t)} component={SkillsGoPage} />
+    <Route path={defineAndGetPath('SKILLS_LIST', t)} component={SkillsListPage} />
+    <Route path={defineAndGetPath('SKILLS_TRAINING', t)} component={SkillsTrainingPage} />
     <Route path={defineAndGetPath('ROOT', t)}>
       <Redirect to={defineAndGetPath('SPLASH', t)} />
     </Route>
