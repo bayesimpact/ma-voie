@@ -9,6 +9,9 @@
   "DEFINITION_WHAT": "definition/quoi",
   "DEFINITION_WHERE": "definition/ou",
   "ROOT": "",
+  "SKILLS_GO": "competences/go",
+  "SKILLS_LIST": "competences/liste",
+  "SKILLS_TRAINING": "competences/formation",
   "SPLASH": "accueil",
   "STEPS": "etapes",
   "TERMS": "cgu"
