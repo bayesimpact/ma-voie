@@ -22,7 +22,7 @@ const listItems = [
 // TOP LEVEL PAGE
 const ComponentsPage = (): React.ReactElement => {
   return <React.Fragment>
-    <Layout title="title">
+    <Layout header="Header title" title="Layout title" bigTitle="Layout big title">
       <br />
       <Button bgColor={colors.REDDISH_ORANGE} onClick={onClick} >Button REDDISH_ORANGE</Button>
       <br />

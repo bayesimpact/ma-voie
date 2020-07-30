@@ -14,33 +14,27 @@ const buttonStyle: React.CSSProperties = {
   justifyContent: 'center',
   textAlign: 'center',
 }
-const containerStyle: React.CSSProperties = {
-  alignItems: 'center',
-  display: 'flex',
-  flexDirection: 'column',
-}
 
 interface Props {
   children: React.ReactNode
   color?: string
   bgColor?: string
   hasBorder?: boolean
-  onClick: (event: React.MouseEvent<HTMLDivElement>) => void
+  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void
 }
 
 // TODO(émilie): Split the button into 4 different types of buttons instead of playing
 // with color / bgColor / hasBorder
-const Button = ({children, color, bgColor, hasBorder, onClick}: Props): React.ReactElement => {
-  const buttonFinalStyle: React.CSSProperties = {
-    ...buttonStyle,
-    backgroundColor: bgColor || '#fff',
-    border: (color && hasBorder !== false) ? `1px solid ${colors.SILVER_THREE}` : 0,
-    color: color || '#fff',
-  }
+const Button =
+  ({children, color, bgColor, hasBorder, onClick}: Props): React.ReactElement => {
+    const buttonFinalStyle: React.CSSProperties = {
+      ...buttonStyle,
+      backgroundColor: bgColor || '#fff',
+      border: (color && hasBorder !== false) ? `1px solid ${colors.SILVER_THREE}` : 0,
+      color: color || '#fff',
+    }
 
-  return <div style={containerStyle}>
-    <div onClick={onClick} style={buttonFinalStyle}>{children}</div>
-  </div>
-}
+    return <div onClick={onClick} style={buttonFinalStyle}>{children}</div>
+  }
 
 export default React.memo(Button)

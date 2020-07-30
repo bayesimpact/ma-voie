@@ -1,5 +1,13 @@
 {
   "COMPONENTS": "components",
+  "DEFINITION_EXPERIENCE": "definition/experience",
+  "DEFINITION_GO": "definition/go",
+  "DEFINITION_INTEREST": "definition/interest",
+  "DEFINITION_JOB": "definition/job",
+  "DEFINITION_LOST": "definition/lost",
+  "DEFINITION_REDEFINE": "definition/redefine",
+  "DEFINITION_WHAT": "definition/what",
+  "DEFINITION_WHERE": "definition/where",
   "ROOT": "",
   "SPLASH": "home",
   "STEPS": "steps",
