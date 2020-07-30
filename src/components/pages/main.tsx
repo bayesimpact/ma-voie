@@ -11,6 +11,14 @@ import ComponentsPage from 'components/pages/components'
 import SplashPage from 'components/pages/splash'
 import StepsPage from 'components/pages/steps'
 import TermsPage from 'components/pages/terms'
+import ExperiencePage from 'components/pages/definition/experience'
+import GoPage from 'components/pages/definition/go'
+import InterestPage from 'components/pages/definition/interest'
+import JobPage from 'components/pages/definition/job'
+import LostPage from 'components/pages/definition/lost'
+import RedefinePage from 'components/pages/definition/redefine'
+import WhatPage from 'components/pages/definition/what'
+import WherePage from 'components/pages/definition/where'
 
 import 'styles/fonts/Lato/font.css'
 import 'styles/fonts/ProximaSoft/font.css'
@@ -25,7 +33,16 @@ const App = (): React.ReactElement => {
   const {pathname} = useLocation()
   useEffect((): void => logPage(pathname), [pathname])
   // i18next-extract-mark-ns-start url
+  // TODO(émilie): create a subrouter for definition / skills
   return <Switch>
+    <Route path={defineAndGetPath('DEFINITION_EXPERIENCE', t)} component={ExperiencePage} />
+    <Route path={defineAndGetPath('DEFINITION_GO', t)} component={GoPage} />
+    <Route path={defineAndGetPath('DEFINITION_INTEREST', t)} component={InterestPage} />
+    <Route path={defineAndGetPath('DEFINITION_JOB', t)} component={JobPage} />
+    <Route path={defineAndGetPath('DEFINITION_LOST', t)} component={LostPage} />
+    <Route path={defineAndGetPath('DEFINITION_REDEFINE', t)} component={RedefinePage} />
+    <Route path={defineAndGetPath('DEFINITION_WHAT', t)} component={WhatPage} />
+    <Route path={defineAndGetPath('DEFINITION_WHERE', t)} component={WherePage} />
     <Route path={defineAndGetPath('SPLASH', t)} component={SplashPage} />
     <Route path={defineAndGetPath('STEPS', t)} component={StepsPage} />
     <Route path={defineAndGetPath('TERMS', t)} component={TermsPage} />
