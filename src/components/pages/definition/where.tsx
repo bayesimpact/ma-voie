@@ -1,8 +1,11 @@
-import React from 'react'
+import React, {useCallback} from 'react'
 import {useTranslation} from 'react-i18next'
 import {Link} from 'react-router-dom'
 
-import {getPath} from 'store/url'
+import {updateProject, useDispatch} from 'store/actions'
+import {prepareT} from 'store/i18n'
+import {useProjectId} from 'store/selections'
+import {Page, getPath} from 'store/url'
 
 import Button from 'components/button'
 import Layout from 'components/layout'
@@ -15,6 +18,42 @@ const buttonContainerStyle: React.CSSProperties = {
   paddingBottom: 20,
 }
 
+interface ButtonProps {
+  hasDefinedProject: boolean
+  name: string
+  redirect: Page
+}
+// TODO(cyrille): Make a <select> component with button options.
+const BUTTONS: readonly ButtonProps[] = [
+  {
+    hasDefinedProject: true,
+    name: prepareT('Je sais ce que je veux faire'),
+    redirect: 'DEFINITION_WHAT',
+  },
+  {
+    hasDefinedProject: false,
+    name: prepareT('Je ne sais pas / Je suis perdu·e'),
+    redirect: 'DEFINITION_LOST',
+  },
+]
+
+const SelectButtonBase = ({name, redirect, hasDefinedProject}: ButtonProps): React.ReactElement => {
+  const dispatch = useDispatch()
+  const projectId = useProjectId()
+  const [translate] = useTranslation()
+  const onClick = useCallback(() => {
+    dispatch(updateProject({hasDefinedProject, projectId}))
+  }, [dispatch, hasDefinedProject, projectId])
+  return <div style={buttonContainerStyle}>
+    <Link to={getPath(redirect, translate)} style={linkStyle}>
+      <Button color={colors.DARK_FOREST_GREEN} onClick={onClick}>
+        {translate(name)}
+      </Button>
+    </Link>
+  </div>
+}
+const SelectButton = React.memo(SelectButtonBase)
+
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 const WherePage = (): React.ReactElement => {
@@ -23,20 +62,7 @@ const WherePage = (): React.ReactElement => {
 
   // FIXME(émilie): Delete links and change them by the good handler
   return <Layout header={t('Définition')} title={title}>
-    <div style={buttonContainerStyle}>
-      <Link to={getPath('DEFINITION_WHAT', t)} style={linkStyle}>
-        <Button color={colors.DARK_FOREST_GREEN}>
-          {t('Je sais ce que je veux faire')}
-        </Button>
-      </Link>
-    </div>
-    <div style={buttonContainerStyle}>
-      <Link to={getPath('DEFINITION_LOST', t)} style={linkStyle}>
-        <Button color={colors.DARK_FOREST_GREEN}>
-          {t('Je ne sais pas / Je suis perdu·e')}
-        </Button>
-      </Link>
-    </div>
+    {BUTTONS.map(props => <SelectButton {...props} key={props.redirect} />)}
   </Layout>
 }
 
