@@ -21,31 +21,29 @@ const listItems = [
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 const ComponentsPage = (): React.ReactElement => {
-  return <React.Fragment>
-    <Layout header="Header title" title="Layout title" bigTitle="Layout big title">
-      <br />
-      <Button bgColor={colors.REDDISH_ORANGE} onClick={onClick} >Button REDDISH_ORANGE</Button>
-      <br />
-      <Button bgColor={colors.TEAL_BLUE} onClick={onClick} >Button TEAL_BLUE</Button>
-      <br />
-      <Button color={colors.DARK_FOREST_GREEN} onClick={onClick} >Button #fff</Button>
-      <br />
-      <Button color={colors.TURQUOISE_BLUE} onClick={onClick} >Button TURQUOISE_BLUE</Button>
-      <br />
-      <PartnerCard
-        logo={logoChance}
-        title="300€"
-        details="Finançable CPF"
-        info="37 personnes ont choisi Chance"
-        onClick={onClick}
-        list={listItems}
-      />
-      <br />
-      <Tip title="Astuce">
-        Vous pouvez utiliser votre crédit CPF pour financer votre formation.
-      </Tip>
-    </Layout>
-  </React.Fragment>
+  return <Layout header="Header title" title="Layout title" bigTitle="Layout big title">
+    <br />
+    <Button bgColor={colors.REDDISH_ORANGE} onClick={onClick} >Button REDDISH_ORANGE</Button>
+    <br />
+    <Button bgColor={colors.TEAL_BLUE} onClick={onClick} >Button TEAL_BLUE</Button>
+    <br />
+    <Button color={colors.DARK_FOREST_GREEN} onClick={onClick} >Button #fff</Button>
+    <br />
+    <Button color={colors.TURQUOISE_BLUE} onClick={onClick} >Button TURQUOISE_BLUE</Button>
+    <br />
+    <PartnerCard
+      logo={logoChance}
+      title="300€"
+      details="Finançable CPF"
+      info="37 personnes ont choisi Chance"
+      onClick={onClick}
+      list={listItems}
+    />
+    <br />
+    <Tip title="Astuce">
+      Vous pouvez utiliser votre crédit CPF pour financer votre formation.
+    </Tip>
+  </Layout>
 }
 
 export default React.memo(ComponentsPage)

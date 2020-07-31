@@ -1,12 +1,21 @@
-import React, {Suspense, useEffect} from 'react'
+import {ConnectedRouter, connectRouter, routerMiddleware, RouterState} from 'connected-react-router'
+import {History, createBrowserHistory} from 'history'
+import React, {Suspense, useEffect, useState} from 'react'
 import {useTranslation} from 'react-i18next'
+import {Provider} from 'react-redux'
 import {useLocation} from 'react-router'
-import {BrowserRouter, Switch, Redirect, Route} from 'react-router-dom'
+import {Switch, Redirect, Route} from 'react-router-dom'
+import {Store, createStore, applyMiddleware, combineReducers} from 'redux'
+import {composeWithDevTools} from 'redux-devtools-extension'
+import thunk from 'redux-thunk'
 
 import {logPage} from 'analytics/amplitude'
+import {AllActions, RootState} from 'store/actions'
+import {user} from 'store/app_reducer'
 import {init as i18nInit} from 'store/i18n'
 import {getPath as defineAndGetPath} from 'store/url'
 
+import AccountPage from 'components/pages/account'
 import ComponentsPage from 'components/pages/components'
 import SplashPage from 'components/pages/splash'
 import StepsPage from 'components/pages/steps'
@@ -38,6 +47,7 @@ const App = (): React.ReactElement => {
   // i18next-extract-mark-ns-start url
   // TODO(émilie): create a subrouter for definition / skills
   return <Switch>
+    <Route path={defineAndGetPath('ACCOUNT', t)} component={AccountPage} />
     <Route path={defineAndGetPath('DEFINITION_EXPERIENCE', t)} component={ExperiencePage} />
     <Route path={defineAndGetPath('DEFINITION_GO', t)} component={GoPage} />
     <Route path={defineAndGetPath('DEFINITION_INTEREST', t)} component={InterestPage} />
@@ -61,15 +71,52 @@ const App = (): React.ReactElement => {
 }
 const MemoApp = React.memo(App)
 
+interface AppState {
+  history: History
+  store: Store<RootState, AllActions>
+}
 
+type ReduxState = RootState & {router: RouterState<Record<string, undefined>|null|undefined>}
+
+function createHistoryAndStore(): AppState {
+  const history = createBrowserHistory()
+
+  const finalCreateStore = composeWithDevTools(applyMiddleware(
+    thunk,
+    routerMiddleware(history),
+  ))(createStore)
+
+  // Create the store that will be provided to connected components via Context.
+  const store = finalCreateStore<ReduxState, AllActions>(
+    combineReducers({
+      router: connectRouter(history),
+      user,
+    }),
+  )
+  if (module.hot) {
+    module.hot.accept(['store/app_reducer'], (): void => {
+      const {user: newUser} =
+        require('store/app_reducer')
+      store.replaceReducer(combineReducers({
+        router: connectRouter(history),
+        user: newUser as typeof user,
+      }))
+    })
+  }
+  return {history, store}
+}
 // The app that will be augmented by top level wrappers.
 const WrappedApp = (): React.ReactElement => {
+  const [{history, store}] = useState(createHistoryAndStore)
   // TODO(pascal): Add a scroll-up on page change.
-  return <Suspense fallback={<div />}>
-    <BrowserRouter>
-      <MemoApp />
-    </BrowserRouter>
-  </Suspense>
+  return <Provider store={store}>
+    <ConnectedRouter history={history}>
+      {/* TODO(cyrille): Add a nice waiting page. */}
+      <Suspense fallback={<div />}>
+        <MemoApp />
+      </Suspense>
+    </ConnectedRouter>
+  </Provider>
 }
 const MemoWrappedApp = React.memo(WrappedApp)
 
