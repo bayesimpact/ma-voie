@@ -34,6 +34,9 @@ import WherePage from 'components/pages/definition/where'
 import SkillsGoPage from 'components/pages/skills/go'
 import SkillsListPage from 'components/pages/skills/list'
 import SkillsTrainingPage from 'components/pages/skills/training'
+import TrainingWhichPage from 'components/pages/training/which'
+import TrainingPartnersExternalPage from 'components/pages/training/partners_external'
+import TrainingPartnersInternalPage from 'components/pages/training/partners_internal'
 
 import 'styles/fonts/Lato/font.css'
 import 'styles/fonts/ProximaSoft/font.css'
@@ -73,6 +76,13 @@ const App = (): React.ReactElement => {
     <Route path={defineAndGetPath('SKILLS_GO', t)} component={SkillsGoPage} />
     <Route path={defineAndGetPath('SKILLS_LIST', t)} component={SkillsListPage} />
     <Route path={defineAndGetPath('SKILLS_TRAINING', t)} component={SkillsTrainingPage} />
+    <Route path={defineAndGetPath('TRAINING_WHAT', t)} component={TrainingWhichPage} />
+    <Route
+      path={defineAndGetPath('TRAINING_PARTNERS_EXTERNAL', t)}
+      component={TrainingPartnersExternalPage} />
+    <Route
+      path={defineAndGetPath('TRAINING_PARTNERS_INTERNAL', t)}
+      component={TrainingPartnersInternalPage} />
     <Route path={defineAndGetPath('ROOT', t)}>
       <Redirect to={defineAndGetPath('SPLASH', t)} />
     </Route>
