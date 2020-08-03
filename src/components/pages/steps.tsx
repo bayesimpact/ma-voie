@@ -1,10 +1,12 @@
 import ArrowDownIcon from 'mdi-react/ArrowDownIcon'
 import React from 'react'
 import {useTranslation} from 'react-i18next'
+import {useSelector} from 'react-redux'
 
 import {prepareT} from 'store/i18n'
 
 import Layout from 'components/layout'
+import CreateAccountPopup from 'components/popup'
 import Step from 'components/step'
 import competencesIcon from 'images/competences-ico.svg'
 import definitionIcon from 'images/definition-ico.svg'
@@ -35,10 +37,19 @@ const arrowStyle: React.CSSProperties = {
   display: 'block',
   margin: '30px auto',
 }
+const popupStyle: React.CSSProperties = {
+  display: 'none',
+}
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 const StepsPage = (): React.ReactElement => {
   const [translate] = useTranslation()
+
+  // TODO(émilie) : Gets the popup displayed when the button is clicked (if !isConnected)
+  const name = useSelector(({user: {name}}: RootState) => name)
+  const lastName = useSelector(({user: {lastName}}: RootState) => lastName)
+  const isConnected = (name !== undefined && lastName !== undefined)
+
   // TODO(cyrille): Add step 4.
   return <Layout>
     <div style={stepsStyle}>
@@ -47,6 +58,7 @@ const StepsPage = (): React.ReactElement => {
         <Step index={index + 1} {...step}>{translate(title)}</Step>
       </React.Fragment>)}
     </div>
+    {!isConnected ? <CreateAccountPopup style={popupStyle} /> : null}
   </Layout>
 }
 
