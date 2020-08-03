@@ -56,14 +56,14 @@ const infoStyle: React.CSSProperties = {
 }
 
 interface Props {
-  chooseClick: (event: React.MouseEvent<HTMLDivElement>) => void
-  detail?: string
-  discoverClick: (event: React.MouseEvent<HTMLDivElement>) => void
+  chooseClick?: (event: React.MouseEvent<HTMLDivElement>) => void
+  details?: string
+  discoverClick?: (event: React.MouseEvent<HTMLDivElement>) => void
   info: string
   list: string[]
   logo: string
-  onClick?: (event: React.MouseEvent<HTMLDivElement>, index: number) => void
-  position: number
+  onClick?: (index: number) => void
+  position?: number
   style?: React.CSSProperties
   title: string
 }
@@ -76,7 +76,9 @@ const PartnerCard = ({
     ...style,
   }
   const handleClick = useCallback((): void => {
-    onClick(position)
+    if (onClick && position) {
+      onClick(position)
+    }
   }, [position, onClick])
   return <div style={finalContainerStyle} onClick={handleClick}>
     <div style={contentStyle}>
