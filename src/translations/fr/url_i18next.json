@@ -6,6 +6,8 @@
   "DEFINITION_GO": "definition/go",
   "DEFINITION_JOB": "definition/metier",
   "DEFINITION_LOST": "definition/perdu",
+  "DEFINITION_PARTNERS_EXTERNAL": "definition/autresPartenaires",
+  "DEFINITION_PARTNERS_INTERNAL": "definition/partenaires",
   "DEFINITION_REDEFINE": "definition/redefinir",
   "DEFINITION_WHAT": "definition/quoi",
   "DEFINITION_WHERE": "definition/ou",
