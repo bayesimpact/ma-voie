@@ -25,6 +25,8 @@ import GoPage from 'components/pages/definition/go'
 import InterestPage from 'components/pages/definition/interest'
 import JobPage from 'components/pages/definition/job'
 import LostPage from 'components/pages/definition/lost'
+import DefinitionPartnersExternalPage from 'components/pages/definition/partners_external'
+import DefinitionPartnersInternalPage from 'components/pages/definition/partners_internal'
 import MenuPage from 'components/pages/menu'
 import RedefinePage from 'components/pages/definition/redefine'
 import WhatPage from 'components/pages/definition/what'
@@ -54,6 +56,12 @@ const App = (): React.ReactElement => {
     <Route path={defineAndGetPath('DEFINITION_INTEREST', t)} component={InterestPage} />
     <Route path={defineAndGetPath('DEFINITION_JOB', t)} component={JobPage} />
     <Route path={defineAndGetPath('DEFINITION_LOST', t)} component={LostPage} />
+    <Route
+      path={defineAndGetPath('DEFINITION_PARTNERS_EXTERNAL', t)}
+      component={DefinitionPartnersExternalPage} />
+    <Route
+      path={defineAndGetPath('DEFINITION_PARTNERS_INTERNAL', t)}
+      component={DefinitionPartnersInternalPage} />
     <Route path={defineAndGetPath('DEFINITION_REDEFINE', t)} component={RedefinePage} />
     <Route path={defineAndGetPath('DEFINITION_WHAT', t)} component={WhatPage} />
     <Route path={defineAndGetPath('DEFINITION_WHERE', t)} component={WherePage} />
