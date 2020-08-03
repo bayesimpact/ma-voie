@@ -25,6 +25,7 @@ import GoPage from 'components/pages/definition/go'
 import InterestPage from 'components/pages/definition/interest'
 import JobPage from 'components/pages/definition/job'
 import LostPage from 'components/pages/definition/lost'
+import MenuPage from 'components/pages/menu'
 import RedefinePage from 'components/pages/definition/redefine'
 import WhatPage from 'components/pages/definition/what'
 import WherePage from 'components/pages/definition/where'
@@ -56,6 +57,7 @@ const App = (): React.ReactElement => {
     <Route path={defineAndGetPath('DEFINITION_REDEFINE', t)} component={RedefinePage} />
     <Route path={defineAndGetPath('DEFINITION_WHAT', t)} component={WhatPage} />
     <Route path={defineAndGetPath('DEFINITION_WHERE', t)} component={WherePage} />
+    <Route path={defineAndGetPath('MENU', t)} component={MenuPage} />
     <Route path={defineAndGetPath('SPLASH', t)} component={SplashPage} />
     <Route path={defineAndGetPath('STEPS', t)} component={StepsPage} />
     <Route path={defineAndGetPath('TERMS', t)} component={TermsPage} />
