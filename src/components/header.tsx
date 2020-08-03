@@ -1,7 +1,11 @@
 import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon'
+import MenuIcon from 'mdi-react/MenuIcon'
 import React, {useCallback} from 'react'
 import {useTranslation} from 'react-i18next'
 import {useHistory} from 'react-router'
+import {Link} from 'react-router-dom'
+
+import {getPath} from 'store/url'
 
 import logoImage from 'images/logo-black.svg'
 
@@ -24,6 +28,10 @@ const buttonStyle: React.CSSProperties = {
 const titleStyle: React.CSSProperties = {
   fontFamily: 'ProximaSoft',
   margin: 'auto',
+}
+const linkStyle: React.CSSProperties = {
+  color: colors.GREYISH_TEAL,
+  textDecoration: 'none',
 }
 const logoStyle: React.CSSProperties = {
   height: 30,
@@ -49,7 +57,13 @@ const Header = ({title}: Props): React.ReactElement => {
           <div style={buttonStyle} onClick={goBackClick}><ArrowLeftIcon /></div>
           <div style={titleStyle}>{title}</div>
         </React.Fragment>
-        : <img src={logoImage} alt={t('productName')} style={logoStyle} />}
+        : <React.Fragment>
+          <Link to={getPath('MENU', t)} style={linkStyle}>
+            <MenuIcon />
+          </Link>
+          <img src={logoImage} alt={t('productName')} style={logoStyle} />
+        </React.Fragment>
+      }
     </div>
   </div>
 }
