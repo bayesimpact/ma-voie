@@ -63,7 +63,8 @@ const DefinitionPartnersInternalPage = (): React.ReactElement => {
       title="300€"
       details={t('Finançable CPF')}
       info={t('37 personnes ont choisi Chance')}
-      onClick={onClick}
+      chooseClick={onClick}
+      discoverClick={onClick}
       list={listItems}
     />
     <Trans parent="p" style={paragrapheStyle}>
