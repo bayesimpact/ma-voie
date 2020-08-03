@@ -51,7 +51,7 @@ const GoPage = (): React.ReactElement => {
         </Trans>
       </div>
       <div style={buttonContainerStyle}>
-        <Link to={getPath('DEFINITION_WHAT', t)} style={linkStyle}>
+        <Link to={getPath('SKILLS_LIST', t)} style={linkStyle}>
           <Button bgColor={colors.TEAL_BLUE}>{t('C\'est parti\u00A0!')}</Button>
         </Link>
       </div>

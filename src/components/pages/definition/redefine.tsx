@@ -42,12 +42,12 @@ const RedefinePage = (): React.ReactElement => {
       Qu'en pensez-vous&nbsp;?
     </Trans>
     <div style={buttonContainerStyle}>
-      <Link to={getPath('DEFINITION_JOB', t)} style={linkStyle}>
+      <Link to={getPath('DEFINITION_PARTNERS_INTERNAL', t)} style={linkStyle}>
         <Button bgColor={colors.TEAL_BLUE}>{t('Je redéfinis mon projet')}</Button>
       </Link>
     </div>
     <div style={buttonContainerStyle}>
-      <Link to={getPath('DEFINITION_WHAT', t)} style={linkStyle}>
+      <Link to={getPath('SKILLS_LIST', t)} style={linkStyle}>
         <Button bgColor={colors.TEAL_BLUE}>
           {t('Je continue avec ce métier')}
         </Button>
