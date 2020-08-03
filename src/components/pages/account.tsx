@@ -13,11 +13,12 @@ const inputStyle: React.CSSProperties = {
   borderRadius: 15,
   fontFamily: 'ProximaSoft',
   fontSize: 16,
+  height: 24,
   lineHeight: 24,
-  margin: '20px 0',
+  marginBottom: 20,
   padding: '18px 25px',
+  width: 'calc(100% - 52px)',
 }
-
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 const AccountPage = (): React.ReactElement => {
@@ -55,12 +56,12 @@ const AccountPage = (): React.ReactElement => {
   }, [dispatch, name, inputName, lastName, inputLastName])
 
   const {t} = useTranslation()
-  return <Layout>
+  return <Layout bigTitle={t('Inscription')}>
     <Input
       placeholder={t('Prénom')} style={inputStyle} value={inputName} onChange={setName} />
     <Input
       placeholder={t('Nom')} style={inputStyle} value={inputLastName} onChange={setLastName} />
-    <Button bgColor={colors.REDDISH_ORANGE} onClick={onSave} >
+    <Button bgColor={colors.TEAL_BLUE} onClick={onSave} >
       {t('Valider')}
     </Button>
     {updated ? t('Vos identifiants ont été mis à jour.') : null}
