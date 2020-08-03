@@ -37,8 +37,10 @@ const imageStyle: React.CSSProperties = {
 const descriptionStyle: React.CSSProperties = {
   color: colors.DARK_FOREST_GREEN,
   fontSize: 14,
+  lineHeight: 1.2,
   marginBottom: 12,
   marginLeft: -10,
+  paddingBottom: 10,
 }
 const infoStyle: React.CSSProperties = {
   backgroundColor: colors.TEAL_BLUE,
