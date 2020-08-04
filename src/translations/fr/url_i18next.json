@@ -16,6 +16,9 @@
   "SKILLS_GO": "competences/go",
   "SKILLS_LIST": "competences/liste",
   "SKILLS_TRAINING": "competences/formation",
+  "TRAINING_WHAT": "formation/quelle",
+  "TRAINING_PARTNERS_EXTERNAL": "formation/autresPartenaires",
+  "TRAINING_PARTNERS_INTERNAL": "formation/partenaires",
   "SPLASH": "accueil",
   "STEPS": "etapes",
   "TERMS": "cgu"

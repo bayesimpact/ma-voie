@@ -18,5 +18,8 @@
   "SKILLS_TRAINING": "skills/training",
   "SPLASH": "home",
   "STEPS": "steps",
-  "TERMS": "terms"
+  "TERMS": "terms",
+  "TRAINING_PARTNERS_EXTERNAL": "training/otherPartners",
+  "TRAINING_PARTNERS_INTERNAL": "training/partners",
+  "TRAINING_WHAT": "training/which"
 }

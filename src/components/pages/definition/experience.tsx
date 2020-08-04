@@ -18,7 +18,7 @@ const linkStyle: React.CSSProperties = {
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 const ExperiencePage = (): React.ReactElement => {
-  const [t] = useTranslation()
+  const {t} = useTranslation()
   const title = t('Quelle est votre expérience pour ce métier\u00A0?')
 
   // FIXME(émilie): Change link to save data and then redirect to interest
