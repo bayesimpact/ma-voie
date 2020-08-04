@@ -17,7 +17,7 @@ const buttonContainerStyle: React.CSSProperties = {
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 const InterestPage = (): React.ReactElement => {
-  const [t] = useTranslation()
+  const {t} = useTranslation()
   const title = t('Pour vous ce métier est\u00A0:')
 
   // FIXME(émilie): Change link to redirect where it is needed

@@ -24,7 +24,7 @@ const buttonContainerStyle: React.CSSProperties = {
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 const LostPage = (): React.ReactElement => {
-  const [t] = useTranslation()
+  const {t} = useTranslation()
 
   // FIXME(émilie): Change link to redirect where it is needed
   return <Layout header={t('Définition')} bigTitle={t('Ne vous inquiétez pas, on est là\u00A0!')}>

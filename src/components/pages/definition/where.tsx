@@ -57,7 +57,7 @@ const SelectButton = React.memo(SelectButtonBase)
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 const WherePage = (): React.ReactElement => {
-  const [t] = useTranslation()
+  const {t} = useTranslation()
   const title = t('Où en êtes-vous de votre projet professionnel\u00A0?')
 
   // FIXME(émilie): Delete links and change them by the good handler

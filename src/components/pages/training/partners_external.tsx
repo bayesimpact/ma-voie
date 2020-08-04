@@ -118,15 +118,17 @@ const partners = [
 
 const tabs: readonly TabProps[] = [
   {
-    redirect: 'DEFINITION_PARTNERS_INTERNAL',
+    redirect: 'TRAINING_PARTNERS_INTERNAL',
     title: <Trans>Certifiés par Ma Voie</Trans>,
   },
   {
-    redirect: 'DEFINITION_PARTNERS_EXTERNAL',
+    redirect: 'TRAINING_PARTNERS_EXTERNAL',
     title: <Trans>Autres partenaires</Trans>,
   },
 ]
 
+// TODO(émilie): refactor ExternalPartnerProps and _ExternalPartner
+//   with definition/partners_external
 interface ExternalPartnerProps {
   openPartnerId: null|string
   onSelect: (id: string) => void
@@ -153,7 +155,6 @@ const ExternalPartner = ({
   const handleOpen = useCallback((): void => {
     onSelect(partner.id)
   }, [partner, onSelect])
-
 
   return <div key={partner.id} style={partnerContainerStyle}>
     <div style={partnerHeaderStyle}>
@@ -182,14 +183,14 @@ const ExternalPartner = ({
       </div>
       <div style={buttonsContainerStyle}>
         <div style={partnerButtonStyle}>
-          <Link to={getPath('DEFINITION_WHAT', t)} style={linkStyle}>
+          <Link to={partner.discoverLink} style={linkStyle}>
             <Button color={colors.DARK_FOREST_GREEN}>
               {t('Découvrir')}
             </Button>
           </Link>
         </div>
         <div style={partnerButtonStyle}>
-          <Link to={getPath('DEFINITION_WHAT', t)} style={linkStyle}>
+          <Link to={partner.chooseLink} style={linkStyle}>
             <Button bgColor={colors.REDDISH_ORANGE}>
               {t('Choisir')}
             </Button>
@@ -202,7 +203,7 @@ const ExternalPartner = ({
 
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
-const DefinitionPartnersExternalPage = (): React.ReactElement => {
+const TrainingPartnersExternalPage = (): React.ReactElement => {
   const {t} = useTranslation()
   const bigTitle = t('Voici les partenaires idéaux pour vous aider')
   const [openPartnerId, setOpenPartnerId] = useState<null|string>(null)
@@ -216,7 +217,7 @@ const DefinitionPartnersExternalPage = (): React.ReactElement => {
   }, [openPartnerId])
 
   // FIXME(émilie): Change links to redirect where it is needed
-  return <Layout header={t('Définition')} bigTitle={bigTitle}>
+  return <Layout header={t('Formation')} bigTitle={bigTitle}>
     <TabsNav tabs={tabs} />
     {partners.map((partner) => {
       return <ExternalPartner
@@ -237,4 +238,4 @@ const DefinitionPartnersExternalPage = (): React.ReactElement => {
   </Layout>
 }
 
-export default React.memo(DefinitionPartnersExternalPage)
+export default React.memo(TrainingPartnersExternalPage)

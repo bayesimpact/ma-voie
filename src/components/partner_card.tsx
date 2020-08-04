@@ -56,29 +56,32 @@ const infoStyle: React.CSSProperties = {
 }
 
 interface Props {
-  chooseClick: (event: React.MouseEvent<HTMLDivElement>) => void
-  detail?: string
-  discoverClick: (event: React.MouseEvent<HTMLDivElement>) => void
+  details?: string
   info: string
-  list: string[]
+  // TODO(émilie): rename "list" to be more specific such as descriptionList
+  list: readonly string[]
   logo: string
-  onClick?: (event: React.MouseEvent<HTMLDivElement>, index: number) => void
-  position: number
+  onChoose?: (event: React.MouseEvent<HTMLDivElement>) => void
+  onClick?: (partnerId: string) => void
+  onDiscover?: (event: React.MouseEvent<HTMLDivElement>) => void
+  partnerId?: string
   style?: React.CSSProperties
   title: string
 }
 const PartnerCard = ({
-  chooseClick, details, discoverClick, info, position, list, logo, onClick, style, title,
+  details, info, partnerId, list, logo, onChoose, onClick, onDiscover, style, title,
 }: Props): React.ReactElement => {
-  const [t] = useTranslation()
+  const {t} = useTranslation()
   const finalContainerStyle: React.CSSProperties = {
     ...containerStyle,
     ...style,
   }
   const handleClick = useCallback((): void => {
-    onClick(position)
-  }, [position, onClick])
-  return <div style={finalContainerStyle} onClick={handleClick}>
+    if (onClick && partnerId) {
+      onClick(partnerId)
+    }
+  }, [partnerId, onClick])
+  return <div style={finalContainerStyle} onClick={handleClick} id={partnerId} data-partner>
     <div style={contentStyle}>
       <div style={titleStyle}>
         <img src={logo} alt="logo" style={imageStyle} />
@@ -92,8 +95,8 @@ const PartnerCard = ({
           <li key={item}>{item}</li>,
         )}
       </ul>
-      <Button bgColor={colors.REDDISH_ORANGE} onClick={chooseClick}>{t('Choisir')}</Button>
-      <Button color={colors.DARK_FOREST_GREEN} hasBorder={false} onClick={discoverClick} >
+      <Button bgColor={colors.REDDISH_ORANGE} onClick={onChoose}>{t('Choisir')}</Button>
+      <Button color={colors.DARK_FOREST_GREEN} hasBorder={false} onClick={onDiscover} >
         {t('Découvrir')}
       </Button>
     </div>
