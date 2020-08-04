@@ -9,6 +9,7 @@ declare namespace bayes {
     }
 
     interface Project {
+      experience?: string
       hasDefinedProject?: boolean
       projectId: string
     }
