@@ -95,10 +95,8 @@ const PartnerCard = ({
           <li key={item}>{item}</li>,
         )}
       </ul>
-      <Button bgColor={colors.REDDISH_ORANGE} onClick={onChoose}>{t('Choisir')}</Button>
-      <Button color={colors.DARK_FOREST_GREEN} hasBorder={false} onClick={onDiscover} >
-        {t('Découvrir')}
-      </Button>
+      <Button type="reddish_orange" onClick={onChoose}>{t('Choisir')}</Button>
+      <Button type="white_no_border" onClick={onDiscover} >{t('Découvrir')}</Button>
     </div>
     <div style={infoStyle}>{info}</div>
   </div>

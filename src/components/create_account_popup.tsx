@@ -69,7 +69,7 @@ const CreateAccountPopup = ({style}: props): React.ReactElement => {
         </p>
       </Trans>
       <Link to={getPath('ACCOUNT', t)} style={linkStyle} >
-        <Button bgColor={colors.REDDISH_ORANGE} >{t('Créer un compte')}</Button>
+        <Button type="reddish_orange" >{t('Créer un compte')}</Button>
       </Link>
     </div>
   </div>

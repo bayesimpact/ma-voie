@@ -25,22 +25,22 @@ const ExperiencePage = (): React.ReactElement => {
   return <Layout header={t('Définition')} title={title}>
     <div style={buttonContainerStyle}>
       <Link to={getPath('DEFINITION_INTEREST', t)} style={linkStyle}>
-        <Button color={colors.DARK_FOREST_GREEN}>{t('Je suis novice')}</Button>
+        <Button type="white">{t('Je suis novice')}</Button>
       </Link>
     </div>
     <div style={buttonContainerStyle}>
       <Link to={getPath('DEFINITION_INTEREST', t)} style={linkStyle}>
-        <Button color={colors.DARK_FOREST_GREEN}>{t('Entre 1-3 ans')}</Button>
+        <Button type="white">{t('Entre 1-3 ans')}</Button>
       </Link>
     </div>
     <div style={buttonContainerStyle}>
       <Link to={getPath('DEFINITION_INTEREST', t)} style={linkStyle}>
-        <Button color={colors.DARK_FOREST_GREEN}>{t('Entre 3-5 ans')}</Button>
+        <Button type="white">{t('Entre 3-5 ans')}</Button>
       </Link>
     </div>
     <div style={buttonContainerStyle}>
       <Link to={getPath('DEFINITION_INTEREST', t)} style={linkStyle}>
-        <Button color={colors.DARK_FOREST_GREEN}>{t('Plus de 5 ans')}</Button>
+        <Button type="white">{t('Plus de 5 ans')}</Button>
       </Link>
     </div>
   </Layout>

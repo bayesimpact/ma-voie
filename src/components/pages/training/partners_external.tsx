@@ -184,14 +184,14 @@ const ExternalPartner = ({
       <div style={buttonsContainerStyle}>
         <div style={partnerButtonStyle}>
           <Link to={partner.discoverLink} style={linkStyle}>
-            <Button color={colors.DARK_FOREST_GREEN}>
+            <Button type="white">
               {t('Découvrir')}
             </Button>
           </Link>
         </div>
         <div style={partnerButtonStyle}>
           <Link to={partner.chooseLink} style={linkStyle}>
-            <Button bgColor={colors.REDDISH_ORANGE}>
+            <Button type="reddish_orange">
               {t('Choisir')}
             </Button>
           </Link>
@@ -230,7 +230,7 @@ const TrainingPartnersExternalPage = (): React.ReactElement => {
     </Trans>
     <div style={buttonWrapperStyle}>
       <Link to={getPath('DEFINITION_WHAT', t)} style={linkStyle}>
-        <Button color={colors.TURQUOISE_BLUE}>
+        <Button type="turquoise_blue">
           {t('Je l\'ai fait moi-même')}
         </Button>
       </Link>

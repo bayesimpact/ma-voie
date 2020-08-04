@@ -81,7 +81,7 @@ const JobPage = (): React.ReactElement => {
     </ul>
     <div style={buttonContainerStyle}>
       <Link to={getPath('DEFINITION_LOST', t)} style={linkStyle}>
-        <Button color={colors.DARK_FOREST_GREEN}>{t('Je ne sais pas')}</Button>
+        <Button type="white">{t('Je ne sais pas')}</Button>
       </Link>
     </div>
   </Layout>

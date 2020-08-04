@@ -31,7 +31,7 @@ const SkillsTrainingPage = (): React.ReactElement => {
       </p>
     </Trans>
     <div style={buttonContainerStyle}>
-      <Button bgColor={colors.TEAL_BLUE}>
+      <Button type="teal_blue">
         {t('C\'est parti\u00A0!')}
       </Button>
     </div>

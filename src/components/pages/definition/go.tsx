@@ -52,7 +52,7 @@ const GoPage = (): React.ReactElement => {
       </div>
       <div style={buttonContainerStyle}>
         <Link to={getPath('SKILLS_LIST', t)} style={linkStyle}>
-          <Button bgColor={colors.TEAL_BLUE}>{t('C\'est parti\u00A0!')}</Button>
+          <Button type="teal_blue">{t('C\'est parti\u00A0!')}</Button>
         </Link>
       </div>
     </div>

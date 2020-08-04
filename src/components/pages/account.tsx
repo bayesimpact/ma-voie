@@ -61,7 +61,7 @@ const AccountPage = (): React.ReactElement => {
       placeholder={t('Prénom')} style={inputStyle} value={inputName} onChange={setName} />
     <Input
       placeholder={t('Nom')} style={inputStyle} value={inputLastName} onChange={setLastName} />
-    <Button bgColor={colors.TEAL_BLUE} onClick={onSave} >
+    <Button type="teal_blue" onClick={onSave} >
       {t('Valider')}
     </Button>
     {updated ? t('Vos identifiants ont été mis à jour.') : null}

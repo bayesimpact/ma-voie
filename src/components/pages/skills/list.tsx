@@ -12,6 +12,7 @@ const linkStyle: React.CSSProperties = {
   textDecoration: 'none',
 }
 const buttonContainerStyle: React.CSSProperties = {
+  marginBottom: 20,
   paddingTop: 20,
 }
 
@@ -37,7 +38,7 @@ const SkillsListPage = (): React.ReactElement => {
     <CheckboxList list={listItems} />
     <div style={buttonContainerStyle}>
       <Link to={getPath('SKILLS_GO', t)} style={linkStyle}>
-        <Button bgColor={colors.TEAL_BLUE}>
+        <Button type="teal_blue">
           {t('Valider')}
         </Button>
       </Link>
