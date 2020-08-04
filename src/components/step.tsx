@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {useCallback} from 'react'
 import {useTranslation} from 'react-i18next'
 
-import lockIcon from 'images/lock-ico.svg'
+import {Page} from 'store/url'
 
-const notAvailable = (): void => window.alert('Bientôt disponible...')
+import lockIcon from 'images/lock-ico.svg'
 
 const headerStyle: React.CSSProperties = {
   alignItems: 'center',
@@ -47,9 +47,12 @@ interface Props {
   icon: string
   index: number
   isOpen?: boolean
+  onClick?: (redirect: Page) => void
+  redirect: Page
   style?: React.CSSProperties
 }
-const Step = ({children, color, icon, index, isOpen, style}: Props): React.ReactElement => {
+const Step = ({
+  children, color, icon, index, isOpen, onClick, redirect, style}: Props): React.ReactElement => {
   const {t} = useTranslation()
   const containerStyle: React.CSSProperties = {
     backgroundColor: '#fff',
@@ -73,13 +76,18 @@ const Step = ({children, color, icon, index, isOpen, style}: Props): React.React
     margin: 20,
     width: 70,
   }
+  const handleClick = useCallback((): void => {
+    if (onClick) {
+      onClick(redirect)
+    }
+  }, [onClick, redirect])
   return <div style={containerStyle}>
     {isOpen ? <div style={headerStyle}>{t('En cours')}</div> : null}
     <div style={contentStyle}>
       <div style={indexStyle}>{t('étape {{index}}', {index})}</div>
       <div style={titleStyle}>{children}</div>
       <img style={iconStyle} src={isOpen ? icon : lockIcon} alt="" />
-      {isOpen ? <div onClick={notAvailable} style={buttonStyle}>{t('Commencez')}</div> :
+      {isOpen ? <div onClick={handleClick} style={buttonStyle}>{t('Commencez')}</div> :
         // TODO(cyrille): Replace with the list of steps to complete beforehand.
         <span style={forbiddenStyle}>{t("Terminez l'étape précédente", {count: index - 1})}</span>}
     </div>

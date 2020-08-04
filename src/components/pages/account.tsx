@@ -1,8 +1,10 @@
 import React, {useCallback, useEffect, useState} from 'react'
-import {useSelector} from 'react-redux'
 import {useTranslation} from 'react-i18next'
+import {useSelector} from 'react-redux'
+import {useHistory} from 'react-router'
 
 import {RootState, updateUser, useDispatch} from 'store/actions'
+import {getPath} from 'store/url'
 
 import Button from 'components/button'
 import Input from 'components/input'
@@ -22,6 +24,9 @@ const inputStyle: React.CSSProperties = {
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 const AccountPage = (): React.ReactElement => {
+  const {t} = useTranslation()
+  const history = useHistory()
+
   const name = useSelector(({user: {name}}: RootState) => name)
   const [inputName, setName] = useState(name || '')
   useEffect((): void => {
@@ -40,7 +45,10 @@ const AccountPage = (): React.ReactElement => {
       return (): void => void 0
     }
     const timeout = setTimeout(() => setUpdated(false), 2000)
-    return (): void => clearTimeout(timeout)
+    return (): void => {
+      clearTimeout(timeout)
+      history.push(getPath('DEFINITION_WHERE', t))
+    }
   })
 
   const dispatch = useDispatch()
@@ -55,7 +63,6 @@ const AccountPage = (): React.ReactElement => {
     }
   }, [dispatch, name, inputName, lastName, inputLastName])
 
-  const {t} = useTranslation()
   return <Layout bigTitle={t('Inscription')}>
     <Input
       placeholder={t('Prénom')} style={inputStyle} value={inputName} onChange={setName} />
