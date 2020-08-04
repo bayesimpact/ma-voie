@@ -31,7 +31,9 @@ const WhatPage = (): React.ReactElement => {
       </Link>
     </div>
     <div style={buttonContainerStyle}>
-      <Button color={colors.DARK_FOREST_GREEN}>{t('Me former')}</Button>
+      <Link to={getPath('DEFINITION_PARTNERS_INTERNAL', t)} style={linkStyle}>
+        <Button color={colors.DARK_FOREST_GREEN}>{t('Me former')}</Button>
+      </Link>
     </div>
   </Layout>
 }
