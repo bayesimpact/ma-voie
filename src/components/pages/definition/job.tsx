@@ -54,7 +54,7 @@ const jobList = [
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 const JobPage = (): React.ReactElement => {
-  const [t] = useTranslation()
+  const {t} = useTranslation()
   const title = t('Pour quel métier souhaitez-vous retrouver un poste\u00A0?')
 
   // FIXME(émilie): Change link to redirect where it is needed

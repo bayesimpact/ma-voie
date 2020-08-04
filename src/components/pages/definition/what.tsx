@@ -18,7 +18,7 @@ const buttonContainerStyle: React.CSSProperties = {
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 const WhatPage = (): React.ReactElement => {
-  const [t] = useTranslation()
+  const {t} = useTranslation()
   const bigTitle = t('Super\u00A0!')
   const title = t('Quel est votre projet\u00A0?')
 

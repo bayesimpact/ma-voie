@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useCallback} from 'react'
+import {useTranslation} from 'react-i18next'
 
 import Button from 'components/button'
 
@@ -8,18 +9,20 @@ const containerStyle: React.CSSProperties = {
   boxShadow: '0 4px 24px 0 rgba(0,0,0,.2)',
   fontSize: 13,
   margin: '20px 0',
+  minWidth: 315,
   overflow: 'hidden',
+  position: 'relative',
 }
 const contentStyle: React.CSSProperties = {
-  margin: '0 32px 0 20px',
+  margin: '0 32px 50px 20px',
 }
 const titleStyle: React.CSSProperties = {
+  alignItems: 'center',
   display: 'flex',
   justifyContent: 'space-between',
-  marginBottom: 27,
+  margin: '20px 0 25px',
 }
 const titleDetailsStyle: React.CSSProperties = {
-  paddingTop: 15,
   textAlign: 'right',
 }
 const titleDetailsBoldStyle: React.CSSProperties = {
@@ -31,7 +34,6 @@ const titleDetailsContentStyle: React.CSSProperties = {
   marginTop: -3,
 }
 const imageStyle: React.CSSProperties = {
-  height: 64,
   width: 126,
 }
 const descriptionStyle: React.CSSProperties = {
@@ -44,24 +46,42 @@ const descriptionStyle: React.CSSProperties = {
 }
 const infoStyle: React.CSSProperties = {
   backgroundColor: colors.TEAL_BLUE,
+  bottom: 0,
   color: '#fff',
+  left: 0,
   marginTop: 12,
-  padding: '12px 65px 12px 66px',
+  padding: '12px 60px',
+  position: 'absolute',
+  width: '100%',
 }
 
 interface Props {
-  list: string[]
-  logo: string
-  title: string
-  details: string
+  details?: string
   info: string
-  onClick: (event: React.MouseEvent<HTMLDivElement>) => void
+  // TODO(émilie): rename "list" to be more specific such as descriptionList
+  list: readonly string[]
+  logo: string
+  onChoose?: (event: React.MouseEvent<HTMLDivElement>) => void
+  onClick?: (partnerId: string) => void
+  onDiscover?: (event: React.MouseEvent<HTMLDivElement>) => void
+  partnerId?: string
+  style?: React.CSSProperties
+  title: string
 }
 const PartnerCard = ({
-  list, logo, title, details, info, onClick,
+  details, info, partnerId, list, logo, onChoose, onClick, onDiscover, style, title,
 }: Props): React.ReactElement => {
-
-  return <div style={containerStyle}>
+  const {t} = useTranslation()
+  const finalContainerStyle: React.CSSProperties = {
+    ...containerStyle,
+    ...style,
+  }
+  const handleClick = useCallback((): void => {
+    if (onClick && partnerId) {
+      onClick(partnerId)
+    }
+  }, [partnerId, onClick])
+  return <div style={finalContainerStyle} onClick={handleClick} id={partnerId} data-partner>
     <div style={contentStyle}>
       <div style={titleStyle}>
         <img src={logo} alt="logo" style={imageStyle} />
@@ -75,9 +95,9 @@ const PartnerCard = ({
           <li key={item}>{item}</li>,
         )}
       </ul>
-      <Button bgColor={colors.REDDISH_ORANGE} onClick={onClick}>Choisir</Button>
-      <Button color={colors.DARK_FOREST_GREEN} hasBorder={false} onClick={onClick} >
-        Découvrir
+      <Button bgColor={colors.REDDISH_ORANGE} onClick={onChoose}>{t('Choisir')}</Button>
+      <Button color={colors.DARK_FOREST_GREEN} hasBorder={false} onClick={onDiscover} >
+        {t('Découvrir')}
       </Button>
     </div>
     <div style={infoStyle}>{info}</div>
