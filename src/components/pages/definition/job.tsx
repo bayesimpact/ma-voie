@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom'
 
 import {getPath} from 'store/url'
 
-import Button from 'components/button'
 import Layout from 'components/layout'
 import {RadiumDiv} from 'components/radium'
 
@@ -20,10 +19,6 @@ const inputStyle: React.CSSProperties = {
   lineHeight: 24,
   padding: '18px 25px',
   width: 'calc(100% - 50px)',
-}
-const buttonContainerStyle: React.CSSProperties = {
-  fontSize: 16,
-  paddingTop: 20,
 }
 const ulStyle: React.CSSProperties = {
   border: `1px solid ${colors.SILVER_THREE}`,
@@ -79,11 +74,6 @@ const JobPage = (): React.ReactElement => {
         },
       )}
     </ul>
-    <div style={buttonContainerStyle}>
-      <Link to={getPath('DEFINITION_LOST', t)} style={linkStyle}>
-        <Button type="variable">{t('Je ne sais pas')}</Button>
-      </Link>
-    </div>
   </Layout>
 }
 
