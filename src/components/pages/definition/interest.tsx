@@ -24,17 +24,17 @@ const InterestPage = (): React.ReactElement => {
   return <Layout header={t('Définition')} title={title}>
     <div style={buttonContainerStyle}>
       <Link to={getPath('DEFINITION_GO', t)} style={linkStyle}>
-        <Button color={colors.DARK_FOREST_GREEN}>{t('Passionnant')}</Button>
+        <Button type="variable">{t('Passionnant')}</Button>
       </Link>
     </div>
     <div style={buttonContainerStyle}>
       <Link to={getPath('DEFINITION_GO', t)} style={linkStyle}>
-        <Button color={colors.DARK_FOREST_GREEN}>{t('Intéressant')}</Button>
+        <Button type="variable">{t('Intéressant')}</Button>
       </Link>
     </div>
     <div style={buttonContainerStyle}>
       <Link to={getPath('DEFINITION_REDEFINE', t)} style={linkStyle}>
-        <Button color={colors.DARK_FOREST_GREEN}>
+        <Button type="variable">
           {t('Un métier comme un autre')}
         </Button>
       </Link>

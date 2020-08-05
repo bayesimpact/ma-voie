@@ -40,7 +40,7 @@ const LostPage = (): React.ReactElement => {
     </Trans>
     <div style={buttonContainerStyle}>
       <Link to={getPath('DEFINITION_PARTNERS_INTERNAL', t)} style={linkStyle}>
-        <Button bgColor={colors.TEAL_BLUE}>{t('C\'est parti\u00A0!')}</Button>
+        <Button type="secondLevel">{t('C\'est parti\u00A0!')}</Button>
       </Link>
     </div>
   </Layout>

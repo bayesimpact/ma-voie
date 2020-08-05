@@ -35,7 +35,7 @@ const TrainingWhichPage = (): React.ReactElement => {
       <Trans>Vous pouvez utiliser votre crédit CPF pour financer votre formation.</Trans>
     </Tip>
     <Link to={getPath('TRAINING_PARTNERS_INTERNAL', t)} style={linkStyle} >
-      <Button bgColor={colors.REDDISH_ORANGE} >{t('Commencer')}</Button>
+      <Button type="firstLevel" >{t('Commencer')}</Button>
     </Link>
   </Layout>
 }

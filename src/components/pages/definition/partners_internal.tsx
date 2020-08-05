@@ -73,7 +73,7 @@ const DefinitionPartnersInternalPage = (): React.ReactElement => {
     </Trans>
     <div style={buttonWrapperStyle}>
       <Link to={getPath('DEFINITION_WHAT', t)} style={linkStyle}>
-        <Button color={colors.TURQUOISE_BLUE}>
+        <Button type="specific">
           {t('Je l\'ai fait moi-même')}
         </Button>
       </Link>

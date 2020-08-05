@@ -25,13 +25,13 @@ const WhatPage = (): React.ReactElement => {
   return <Layout header={t('Définition')} bigTitle={bigTitle} title={title}>
     <div style={buttonContainerStyle}>
       <Link to={getPath('DEFINITION_JOB', t)} style={linkStyle}>
-        <Button color={colors.DARK_FOREST_GREEN}>
+        <Button type="variable">
           {t('Retrouver un poste')}
         </Button>
       </Link>
     </div>
     <div style={buttonContainerStyle}>
-      <Button color={colors.DARK_FOREST_GREEN}>{t('Me former')}</Button>
+      <Button type="variable">{t('Me former')}</Button>
     </div>
   </Layout>
 }

@@ -23,13 +23,17 @@ const listItems = [
 const ComponentsPage = (): React.ReactElement => {
   return <Layout header="Header title" title="Layout title" bigTitle="Layout big title">
     <br />
-    <Button bgColor={colors.REDDISH_ORANGE} onClick={onClick} >Button REDDISH_ORANGE</Button>
+    <Button type="firstLevel" onClick={onClick} >Button firstLevel</Button>
     <br />
-    <Button bgColor={colors.TEAL_BLUE} onClick={onClick} >Button TEAL_BLUE</Button>
+    <Button type="secondLevel" onClick={onClick} >Button secondLevel</Button>
     <br />
-    <Button color={colors.DARK_FOREST_GREEN} onClick={onClick} >Button #fff</Button>
+    <Button type="variable" onClick={onClick} >Button variable</Button>
     <br />
-    <Button color={colors.TURQUOISE_BLUE} onClick={onClick} >Button TURQUOISE_BLUE</Button>
+    <Button type="discret" onClick={onClick} >Button discret</Button>
+    <br />
+    <Button type="specific" onClick={onClick} >Button specific</Button>
+    <br />
+    <Button type="menu" onClick={onClick} >Button menu</Button>
     <br />
     <PartnerCard
       logo={logoChance}
