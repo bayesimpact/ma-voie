@@ -11,6 +11,7 @@ const paragraphStyle: React.CSSProperties = {
   textAlign: 'center',
 }
 const buttonContainerStyle: React.CSSProperties = {
+  marginBottom: 20,
   paddingTop: 20,
 }
 // This is a top level page and should never be nested in another one.
@@ -35,9 +36,7 @@ const SkillsGoPage = (): React.ReactElement => {
       </p>
     </Trans>
     <div style={buttonContainerStyle}>
-      <Button bgColor={colors.TEAL_BLUE}>
-        {t('C\'est parti\u00A0!')}
-      </Button>
+      <Button type="secondLevel">{t('C\'est parti\u00A0!')}</Button>
     </div>
   </Layout>
 }

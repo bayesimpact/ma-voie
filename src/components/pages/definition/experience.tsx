@@ -54,11 +54,9 @@ const SelectButtonBase = ({name, redirect, experience}: ButtonProps): React.Reac
   const onClick = useCallback(() => {
     dispatch(updateProject({experience, projectId}))
   }, [dispatch, experience, projectId])
-  // TODO(émilie): delete button color prop when button refactoring is reviewed
-  // and replace by type="white"
   return <div style={buttonContainerStyle}>
     <Link to={getPath(redirect, translate)} style={linkStyle}>
-      <Button color={colors.DARK_FOREST_GREEN} onClick={onClick}>
+      <Button type="variable" onClick={onClick}>
         {translate(name)}
       </Button>
     </Link>

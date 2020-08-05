@@ -46,7 +46,7 @@ const SelectButtonBase = ({name, redirect, hasDefinedProject}: ButtonProps): Rea
   }, [dispatch, hasDefinedProject, projectId])
   return <div style={buttonContainerStyle}>
     <Link to={getPath(redirect, translate)} style={linkStyle}>
-      <Button color={colors.DARK_FOREST_GREEN} onClick={onClick}>
+      <Button type="variable" onClick={onClick}>
         {translate(name)}
       </Button>
     </Link>

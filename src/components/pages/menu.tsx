@@ -67,11 +67,6 @@ const buttonContainerStyle: React.CSSProperties = {
   margin: '0 30px',
 }
 const buttonNewStyle: React.CSSProperties = {
-  backgroundColor: colors.DARK_TEAL,
-  borderColor: colorToAlpha('#fff', .2),
-  borderStyle: 'solid',
-  borderWidth: 2,
-  color: '#fff',
   marginTop: 20,
   paddingLeft: 47,
   paddingRight: 44,
@@ -147,13 +142,13 @@ const MenuPage = (): React.ReactElement => {
       </div>
     </div>
     <div style={buttonContainerStyle}>
-      <Button color={colors.DARK_FOREST_GREEN} onClick={notAvailable} style={buttonNewStyle}>
+      <Button type="menu" onClick={notAvailable} style={buttonNewStyle}>
         {t('+ Ajouter un projet')}
       </Button>
     </div>
     {!isConnected ? <div style={newAccountDivContainerStyle}>
       <Link to={getPath('ACCOUNT', t)} style={linkStyle}>
-        <Button bgColor={colors.REDDISH_ORANGE} style={buttonStyle}>{t('Créer un compte')}</Button>
+        <Button type="firstLevel" style={buttonStyle}>{t('Créer un compte')}</Button>
       </Link>
     </div> : null}
     <div style={returnDivContainerStyle}>
