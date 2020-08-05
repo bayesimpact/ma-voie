@@ -62,7 +62,8 @@ const WherePage = (): React.ReactElement => {
 
   // FIXME(émilie): Delete links and change them by the good handler
   return <Layout header={t('Définition')} title={title}>
-    {BUTTONS.map(props => <SelectButton {...props} key={props.redirect} />)}
+    {BUTTONS.map((props: ButtonProps) =>
+      <SelectButton {...props} key={props.redirect} />)}
   </Layout>
 }
 
