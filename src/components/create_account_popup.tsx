@@ -1,5 +1,5 @@
 import CloseIcon from 'mdi-react/CloseIcon'
-import React from 'react'
+import React, {useCallback} from 'react'
 import {Trans, useTranslation} from 'react-i18next'
 import {Link} from 'react-router-dom'
 
@@ -14,7 +14,7 @@ const popupContainerStyle: React.CSSProperties = {
   color: colors.DARK_FOREST_GREEN,
   height: '100vh',
   left: 0,
-  position: 'absolute',
+  position: 'fixed',
   top: 0,
   width: '100%',
 }
@@ -48,17 +48,23 @@ const paragraphStyle: React.CSSProperties = {
 const linkStyle: React.CSSProperties = {
   textDecoration: 'none',
 }
-interface props {
-  style: React.CSSProperties
+interface Props {
+  onClose: () => void
+  style?: React.CSSProperties
 }
-const CreateAccountPopup = ({style}: props): React.ReactElement => {
+const CreateAccountPopup = ({onClose, style}: Props): React.ReactElement => {
   const {t} = useTranslation()
+
   const globalStyle: React.CSSProperties = {
     ...popupContainerStyle,
     ...style,
   }
+  const handleClose = useCallback((): void => {
+    onClose()
+  }, [onClose])
+
   return <div style={globalStyle}>
-    <div style={popupCloseStyle}><CloseIcon /></div>
+    <div style={popupCloseStyle} onClick={handleClose}><CloseIcon /></div>
     <div style={popupStyle}>
       <div style={iconStyle}><img src={iconDance} alt="" /></div>
       <Trans>
