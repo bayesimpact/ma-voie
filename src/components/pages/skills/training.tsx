@@ -1,9 +1,16 @@
 import React from 'react'
 import {useTranslation, Trans} from 'react-i18next'
+import {Link} from 'react-router-dom'
+
+import {getPath} from 'store/url'
+
 
 import Button from 'components/button'
 import Layout from 'components/layout'
 
+const linkStyle: React.CSSProperties = {
+  textDecoration: 'none',
+}
 const paragraphStyle: React.CSSProperties = {
   color: colors.DARK_FOREST_GREEN,
   fontSize: 22,
@@ -20,7 +27,7 @@ const SkillsTrainingPage = (): React.ReactElement => {
   const {t} = useTranslation()
   // FIXME(émilie): Sets the job and the skills
   const bigTitle = t('Le métier de XXX requiert d\'avoir les compétences XXX')
-  // FIXME(émilie): Go to prepare the interview
+  // FIXME(émilie): button : save project state (unlock training)
   return <Layout header={t('Compétences')} bigTitle={bigTitle}>
     <Trans>
       <p style={paragraphStyle}>
@@ -32,9 +39,11 @@ const SkillsTrainingPage = (): React.ReactElement => {
       </p>
     </Trans>
     <div style={buttonContainerStyle}>
-      <Button type="secondLevel">
-        {t('C\'est parti\u00A0!')}
-      </Button>
+      <Link to={getPath('STEPS', t)} style={linkStyle}>
+        <Button type="secondLevel">
+          {t('C\'est parti\u00A0!')}
+        </Button>
+      </Link>
     </div>
   </Layout>
 }
