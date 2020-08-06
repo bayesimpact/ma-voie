@@ -36,7 +36,7 @@ const layoutContentStyle: React.CSSProperties = {
 const GoPage = (): React.ReactElement => {
   const {t} = useTranslation()
 
-  // FIXME(émilie): Change link to redirect where it is needed
+  // FIXME(émilie): Save the project before redirecting
   return <Layout header={t('Définition')} bigTitle={t('Félicitations\u00A0!')} style={layoutStyle}>
     <div style={layoutContentStyle}>
       <div style={textContainerStyle}>
@@ -51,7 +51,7 @@ const GoPage = (): React.ReactElement => {
         </Trans>
       </div>
       <div style={buttonContainerStyle}>
-        <Link to={getPath('SKILLS_LIST', t)} style={linkStyle}>
+        <Link to={getPath('STEPS', t)} style={linkStyle}>
           <Button type="secondLevel">{t('C\'est parti\u00A0!')}</Button>
         </Link>
       </div>
