@@ -26,7 +26,7 @@ const buttonContainerStyle: React.CSSProperties = {
 const LostPage = (): React.ReactElement => {
   const {t} = useTranslation()
 
-  // FIXME(émilie): Change link to redirect where it is needed
+  // FIXME(émilie): Steps : save project state first
   return <Layout header={t('Définition')} bigTitle={t('Ne vous inquiétez pas, on est là\u00A0!')}>
     <Trans parent="p" style={contentStyle}>
       Même si vous êtes perdu·e pour le moment,
@@ -39,7 +39,7 @@ const LostPage = (): React.ReactElement => {
       On y va&nbsp;?
     </Trans>
     <div style={buttonContainerStyle}>
-      <Link to={getPath('DEFINITION_PARTNERS_INTERNAL', t)} style={linkStyle}>
+      <Link to={getPath('STEPS', t)} style={linkStyle}>
         <Button type="secondLevel">{t('C\'est parti\u00A0!')}</Button>
       </Link>
     </div>

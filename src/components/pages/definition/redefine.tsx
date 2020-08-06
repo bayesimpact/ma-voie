@@ -26,7 +26,7 @@ const buttonContainerStyle: React.CSSProperties = {
 const RedefinePage = (): React.ReactElement => {
   const {t} = useTranslation()
 
-  // FIXME(émilie): Change link to redirect where it is needed
+  // FIXME(émilie): Steps : save project state first
   return <Layout header={t('Définition')}>
     <Trans parent="p" style={contentStyle}>
       Votre projet est clair mais ne semble pas vous passionner.
@@ -42,12 +42,12 @@ const RedefinePage = (): React.ReactElement => {
       Qu'en pensez-vous&nbsp;?
     </Trans>
     <div style={buttonContainerStyle}>
-      <Link to={getPath('DEFINITION_PARTNERS_INTERNAL', t)} style={linkStyle}>
+      <Link to={getPath('DEFINITION_WHERE', t)} style={linkStyle}>
         <Button type="secondLevel">{t('Je redéfinis mon projet')}</Button>
       </Link>
     </div>
     <div style={buttonContainerStyle}>
-      <Link to={getPath('SKILLS_LIST', t)} style={linkStyle}>
+      <Link to={getPath('DEFINITION_PARTNERS_INTERNAL', t)} style={linkStyle}>
         <Button type="secondLevel">
           {t('Je continue avec ce métier')}
         </Button>
