@@ -1,19 +1,30 @@
 import React from 'react'
 import {useTranslation} from 'react-i18next'
-import {Link} from 'react-router-dom'
 
-import {getPath} from 'store/url'
+import {prepareT} from 'store/i18n'
+import {Page} from 'store/url'
 
-import Button from 'components/button'
+import {SelectButton} from 'components/button'
 import Layout from 'components/layout'
 
-const linkStyle: React.CSSProperties = {
-  textDecoration: 'none',
+interface ButtonProps {
+  name: string
+  objective: 'job' | 'training'
+  page: Page
 }
-const buttonContainerStyle: React.CSSProperties = {
-  fontSize: 16,
-  paddingBottom: 20,
-}
+// TODO(cyrille): Make a <select> component with button options.
+const BUTTONS: readonly ButtonProps[] = [
+  {
+    name: prepareT('Retrouver un poste'),
+    objective: 'job',
+    page: 'DEFINITION_JOB',
+  },
+  {
+    name: prepareT('Me former'),
+    objective: 'training',
+    page: 'DEFINITION_LOST',
+  },
+]
 
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
@@ -23,16 +34,8 @@ const WhatPage = (): React.ReactElement => {
   const title = t('Quel est votre projet\u00A0?')
 
   return <Layout header={t('Définition')} bigTitle={bigTitle} title={title}>
-    <div style={buttonContainerStyle}>
-      <Link to={getPath('DEFINITION_JOB', t)} style={linkStyle}>
-        <Button type="variable">
-          {t('Retrouver un poste')}
-        </Button>
-      </Link>
-    </div>
-    <div style={buttonContainerStyle}>
-      <Button type="variable">{t('Me former')}</Button>
-    </div>
+    {BUTTONS.map((props: ButtonProps) =>
+      <SelectButton {...props} key={props.objective} />)}
   </Layout>
 }
 
