@@ -1,32 +1,19 @@
-import React, {useCallback} from 'react'
+import React from 'react'
 import {useTranslation} from 'react-i18next'
+import {Link} from 'react-router-dom'
 
-import {updateProject, useDispatch} from 'store/actions'
-import {prepareT} from 'store/i18n'
-import {useProjectId} from 'store/selections'
-import {Page} from 'store/url'
+import {getPath} from 'store/url'
 
-import SelectButton from 'components/select_button'
+import Button from 'components/button'
 import Layout from 'components/layout'
 
-interface ButtonProps {
-  name: string
-  objective: bayes.maVoie.ProjectObjective
-  page: Page
+const linkStyle: React.CSSProperties = {
+  textDecoration: 'none',
 }
-// TODO(cyrille): Make a <select> component with button options.
-const BUTTONS: readonly ButtonProps[] = [
-  {
-    name: prepareT('Retrouver un poste'),
-    objective: 'job',
-    page: 'DEFINITION_JOB',
-  },
-  {
-    name: prepareT('Me former'),
-    objective: 'training',
-    page: 'DEFINITION_LOST',
-  },
-]
+const buttonContainerStyle: React.CSSProperties = {
+  fontSize: 16,
+  paddingBottom: 20,
+}
 
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
@@ -35,19 +22,17 @@ const WhatPage = (): React.ReactElement => {
   const bigTitle = t('Super\u00A0!')
   const title = t('Quel est votre projet\u00A0?')
 
-  const dispatch = useDispatch()
-  const projectId = useProjectId()
-
-  const onClick = useCallback((objective: bayes.maVoie.ProjectObjective): void => {
-    dispatch(updateProject({objective, projectId}))
-  }, [dispatch, projectId])
-
-
   return <Layout header={t('Définition')} bigTitle={bigTitle} title={title}>
-    {BUTTONS.map((props: ButtonProps) => <SelectButton<bayes.maVoie.ProjectObjective>
-      onClick={onClick} key={props.objective}
-      name={props.name} page={props.page} value={props.objective} />,
-    )}
+    <div style={buttonContainerStyle}>
+      <Link to={getPath('DEFINITION_JOB', t)} style={linkStyle}>
+        <Button type="variable">
+          {t('Retrouver un poste')}
+        </Button>
+      </Link>
+    </div>
+    <div style={buttonContainerStyle}>
+      <Button type="variable">{t('Me former')}</Button>
+    </div>
   </Layout>
 }
 
