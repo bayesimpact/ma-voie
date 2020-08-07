@@ -1,7 +1,9 @@
-import React from 'react'
+import React, {useCallback} from 'react'
 import {useTranslation, Trans} from 'react-i18next'
 import {Link} from 'react-router-dom'
 
+import {updateProject, useDispatch} from 'store/actions'
+import {useProjectId} from 'store/selections'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
@@ -26,7 +28,13 @@ const buttonContainerStyle: React.CSSProperties = {
 const RedefinePage = (): React.ReactElement => {
   const {t} = useTranslation()
 
-  // FIXME(émilie): Steps : save project state first
+  const dispatch = useDispatch()
+  const projectId = useProjectId()
+
+  const handleClick = useCallback((): void => {
+    dispatch(updateProject({canStepSkills: true, projectId}))
+  }, [dispatch, projectId])
+
   return <Layout header={t('Définition')}>
     <Trans parent="p" style={contentStyle}>
       Votre projet est clair mais ne semble pas vous passionner.
@@ -48,7 +56,7 @@ const RedefinePage = (): React.ReactElement => {
     </div>
     <div style={buttonContainerStyle}>
       <Link to={getPath('DEFINITION_PARTNERS_INTERNAL', t)} style={linkStyle}>
-        <Button type="secondLevel">
+        <Button type="secondLevel" onClick={handleClick}>
           {t('Je continue avec ce métier')}
         </Button>
       </Link>
