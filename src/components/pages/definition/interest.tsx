@@ -19,17 +19,17 @@ const BUTTONS: readonly ButtonProps[] = [
   {
     interest: 'exciting',
     name: prepareT('Passionnant'),
-    page: 'DEFINITION_GO',
+    page: ['DEFINITION', 'GO'],
   },
   {
     interest: 'interesting',
     name: prepareT('Intéressant'),
-    page: 'DEFINITION_GO',
+    page: ['DEFINITION', 'GO'],
   },
   {
     interest: 'indifferent',
     name: prepareT('Un métier comme un autre'),
-    page: 'DEFINITION_REDEFINE',
+    page: ['DEFINITION', 'REDEFINE'],
   },
 ]
 

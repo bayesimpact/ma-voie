@@ -47,8 +47,8 @@ const footerLinkSelectedStyle: React.CSSProperties = {
 const Footer = (): React.ReactElement => {
   const {t} = useTranslation()
   const {pathname} = useLocation()
-  const splashPath = getPath('SPLASH', t)
-  const termsPath = getPath('TERMS', t)
+  const splashPath = getPath(['SPLASH'], t)
+  const termsPath = getPath(['TERMS'], t)
   const isSplash = pathname === splashPath
   const isTerms = pathname === termsPath
   return <footer style={footerStyle}>
@@ -65,12 +65,12 @@ const Footer = (): React.ReactElement => {
         </div>
         <div>
           <Link
-            to={getPath('SPLASH', t)}
+            to={getPath(['SPLASH'], t)}
             style={isSplash ? footerLinkSelectedStyle : footerLinkStyle}>
             {t('Accueil')}
           </Link>
           <Link
-            to={getPath('TERMS', t)}
+            to={getPath(['TERMS'], t)}
             style={isTerms ? footerLinkSelectedStyle : footerLinkStyle}>
             {t('Mentions légales')}
           </Link>

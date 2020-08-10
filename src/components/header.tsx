@@ -58,7 +58,7 @@ const Header = ({title}: Props): React.ReactElement => {
           <div style={titleStyle}>{title}</div>
         </React.Fragment>
         : <React.Fragment>
-          <Link to={getPath('MENU', t)} style={linkStyle}>
+          <Link to={getPath(['MENU'], t)} style={linkStyle}>
             <MenuIcon />
           </Link>
           <img src={logoImage} alt={t('productName')} style={logoStyle} />

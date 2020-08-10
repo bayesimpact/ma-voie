@@ -147,15 +147,15 @@ const MenuPage = (): React.ReactElement => {
       </Button>
     </div>
     {!isConnected ? <div style={newAccountDivContainerStyle}>
-      <Link to={getPath('ACCOUNT', t)} style={linkStyle}>
+      <Link to={getPath(['ACCOUNT'], t)} style={linkStyle}>
         <Button type="firstLevel" style={buttonStyle}>{t('Créer un compte')}</Button>
       </Link>
     </div> : null}
     <div style={returnDivContainerStyle}>
       <div style={returnDivStyle}>
         {isConnected ? // TODO(émilie): create the logout action
-          <Link to={getPath('ROOT', t)} style={linkReturnStyle}>{t('Déconnexion')}</Link>
-          : <Link to={getPath('ROOT', t)} style={linkReturnStyle}>{t('Retour à l\'accueil')}</Link>}
+          <Link to={getPath([], t)} style={linkReturnStyle}>{t('Déconnexion')}</Link>
+          : <Link to={getPath([], t)} style={linkReturnStyle}>{t('Retour à l\'accueil')}</Link>}
       </div>
     </div>
   </div>

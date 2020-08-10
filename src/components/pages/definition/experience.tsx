@@ -19,22 +19,22 @@ const BUTTONS: readonly ButtonProps[] = [
   {
     experience: 'new',
     name: prepareT('Je suis novice'),
-    page: 'DEFINITION_INTEREST',
+    page: ['DEFINITION', 'INTEREST'],
   },
   {
     experience: '1-3',
     name: prepareT('Entre 1-3 ans'),
-    page: 'DEFINITION_INTEREST',
+    page: ['DEFINITION', 'INTEREST'],
   },
   {
     experience: '3-5',
     name: prepareT('Entre 3-5 ans'),
-    page: 'DEFINITION_INTEREST',
+    page: ['DEFINITION', 'INTEREST'],
   },
   {
     experience: '5',
     name: prepareT('Plus de 5 ans'),
-    page: 'DEFINITION_INTEREST',
+    page: ['DEFINITION', 'INTEREST'],
   },
 ]
 

@@ -37,7 +37,7 @@ const liStyle = {
   'paddingLeft': 30,
 }
 
-interface jobProps {
+interface JobProps {
   name: string
 }
 // FIXME(émilie): Correctly fill the list of jobs
@@ -57,7 +57,7 @@ const JobPage = (): React.ReactElement => {
     <input type="text" style={inputStyle} />
     <ul style={ulStyle}>
       {jobList.map(
-        (job: jobProps, index: number): React.ReactElement => {
+        (job: JobProps, index: number): React.ReactElement => {
           const liFinalStyle: React.CSSProperties = {
             borderBottomLeftRadius: index === jobList.length - 1 ? 20 : 0,
             borderBottomRightRadius: index === jobList.length - 1 ? 20 : 0,
@@ -66,7 +66,8 @@ const JobPage = (): React.ReactElement => {
             borderTopRightRadius: index ? 0 : 20,
             ...liStyle,
           }
-          return <Link key={index} to={getPath('DEFINITION_EXPERIENCE', t)} style={linkStyle}>
+          return <Link
+            key={index} to={getPath(['DEFINITION', 'EXPERIENCE'], t)} style={linkStyle}>
             <li>
               <RadiumDiv style={liFinalStyle}>{job.name}</RadiumDiv>
             </li>

@@ -94,7 +94,7 @@ const dropContext = (key: string): string => {
 }
 
 
-const emptyTranslations = new Set(['ROOT'])
+const emptyTranslations = new Set<string>([])
 
 describe('Translation files', (): void => {
   it('should be more than 1', (): void => {

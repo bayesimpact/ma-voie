@@ -42,7 +42,7 @@ const SkillsGoPage = (): React.ReactElement => {
       </p>
     </Trans>
     <div style={buttonContainerStyle}>
-      <Link to={getPath('STEPS', t)} style={linkStyle}>
+      <Link to={getPath(['STEPS'], t)} style={linkStyle}>
         <Button type="secondLevel">{t('C\'est parti\u00A0!')}</Button>
       </Link>
     </div>

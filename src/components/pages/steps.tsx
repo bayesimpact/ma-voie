@@ -20,20 +20,20 @@ const STEPS = [
     color: colors.LIGHT_TAN,
     icon: definitionIcon,
     isOpen: true,
-    page: 'DEFINITION_WHAT',
+    page: ['DEFINITION'],
     title: prepareT('Définition de votre projet'),
   },
   {
     color: colors.SILVER,
     icon: competencesIcon,
-    page: 'SKILLS_LIST',
+    page: ['SKILLS_LIST'],
     title: prepareT('Compétences'),
   },
   {
     color: colors.LIGHT_SKY_BLUE,
     icon: formationIcon,
     // TODO(émilie): put the good path when reviewed
-    page: 'SKILLS_LIST',
+    page: ['SKILLS_LIST'],
     title: prepareT('Formations'),
   },
 ] as const

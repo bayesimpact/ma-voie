@@ -1,25 +1,37 @@
 import {TFunction} from 'i18next'
+import {useTranslation} from 'react-i18next'
+import {useRouteMatch} from 'react-router'
 
-// TODO(cyrille): Make routes with several segments, rather than hyphenated names.
 import Routes from 'translations/fr/url_i18next.json'
-import MemorySteps from 'translations/en/memoryRouter_i18next.json'
 
 
-export type Page = keyof typeof Routes
-export type MemoryStep = keyof typeof MemorySteps
+export type PageSegment = keyof typeof Routes
+export type Page = readonly PageSegment[]
 
 
 const pathCache: {[pathname: string]: Page} = {}
 
 
-function getPath(page: Page, translate: TFunction): string {
-  const path = '/' + translate(page, {ns: 'url'})
-  pathCache[path] = page
+function getPath(segments: Page, translate: TFunction): string {
+  const path = '/' + segments.map(segment => translate(segment, {ns: 'url'})).join('/')
+  pathCache[path] = segments
   return path
+}
+
+function getSimplePath(segment: PageSegment, translate: TFunction): string {
+  return getPath([segment], translate)
+}
+
+function useSubPathDefiner(): (segment: PageSegment) => string {
+  const {t} = useTranslation('url')
+  const {url} = useRouteMatch()
+  const prefix = url === '/' ? '' : url
+  return (segment: PageSegment): string => prefix + getSimplePath(segment, t)
 }
 
 
 // Find a page that matches a given pathname.
+// TODO(cyrille): Drop since unused.
 function getPage(pathname: string): Page|undefined {
   const page = pathCache[pathname]
   if (page) {
@@ -29,9 +41,4 @@ function getPage(pathname: string): Page|undefined {
 }
 
 
-const Params: {[varName: string]: string} = {
-  DEPTH: 'p',
-} as const
-
-
-export {Params, getPage, getPath}
+export {getPage, getPath, useSubPathDefiner}
