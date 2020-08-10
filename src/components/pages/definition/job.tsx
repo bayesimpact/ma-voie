@@ -1,8 +1,10 @@
-import React, {useCallback, useState} from 'react'
+import React, {useCallback} from 'react'
 import {useTranslation} from 'react-i18next'
 import {useHistory} from 'react-router'
 import {Link} from 'react-router-dom'
 
+import {updateProject, useDispatch} from 'store/actions'
+import {useProjectId} from 'store/selections'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
@@ -35,21 +37,22 @@ const buttonContainerStyle: React.CSSProperties = {
 const JobPage = (): React.ReactElement => {
   const {t} = useTranslation()
   const title = t('Pour quel métier souhaitez-vous retrouver un poste\u00A0?')
-  const [job, setJob] = useState<bayes.maVoie.Job|null>(null)
+  const projectId = useProjectId()
+  const dispatch = useDispatch()
   const history = useHistory()
   const onSelect = useCallback((job: bayes.maVoie.Job|null): void => {
-    // TODO(cyrille): Save to project.
-    setJob(job)
-    if (job) {
-      history.push(getPath(['DEFINITION', 'EXPERIENCE'], t))
+    if (!job) {
+      return
     }
-  }, [history, t])
+    dispatch(updateProject({job, projectId}))
+    history.push(getPath(['DEFINITION', 'EXPERIENCE'], t))
+  }, [dispatch, history, projectId, t])
 
   // FIXME(émilie): Change link to redirect where it is needed.
   return <Layout header={t('Définition')} title={title}>
     <JobSuggest
       placeholder={t('entrez votre métier')} style={inputStyle}
-      value={job || undefined} onChange={onSelect} />
+      onChange={onSelect} />
     <div style={buttonContainerStyle}>
       <Link to={getPath(['DEFINITION', 'LOST'], t)} style={linkStyle}>
         <Button type="discret">{t('Je ne sais pas')}</Button>
