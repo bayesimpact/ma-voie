@@ -7,6 +7,7 @@ import {getPath} from 'store/url'
 
 import Button from 'components/button'
 import Layout from 'components/layout'
+import {STEPS_BY_ID} from 'components/pages/steps'
 import PartnerCard from 'components/partner_card'
 import TabsNav, {TabProps} from 'components/tabs_nav'
 
@@ -49,7 +50,8 @@ const tabs: readonly TabProps[] = [
   },
 ]
 
-const partners = [
+// TODO(cyrille): Fetch from a JSON file.
+const PARTNERS = [
   {
     details: prepareT('Finançable CPF'),
     id: 'job-ready',
@@ -58,6 +60,7 @@ const partners = [
     logo: logoJobready,
     onChoose: onClick,
     onDiscover: onClick,
+    steps: ['training'],
     style: partnerCardStyle,
     title: '300€',
   },
@@ -68,6 +71,7 @@ const partners = [
     logo: logoGeneration,
     onChoose: onClick,
     onDiscover: onClick,
+    steps: ['training'],
     style: partnerCardStyle,
     title: prepareT('Gratuit'),
   },
@@ -76,7 +80,11 @@ const partners = [
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 const TrainingPartnersInternalPage = (): React.ReactElement => {
-  const {t} = useTranslation()
+  // TODO(cyrille): Get this from the router.
+  const step = 'training' as const
+  const {title, shortTitle = title} = STEPS_BY_ID[step]
+  const partners = PARTNERS.filter(({steps}) => steps.includes(step))
+  const {t, t: translate} = useTranslation()
   const bigTitle = prepareT('Voici les partenaires idéaux pour vous aider')
   const [position, setPosition] = useState(0)
   const partnersContainerStyle: React.CSSProperties = {
@@ -99,7 +107,7 @@ const TrainingPartnersInternalPage = (): React.ReactElement => {
   // Choisir + Je l'ai fait moi même
   // TODO(émilie): get the right value for "XX personnes ont choisi Chance"
   // TODO(pascal): Fix the slider as it's not easy to get it right in CSS
-  return <Layout header={t('Formation')} bigTitle={bigTitle}>
+  return <Layout header={translate(shortTitle)} bigTitle={bigTitle}>
     <TabsNav tabs={tabs} />
     <div style={partnersContainerStyle}>
       {partners.map((partner) =>
@@ -114,7 +122,7 @@ const TrainingPartnersInternalPage = (): React.ReactElement => {
       "Je l'ai fait moi-même" pour passer à l'étape suivante.
     </Trans>
     <div style={buttonWrapperStyle}>
-      <Link to={getPath(['DEFINITION', 'WHAT'], t)} style={linkStyle}>
+      <Link to={getPath(['STEPS'], t)} style={linkStyle}>
         <Button type="specific">
           {t('Je l\'ai fait moi-même')}
         </Button>
