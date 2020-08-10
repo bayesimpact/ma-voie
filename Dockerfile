@@ -27,6 +27,9 @@ COPY .babelrc diff_i18n_folder.sh i18n.babelrc.js entrypoint.sh .eslintrc.json .
 COPY vendor/patch-babel-plugin-i18next-extract.sh ./vendor/patch-babel-plugin-i18next-extract.sh
 RUN ./vendor/patch-babel-plugin-i18next-extract.sh
 
+# TODO(pascal): Create a @types/autocomplete.js npm package.
+COPY vendor/autocomplete.js.d.ts node_modules/@types/autocomplete.js/index.d.ts
+
 FROM dev AS test
 CMD ./entrypoint.sh npm run checks
 

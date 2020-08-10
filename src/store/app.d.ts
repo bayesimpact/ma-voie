@@ -27,7 +27,19 @@ declare namespace bayes {
       interest?: ProjectInterest
       hasDefinedProject?: boolean
       objective?: ProjectObjective
+      job?: Job
       projectId: string
+    }
+
+    interface Job {
+      codeOgr?: string
+      jobGroup?: JobGroup
+      name?: string
+    }
+
+    interface JobGroup {
+      name?: string
+      romeId?: string
     }
 
   }

@@ -24,14 +24,14 @@ interface ButtonBaseProps<T> {
 }
 const SelectButtonBase = <T extends unknown>(props: ButtonBaseProps<T>): React.ReactElement => {
   const {name, onClick, page, value} = props
-  const {t} = useTranslation()
+  const [translate] = useTranslation()
   const handleClick = useCallback((): void => {
     onClick(value)
   }, [onClick, value])
   return <div style={buttonContainerStyle}>
-    <Link to={getPath(page, t)} style={linkStyle}>
+    <Link to={getPath(page, translate)} style={linkStyle}>
       <Button type="variable" onClick={handleClick}>
-        {t(name)}
+        {translate(name)}
       </Button>
     </Link>
   </div>

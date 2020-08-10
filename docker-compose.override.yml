@@ -25,6 +25,8 @@ services:
       - ./i18n.babelrc.js:/usr/app/i18n.babelrc.js:ro
       # For releasing.
       - ./dist:/usr/app/dist
+      # TODO(pascal): Create a @types/autocomplete.js npm package.
+      - ./vendor/autocomplete.js.d.ts:/usr/app/node_modules/@types/autocomplete.js/index.d.ts
     environment:
       TUNNEL_TESTING:
       CLIENT_VERSION: dev
