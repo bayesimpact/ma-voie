@@ -7,6 +7,7 @@ import {useHistory} from 'react-router'
 
 import {RootState} from 'store/actions'
 import {prepareT} from 'store/i18n'
+import {useProject} from 'store/selections'
 import {Page, getPath} from 'store/url'
 
 import Layout from 'components/layout'
@@ -31,7 +32,6 @@ const STEPS: readonly StepInfo[] = [
   {
     color: colors.LIGHT_TAN,
     icon: definitionIcon,
-    isOpen: true,
     page: ['DEFINITION'],
     shortTitle: prepareT('Définition'),
     stepId: 'definition',
@@ -71,6 +71,7 @@ const StepsPage = (): React.ReactElement => {
   const name = useSelector(({user: {name}}: RootState) => name)
   const lastName = useSelector(({user: {lastName}}: RootState) => lastName)
   const isConnected = (name !== undefined && lastName !== undefined)
+  const project = useProject()
 
   const onClick = useCallback((page: Page): void => {
     if (!isConnected) {
@@ -95,11 +96,16 @@ const StepsPage = (): React.ReactElement => {
   // TODO(cyrille): Add step 4.
   return <Layout>
     <div style={stepsStyle}>
-      {STEPS.map(({title, ...step}, index) => <React.Fragment key={index}>
-        {index ? <ArrowDownIcon style={arrowStyle} color={colors.SILVER_THREE} /> : null}
-        <Step index={index + 1} {...step} onClick={onClick}>{translate(title)}</Step>
-      </React.Fragment>,
-      )}
+      {STEPS.map(({title, ...step}, index) => {
+        const isOpen = index === 0 || project.completedSteps?.[STEPS[index - 1].stepId]
+        const isDone = project.completedSteps?.[step.stepId]
+        return <React.Fragment key={index}>
+          {index ? <ArrowDownIcon style={arrowStyle} color={colors.SILVER_THREE} /> : null}
+          <Step index={index + 1} {...step} onClick={onClick} isOpen={isOpen} isDone={isDone}>
+            {translate(title)}
+          </Step>
+        </React.Fragment>
+      })}
     </div>
     {isPopupShown ? <CreateAccountPopup onClose={onClose} /> : null}
   </Layout>
