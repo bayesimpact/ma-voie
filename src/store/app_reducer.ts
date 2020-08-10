@@ -19,10 +19,7 @@ export const user = (state = initialUser, action: AllActions): bayes.maVoie.User
         ...state,
         projects: [
           ...state.projects || [],
-          {
-            projectId: '' + (state.projects?.length || 0),
-            steps: {},
-          },
+          {projectId: '' + (state.projects?.length || 0)},
         ],
       }
     case 'UPDATE_PROJECT':
