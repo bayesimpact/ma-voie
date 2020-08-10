@@ -10,7 +10,7 @@ import thunk from 'redux-thunk'
 
 import {logPage} from 'analytics/amplitude'
 import {AllActions, RootState} from 'store/actions'
-import {user} from 'store/app_reducer'
+import {localStorageMiddleware, user} from 'store/app_reducer'
 import {init as i18nInit} from 'store/i18n'
 import {useSubPathDefiner} from 'store/url'
 
@@ -66,6 +66,7 @@ function createHistoryAndStore(): AppState {
 
   const finalCreateStore = composeWithDevTools(applyMiddleware(
     thunk,
+    localStorageMiddleware,
     routerMiddleware(history),
   ))(createStore)
 

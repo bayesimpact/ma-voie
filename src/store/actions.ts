@@ -7,7 +7,7 @@ export type AllActions =
   | UpdateUser
 
 // Type of the main dispatch function.
-type DispatchAllActions = Dispatch<AllActions>
+export type DispatchAllActions = Dispatch<AllActions>
 export const useDispatch = (): DispatchAllActions => genericUseDispatch<DispatchAllActions>()
 
 interface UpdateUser extends Readonly<Action<'UPDATE_USER'>> {
