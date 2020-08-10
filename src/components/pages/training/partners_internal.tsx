@@ -40,11 +40,11 @@ const paragrapheStyle: React.CSSProperties = {
 }
 const tabs: readonly TabProps[] = [
   {
-    redirect: 'TRAINING_PARTNERS_INTERNAL',
+    redirect: ['TRAINING_PARTNERS_INTERNAL'],
     title: <Trans>Certifiés par Ma Voie</Trans>,
   },
   {
-    redirect: 'TRAINING_PARTNERS_EXTERNAL',
+    redirect: ['TRAINING_PARTNERS_EXTERNAL'],
     title: <Trans>Autres partenaires</Trans>,
   },
 ]
@@ -114,7 +114,7 @@ const TrainingPartnersInternalPage = (): React.ReactElement => {
       "Je l'ai fait moi-même" pour passer à l'étape suivante.
     </Trans>
     <div style={buttonWrapperStyle}>
-      <Link to={getPath('DEFINITION_WHAT', t)} style={linkStyle}>
+      <Link to={getPath(['DEFINITION', 'WHAT'], t)} style={linkStyle}>
         <Button type="specific">
           {t('Je l\'ai fait moi-même')}
         </Button>

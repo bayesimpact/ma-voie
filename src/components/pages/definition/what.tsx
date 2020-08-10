@@ -19,12 +19,12 @@ const BUTTONS: readonly ButtonProps[] = [
   {
     name: prepareT('Retrouver un poste'),
     objective: 'job',
-    page: 'DEFINITION_JOB',
+    page: ['DEFINITION', 'JOB'],
   },
   {
     name: prepareT('Me former'),
     objective: 'training',
-    page: 'DEFINITION_LOST',
+    page: ['DEFINITION', 'LOST'],
   },
 ]
 

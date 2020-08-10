@@ -19,12 +19,12 @@ const BUTTONS: readonly ButtonProps[] = [
   {
     hasDefinedProject: true,
     name: prepareT('Je sais ce que je veux faire'),
-    page: 'DEFINITION_WHAT',
+    page: ['DEFINITION', 'WHAT'],
   },
   {
     hasDefinedProject: false,
     name: prepareT('Je ne sais pas / Je suis perdu·e'),
-    page: 'DEFINITION_LOST',
+    page: ['DEFINITION', 'LOST'],
   },
 ]
 
@@ -43,8 +43,8 @@ const WherePage = (): React.ReactElement => {
 
   // FIXME(émilie): Delete links and change them by the good handler
   return <Layout header={t('Définition')} title={title}>
-    {BUTTONS.map((props: ButtonProps) => <SelectButton<boolean>
-      onClick={onClick} key={props.page}
+    {BUTTONS.map((props: ButtonProps, index) => <SelectButton<boolean>
+      onClick={onClick} key={index}
       name={props.name} page={props.page} value={props.hasDefinedProject} />,
     )}
   </Layout>

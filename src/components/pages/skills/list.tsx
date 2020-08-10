@@ -37,7 +37,7 @@ const SkillsListPage = (): React.ReactElement => {
   return <Layout header={t('Compétences')} title={title}>
     <CheckboxList list={listItems} />
     <div style={buttonContainerStyle}>
-      <Link to={getPath('SKILLS_GO', t)} style={linkStyle}>
+      <Link to={getPath(['SKILLS_GO'], t)} style={linkStyle}>
         <Button type="secondLevel">
           {t('Valider')}
         </Button>

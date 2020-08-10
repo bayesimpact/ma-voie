@@ -106,7 +106,7 @@ const TermsPage = (): React.ReactElement => {
   const email = config.contactEmail
   return <React.Fragment>
     <section style={titleSectionStyle}>
-      <Link style={logoStyle} to={getPath('SPLASH', t)}>
+      <Link style={logoStyle} to={getPath(['SPLASH'], t)}>
         <img src={logoImage} alt={t('productName')} />
       </Link>
       <h1 style={titleStyle}>

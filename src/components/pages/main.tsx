@@ -1,7 +1,6 @@
 import {ConnectedRouter, connectRouter, routerMiddleware, RouterState} from 'connected-react-router'
 import {History, createBrowserHistory} from 'history'
 import React, {Suspense, useEffect, useState} from 'react'
-import {useTranslation} from 'react-i18next'
 import {Provider} from 'react-redux'
 import {useLocation} from 'react-router'
 import {Switch, Redirect, Route} from 'react-router-dom'
@@ -13,24 +12,15 @@ import {logPage} from 'analytics/amplitude'
 import {AllActions, RootState} from 'store/actions'
 import {user} from 'store/app_reducer'
 import {init as i18nInit} from 'store/i18n'
-import {getPath as defineAndGetPath} from 'store/url'
+import {useSubPathDefiner} from 'store/url'
 
 import AccountPage from 'components/pages/account'
 import ComponentsPage from 'components/pages/components'
+import DefinitionPage from 'components/pages/definition'
 import SplashPage from 'components/pages/splash'
 import StepsPage from 'components/pages/steps'
 import TermsPage from 'components/pages/terms'
-import ExperiencePage from 'components/pages/definition/experience'
-import GoPage from 'components/pages/definition/go'
-import InterestPage from 'components/pages/definition/interest'
-import JobPage from 'components/pages/definition/job'
-import LostPage from 'components/pages/definition/lost'
-import DefinitionPartnersExternalPage from 'components/pages/definition/partners_external'
-import DefinitionPartnersInternalPage from 'components/pages/definition/partners_internal'
 import MenuPage from 'components/pages/menu'
-import RedefinePage from 'components/pages/definition/redefine'
-import WhatPage from 'components/pages/definition/what'
-import WherePage from 'components/pages/definition/where'
 import SkillsGoPage from 'components/pages/skills/go'
 import SkillsListPage from 'components/pages/skills/list'
 import SkillsTrainingPage from 'components/pages/skills/training'
@@ -47,45 +37,30 @@ require('styles/app.css')
 i18nInit()
 
 const App = (): React.ReactElement => {
-  const {t} = useTranslation('url')
   const {pathname} = useLocation()
+  const defineAndGetPath = useSubPathDefiner()
   useEffect((): void => logPage(pathname), [pathname])
   // i18next-extract-mark-ns-start url
-  // TODO(émilie): create a subrouter for definition / skills
+  // TODO(émilie): create a subrouter for skills.
   return <Switch>
-    <Route path={defineAndGetPath('ACCOUNT', t)} component={AccountPage} />
-    <Route path={defineAndGetPath('DEFINITION_EXPERIENCE', t)} component={ExperiencePage} />
-    <Route path={defineAndGetPath('DEFINITION_GO', t)} component={GoPage} />
-    <Route path={defineAndGetPath('DEFINITION_INTEREST', t)} component={InterestPage} />
-    <Route path={defineAndGetPath('DEFINITION_JOB', t)} component={JobPage} />
-    <Route path={defineAndGetPath('DEFINITION_LOST', t)} component={LostPage} />
+    <Route path={defineAndGetPath('ACCOUNT')} component={AccountPage} />
+    <Route path={defineAndGetPath('DEFINITION')} component={DefinitionPage} />
+    <Route path={defineAndGetPath('MENU')} component={MenuPage} />
+    <Route path={defineAndGetPath('SPLASH')} component={SplashPage} />
+    <Route path={defineAndGetPath('STEPS')} component={StepsPage} />
+    <Route path={defineAndGetPath('TERMS')} component={TermsPage} />
+    <Route path={defineAndGetPath('COMPONENTS')} component={ComponentsPage} />
+    <Route path={defineAndGetPath('SKILLS_GO')} component={SkillsGoPage} />
+    <Route path={defineAndGetPath('SKILLS_LIST')} component={SkillsListPage} />
+    <Route path={defineAndGetPath('SKILLS_TRAINING')} component={SkillsTrainingPage} />
+    <Route path={defineAndGetPath('TRAINING_WHAT')} component={TrainingWhichPage} />
     <Route
-      path={defineAndGetPath('DEFINITION_PARTNERS_EXTERNAL', t)}
-      component={DefinitionPartnersExternalPage} />
-    <Route
-      path={defineAndGetPath('DEFINITION_PARTNERS_INTERNAL', t)}
-      component={DefinitionPartnersInternalPage} />
-    <Route path={defineAndGetPath('DEFINITION_REDEFINE', t)} component={RedefinePage} />
-    <Route path={defineAndGetPath('DEFINITION_WHAT', t)} component={WhatPage} />
-    <Route path={defineAndGetPath('DEFINITION_WHERE', t)} component={WherePage} />
-    <Route path={defineAndGetPath('MENU', t)} component={MenuPage} />
-    <Route path={defineAndGetPath('SPLASH', t)} component={SplashPage} />
-    <Route path={defineAndGetPath('STEPS', t)} component={StepsPage} />
-    <Route path={defineAndGetPath('TERMS', t)} component={TermsPage} />
-    <Route path={defineAndGetPath('COMPONENTS', t)} component={ComponentsPage} />
-    <Route path={defineAndGetPath('SKILLS_GO', t)} component={SkillsGoPage} />
-    <Route path={defineAndGetPath('SKILLS_LIST', t)} component={SkillsListPage} />
-    <Route path={defineAndGetPath('SKILLS_TRAINING', t)} component={SkillsTrainingPage} />
-    <Route path={defineAndGetPath('TRAINING_WHAT', t)} component={TrainingWhichPage} />
-    <Route
-      path={defineAndGetPath('TRAINING_PARTNERS_EXTERNAL', t)}
+      path={defineAndGetPath('TRAINING_PARTNERS_EXTERNAL')}
       component={TrainingPartnersExternalPage} />
     <Route
-      path={defineAndGetPath('TRAINING_PARTNERS_INTERNAL', t)}
+      path={defineAndGetPath('TRAINING_PARTNERS_INTERNAL')}
       component={TrainingPartnersInternalPage} />
-    <Route path={defineAndGetPath('ROOT', t)}>
-      <Redirect to={defineAndGetPath('SPLASH', t)} />
-    </Route>
+    <Redirect to={defineAndGetPath('SPLASH')} />
   </Switch>
   // i18next-extract-mark-ns-stop url
 }
