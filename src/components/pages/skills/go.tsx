@@ -1,7 +1,9 @@
-import React from 'react'
+import React, {useCallback} from 'react'
 import {useTranslation, Trans} from 'react-i18next'
 import {Link} from 'react-router-dom'
 
+import {updateProject, useDispatch} from 'store/actions'
+import {useProjectId} from 'store/selections'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
@@ -24,7 +26,16 @@ const buttonContainerStyle: React.CSSProperties = {
 // TOP LEVEL PAGE
 const SkillsGoPage = (): React.ReactElement => {
   const {t} = useTranslation()
+
+  const dispatch = useDispatch()
+  const projectId = useProjectId()
+
+  const handleClick = useCallback((): void => {
+    dispatch(updateProject({canStepInterview: true, projectId}))
+  }, [dispatch, projectId])
+
   const bigTitle = t('Félicitations\u00A0!')
+
   // FIXME(émilie): save project state (unlocks interview)
   return <Layout header={t('Compétences')} bigTitle={bigTitle}>
     <Trans>
@@ -43,7 +54,7 @@ const SkillsGoPage = (): React.ReactElement => {
     </Trans>
     <div style={buttonContainerStyle}>
       <Link to={getPath('STEPS', t)} style={linkStyle}>
-        <Button type="secondLevel">{t('C\'est parti\u00A0!')}</Button>
+        <Button type="secondLevel" onClick={handleClick}>{t('C\'est parti\u00A0!')}</Button>
       </Link>
     </div>
   </Layout>
