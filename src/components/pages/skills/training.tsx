@@ -2,12 +2,13 @@ import React from 'react'
 import {useTranslation, Trans} from 'react-i18next'
 import {Link} from 'react-router-dom'
 
+import {useProjectId, useSelector} from 'store/selections'
 import {getPath} from 'store/url'
-
 
 import Button from 'components/button'
 import Layout from 'components/layout'
 
+const lowerFirstLetter = (phrase: string): string => phrase[0].toLowerCase() + phrase.slice(1)
 const linkStyle: React.CSSProperties = {
   textDecoration: 'none',
 }
@@ -25,8 +26,19 @@ const buttonContainerStyle: React.CSSProperties = {
 // TOP LEVEL PAGE
 const SkillsTrainingPage = (): React.ReactElement => {
   const {t} = useTranslation()
-  // FIXME(émilie): Sets the job and the skills
-  const bigTitle = t('Le métier de XXX requiert d\'avoir les compétences XXX')
+  const currentProjectId = useProjectId()
+  const jobName = useSelector(({user: {projects = []}}) => {
+    const project = projects.find(({projectId}) => currentProjectId === projectId)
+    if (!project) {
+      return ''
+    }
+    return project?.job?.name || ''
+  })
+  // FIXME(cyrille): Set skills by job.
+  const bigTitle = jobName ? t(
+    "Être {{jobName}} requiert d'avoir les compétences XXX",
+    {jobName: lowerFirstLetter(jobName)},
+  ) : t("Faire ce métier requiert d'avoir les compétences XXX")
   // FIXME(émilie): button : save project state (unlock training)
   return <Layout header={t('Compétences')} bigTitle={bigTitle}>
     <Trans>
