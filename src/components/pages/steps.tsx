@@ -31,6 +31,7 @@ interface StepInfo {
 const STEPS: readonly StepInfo[] = [
   {
     color: colors.LIGHT_TAN,
+    currentStep: 'Definition',
     icon: definitionIcon,
     page: ['DEFINITION'],
     shortTitle: prepareT('Définition'),
@@ -39,6 +40,7 @@ const STEPS: readonly StepInfo[] = [
   },
   {
     color: colors.SILVER,
+    currentStep: 'Skills',
     icon: competencesIcon,
     page: ['SKILLS'],
     stepId: 'skills',
@@ -46,6 +48,7 @@ const STEPS: readonly StepInfo[] = [
   },
   {
     color: colors.LIGHT_SKY_BLUE,
+    currentStep: 'Training',
     icon: formationIcon,
     page: ['TRAINING'],
     stepId: 'training',

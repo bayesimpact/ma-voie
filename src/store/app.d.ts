@@ -36,6 +36,7 @@ declare namespace bayes {
       objective?: ProjectObjective
       job?: Job
       projectId: string
+      steps: ProjectStep
     }
 
     interface Job {
