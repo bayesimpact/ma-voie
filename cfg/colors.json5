@@ -5,7 +5,6 @@
   DARK_TEAL: '#003332',
   GREY: '#8d8e8d',
   GREYISH_TEAL: '#7f8584',
-  GREY_LIGHT: '#f4f4f4',
   LIGHT_SKY_BLUE: '#ccf1f5',
   LIGHT_TAN: '#fbe2d5',
   NEON_BLUE: '#00e5ff',
@@ -17,4 +16,5 @@
   SILVER_TWO: '#e5e6e6',
   TEAL_BLUE: '#009999',
   TURQUOISE_BLUE: '#00b7cc',
+  WHITE_TWO: '#f4f4f4',
 }
