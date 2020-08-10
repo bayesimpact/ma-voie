@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useCallback} from 'react'
 import {useTranslation, Trans} from 'react-i18next'
 import {Link} from 'react-router-dom'
 
+import {updateProject, useDispatch} from 'store/actions'
+import {useProjectId} from 'store/selections'
 import {getPath} from 'store/url'
-
 
 import Button from 'components/button'
 import Layout from 'components/layout'
@@ -25,6 +26,14 @@ const buttonContainerStyle: React.CSSProperties = {
 // TOP LEVEL PAGE
 const SkillsTrainingPage = (): React.ReactElement => {
   const {t} = useTranslation()
+
+  const dispatch = useDispatch()
+  const projectId = useProjectId()
+
+  const handleClick = useCallback((): void => {
+    dispatch(updateProject({canStepTraining: true, projectId}))
+  }, [dispatch, projectId])
+
   // FIXME(émilie): Sets the job and the skills
   const bigTitle = t('Le métier de XXX requiert d\'avoir les compétences XXX')
   // FIXME(émilie): button : save project state (unlock training)
@@ -40,7 +49,7 @@ const SkillsTrainingPage = (): React.ReactElement => {
     </Trans>
     <div style={buttonContainerStyle}>
       <Link to={getPath('STEPS', t)} style={linkStyle}>
-        <Button type="secondLevel">
+        <Button type="secondLevel" onClick={handleClick}>
           {t('C\'est parti\u00A0!')}
         </Button>
       </Link>

@@ -23,6 +23,7 @@ declare namespace bayes {
 
     interface Project {
       canStepSkills?: boolean
+      canStepTraining?: boolean
       experience?: ProjectExperience
       interest?: ProjectInterest
       hasDefinedProject?: boolean
