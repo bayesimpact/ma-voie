@@ -17,16 +17,12 @@ import {useSubPathDefiner} from 'store/url'
 import AccountPage from 'components/pages/account'
 import ComponentsPage from 'components/pages/components'
 import DefinitionPage from 'components/pages/definition'
+import MenuPage from 'components/pages/menu'
+import SkillsPage from 'components/pages/skills'
 import SplashPage from 'components/pages/splash'
 import StepsPage from 'components/pages/steps'
 import TermsPage from 'components/pages/terms'
-import MenuPage from 'components/pages/menu'
-import SkillsGoPage from 'components/pages/skills/go'
-import SkillsListPage from 'components/pages/skills/list'
-import SkillsTrainingPage from 'components/pages/skills/training'
-import TrainingWhichPage from 'components/pages/training/which'
-import TrainingPartnersExternalPage from 'components/pages/training/partners_external'
-import TrainingPartnersInternalPage from 'components/pages/training/partners_internal'
+import TrainingPage from 'components/pages/training'
 
 import 'styles/fonts/Lato/font.css'
 import 'styles/fonts/ProximaSoft/font.css'
@@ -45,21 +41,14 @@ const App = (): React.ReactElement => {
   return <Switch>
     <Route path={defineAndGetPath('ACCOUNT')} component={AccountPage} />
     <Route path={defineAndGetPath('DEFINITION')} component={DefinitionPage} />
+    <Route path={defineAndGetPath('SKILLS')} component={SkillsPage} />
+    <Route path={defineAndGetPath('TRAINING')} component={TrainingPage} />
+    <Route path={defineAndGetPath('DEFINITION')} component={DefinitionPage} />
     <Route path={defineAndGetPath('MENU')} component={MenuPage} />
     <Route path={defineAndGetPath('SPLASH')} component={SplashPage} />
     <Route path={defineAndGetPath('STEPS')} component={StepsPage} />
     <Route path={defineAndGetPath('TERMS')} component={TermsPage} />
     <Route path={defineAndGetPath('COMPONENTS')} component={ComponentsPage} />
-    <Route path={defineAndGetPath('SKILLS_GO')} component={SkillsGoPage} />
-    <Route path={defineAndGetPath('SKILLS_LIST')} component={SkillsListPage} />
-    <Route path={defineAndGetPath('SKILLS_TRAINING')} component={SkillsTrainingPage} />
-    <Route path={defineAndGetPath('TRAINING_WHAT')} component={TrainingWhichPage} />
-    <Route
-      path={defineAndGetPath('TRAINING_PARTNERS_EXTERNAL')}
-      component={TrainingPartnersExternalPage} />
-    <Route
-      path={defineAndGetPath('TRAINING_PARTNERS_INTERNAL')}
-      component={TrainingPartnersInternalPage} />
     <Redirect to={defineAndGetPath('SPLASH')} />
   </Switch>
   // i18next-extract-mark-ns-stop url

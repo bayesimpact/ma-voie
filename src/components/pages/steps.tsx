@@ -26,14 +26,14 @@ const STEPS = [
   {
     color: colors.SILVER,
     icon: competencesIcon,
-    page: ['SKILLS_LIST'],
+    page: ['SKILLS'],
     title: prepareT('Compétences'),
   },
   {
     color: colors.LIGHT_SKY_BLUE,
     icon: formationIcon,
     // TODO(émilie): put the good path when reviewed
-    page: ['SKILLS_LIST'],
+    page: ['TRAINING'],
     title: prepareT('Formations'),
   },
 ] as const

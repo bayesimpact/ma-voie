@@ -118,11 +118,11 @@ const partners = [
 
 const tabs: readonly TabProps[] = [
   {
-    redirect: ['TRAINING_PARTNERS_INTERNAL'],
+    redirect: ['TRAINING', 'PARTNERS_INTERNAL'],
     title: <Trans>Certifiés par Ma Voie</Trans>,
   },
   {
-    redirect: ['TRAINING_PARTNERS_EXTERNAL'],
+    redirect: ['TRAINING', 'PARTNERS_EXTERNAL'],
     title: <Trans>Autres partenaires</Trans>,
   },
 ]
