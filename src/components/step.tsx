@@ -3,6 +3,9 @@ import {useTranslation} from 'react-i18next'
 
 import {Page} from 'store/url'
 
+import Button from 'components/button'
+
+import doneIcon from 'images/done-ico.svg'
 import lockIcon from 'images/lock-ico.svg'
 
 const headerStyle: React.CSSProperties = {
@@ -23,20 +26,6 @@ const titleStyle: React.CSSProperties = {
   fontSize: 20,
   fontWeight: 'bold',
 }
-const buttonStyle: React.CSSProperties = {
-  alignItems: 'center',
-  alignSelf: 'stretch',
-  backgroundColor: colors.REDDISH_ORANGE,
-  border: 0,
-  borderRadius: 25,
-  color: '#fff',
-  cursor: 'pointer',
-  display: 'flex',
-  fontSize: 18,
-  fontWeight: 'bold',
-  height: 50,
-  justifyContent: 'center',
-}
 const forbiddenStyle: React.CSSProperties = {
   fontSize: 15,
   fontWeight: 'bold',
@@ -46,13 +35,15 @@ interface Props {
   color: string
   icon: string
   index: number
+  isDone?: boolean
   isOpen?: boolean
   onClick?: (page: Page) => void
   page: Page
   style?: React.CSSProperties
 }
 const Step = ({
-  children, color, icon, index, isOpen, onClick, page, style}: Props): React.ReactElement => {
+  children, color, icon, index, isDone, isOpen, onClick, page, style}: Props):
+React.ReactElement => {
   const {t} = useTranslation()
   const containerStyle: React.CSSProperties = {
     backgroundColor: '#fff',
@@ -69,11 +60,21 @@ const Step = ({
     flexDirection: 'column',
     padding: isOpen ? '25px 30px 30px' : 35,
   }
+  const imageStyle: React.CSSProperties = {
+    padding: 20,
+    position: 'relative',
+  }
+  const doneStyle: React.CSSProperties = {
+    bottom: 20,
+    height: 24,
+    position: 'absolute',
+    right: 20,
+    width: 24,
+  }
   const iconStyle: React.CSSProperties = {
     backgroundColor: color,
     borderRadius: 35,
     height: 70,
-    margin: 20,
     width: 70,
   }
   const handleClick = useCallback((): void => {
@@ -86,10 +87,16 @@ const Step = ({
     <div style={contentStyle}>
       <div style={indexStyle}>{t('étape {{index}}', {index})}</div>
       <div style={titleStyle}>{children}</div>
-      <img style={iconStyle} src={isOpen ? icon : lockIcon} alt="" />
-      {isOpen ? <div onClick={handleClick} style={buttonStyle}>{t('Commencez')}</div> :
-        // TODO(cyrille): Replace with the list of steps to complete beforehand.
-        <span style={forbiddenStyle}>{t("Terminez l'étape précédente", {count: index - 1})}</span>}
+      <div style={imageStyle}>
+        <img style={iconStyle} src={isOpen ? icon : lockIcon} alt="" />
+        {isDone ? <img style={doneStyle} src={doneIcon} alt="" /> : null}
+      </div>
+      {isDone ? <Button type="variable" onClick={handleClick}>{t('Terminé')}</Button> :
+        isOpen ? <Button type="firstLevel" onClick={handleClick}>{t('Commencez')}</Button> :
+          // TODO(cyrille): Replace with the list of steps to complete beforehand.
+          <span style={forbiddenStyle}>
+            {t("Terminez l'étape précédente", {count: index - 1})}
+          </span>}
     </div>
   </div>
 }
