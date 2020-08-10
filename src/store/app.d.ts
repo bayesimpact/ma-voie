@@ -22,12 +22,16 @@ declare namespace bayes {
       | 'job'
       | 'training'
 
+    interface ProjectStep {
+      isDefinitionDone?: boolean
+    }
     interface Project {
       experience?: ProjectExperience
       interest?: ProjectInterest
       hasDefinedProject?: boolean
       objective?: ProjectObjective
       projectId: string
+      steps: ProjectStep
     }
 
   }

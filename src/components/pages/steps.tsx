@@ -6,6 +6,7 @@ import {useHistory} from 'react-router'
 
 import {RootState} from 'store/actions'
 import {prepareT} from 'store/i18n'
+import {useProject} from 'store/selections'
 import {Page, getPath} from 'store/url'
 
 import Layout from 'components/layout'
@@ -18,20 +19,28 @@ import formationIcon from 'images/formation-ico.svg'
 const STEPS = [
   {
     color: colors.LIGHT_TAN,
+    currentStep: 'Definition',
     icon: definitionIcon,
     isOpen: true,
+    lastStep: '',
     page: ['DEFINITION'],
     title: prepareT('Définition de votre projet'),
   },
   {
     color: colors.SILVER,
+    currentStep: 'Skills',
     icon: competencesIcon,
+    isOpen: false,
+    lastStep: 'Definition',
     page: ['SKILLS_LIST'],
     title: prepareT('Compétences'),
   },
   {
     color: colors.LIGHT_SKY_BLUE,
+    currentStep: 'Training',
     icon: formationIcon,
+    isOpen: false,
+    lastStep: 'Skills',
     // TODO(émilie): put the good path when reviewed
     page: ['SKILLS_LIST'],
     title: prepareT('Formations'),
@@ -54,6 +63,7 @@ const StepsPage = (): React.ReactElement => {
   const name = useSelector(({user: {name}}: RootState) => name)
   const lastName = useSelector(({user: {lastName}}: RootState) => lastName)
   const isConnected = (name !== undefined && lastName !== undefined)
+  const project = useProject()
 
   const onClick = useCallback((page: Page): void => {
     if (!isConnected) {
@@ -78,11 +88,17 @@ const StepsPage = (): React.ReactElement => {
   // TODO(cyrille): Add step 4.
   return <Layout>
     <div style={stepsStyle}>
-      {STEPS.map(({title, ...step}, index) => <React.Fragment key={index}>
-        {index ? <ArrowDownIcon style={arrowStyle} color={colors.SILVER_THREE} /> : null}
-        <Step index={index + 1} {...step} onClick={onClick}>{translate(title)}</Step>
-      </React.Fragment>,
-      )}
+      {STEPS.map(({title, ...step}, index) => {
+        const isOpen = step.isOpen
+          || project?.steps[`is${step.lastStep}Done` as keyof bayes.maVoie.ProjectStep]
+        const isDone = project?.steps[`is${step.currentStep}Done` as keyof bayes.maVoie.ProjectStep]
+        return <React.Fragment key={index}>
+          {index ? <ArrowDownIcon style={arrowStyle} color={colors.SILVER_THREE} /> : null}
+          <Step index={index + 1} {...step} onClick={onClick} isOpen={isOpen} isDone={isDone}>
+            {translate(title)}
+          </Step>
+        </React.Fragment>
+      })}
     </div>
     {isPopupShown ? <CreateAccountPopup onClose={onClose} /> : null}
   </Layout>

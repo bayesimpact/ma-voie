@@ -14,4 +14,13 @@ const useProjectId = (): string => {
   return projectId
 }
 
-export {useProjectId, useSelector}
+const useProject = (): bayes.maVoie.Project => {
+  const projectId:number = +useProjectId()
+  const projects = useSelector(({user: {projects}}: RootState) => projects)
+  if (!projects) {
+    return {projectId: '', steps: {}}
+  }
+  return projects[projectId] || {projectId: '', steps: {}}
+}
+
+export {useProject, useProjectId, useSelector}
