@@ -8,8 +8,22 @@ declare namespace bayes {
       projects?: readonly Project[]
     }
 
+    type ProjectExperience =
+      | 'new'
+      | '1-3'
+      | '3-5'
+      | '5'
+    type ProjectInterest =
+      | 'exciting'
+      | 'indifferent'
+      | 'interesting'
+    type ProjectObjective =
+      | 'job'
+      | 'training'
+
     interface Project {
-      experience?: 'new' | '1-3' | '3-5' | '5'
+      experience?: ProjectExperience
+      interest?: ProjectInterest
       hasDefinedProject?: boolean
       projectId: string
     }
