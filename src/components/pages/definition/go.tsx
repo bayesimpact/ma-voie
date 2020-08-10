@@ -1,7 +1,9 @@
-import React from 'react'
+import React, {useCallback} from 'react'
 import {useTranslation, Trans} from 'react-i18next'
 import {Link} from 'react-router-dom'
 
+import {updateSteps, useDispatch} from 'store/actions'
+import {useProjectId} from 'store/selections'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
@@ -36,7 +38,12 @@ const layoutContentStyle: React.CSSProperties = {
 const GoPage = (): React.ReactElement => {
   const {t} = useTranslation()
 
-  // FIXME(émilie): Save the project before redirecting
+  const dispatch = useDispatch()
+  const projectId = useProjectId()
+  const handleClick = useCallback((): void => {
+    dispatch(updateSteps({definition: true, projectId}))
+  }, [dispatch, projectId])
+
   return <Layout header={t('Définition')} bigTitle={t('Félicitations\u00A0!')} style={layoutStyle}>
     <div style={layoutContentStyle}>
       <div style={textContainerStyle}>
@@ -52,7 +59,7 @@ const GoPage = (): React.ReactElement => {
       </div>
       <div style={buttonContainerStyle}>
         <Link to={getPath(['STEPS'], t)} style={linkStyle}>
-          <Button type="secondLevel">{t('C\'est parti\u00A0!')}</Button>
+          <Button type="secondLevel" onClick={handleClick}>{t('C\'est parti\u00A0!')}</Button>
         </Link>
       </div>
     </div>
