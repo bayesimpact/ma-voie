@@ -14,12 +14,17 @@ declare namespace bayes {
       | '1-3'
       | '3-5'
       | '5'
+    type ProjectInterest =
+      | 'exciting'
+      | 'indifferent'
+      | 'interesting'
     type ProjectObjective =
       | 'job'
       | 'training'
 
     interface Project {
       experience?: ProjectExperience
+      interest?: ProjectInterest
       hasDefinedProject?: boolean
       objective?: ProjectObjective
       projectId: string

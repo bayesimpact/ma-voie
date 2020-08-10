@@ -1,18 +1,37 @@
-import React from 'react'
+import React, {useCallback} from 'react'
 import {useTranslation} from 'react-i18next'
-import {Link} from 'react-router-dom'
 
-import {getPath} from 'store/url'
+import {updateProject, useDispatch} from 'store/actions'
+import {prepareT} from 'store/i18n'
+import {useProjectId} from 'store/selections'
+import {Page} from 'store/url'
 
-import Button from 'components/button'
+import SelectButton from 'components/select_button'
 import Layout from 'components/layout'
 
-const linkStyle: React.CSSProperties = {
-  textDecoration: 'none',
+interface ButtonProps {
+  interest: bayes.maVoie.ProjectInterest
+  name: string
+  page: Page
 }
-const buttonContainerStyle: React.CSSProperties = {
-  paddingTop: 20,
-}
+// TODO(cyrille): Make a <select> component with button options.
+const BUTTONS: readonly ButtonProps[] = [
+  {
+    interest: 'exciting',
+    name: prepareT('Passionnant'),
+    page: 'DEFINITION_GO',
+  },
+  {
+    interest: 'interesting',
+    name: prepareT('Intéressant'),
+    page: 'DEFINITION_GO',
+  },
+  {
+    interest: 'indifferent',
+    name: prepareT('Un métier comme un autre'),
+    page: 'DEFINITION_REDEFINE',
+  },
+]
 
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
@@ -20,25 +39,18 @@ const InterestPage = (): React.ReactElement => {
   const {t} = useTranslation()
   const title = t('Pour vous ce métier est\u00A0:')
 
-  // FIXME(émilie): Change link to redirect where it is needed
+  const dispatch = useDispatch()
+  const projectId = useProjectId()
+
+  const onClick = useCallback((value: bayes.maVoie.ProjectInterest): void => {
+    dispatch(updateProject({interest: value, projectId}))
+  }, [dispatch, projectId])
+
   return <Layout header={t('Définition')} title={title}>
-    <div style={buttonContainerStyle}>
-      <Link to={getPath('DEFINITION_GO', t)} style={linkStyle}>
-        <Button type="variable">{t('Passionnant')}</Button>
-      </Link>
-    </div>
-    <div style={buttonContainerStyle}>
-      <Link to={getPath('DEFINITION_GO', t)} style={linkStyle}>
-        <Button type="variable">{t('Intéressant')}</Button>
-      </Link>
-    </div>
-    <div style={buttonContainerStyle}>
-      <Link to={getPath('DEFINITION_REDEFINE', t)} style={linkStyle}>
-        <Button type="variable">
-          {t('Un métier comme un autre')}
-        </Button>
-      </Link>
-    </div>
+    {BUTTONS.map((props: ButtonProps) => <SelectButton<bayes.maVoie.ProjectInterest>
+      onClick={onClick} value={props.interest} key={props.interest}
+      name={props.name} page={props.page} />,
+    )}
   </Layout>
 }
 
