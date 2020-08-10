@@ -23,11 +23,16 @@ declare namespace bayes {
       | 'training'
 
     interface ProjectStep {
+<<<<<<< HEAD
       definition?: boolean
       skills?: boolean
       training?: boolean
     }
 
+=======
+      isDefinitionDone?: boolean
+    }
+>>>>>>> [Links] Validate project step 1 and open access to step 2
     interface Project {
       completedSteps?: ProjectStep
       experience?: ProjectExperience
@@ -36,6 +41,7 @@ declare namespace bayes {
       objective?: ProjectObjective
       job?: Job
       projectId: string
+      steps: ProjectStep
     }
 
     interface Job {
