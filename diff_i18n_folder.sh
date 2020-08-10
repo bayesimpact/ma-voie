@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 # Check wether i18n extraction has added or dropped any key.
+set -e
 
 readonly TMP_FOLDER="$(mktemp -d)"
 cp -r src/translations/. "$TMP_FOLDER"
