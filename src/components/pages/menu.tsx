@@ -6,6 +6,7 @@ import {useHistory} from 'react-router'
 import {Link} from 'react-router-dom'
 
 import {RootState} from 'store/actions'
+import {useProject} from 'store/selections'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
@@ -55,7 +56,6 @@ const jobContainerStyle: React.CSSProperties = {
   backgroundColor: colorToAlpha(colors.DARK_FOREST_GREEN, .5),
 }
 const jobContentStyle: React.CSSProperties = {
-  borderLeft: '3px solid #fff',
   color: '#fff',
   fontSize: 16,
   fontWeight: 'bold',
@@ -114,8 +114,8 @@ const MenuPage = (): React.ReactElement => {
   }, [history])
   const name = useSelector(({user: {name}}: RootState) => name)
   const lastName = useSelector(({user: {lastName}}: RootState) => lastName)
-  // TODO(émilie) : set the jobs list and names with the projects const
-  // const projects = useSelector(({user: {projects}}: RootState) => projects)
+  const currentProject = useProject()
+  const projects = useSelector(({user: {projects}}: RootState) => projects)
 
   const isConnected = (name !== undefined && lastName !== undefined)
 
@@ -130,16 +130,35 @@ const MenuPage = (): React.ReactElement => {
         </div>
         <div style={userStyle}>
           <div style={userNameStyle}>{name} {lastName}</div>
-          <div style={projectsCountStyle}>1 projet</div>
+          {projects ? projects.filter(
+            (project: bayes.maVoie.Project) => project.job !== undefined).length >= 1
+            ? <div style={projectsCountStyle}>
+              {t('{{count}} projet', {
+                count: projects?.filter(
+                  (project: bayes.maVoie.Project) => project.job !== undefined).length,
+              })}
+            </div>
+            : null
+            : null
+          }
         </div>
         <div style={closeStyle}>
           <CloseIcon onClick={goBackClick} />
         </div>
       </div>}
     <div style={jobContainerStyle}>
-      <div style={jobContentStyle}>
-        Photographe
-      </div>
+      {projects?.map((project: bayes.maVoie.Project) => {
+        if (project.job) {
+          const finalProjectStyle = {
+            ...jobContentStyle,
+            borderLeft: (project.projectId === currentProject.projectId) ? '3px solid #fff' : 0,
+          }
+          // TODO(émilie): onClick, change current selected project
+          return <div style={finalProjectStyle} key={project.projectId}>
+            {project.job.name}
+          </div>
+        }
+      })}
     </div>
     <div style={buttonContainerStyle}>
       <Button type="menu" onClick={notAvailable} style={buttonNewStyle}>

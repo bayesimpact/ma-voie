@@ -110,6 +110,8 @@
   "formation": "formation",
   "productName": "My Path",
   "valorisation": "valorisation",
+  "{{count}} projet": "{{count}} project",
+  "{{count}} projet_plural": "{{count}} projects",
   "Être {{jobName}} requiert d'avoir les compétences XXX": "Être {{jobName}} requiert d'avoir les compétences XXX",
   "étape {{index}}": "step {{index}}"
 }
