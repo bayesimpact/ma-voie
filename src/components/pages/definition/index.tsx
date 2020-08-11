@@ -8,8 +8,6 @@ import GoPage from './go'
 import InterestPage from './interest'
 import JobPage from './job'
 import LostPage from './lost'
-// TODO(cyrille): Move to pages.
-import PartnersPage from '../training/partners_internal'
 import RedefinePage from './redefine'
 import WhatPage from './what'
 import WherePage from './where'
@@ -23,12 +21,6 @@ const DefinitionPage = (): React.ReactElement => {
     <Route path={defineAndGetPath('INTEREST')} component={InterestPage} />
     <Route path={defineAndGetPath('JOB')} component={JobPage} />
     <Route path={defineAndGetPath('LOST')} component={LostPage} />
-    <Route
-      path={defineAndGetPath('PARTNERS_EXTERNAL')}
-      component={PartnersPage} />
-    <Route
-      path={defineAndGetPath('PARTNERS_INTERNAL')}
-      component={PartnersPage} />
     <Route path={defineAndGetPath('REDEFINE')} component={RedefinePage} />
     <Route path={defineAndGetPath('WHAT')} component={WhatPage} />
     <Route path={defineAndGetPath('WHERE')} component={WherePage} />

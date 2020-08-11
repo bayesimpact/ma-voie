@@ -7,7 +7,7 @@ import GoPage from './go'
 import ListPage from './list'
 import TrainingPage from './training'
 
-const DefinitionPage = (): React.ReactElement => {
+const SkillsPage = (): React.ReactElement => {
   const defineAndGetPath = useSubPathDefiner()
   // i18next-extract-mark-ns-start url
   return <Switch>
@@ -19,4 +19,4 @@ const DefinitionPage = (): React.ReactElement => {
   // i18next-extract-mark-ns-stop url
 }
 
-export default React.memo(DefinitionPage)
+export default React.memo(SkillsPage)

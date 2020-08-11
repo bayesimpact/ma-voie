@@ -18,6 +18,8 @@ import AccountPage from 'components/pages/account'
 import ComponentsPage from 'components/pages/components'
 import DefinitionPage from 'components/pages/definition'
 import MenuPage from 'components/pages/menu'
+// TODO(cyrille): Move up to the pages folder.
+import PartnersPage from 'components/pages/training/partners_internal'
 import SkillsPage from 'components/pages/skills'
 import SplashPage from 'components/pages/splash'
 import StepsPage from 'components/pages/steps'
@@ -38,6 +40,8 @@ const App = (): React.ReactElement => {
   useEffect((): void => logPage(pathname), [pathname])
   // i18next-extract-mark-ns-start url
   return <Switch>
+    <Route path={`/:step${defineAndGetPath('PARTNERS_INTERNAL')}`} component={PartnersPage} />
+    <Route path={`/:step${defineAndGetPath('PARTNERS_EXTERNAL')}`} component={PartnersPage} />
     <Route path={defineAndGetPath('ACCOUNT')} component={AccountPage} />
     <Route path={defineAndGetPath('DEFINITION')} component={DefinitionPage} />
     <Route path={defineAndGetPath('SKILLS')} component={SkillsPage} />

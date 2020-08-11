@@ -148,7 +148,7 @@ const PartnersPage = (): React.ReactElement => {
   const partners = PARTNERS.filter(({isInternal, steps}) => steps.includes(stepId) &&
     !isInternal === !areInternalShown)
   const position = Math.max(
-    0, partners.findIndex(({partnerId}) => currentPartner === partnerId) + 1)
+    0, partners.findIndex(({partnerId}) => currentPartner === partnerId))
   const partnersContainerStyle: React.CSSProperties = {
     display: 'flex',
     marginLeft: -335 * position,
@@ -167,13 +167,9 @@ const PartnersPage = (): React.ReactElement => {
           key={partner.partnerId} {...partner}
           style={partnerCardStyle} onClick={setCurrentPartner} />,
       )}
-    </div> : <div style={externalPartnersStyle}>
-      {partners.map((partner) => {
-        return <ExternalPartner
-          key={partner.partnerId} {...partner}
-          isOpen={currentPartner === partner.partnerId} onSelect={onSelect} />
-      })}
-    </div>}
+    </div> : partners.map((partner) => <ExternalPartner
+      key={partner.partnerId} {...partner}
+      isOpen={currentPartner === partner.partnerId} onSelect={onSelect} />)}
     <Trans parent="p" style={paragrapheStyle}>
       Si vous pensez avoir déjà réussi cette étape, cliquez sur
       "Je l'ai fait moi-même" pour passer à l'étape suivante.
