@@ -40,7 +40,7 @@ const STEPS: readonly StepInfo[] = [
   {
     color: colors.SILVER,
     icon: competencesIcon,
-    page: ['SKILLS'],
+    page: ['SKILLS', 'LIST'],
     stepId: 'skills',
     title: prepareT('Compétences'),
   },
