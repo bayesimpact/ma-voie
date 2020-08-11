@@ -3,5 +3,6 @@
   "canonicalUrl": "www.mavoie.org",
   "contactEmail": "contact@mavoie.org",
   "productName": "Ma Voie",
+  "{{count}} projet_plural": "{{count}} projets",
   "{{userCount}} personne a choisi {{name}}_plural": "{{userCount}} personnes ont choisi {{name}}"
 }

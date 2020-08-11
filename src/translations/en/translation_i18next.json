@@ -101,6 +101,8 @@
   "formation": "formation",
   "productName": "My Path",
   "valorisation": "valorisation",
+  "{{count}} projet": "{{count}} project",
+  "{{count}} projet_plural": "{{count}} projects",
   "{{userCount}} personne a choisi {{name}}": "{{userCount}} person chose {{name}}",
   "{{userCount}} personne a choisi {{name}}_plural": "{{userCount}} people chose {{name}}",
   "Être {{jobName}} requiert d'avoir les compétences XXX": "Être {{jobName}} requiert d'avoir les compétences XXX",
