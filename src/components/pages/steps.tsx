@@ -30,7 +30,6 @@ export interface StepInfo {
 export const STEPS: readonly StepInfo[] = [
   {
     color: colors.LIGHT_TAN,
-    currentStep: 'Definition',
     icon: definitionIcon,
     page: ['DEFINITION'],
     shortTitle: prepareT('Définition'),
@@ -39,7 +38,6 @@ export const STEPS: readonly StepInfo[] = [
   },
   {
     color: colors.SILVER,
-    currentStep: 'Skills',
     icon: competencesIcon,
     page: ['SKILLS'],
     stepId: 'skills',
@@ -47,7 +45,6 @@ export const STEPS: readonly StepInfo[] = [
   },
   {
     color: colors.LIGHT_SKY_BLUE,
-    currentStep: 'Training',
     icon: formationIcon,
     page: ['TRAINING'],
     shortTitle: prepareT('Formation'),
