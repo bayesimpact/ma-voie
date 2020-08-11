@@ -57,6 +57,7 @@ const PARTNERS: readonly SelectablePartner[] = [
   {
     description,
     details: prepareT('Finançable CPF'),
+    discoverUrl: 'https://www.chance.co/fr/parcours',
     logo: logoChance,
     name: 'Chance',
     partnerId: 'chance',
