@@ -1,4 +1,3 @@
-import _keyBy from 'lodash/keyBy'
 import ArrowDownIcon from 'mdi-react/ArrowDownIcon'
 import React, {useCallback, useEffect, useState} from 'react'
 import {useTranslation} from 'react-i18next'
@@ -17,7 +16,7 @@ import competencesIcon from 'images/competences-ico.svg'
 import definitionIcon from 'images/definition-ico.svg'
 import formationIcon from 'images/formation-ico.svg'
 
-interface StepInfo {
+export interface StepInfo {
   color: string
   icon: string
   isOpen?: boolean
@@ -28,7 +27,7 @@ interface StepInfo {
 }
 
 // TODO(cyrille): Move to store.
-const STEPS: readonly StepInfo[] = [
+export const STEPS: readonly StepInfo[] = [
   {
     color: colors.LIGHT_TAN,
     icon: definitionIcon,
@@ -48,11 +47,11 @@ const STEPS: readonly StepInfo[] = [
     color: colors.LIGHT_SKY_BLUE,
     icon: formationIcon,
     page: ['TRAINING'],
+    shortTitle: prepareT('Formation'),
     stepId: 'training',
     title: prepareT('Formations'),
   },
 ]
-export const STEPS_BY_ID = _keyBy(STEPS, 'stepId')
 
 const stepsStyle: React.CSSProperties = {
   padding: '30px 0',
