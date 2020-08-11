@@ -111,18 +111,6 @@ describe('Translation files', (): void => {
         }
       })
 
-      it("should not contain the hardcoded product's name", (): void => {
-        for (const key in file.resources) {
-          if (key === 'productName' || key === 'canonicalUrl') {
-            continue
-          }
-          expect(key.toLowerCase()).not.to.contain('briserlachaine')
-          expect(key.toLowerCase()).not.to.contain('conotify')
-          expect(file.resources[key].toLowerCase()).not.to.contain('briserlachaine')
-          expect(file.resources[key].toLowerCase()).not.to.contain('conotify')
-        }
-      })
-
       it('should not forget html tags in translation', (): void => {
         for (const key in file.resources) {
           const tags = []
