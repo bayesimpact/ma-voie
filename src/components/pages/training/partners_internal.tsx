@@ -8,8 +8,8 @@ import {getPath} from 'store/url'
 
 import Button from 'components/button'
 import Layout from 'components/layout'
-import {STEPS, StepInfo} from 'components/pages/steps'
-import PartnerCard from 'components/partner_card'
+import {STEPS, StepId, StepInfo} from 'components/pages/steps'
+import PartnerCard, {PartnerProps} from 'components/partner_card'
 import TabsNav, {TabProps} from 'components/tabs_nav'
 
 import logoChance from 'images/logo-chance.svg'
@@ -17,14 +17,14 @@ import logoJobready from 'images/logo-jobready.png'
 import logoGeneration from 'images/logo-generation.png'
 
 // TODO(émilie): create with the good content
-const listItems = [
-  prepareT('Durée\u00A0: 6 semaines'),
-  prepareT('Faisable en ligne'),
-  prepareT('Coach dédié pour vous accompagner'),
-  prepareT('Suivi quotidien de votre avancement'),
-  prepareT('Disponible 24h/24'),
-  prepareT('Ils sont sympas'),
-]
+const description = `
+  * Durée\u00A0: 6 semaines
+  * Faisable en ligne
+  * Coach dédié pour vous accompagner
+  * Suivi quotidien de votre avancement
+  * Disponible 24h/24
+  * Ils sont sympas
+`
 const partnerCardStyle: React.CSSProperties = {
   margin: '20px 20px 20px 0',
 }
@@ -50,36 +50,40 @@ const TABS_WITHOUT_STEP: readonly TabProps[] = [
   },
 ]
 
+type SelectablePartner = PartnerProps & {steps: readonly StepId[]}
+
 // TODO(cyrille): Fetch from a JSON file.
-const PARTNERS = [
+const PARTNERS: readonly SelectablePartner[] = [
   {
+    description,
     details: prepareT('Finançable CPF'),
-    id: 'chance',
-    info: prepareT('37 personnes ont choisi Chance'),
-    list: listItems,
     logo: logoChance,
+    name: 'Chance',
+    partnerId: 'chance',
     steps: ['definition'],
     title: '300€',
     url: 'https://www.chance.co',
+    userCount: 37,
   },
   {
+    description,
     details: prepareT('Finançable CPF'),
-    id: 'job-ready',
-    info: prepareT('37 personnes ont choisi Jobready'),
-    list: listItems,
     logo: logoJobready,
+    name: 'Jobready',
+    partnerId: 'job-ready',
     steps: ['training'],
     title: '300€',
     url: 'https://www.jobready.fr',
   },
   {
-    id: 'generation',
-    info: prepareT('37 personnes ont choisi Génération'),
-    list: listItems,
+    description,
     logo: logoGeneration,
+    name: 'Génération',
+    partnerId: 'generation',
     steps: ['training'],
     title: prepareT('Gratuit'),
     url: 'https://france.generation.org',
+    userCount: 1,
   },
 ]
 
@@ -125,10 +129,7 @@ const PartnersInternalPage = (): React.ReactElement => {
     <div style={partnersContainerStyle}>
       {partners.map((partner) =>
         <PartnerCard
-          {...partner}
-          style={partnerCardStyle}
-          key={partner.id} partnerId={partner.id}
-          onClick={onClick} />,
+          {...partner} style={partnerCardStyle} key={partner.partnerId} onClick={onClick} />,
       )}
     </div>
     <Trans parent="p" style={paragrapheStyle}>
