@@ -14,7 +14,7 @@ const DefinitionPage = (): React.ReactElement => {
     <Route path={defineAndGetPath('GO')} component={GoPage} />
     <Route path={defineAndGetPath('LIST')} component={ListPage} />
     <Route path={defineAndGetPath('TRAINING')} component={TrainingPage} />
-    <Redirect to={defineAndGetPath('TRAINING')} />
+    <Redirect to={defineAndGetPath('LIST')} />
   </Switch>
   // i18next-extract-mark-ns-stop url
 }
