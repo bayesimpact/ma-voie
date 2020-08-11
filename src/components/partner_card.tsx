@@ -1,5 +1,8 @@
 import React, {useCallback} from 'react'
 import {useTranslation} from 'react-i18next'
+import {Link} from 'react-router-dom'
+
+import {getPath} from 'store/url'
 
 import Button from 'components/button'
 
@@ -61,16 +64,15 @@ interface Props {
   // TODO(émilie): rename "list" to be more specific such as descriptionList
   list: readonly string[]
   logo: string
-  onChoose?: (event: React.MouseEvent<HTMLDivElement>) => void
   onClick?: (partnerId: string) => void
-  onDiscover?: (event: React.MouseEvent<HTMLDivElement>) => void
   partnerId?: string
   style?: React.CSSProperties
   title: string
+  // TODO(cyrille): Add a discover URL when different.
+  url: string
 }
-const PartnerCard = ({
-  details, info, partnerId, list, logo, onChoose, onClick, onDiscover, style, title,
-}: Props): React.ReactElement => {
+const PartnerCard = (props: Props): React.ReactElement => {
+  const {details, info, partnerId, list, logo, onClick, style, title, url} = props
   const {t} = useTranslation()
   const finalContainerStyle: React.CSSProperties = {
     ...containerStyle,
@@ -81,6 +83,11 @@ const PartnerCard = ({
       onClick(partnerId)
     }
   }, [partnerId, onClick])
+  const choosePartner = useCallback((): void => {
+    // TODO(cyrille): Add user info to url.
+    // TODO(cyrille): Add chosen partners in user state.
+    window.open(url, '_blank')
+  }, [url])
   return <div style={finalContainerStyle} onClick={handleClick} id={partnerId} data-partner>
     <div style={contentStyle}>
       <div style={titleStyle}>
@@ -95,8 +102,12 @@ const PartnerCard = ({
           <li key={item}>{item}</li>,
         )}
       </ul>
-      <Button type="firstLevel" onClick={onChoose}>{t('Choisir')}</Button>
-      <Button type="discret" onClick={onDiscover} >{t('Découvrir')}</Button>
+      <Link to={getPath(['STEPS'], t)} onClick={choosePartner}>
+        <Button type="firstLevel">{t('Choisir')}</Button>
+      </Link>
+      <a href={url} rel="noopener noreferrer" target="_blank">
+        <Button type="discret">{t('Découvrir')}</Button>
+      </a>
     </div>
     <div style={infoStyle}>{info}</div>
   </div>
