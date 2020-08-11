@@ -9,7 +9,7 @@ import {getPath} from 'store/url'
 import Button from 'components/button'
 import Layout from 'components/layout'
 import {STEPS, StepId, StepInfo} from 'components/pages/steps'
-import ExternalPartner from 'components/pages/definition/partners_external'
+import ExternalPartner from 'components/external_partner'
 import PartnerCard, {PartnerProps} from 'components/partner_card'
 import TabsNav, {TabProps} from 'components/tabs_nav'
 
