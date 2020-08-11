@@ -66,11 +66,11 @@ const discreetAnchorStyle: React.CSSProperties = {
 export interface PartnerProps {
   details?: string
   description?: string
+  discoverUrl?: string
   logo: string
   name: string
   partnerId: string
   title?: string
-  // TODO(cyrille): Add a discover URL when different.
   url: string
   userCount?: number
 }
@@ -79,7 +79,7 @@ interface Props extends PartnerProps {
   style?: React.CSSProperties
 }
 const PartnerCard = (props: Props): React.ReactElement => {
-  const {description, details, logo, name, onClick, partnerId, style, title, url,
+  const {description, details, url, discoverUrl = url, logo, name, onClick, partnerId, style, title,
     userCount = 1} = props
   const {t} = useTranslation()
   const finalContainerStyle: React.CSSProperties = {
@@ -109,7 +109,7 @@ const PartnerCard = (props: Props): React.ReactElement => {
       <Link style={discreetAnchorStyle} to={getPath(['STEPS'], t)} onClick={choosePartner}>
         <Button type="firstLevel">{t('Choisir')}</Button>
       </Link>
-      <a style={discreetAnchorStyle} href={url} rel="noopener noreferrer" target="_blank">
+      <a style={discreetAnchorStyle} href={discoverUrl} rel="noopener noreferrer" target="_blank">
         <Button type="discret">{t('Découvrir')}</Button>
       </a>
     </div>
