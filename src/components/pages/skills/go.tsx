@@ -27,16 +27,16 @@ const buttonContainerStyle: React.CSSProperties = {
 const SkillsGoPage = (): React.ReactElement => {
   const {t} = useTranslation()
 
+  // TODO(émilie): refactorize the validation button with the other ones
+  // example : StepValidatioButton with a stepId prop
   const dispatch = useDispatch()
   const projectId = useProjectId()
-
   const handleClick = useCallback((): void => {
-    dispatch(updateSteps(projectId, {skills: true}))
+    dispatch(updateSteps(projectId, {training: true}))
   }, [dispatch, projectId])
 
   const bigTitle = t('Félicitations\u00A0!')
 
-  // FIXME(émilie): save project state (unlocks interview)
   return <Layout header={t('Compétences')} bigTitle={bigTitle}>
     <Trans>
       <p style={paragraphStyle}>
