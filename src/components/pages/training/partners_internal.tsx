@@ -1,6 +1,6 @@
-import React, {useMemo, useState} from 'react'
+import React, {useCallback, useMemo, useState} from 'react'
 import {useTranslation, Trans} from 'react-i18next'
-import {useRouteMatch} from 'react-router'
+import {useLocation, useRouteMatch} from 'react-router'
 import {Link, Redirect} from 'react-router-dom'
 
 import {prepareT} from 'store/i18n'
@@ -9,6 +9,7 @@ import {getPath} from 'store/url'
 import Button from 'components/button'
 import Layout from 'components/layout'
 import {STEPS, StepId, StepInfo} from 'components/pages/steps'
+import ExternalPartner from 'components/pages/definition/partners_external'
 import PartnerCard, {PartnerProps} from 'components/partner_card'
 import TabsNav, {TabProps} from 'components/tabs_nav'
 
@@ -25,6 +26,21 @@ const description = `
   * Disponible 24h/24
   * Ils sont sympas
 `
+
+const externalDescription = `Ce cours en ligne* "Focus compétences" est composé de 4 séquences :
+
+1. Définir la notion de compétence
+
+2. Acquérir une méthodologie pour identifier ses compétences
+
+3. Valoriser ses compétences auprès d'un recruteur
+
+4. Augmenter sa visibilité et sa crédibilité sur les réseaux sociaux
+
+Chaque séquence est composée de vidéos, quiz, et de ressources complémentaires**.
+Vous pouvez suivre chaque séquence à votre rythme et selon vos besoins.`
+
+
 const partnerCardStyle: React.CSSProperties = {
   margin: '20px 20px 20px 0',
 }
@@ -50,7 +66,7 @@ const TABS_WITHOUT_STEP: readonly TabProps[] = [
   },
 ]
 
-type SelectablePartner = PartnerProps & {steps: readonly StepId[]}
+type SelectablePartner = PartnerProps & {isInternal?: boolean; steps: readonly StepId[]}
 
 // TODO(cyrille): Fetch from a JSON file.
 const PARTNERS: readonly SelectablePartner[] = [
@@ -58,6 +74,7 @@ const PARTNERS: readonly SelectablePartner[] = [
     description,
     details: prepareT('Finançable CPF'),
     discoverUrl: 'https://www.chance.co/fr/parcours',
+    isInternal: true,
     logo: logoChance,
     name: 'Chance',
     partnerId: 'chance',
@@ -69,6 +86,7 @@ const PARTNERS: readonly SelectablePartner[] = [
   {
     description,
     details: prepareT('Finançable CPF'),
+    isInternal: true,
     logo: logoJobready,
     name: 'Jobready',
     partnerId: 'job-ready',
@@ -78,6 +96,7 @@ const PARTNERS: readonly SelectablePartner[] = [
   },
   {
     description,
+    isInternal: true,
     logo: logoGeneration,
     name: 'Génération',
     partnerId: 'generation',
@@ -86,40 +105,55 @@ const PARTNERS: readonly SelectablePartner[] = [
     url: 'https://france.generation.org',
     userCount: 1,
   },
+  {
+    description: externalDescription,
+    details: 'MOOC',
+    logo: logoChance,
+    name: 'Externe 1',
+    partnerId: 'chance-1',
+    steps: ['definition', 'training'],
+    url: '',
+  },
+  {
+    description: externalDescription,
+    details: 'MOOC',
+    logo: logoChance,
+    name: 'Externe 2',
+    partnerId: 'chance-2',
+    steps: ['definition', 'training'],
+    url: '',
+  },
 ]
 
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
-const PartnersInternalPage = (): React.ReactElement => {
+const PartnersPage = (): React.ReactElement => {
   const {t, t: translate} = useTranslation()
   const {url} = useRouteMatch('/:step') || {}
-  const [position, setPosition] = useState(0)
-  const partnersContainerStyle: React.CSSProperties = {
-    display: 'flex',
-    marginLeft: -335 * position,
-    transition: '450ms',
-  }
-  const onClick = (partnerId: string): void => {
-    const partners = document.querySelectorAll('[data-partner]')
-    let currentPosition = 0
-    for (const partner of partners) {
-      if (partner.id === partnerId) {
-        setPosition(currentPosition)
-        return
-      }
-      currentPosition++
-    }
-  }
+  const {pathname} = useLocation()
+  const [currentPartner, setCurrentPartner] = useState<null|string>(null)
+  const onSelect = useCallback((partnerId: string) =>
+    setCurrentPartner(previousPartnerId => partnerId === previousPartnerId ? null : partnerId),
+  [])
   const {page, title = '', shortTitle = title, stepId}: Partial<StepInfo> =
     STEPS.find(({page}) => getPath(page, t) === url) || {}
   const tabs = useMemo(() => TABS_WITHOUT_STEP.map(({redirect, ...tab}) => ({
     ...tab,
     redirect: [...page || [], ...redirect],
   })), [page])
+  const areInternalShown = pathname.endsWith(getPath(['PARTNERS_INTERNAL'], t))
   if (!url || !stepId) {
     return <Redirect to={getPath([], t)} />
   }
-  const partners = PARTNERS.filter(({steps}) => steps.includes(stepId))
+  const partners = PARTNERS.filter(({isInternal, steps}) => steps.includes(stepId) &&
+    !isInternal === !areInternalShown)
+  const position = Math.max(
+    0, partners.findIndex(({partnerId}) => currentPartner === partnerId))
+  const partnersContainerStyle: React.CSSProperties = {
+    display: 'flex',
+    marginLeft: -335 * position,
+    transition: '450ms',
+  }
   const bigTitle = prepareT('Voici les partenaires idéaux pour vous aider')
   // FIXME(émilie): Change link to redirect where it is needed for
   //   "Je l'ai fait moi même"
@@ -127,12 +161,15 @@ const PartnersInternalPage = (): React.ReactElement => {
   // TODO(pascal): Fix the slider as it's not easy to get it right in CSS
   return <Layout header={translate(shortTitle)} bigTitle={bigTitle}>
     <TabsNav tabs={tabs} />
-    <div style={partnersContainerStyle}>
+    {areInternalShown ? <div style={partnersContainerStyle}>
       {partners.map((partner) =>
         <PartnerCard
-          {...partner} style={partnerCardStyle} key={partner.partnerId} onClick={onClick} />,
+          key={partner.partnerId} {...partner}
+          style={partnerCardStyle} onClick={setCurrentPartner} />,
       )}
-    </div>
+    </div> : partners.map((partner) => <ExternalPartner
+      key={partner.partnerId} {...partner}
+      isOpen={currentPartner === partner.partnerId} onSelect={onSelect} />)}
     <Trans parent="p" style={paragrapheStyle}>
       Si vous pensez avoir déjà réussi cette étape, cliquez sur
       "Je l'ai fait moi-même" pour passer à l'étape suivante.
@@ -147,4 +184,4 @@ const PartnersInternalPage = (): React.ReactElement => {
   </Layout>
 }
 
-export default React.memo(PartnersInternalPage)
+export default React.memo(PartnersPage)
