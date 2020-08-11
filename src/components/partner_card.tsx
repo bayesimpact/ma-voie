@@ -1,5 +1,6 @@
 import React, {useCallback} from 'react'
-import {useTranslation} from 'react-i18next'
+import {Trans, useTranslation} from 'react-i18next'
+import ReactMarkdown from 'react-markdown'
 import {Link} from 'react-router-dom'
 
 import {getPath} from 'store/url'
@@ -57,22 +58,29 @@ const infoStyle: React.CSSProperties = {
   position: 'absolute',
   width: '100%',
 }
+const discreetAnchorStyle: React.CSSProperties = {
+  color: 'inherit',
+  textDecoration: 'none',
+}
 
-interface Props {
+export interface PartnerProps {
   details?: string
-  info: string
-  // TODO(émilie): rename "list" to be more specific such as descriptionList
-  list: readonly string[]
+  description?: string
   logo: string
-  onClick?: (partnerId: string) => void
-  partnerId?: string
-  style?: React.CSSProperties
-  title: string
+  name: string
+  partnerId: string
+  title?: string
   // TODO(cyrille): Add a discover URL when different.
   url: string
+  userCount?: number
+}
+interface Props extends PartnerProps {
+  onClick?: (partnerId: string) => void
+  style?: React.CSSProperties
 }
 const PartnerCard = (props: Props): React.ReactElement => {
-  const {details, info, partnerId, list, logo, onClick, style, title, url} = props
+  const {description, details, logo, name, onClick, partnerId, style, title, url,
+    userCount = 1} = props
   const {t} = useTranslation()
   const finalContainerStyle: React.CSSProperties = {
     ...containerStyle,
@@ -97,19 +105,17 @@ const PartnerCard = (props: Props): React.ReactElement => {
           <div style={titleDetailsContentStyle}>{details}</div>
         </div>
       </div>
-      <ul style={descriptionStyle}>
-        {list.map(item =>
-          <li key={item}>{item}</li>,
-        )}
-      </ul>
-      <Link to={getPath(['STEPS'], t)} onClick={choosePartner}>
+      <div style={descriptionStyle}><ReactMarkdown source={description} /></div>
+      <Link style={discreetAnchorStyle} to={getPath(['STEPS'], t)} onClick={choosePartner}>
         <Button type="firstLevel">{t('Choisir')}</Button>
       </Link>
-      <a href={url} rel="noopener noreferrer" target="_blank">
+      <a style={discreetAnchorStyle} href={url} rel="noopener noreferrer" target="_blank">
         <Button type="discret">{t('Découvrir')}</Button>
       </a>
     </div>
-    <div style={infoStyle}>{info}</div>
+    <Trans count={userCount} style={infoStyle}>
+      {{userCount}} personne a choisi {{name}}
+    </Trans>
   </div>
 }
 export default React.memo(PartnerCard)
