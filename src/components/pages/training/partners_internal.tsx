@@ -16,8 +16,6 @@ import logoChance from 'images/logo-chance.svg'
 import logoJobready from 'images/logo-jobready.png'
 import logoGeneration from 'images/logo-generation.png'
 
-const onClick = (): void => window.alert('Bientôt disponible...')
-
 // TODO(émilie): create with the good content
 const listItems = [
   prepareT('Durée\u00A0: 6 semaines'),
@@ -60,10 +58,9 @@ const PARTNERS = [
     info: prepareT('37 personnes ont choisi Chance'),
     list: listItems,
     logo: logoChance,
-    onChoose: onClick,
-    onDiscover: onClick,
     steps: ['definition'],
     title: '300€',
+    url: 'https://www.chance.co',
   },
   {
     details: prepareT('Finançable CPF'),
@@ -71,22 +68,18 @@ const PARTNERS = [
     info: prepareT('37 personnes ont choisi Jobready'),
     list: listItems,
     logo: logoJobready,
-    onChoose: onClick,
-    onDiscover: onClick,
     steps: ['training'],
-    style: partnerCardStyle,
     title: '300€',
+    url: 'https://www.jobready.fr',
   },
   {
     id: 'generation',
     info: prepareT('37 personnes ont choisi Génération'),
     list: listItems,
     logo: logoGeneration,
-    onChoose: onClick,
-    onDiscover: onClick,
     steps: ['training'],
-    style: partnerCardStyle,
     title: prepareT('Gratuit'),
+    url: 'https://france.generation.org',
   },
 ]
 
@@ -123,8 +116,8 @@ const PartnersInternalPage = (): React.ReactElement => {
   }
   const partners = PARTNERS.filter(({steps}) => steps.includes(stepId))
   const bigTitle = prepareT('Voici les partenaires idéaux pour vous aider')
-  // FIXME(émilie): Change link to redirect where it is needed
-  // Choisir + Je l'ai fait moi même
+  // FIXME(émilie): Change link to redirect where it is needed for
+  //   "Je l'ai fait moi même"
   // TODO(émilie): get the right value for "XX personnes ont choisi Chance"
   // TODO(pascal): Fix the slider as it's not easy to get it right in CSS
   return <Layout header={translate(shortTitle)} bigTitle={bigTitle}>
@@ -133,6 +126,7 @@ const PartnersInternalPage = (): React.ReactElement => {
       {partners.map((partner) =>
         <PartnerCard
           {...partner}
+          style={partnerCardStyle}
           key={partner.id} partnerId={partner.id}
           onClick={onClick} />,
       )}
