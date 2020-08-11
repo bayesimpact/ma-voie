@@ -2,5 +2,6 @@
   "Terminez l'étape précédente_plural": "Terminez les étapes précédentes",
   "canonicalUrl": "www.mavoie.org",
   "contactEmail": "contact@mavoie.org",
-  "productName": "Ma Voie"
+  "productName": "Ma Voie",
+  "{{userCount}} personne a choisi {{name}}_plural": "{{userCount}} personnes ont choisi {{name}}"
 }

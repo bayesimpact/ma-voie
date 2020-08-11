@@ -25,6 +25,7 @@ export interface StepInfo {
   stepId: 'definition' | 'skills' | 'training'
   title: string
 }
+export type StepId = StepInfo['stepId']
 
 // TODO(cyrille): Move to store.
 export const STEPS: readonly StepInfo[] = [
