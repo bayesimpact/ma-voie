@@ -1,4 +1,3 @@
-// TODO(cyrille): Move to components.
 import React, {useCallback} from 'react'
 import {useTranslation} from 'react-i18next'
 import ReactMarkdown from 'react-markdown'
