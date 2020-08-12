@@ -13,10 +13,6 @@ import ExternalPartner from 'components/external_partner'
 import PartnerCard, {PartnerProps} from 'components/partner_card'
 import TabsNav, {TabProps} from 'components/tabs_nav'
 
-import logoChance from 'images/logo-chance.svg'
-import logoJobready from 'images/logo-jobready.png'
-import logoGeneration from 'images/logo-generation.png'
-
 // TODO(émilie): create with the good content
 const description = `
   * Durée\u00A0: 6 semaines
@@ -69,13 +65,13 @@ const TABS_WITHOUT_STEP: readonly TabProps[] = [
 type SelectablePartner = PartnerProps & {isInternal?: boolean; steps: readonly StepId[]}
 
 // TODO(cyrille): Fetch from a JSON file.
-const PARTNERS: readonly SelectablePartner[] = [
+const PARTNERS: readonly SelectablePartner[] = ([
   {
     description,
     details: prepareT('Finançable CPF'),
     discoverUrl: 'https://www.chance.co/fr/parcours',
     isInternal: true,
-    logo: logoChance,
+    logo: 'chance.svg',
     name: 'Chance',
     partnerId: 'chance',
     steps: ['definition'],
@@ -87,7 +83,7 @@ const PARTNERS: readonly SelectablePartner[] = [
     description,
     details: prepareT('Finançable CPF'),
     isInternal: true,
-    logo: logoJobready,
+    logo: 'jobready.png',
     name: 'Jobready',
     partnerId: 'job-ready',
     steps: ['training'],
@@ -97,7 +93,7 @@ const PARTNERS: readonly SelectablePartner[] = [
   {
     description,
     isInternal: true,
-    logo: logoGeneration,
+    logo: 'generation.png',
     name: 'Génération',
     partnerId: 'generation',
     steps: ['training'],
@@ -108,7 +104,7 @@ const PARTNERS: readonly SelectablePartner[] = [
   {
     description: externalDescription,
     details: 'MOOC',
-    logo: logoChance,
+    logo: 'chance.svg',
     name: 'Externe 1',
     partnerId: 'chance-1',
     steps: ['definition', 'training'],
@@ -117,13 +113,17 @@ const PARTNERS: readonly SelectablePartner[] = [
   {
     description: externalDescription,
     details: 'MOOC',
-    logo: logoChance,
+    logo: 'chance.svg',
     name: 'Externe 2',
     partnerId: 'chance-2',
     steps: ['definition', 'training'],
     url: '',
   },
-]
+] as readonly SelectablePartner[]).map(({logo, ...partner}) => ({
+  ...partner,
+  // Add logos in the /assets/logo folder when adding new ones.
+  logo: `${config.canonicalUrl}/assets/logo/${logo}`,
+}))
 
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
