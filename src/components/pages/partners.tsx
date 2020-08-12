@@ -155,8 +155,7 @@ const PartnersPage = (): React.ReactElement => {
     transition: '450ms',
   }
   const bigTitle = prepareT('Voici les partenaires idéaux pour vous aider')
-  // FIXME(émilie): Change link to redirect where it is needed for
-  //   "Je l'ai fait moi même"
+  // FIXME(émilie): Use StepValidationButton for "Je l'ai fait moi même"
   // TODO(émilie): get the right value for "XX personnes ont choisi Chance"
   // TODO(pascal): Fix the slider as it's not easy to get it right in CSS
   return <Layout header={translate(shortTitle)} bigTitle={bigTitle}>
