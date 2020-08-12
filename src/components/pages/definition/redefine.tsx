@@ -1,13 +1,12 @@
-import React, {useCallback} from 'react'
+import React from 'react'
 import {useTranslation, Trans} from 'react-i18next'
 import {Link} from 'react-router-dom'
 
-import {updateSteps, useDispatch} from 'store/actions'
-import {useProjectId} from 'store/selections'
-import {getPath} from 'store/url'
+import {Page, getPath} from 'store/url'
 
 import Button from 'components/button'
 import Layout from 'components/layout'
+import StepValidationButton from 'components/step_validation_button'
 
 const linkStyle: React.CSSProperties = {
   textDecoration: 'none',
@@ -23,17 +22,12 @@ const buttonContainerStyle: React.CSSProperties = {
   paddingTop: 20,
 }
 
+const pageAfterValidation: Page = ['STEPS']
+
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 const RedefinePage = (): React.ReactElement => {
   const {t} = useTranslation()
-
-  const dispatch = useDispatch()
-  const projectId = useProjectId()
-
-  const handleClick = useCallback((): void => {
-    dispatch(updateSteps(projectId, {definition: true}))
-  }, [dispatch, projectId])
 
   return <Layout header={t('Définition')}>
     <Trans parent="p" style={contentStyle}>
@@ -55,11 +49,9 @@ const RedefinePage = (): React.ReactElement => {
       </Link>
     </div>
     <div style={buttonContainerStyle}>
-      <Link to={getPath(['STEPS'], t)} style={linkStyle}>
-        <Button type="secondLevel" onClick={handleClick}>
-          {t('Je continue avec ce métier')}
-        </Button>
-      </Link>
+      <StepValidationButton page={pageAfterValidation} stepId="definition">
+        {t('Je continue avec ce métier')}
+      </StepValidationButton>
     </div>
   </Layout>
 }
