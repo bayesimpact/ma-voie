@@ -8,8 +8,6 @@ import {getPath} from 'store/url'
 import Button from 'components/button'
 import {PartnerProps} from 'components/partner_card'
 
-
-
 const linkStyle: React.CSSProperties = {
   textDecoration: 'none',
 }

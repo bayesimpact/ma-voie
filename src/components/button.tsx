@@ -59,7 +59,7 @@ const buttonsStyle = {
   },
 } as const
 
-type ButtonType = keyof typeof buttonsStyle
+export type ButtonType = keyof typeof buttonsStyle
 
 interface ButtonProps {
   children: React.ReactNode

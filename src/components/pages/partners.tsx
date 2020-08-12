@@ -1,16 +1,16 @@
 import React, {useCallback, useMemo, useState} from 'react'
 import {useTranslation, Trans} from 'react-i18next'
 import {useLocation, useRouteMatch} from 'react-router'
-import {Link, Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 
 import {prepareT} from 'store/i18n'
 import {getPath} from 'store/url'
 
-import Button from 'components/button'
 import Layout from 'components/layout'
 import {STEPS, StepId, StepInfo} from 'components/pages/steps'
 import ExternalPartner from 'components/external_partner'
 import PartnerCard, {PartnerProps} from 'components/partner_card'
+import StepValidationButton from 'components/step_validation_button'
 import TabsNav, {TabProps} from 'components/tabs_nav'
 
 import logoChance from 'images/logo-chance.svg'
@@ -43,9 +43,6 @@ Vous pouvez suivre chaque séquence à votre rythme et selon vos besoins.`
 
 const partnerCardStyle: React.CSSProperties = {
   margin: '20px 20px 20px 0',
-}
-const linkStyle: React.CSSProperties = {
-  textDecoration: 'none',
 }
 const buttonWrapperStyle: React.CSSProperties = {
   marginBottom: 55,
@@ -155,7 +152,7 @@ const PartnersPage = (): React.ReactElement => {
     transition: '450ms',
   }
   const bigTitle = prepareT('Voici les partenaires idéaux pour vous aider')
-  // FIXME(émilie): Use StepValidationButton for "Je l'ai fait moi même"
+  // TODO(émilie): When validating, indicate the level of validation
   // TODO(émilie): get the right value for "XX personnes ont choisi Chance"
   // TODO(pascal): Fix the slider as it's not easy to get it right in CSS
   return <Layout header={translate(shortTitle)} bigTitle={bigTitle}>
@@ -174,11 +171,9 @@ const PartnersPage = (): React.ReactElement => {
       "Je l'ai fait moi-même" pour passer à l'étape suivante.
     </Trans>
     <div style={buttonWrapperStyle}>
-      <Link to={getPath(['STEPS'], t)} style={linkStyle}>
-        <Button type="specific">
-          {t('Je l\'ai fait moi-même')}
-        </Button>
-      </Link>
+      <StepValidationButton type="specific" stepId="training">
+        {t('Je l\'ai fait moi-même')}
+      </StepValidationButton>
     </div>
   </Layout>
 }
