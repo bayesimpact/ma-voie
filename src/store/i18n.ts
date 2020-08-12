@@ -1,5 +1,7 @@
-import i18next, {InitOptions, ReadCallback, ResourceKey, Services, TOptions, i18n} from 'i18next'
+import i18next, {InitOptions, ReadCallback, ResourceKey, Services, TFunction, TOptions,
+  i18n} from 'i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
+import _memoize from 'lodash/memoize'
 import {initReactI18next} from 'react-i18next'
 
 
@@ -99,4 +101,21 @@ LocalizableString<T> {
 type PromiseImportFunc = (language: string, namespace: string) => Promise<{default: ResourceKey}>
 
 
-export {init, prepareT, STATIC_NAMESPACE}
+const extractSeparator = _memoize((listString: string): readonly [string, string] => {
+  const parts = listString.split(/<\d><\/\d>/)
+  if (parts.length !== 4) {
+    return [', ', ' et ']
+  }
+  return parts.slice(1, 3) as [string, string]
+})
+
+
+const joinList = (values: readonly string[], t: TFunction): string => {
+  const [separator, lastSeparator] = extractSeparator(t('<0></0>, <1></1> et <2></2>'))
+  if (values.length <= 1) {
+    return values.join(lastSeparator)
+  }
+  return values.slice(0, -1).join(separator) + lastSeparator + values.slice(-1)[0]
+}
+
+export {init, joinList, prepareT, STATIC_NAMESPACE}

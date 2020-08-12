@@ -1,20 +1,23 @@
 import ArrowDownIcon from 'mdi-react/ArrowDownIcon'
 import React, {useCallback, useEffect, useState} from 'react'
-import {useTranslation} from 'react-i18next'
+import {Trans, useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
 import {useHistory} from 'react-router'
 
 import {RootState} from 'store/actions'
-import {prepareT} from 'store/i18n'
+import {joinList, prepareT} from 'store/i18n'
 import {useProject} from 'store/selections'
 import {Page, getPath} from 'store/url'
 
+import Button from 'components/button'
 import Layout from 'components/layout'
 import CreateAccountPopup from 'components/create_account_popup'
 import Step from 'components/step'
 import competencesIcon from 'images/competences-ico.svg'
 import definitionIcon from 'images/definition-ico.svg'
 import formationIcon from 'images/formation-ico.svg'
+
+const soonAvailable = (): void => window.alert('Bientôt disponible...')
 
 export interface StepInfo {
   color: string
@@ -61,10 +64,20 @@ const arrowStyle: React.CSSProperties = {
   display: 'block',
   margin: '30px auto',
 }
+const interviewStyle: React.CSSProperties = {
+  color: colors.GREYISH_TEAL,
+}
+const interviewDisclaimerStyle: React.CSSProperties = {
+  color: colors.REDDISH_ORANGE,
+  fontSize: 14,
+  marginTop: 15,
+  textAlign: 'center',
+}
+
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 const StepsPage = (): React.ReactElement => {
-  const [translate] = useTranslation()
+  const {t, t: translate} = useTranslation()
   const history = useHistory()
   const [isPopupShown, setIsPopupShown] = useState(false)
 
@@ -77,9 +90,9 @@ const StepsPage = (): React.ReactElement => {
     if (!isConnected) {
       setIsPopupShown(true)
     } else {
-      history.push(getPath(page, translate))
+      history.push(getPath(page, t))
     }
-  }, [history, isConnected, setIsPopupShown, translate])
+  }, [history, isConnected, setIsPopupShown, t])
 
   const onClose = useCallback((): void => {
     setIsPopupShown(false)
@@ -93,7 +106,6 @@ const StepsPage = (): React.ReactElement => {
     }
   }, [isPopupShown])
 
-  // TODO(cyrille): Add step 4.
   return <Layout>
     <div style={stepsStyle}>
       {STEPS.map(({title, ...step}, index) => {
@@ -106,6 +118,15 @@ const StepsPage = (): React.ReactElement => {
           </Step>
         </React.Fragment>
       })}
+      <ArrowDownIcon style={arrowStyle} color={colors.SILVER_THREE} />
+      <Button style={interviewStyle} onClick={soonAvailable} type="variable">
+        {t('Préparer un entretien')}
+      </Button>
+      <Trans count={STEPS.length} style={interviewDisclaimerStyle}>
+        Il est préférable de terminer
+        l'étape {{steps: joinList(STEPS.map((step, index) => (index + 1).toString()), t)}} avant de
+        vous préparer pour les entretiens.
+      </Trans>
     </div>
     {isPopupShown ? <CreateAccountPopup onClose={onClose} /> : null}
   </Layout>
