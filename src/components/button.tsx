@@ -7,7 +7,6 @@ const buttonStyle: React.CSSProperties = {
   alignSelf: 'stretch',
   border: 0,
   borderRadius: 25,
-  cursor: 'pointer',
   display: 'flex',
   fontFamily: 'ProximaSoft',
   fontSize: 18,
@@ -41,6 +40,15 @@ const buttonsStyle = {
     backgroundColor: colors.TEAL_BLUE,
     color: '#fff',
   },
+  small: {
+    ...buttonStyle,
+    alignSelf: 'center',
+    border: `solid 1px ${colors.SILVER_THREE}`,
+    borderRadius: 18,
+    fontSize: 13,
+    height: 30,
+    padding: '0 20px',
+  },
   specific: {
     ...buttonStyle,
     backgroundColor: '#fff',
@@ -69,7 +77,11 @@ interface ButtonProps {
 }
 
 const Button = ({children, onClick, style, type}: ButtonProps): React.ReactElement => {
-  const buttonFinalStyle: React.CSSProperties = {...buttonsStyle[type], ...style}
+  const buttonFinalStyle: React.CSSProperties = {
+    ...onClick ? {cursor: 'pointer'} : {},
+    ...buttonsStyle[type],
+    ...style,
+  }
   return <div onClick={onClick} style={buttonFinalStyle}>{children}</div>
 }
 

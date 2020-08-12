@@ -91,7 +91,7 @@ React.ReactElement => {
         <img style={iconStyle} src={isOpen ? icon : lockIcon} alt="" />
         {isDone ? <img style={doneStyle} src={doneIcon} alt="" /> : null}
       </div>
-      {isDone ? <Button type="variable" onClick={handleClick}>{t('Terminé')}</Button> :
+      {isDone ? <Button type="small">{t('Terminé')}</Button> :
         isOpen ? <Button type="firstLevel" onClick={handleClick}>{t('Commencez')}</Button> :
           // TODO(cyrille): Replace with the list of steps to complete beforehand.
           <span style={forbiddenStyle}>
