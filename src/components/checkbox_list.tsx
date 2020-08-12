@@ -40,15 +40,16 @@ const doneIconStyle: React.CSSProperties = {
   fill: '#fff',
 }
 
-interface CheckboxItemProps {
-  index: number
-  name: string
-  onSelect: (index: number) => void
+const typedMemo: <T>(c: T) => T = React.memo
+
+interface CheckboxItemProps<T> {
   isSelected: boolean
+  label: React.ReactNode
+  onSelect: (value: T) => void
+  value: T
 }
-const CheckboxItem = ({
-  index, name, onSelect, isSelected,
-}: CheckboxItemProps): React.ReactElement => {
+const CheckboxItem = <T extends unknown>(props: CheckboxItemProps<T>): React.ReactElement => {
+  const {isSelected, label, onSelect, value} = props
   const [isHovered, setIsHovered] = useState(false)
 
   const onMouseEnter = useCallback((): void => setIsHovered(true), [])
@@ -65,11 +66,10 @@ const CheckboxItem = ({
   }
 
   const handleChange = useCallback((): void => {
-    onSelect(index)
-  }, [index, onSelect])
+    onSelect(value)
+  }, [value, onSelect])
 
   return <div
-    key={index}
     style={finalContainerStyle}
     onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
     onClick={handleChange}
@@ -79,39 +79,40 @@ const CheckboxItem = ({
         {isSelected ? <DoneIcon style={doneIconStyle} /> : null}
       </div>
     </div>
-    <span style={spanStyle}>{name}</span>
+    <span style={spanStyle}>{label}</span>
   </div>
 }
 
-// TODO(émilie): add a <value> field in each list item to
-// manage the order (and drop usage of <index>)
-interface ListProps {
+interface ListProps<T> {
   list: {
-    name: string
+    label: React.ReactNode
+    value: T
   }[]
+  onChange: (value: T[]) => void
+  valuesSelected: T[]
 }
 
-// FIXME(émilie): get the list of selectedValues from parent
-// + callback onChange from parent
-const CheckboxList = ({list}: ListProps): React.ReactElement => {
-  const [valuesSelected, setValuesSelected] = useState<readonly number[]>([])
-
-  const onSelect = useCallback((index: number): void => {
-    const newValues = valuesSelected.includes(index) ?
-      _without(valuesSelected, index) :
-      [index].concat(valuesSelected)
-    setValuesSelected(newValues)
-  }, [valuesSelected])
+const CheckboxListBase = <T extends unknown>(props: ListProps<T>) : React.ReactElement => {
+  const {list, onChange, valuesSelected} = props
+  const onSelect = useCallback((value: T): void => {
+    const newValues = valuesSelected.includes(value) ?
+      _without(valuesSelected, value) :
+      [value].concat(valuesSelected)
+    onChange(newValues)
+  }, [onChange, valuesSelected])
 
   return <React.Fragment>
-    {list.map((element, index) =>
-      <CheckboxItem
+    {list.map(({label, value}, index: number) =>
+      <CheckboxItem<T>
+        value={value}
         key={index}
-        isSelected={valuesSelected.includes(index)}
+        isSelected={valuesSelected.includes(value)}
         onSelect={onSelect}
-        index={index} name={element.name} />,
+        label={label} />,
     )}
   </React.Fragment>
 }
 
-export default React.memo(CheckboxList)
+const CheckboxList = typedMemo(CheckboxListBase)
+
+export default CheckboxList
