@@ -1,6 +1,7 @@
 import React, {useCallback} from 'react'
 import {useTranslation} from 'react-i18next'
 
+import {joinList} from 'store/i18n'
 import {Page} from 'store/url'
 
 import Button from 'components/button'
@@ -95,7 +96,12 @@ React.ReactElement => {
         isOpen ? <Button type="firstLevel" onClick={handleClick}>{t('Commencez')}</Button> :
           // TODO(cyrille): Replace with the list of steps to complete beforehand.
           <span style={forbiddenStyle}>
-            {t("Terminez l'étape précédente", {count: index - 1})}
+            {t("Terminez l'étape {{steps}}", {
+              count: index - 1,
+              steps: joinList(new Array(index - 1).
+                fill(undefined).
+                map((step, index) => (index + 1).toString()), t),
+            })}
           </span>}
     </div>
   </div>

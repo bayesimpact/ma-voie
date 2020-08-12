@@ -1,6 +1,6 @@
 {
   "Il est préférable de terminer l'étape {{steps}} avant de vous préparer pour les entretiens._plural": "Il est préférable de terminer les étapes {{steps}} avant de vous préparer pour les entretiens.",
-  "Terminez l'étape précédente_plural": "Terminez les étapes précédentes",
+  "Terminez l'étape {{steps}}_plural": "Terminez les étapes {{steps}}",
   "contactEmail": "contact@mavoie.org",
   "productName": "Ma Voie",
   "{{count}} projet_plural": "{{count}} projets",
