@@ -117,7 +117,7 @@ const TermsPage = (): React.ReactElement => {
     <div style={{fontFamily: 'Lato, Helvetica', padding: '55px 20px 100px'}}>
       <div style={contentStyle}>
         <ReactMarkdown source={translate('termsOfService', {
-          canonicalUrl: t('canonicalUrl'),
+          canonicalUrl: config.canonicalUrl,
           host: 'Amazon France Services - 67 Boulevard du Général Leclerc, 92110 Clichy, France ' +
             '- 01 46 17 10 00',
           owner: 'Chance / MaVoie.org',

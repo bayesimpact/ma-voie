@@ -59,8 +59,8 @@ export const Template = (props: TemplateProps): React.ReactElement => {
         content={t("Sur la route de l'emploi et en ligne, $t(productName) vous offre un parcours " +
           'adapté à vos besoins.')} />
       <meta
-        property="og:image" content={`https://${t('canonicalUrl')}${snippetImage}`} />
-      <meta property="og:url" content={`https://${t('canonicalUrl')}`} />
+        property="og:image" content={config.canonicalUrl + snippetImage} />
+      <meta property="og:url" content={config.canonicalUrl} />
 
       <link rel="icon" href={faviconImage} type="image/png" />
     </head>
