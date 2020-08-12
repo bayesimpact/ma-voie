@@ -9,12 +9,15 @@ import {prepareT} from 'store/i18n'
 import {useProject} from 'store/selections'
 import {Page, getPath} from 'store/url'
 
+import Button from 'components/button'
 import Layout from 'components/layout'
 import CreateAccountPopup from 'components/create_account_popup'
 import Step from 'components/step'
 import competencesIcon from 'images/competences-ico.svg'
 import definitionIcon from 'images/definition-ico.svg'
 import formationIcon from 'images/formation-ico.svg'
+
+const soonAvailable = (): void => window.alert('Bientôt disponible...')
 
 export interface StepInfo {
   color: string
@@ -61,10 +64,14 @@ const arrowStyle: React.CSSProperties = {
   display: 'block',
   margin: '30px auto',
 }
+const interviewStyle: React.CSSProperties = {
+  color: colors.GREYISH_TEAL,
+}
+
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 const StepsPage = (): React.ReactElement => {
-  const [translate] = useTranslation()
+  const {t, t: translate} = useTranslation()
   const history = useHistory()
   const [isPopupShown, setIsPopupShown] = useState(false)
 
@@ -77,9 +84,9 @@ const StepsPage = (): React.ReactElement => {
     if (!isConnected) {
       setIsPopupShown(true)
     } else {
-      history.push(getPath(page, translate))
+      history.push(getPath(page, t))
     }
-  }, [history, isConnected, setIsPopupShown, translate])
+  }, [history, isConnected, setIsPopupShown, t])
 
   const onClose = useCallback((): void => {
     setIsPopupShown(false)
@@ -93,7 +100,6 @@ const StepsPage = (): React.ReactElement => {
     }
   }, [isPopupShown])
 
-  // TODO(cyrille): Add step 4.
   return <Layout>
     <div style={stepsStyle}>
       {STEPS.map(({title, ...step}, index) => {
@@ -106,6 +112,10 @@ const StepsPage = (): React.ReactElement => {
           </Step>
         </React.Fragment>
       })}
+      <ArrowDownIcon style={arrowStyle} color={colors.SILVER_THREE} />
+      <Button style={interviewStyle} onClick={soonAvailable} type="variable">
+        {t('Préparer un entretien')}
+      </Button>
     </div>
     {isPopupShown ? <CreateAccountPopup onClose={onClose} /> : null}
   </Layout>
