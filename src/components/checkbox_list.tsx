@@ -41,13 +41,14 @@ const doneIconStyle: React.CSSProperties = {
 }
 
 interface CheckboxItemProps {
-  index: number
+  codeOgr: string
   name: string
-  onSelect: (index: number) => void
+  onSelect: (codeOgr: string) => void
+  isPriority: boolean
   isSelected: boolean
 }
 const CheckboxItem = ({
-  index, name, onSelect, isSelected,
+  codeOgr, name, onSelect, isPriority, isSelected,
 }: CheckboxItemProps): React.ReactElement => {
   const [isHovered, setIsHovered] = useState(false)
 
@@ -61,15 +62,15 @@ const CheckboxItem = ({
   }
   const finalContainerStyle: React.CSSProperties = {
     ...containerStyle,
-    fontWeight: isSelected ? 'bold' : 'inherit',
+    fontWeight: (isPriority || isSelected) ? 'bold' : 'inherit',
   }
 
   const handleChange = useCallback((): void => {
-    onSelect(index)
-  }, [index, onSelect])
+    onSelect(codeOgr)
+  }, [codeOgr, onSelect])
 
   return <div
-    key={index}
+    key={codeOgr}
     style={finalContainerStyle}
     onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
     onClick={handleChange}
@@ -83,33 +84,33 @@ const CheckboxItem = ({
   </div>
 }
 
-// TODO(émilie): add a <value> field in each list item to
-// manage the order (and drop usage of <index>)
 interface ListProps {
   list: {
+    codeOgr: string
     name: string
+    isPriority: boolean
   }[]
+  onChange: (value: string[]) => void
+  valuesSelected: string[]
 }
 
-// FIXME(émilie): get the list of selectedValues from parent
-// + callback onChange from parent
-const CheckboxList = ({list}: ListProps): React.ReactElement => {
-  const [valuesSelected, setValuesSelected] = useState<readonly number[]>([])
+const CheckboxList = ({list, onChange, valuesSelected}: ListProps): React.ReactElement => {
 
-  const onSelect = useCallback((index: number): void => {
-    const newValues = valuesSelected.includes(index) ?
-      _without(valuesSelected, index) :
-      [index].concat(valuesSelected)
-    setValuesSelected(newValues)
-  }, [valuesSelected])
+  const onSelect = useCallback((codeOgr: string): void => {
+    const newValues = valuesSelected.includes(codeOgr) ?
+      _without(valuesSelected, codeOgr) :
+      [codeOgr].concat(valuesSelected)
+    onChange(newValues)
+  }, [onChange, valuesSelected])
 
   return <React.Fragment>
-    {list.map((element, index) =>
+    {list.map(({codeOgr, isPriority, name}, index: number) =>
       <CheckboxItem
+        codeOgr={codeOgr}
         key={index}
-        isSelected={valuesSelected.includes(index)}
+        isPriority={isPriority} isSelected={valuesSelected.includes(codeOgr)}
         onSelect={onSelect}
-        index={index} name={element.name} />,
+        name={name} />,
     )}
   </React.Fragment>
 }
