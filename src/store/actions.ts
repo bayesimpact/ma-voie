@@ -3,6 +3,7 @@ import {useDispatch as genericUseDispatch} from 'react-redux'
 
 export type AllActions =
   | CreateProject
+  | LogoutAction
   | UpdateProject
   | UpdateUser
   | UpdateSteps
@@ -37,8 +38,11 @@ function updateSteps(projectId: string, steps: UpdateSteps['steps']): UpdateStep
   return {projectId, steps, type: 'UPDATE_STEPS'}
 }
 
+export type LogoutAction = Readonly<Action<'LOGOUT'>>
+const logoutAction: LogoutAction = {type: 'LOGOUT'}
+
 export interface RootState {
   user: bayes.maVoie.User
 }
 
-export {createProjectAction, updateProject, updateUser, updateSteps}
+export {createProjectAction, logoutAction, updateProject, updateSteps, updateUser}
