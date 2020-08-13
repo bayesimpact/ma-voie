@@ -43,6 +43,12 @@ export const user = (state = initialUser, action: AllActions): bayes.maVoie.User
             },
           } : project),
       }
+
+    case 'LOGOUT':
+      Storage.removeItem(USER_IN_LOCAL_STORAGE)
+      return {
+        ...initialUser,
+      }
   }
   return state
 }

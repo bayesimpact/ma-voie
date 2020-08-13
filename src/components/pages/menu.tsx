@@ -1,11 +1,11 @@
 import CloseIcon from 'mdi-react/CloseIcon'
 import React, {useCallback} from 'react'
 import {useTranslation} from 'react-i18next'
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {useHistory} from 'react-router'
 import {Link} from 'react-router-dom'
 
-import {RootState} from 'store/actions'
+import {logoutAction, RootState} from 'store/actions'
 import {useProject} from 'store/selections'
 import {getPath} from 'store/url'
 
@@ -124,6 +124,11 @@ const MenuPage = (): React.ReactElement => {
     ? projects.filter((project: bayes.maVoie.Project) => project.job !== undefined)
     : null
 
+  const dispatch = useDispatch()
+  const handleLogout = useCallback((): void => {
+    dispatch(logoutAction)
+  }, [dispatch])
+
   return <div style={pageStyle}>
     {!isConnected ?
       <div style={notConnectedCloseStyle}>
@@ -166,11 +171,13 @@ const MenuPage = (): React.ReactElement => {
         : null
       }
     </div>
-    <div style={buttonContainerStyle}>
-      <Button type="menu" onClick={notAvailable} style={buttonNewStyle}>
-        {t('+ Ajouter un projet')}
-      </Button>
-    </div>
+    {isConnected
+      ? <div style={buttonContainerStyle}>
+        <Button type="menu" onClick={notAvailable} style={buttonNewStyle}>
+          {t('+ Ajouter un projet')}
+        </Button>
+      </div>
+      : null}
     {!isConnected ? <div style={newAccountDivContainerStyle}>
       <Link to={getPath(['ACCOUNT'], t)} style={linkStyle}>
         <Button type="firstLevel" style={buttonStyle}>{t('Créer un compte')}</Button>
@@ -179,7 +186,9 @@ const MenuPage = (): React.ReactElement => {
     <div style={returnDivContainerStyle}>
       <div style={returnDivStyle}>
         {isConnected ? // TODO(émilie): create the logout action
-          <Link to={getPath([], t)} style={linkReturnStyle}>{t('Déconnexion')}</Link>
+          <Link to={getPath([], t)} style={linkReturnStyle} onClick={handleLogout}>
+            {t('Déconnexion')}
+          </Link>
           : <Link to={getPath([], t)} style={linkReturnStyle}>{t('Retour à l\'accueil')}</Link>}
       </div>
     </div>
