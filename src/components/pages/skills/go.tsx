@@ -37,7 +37,7 @@ const SkillsGoPage = (): React.ReactElement => {
       </p>
     </Trans>
     <div style={buttonContainerStyle}>
-      <StepValidationButton stepId="skills">
+      <StepValidationButton stepId="skills" stepValue="normal">
         {t('C\'est parti\u00A0!')}
       </StepValidationButton>
     </div>

@@ -45,7 +45,7 @@ const GoPage = (): React.ReactElement => {
         </Trans>
       </div>
       <div style={buttonContainerStyle}>
-        <StepValidationButton stepId="definition">
+        <StepValidationButton stepId="definition" stepValue="normal">
           {t('C\'est parti\u00A0!')}
         </StepValidationButton>
       </div>

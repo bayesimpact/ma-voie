@@ -109,8 +109,9 @@ const StepsPage = (): React.ReactElement => {
   return <Layout>
     <div style={stepsStyle}>
       {STEPS.map(({title, ...step}, index) => {
-        const isDone = project.completedSteps?.[step.stepId]
-        const isOpen = !isDone && (!index || project.completedSteps?.[STEPS[index - 1].stepId])
+        const isDone = typeof project.completedSteps?.[step.stepId] !== 'undefined'
+        const isOpen = !isDone
+          && (!index || typeof project.completedSteps?.[STEPS[index - 1].stepId] !== 'undefined')
         return <React.Fragment key={index}>
           {index ? <ArrowDownIcon style={arrowStyle} color={colors.SILVER_THREE} /> : null}
           <Step index={index + 1} {...step} onClick={onClick} isOpen={isOpen} isDone={isDone}>

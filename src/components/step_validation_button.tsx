@@ -16,16 +16,17 @@ const linkStyle: React.CSSProperties = {
 interface ButtonProps {
   children: React.ReactNode
   stepId: StepId
+  stepValue: bayes.maVoie.StepAssessment
   type?: ButtonType
 }
 const StepValidationButton = (
-  {children, stepId, type = 'secondLevel'}: ButtonProps): React.ReactElement => {
+  {children, stepId, stepValue, type = 'secondLevel'}: ButtonProps): React.ReactElement => {
   const {t} = useTranslation()
   const dispatch = useDispatch()
   const projectId = useProjectId()
   const handleClick = useCallback((): void => {
-    dispatch(updateSteps(projectId, {[stepId]: true}))
-  }, [dispatch, projectId, stepId])
+    dispatch(updateSteps(projectId, {[stepId]: stepValue}))
+  }, [dispatch, projectId, stepId, stepValue])
 
   return <Link to={getPath(['STEPS'], t)} style={linkStyle}>
     <Button type={type} onClick={handleClick}>{children}</Button>
