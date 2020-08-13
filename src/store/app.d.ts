@@ -26,11 +26,16 @@ declare namespace bayes {
     type ProjectObjective =
       | 'job'
       | 'training'
+    type StepCertificate =
+      | 'notRequired'
+      | 'self'
+      | 'partner'
 
+    // undefined means not certified yet
     interface ProjectStep {
-      definition?: boolean
-      skills?: boolean
-      training?: boolean
+      definition?: StepCertificate
+      skills?: StepCertificate
+      training?: StepCertificate
     }
 
     interface Project {

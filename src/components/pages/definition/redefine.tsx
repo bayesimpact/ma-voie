@@ -47,7 +47,7 @@ const RedefinePage = (): React.ReactElement => {
       </Link>
     </div>
     <div style={buttonContainerStyle}>
-      <StepValidationButton stepId="definition">
+      <StepValidationButton stepId="definition" stepValue="notRequired">
         {t('Je continue avec ce métier')}
       </StepValidationButton>
     </div>
