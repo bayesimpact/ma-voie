@@ -3,6 +3,7 @@ import {useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
 import {useHistory} from 'react-router'
 
+import {useFastForward} from 'hooks/fast_forward'
 import {RootState, updateUser, useDispatch} from 'store/actions'
 import {getPath} from 'store/url'
 
@@ -62,6 +63,18 @@ const AccountPage = (): React.ReactElement => {
       setUpdated(true)
     }
   }, [dispatch, name, inputName, lastName, inputLastName])
+  useFastForward(() => {
+    if (inputName && inputLastName) {
+      onSave()
+      return
+    }
+    if (!inputName) {
+      setName('Angèle')
+    }
+    if (!inputLastName) {
+      setLastName('Dupont')
+    }
+  })
 
   return <Layout bigTitle={t('Inscription')}>
     <Input
