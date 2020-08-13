@@ -21,9 +21,14 @@ const inputStyle: React.CSSProperties = {
   fontSize: 16,
   height: 24,
   lineHeight: 24,
-  marginBottom: 20,
+  marginTop: 20,
   padding: '18px 25px',
   width: 'calc(100% - 52px)',
+}
+const errorMessageStyle: React.CSSProperties = {
+  color: colors.RED_ERROR,
+  fontSize: 13,
+  marginLeft: 25,
 }
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
@@ -50,6 +55,9 @@ const AccountPage = (): React.ReactElement => {
   }, [email])
 
   const [password, setPassword] = useState('')
+  const [isErrorDisplayed, setIsErrorDisplayed] = useState(false)
+  const [areErrorFields, setAreErrorFields] =
+    useState<{[K in 'email'|'lastName'|'name'|'password']?: boolean}>({})
 
   const [updated, setUpdated] = useState(false)
   useEffect((): () => void => {
@@ -65,6 +73,19 @@ const AccountPage = (): React.ReactElement => {
 
   const dispatch = useDispatch()
   const onSave = useCallback((): void => {
+    const errorsFields = {
+      // TODO(émilie): validate the email
+      email: !inputEmail,
+      lastName: !inputLastName,
+      name: !inputName,
+      password: !password,
+    }
+    setAreErrorFields(errorsFields)
+    if (!inputName || !inputLastName || !inputEmail || !password) {
+      setIsErrorDisplayed(true)
+      return
+    }
+    setIsErrorDisplayed(false)
     const update = {
       ...name === inputName ? {} : {name: inputName},
       ...lastName === inputLastName ? {} : {lastName: inputLastName},
@@ -74,7 +95,7 @@ const AccountPage = (): React.ReactElement => {
       dispatch(updateUser(update))
       setUpdated(true)
     }
-  }, [dispatch, email, name, inputEmail, inputName, lastName, inputLastName])
+  }, [dispatch, email, name, inputEmail, inputName, lastName, inputLastName, password])
   useFastForward(() => {
     if (inputName && inputLastName && inputEmail && password) {
       onSave()
@@ -94,27 +115,68 @@ const AccountPage = (): React.ReactElement => {
     }
   })
 
+  const buttonStyle: React.CSSProperties = {
+    marginTop: 20,
+    opacity: !inputName || !inputLastName || !inputEmail || !password ? 0.75 : 1,
+  }
+
+  const errorValidationStyle: React.CSSProperties = {
+    color: colors.RED_ERROR,
+  }
+
+  const inputNameStyle: React.CSSProperties = {
+    ...inputStyle,
+    borderColor: areErrorFields.name ? colors.RED_ERROR : colors.SILVER_THREE,
+  }
+  const inputLastNameStyle: React.CSSProperties = {
+    ...inputStyle,
+    borderColor: areErrorFields.lastName ? colors.RED_ERROR : colors.SILVER_THREE,
+  }
+  const inputEmailStyle: React.CSSProperties = {
+    ...inputStyle,
+    borderColor: areErrorFields.email ? colors.RED_ERROR : colors.SILVER_THREE,
+  }
+  const inputPasswordStyle: React.CSSProperties = {
+    ...inputStyle,
+    borderColor: areErrorFields.password ? colors.RED_ERROR : colors.SILVER_THREE,
+  }
+
   return <Layout bigTitle={t('Inscription')}>
     <Input
-      placeholder={t('Prénom')} style={inputStyle}
+      placeholder={t('Prénom')} style={inputNameStyle}
       autoComplete="given-name"
       value={inputName} onChange={setName} />
+    {areErrorFields.name ? <div style={errorMessageStyle}>
+      {t('<sup>*</sup>Champ obligatoire')}
+    </div> : null}
     <Input
-      placeholder={t('Nom')} style={inputStyle}
+      placeholder={t('Nom')} style={inputLastNameStyle}
       autoComplete="family-name"
       value={inputLastName} onChange={setLastName} />
+    {areErrorFields.lastName ? <div style={errorMessageStyle}>
+      {t('<sup>*</sup>Champ obligatoire')}
+    </div> : null}
     <Input
-      placeholder={t('Email')} style={inputStyle}
+      placeholder={t('Email')} style={inputEmailStyle}
       autoComplete="email"
       value={inputEmail} onChange={setEmail} />
+    {areErrorFields.email ? <div style={errorMessageStyle}>
+      {t('<sup>*</sup>Champ obligatoire')}
+    </div> : null}
     <Input
-      placeholder={t('Mot de passe')} style={inputStyle}
+      placeholder={t('Mot de passe')} style={inputPasswordStyle}
       type="password" autoComplete="new-password"
       value={password} onChange={setPassword} />
-    <Button type="secondLevel" onClick={onSave} >
+    {areErrorFields.password ? <div style={errorMessageStyle}>
+      {t('<sup>*</sup>Champ obligatoire')}
+    </div> : null}
+    <Button type="secondLevel" onClick={onSave} style={buttonStyle} >
       {t('Valider')}
     </Button>
     {updated ? t('Vos identifiants ont été mis à jour.') : null}
+    {isErrorDisplayed ? <div style={errorValidationStyle}>
+      {t('Veuillez saisir les champs obligatoires pour continuer')}
+    </div> : null}
   </Layout>
 }
 
