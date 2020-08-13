@@ -1,5 +1,8 @@
-import React from 'react'
+import React, {useCallback} from 'react'
 import {useTranslation, Trans} from 'react-i18next'
+
+import {updateSteps, useDispatch} from 'store/actions'
+import {useProjectId} from 'store/selections'
 
 import Layout from 'components/layout'
 import StepValidationButton from 'components/step_validation_button'
@@ -21,6 +24,12 @@ const SkillsGoPage = (): React.ReactElement => {
   const {t} = useTranslation()
   const bigTitle = t('Félicitations\u00A0!')
 
+  const dispatch = useDispatch()
+  const projectId = useProjectId()
+  const handleClick = useCallback((): void => {
+    dispatch(updateSteps(projectId, {training: 'notRequired'}))
+  }, [dispatch, projectId])
+
   return <Layout header={t('Compétences')} bigTitle={bigTitle}>
     <Trans>
       <p style={paragraphStyle}>
@@ -37,7 +46,7 @@ const SkillsGoPage = (): React.ReactElement => {
       </p>
     </Trans>
     <div style={buttonContainerStyle}>
-      <StepValidationButton stepId="skills" stepValue="notRequired">
+      <StepValidationButton stepId="skills" stepValue="notRequired" onClick={handleClick}>
         {t('C\'est parti\u00A0!')}
       </StepValidationButton>
     </div>
