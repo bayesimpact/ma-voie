@@ -47,7 +47,7 @@ const AccountPage = (): React.ReactElement => {
     const timeout = setTimeout(() => setUpdated(false), 2000)
     return (): void => {
       clearTimeout(timeout)
-      history.push(getPath(['DEFINITION', 'WHERE'], t))
+      history.push(getPath(['STEPS'], t))
     }
   })
 
