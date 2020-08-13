@@ -43,6 +43,9 @@ export const user = (state = initialUser, action: AllActions): bayes.maVoie.User
             },
           } : project),
       }
+
+    case 'LOGOUT':
+      return initialUser
   }
   return state
 }
