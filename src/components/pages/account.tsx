@@ -11,6 +11,9 @@ import Button from 'components/button'
 import Input from 'components/input'
 import Layout from 'components/layout'
 
+const getUniqueExampleEmail = (): string => `test-${new Date().getTime()}@example.com`
+
+
 const inputStyle: React.CSSProperties = {
   border: `1px solid ${colors.SILVER_THREE}`,
   borderRadius: 15,
@@ -40,6 +43,14 @@ const AccountPage = (): React.ReactElement => {
     lastName && setLastName(lastName)
   }, [lastName])
 
+  const email = useSelector(({user: {email}}: RootState) => email)
+  const [inputEmail, setEmail] = useState(email || '')
+  useEffect((): void => {
+    email && setEmail(email)
+  }, [email])
+
+  const [password, setPassword] = useState('')
+
   const [updated, setUpdated] = useState(false)
   useEffect((): () => void => {
     if (!updated) {
@@ -57,14 +68,15 @@ const AccountPage = (): React.ReactElement => {
     const update = {
       ...name === inputName ? {} : {name: inputName},
       ...lastName === inputLastName ? {} : {lastName: inputLastName},
+      ...email === inputEmail ? {} : {email: inputEmail},
     }
     if (Object.keys(update).length) {
       dispatch(updateUser(update))
       setUpdated(true)
     }
-  }, [dispatch, name, inputName, lastName, inputLastName])
+  }, [dispatch, email, name, inputEmail, inputName, lastName, inputLastName])
   useFastForward(() => {
-    if (inputName && inputLastName) {
+    if (inputName && inputLastName && inputEmail && password) {
       onSave()
       return
     }
@@ -74,13 +86,31 @@ const AccountPage = (): React.ReactElement => {
     if (!inputLastName) {
       setLastName('Dupont')
     }
+    if (!inputEmail) {
+      setEmail(getUniqueExampleEmail())
+    }
+    if (!password) {
+      setPassword('password')
+    }
   })
 
   return <Layout bigTitle={t('Inscription')}>
     <Input
-      placeholder={t('Prénom')} style={inputStyle} value={inputName} onChange={setName} />
+      placeholder={t('Prénom')} style={inputStyle}
+      autoComplete="given-name"
+      value={inputName} onChange={setName} />
     <Input
-      placeholder={t('Nom')} style={inputStyle} value={inputLastName} onChange={setLastName} />
+      placeholder={t('Nom')} style={inputStyle}
+      autoComplete="family-name"
+      value={inputLastName} onChange={setLastName} />
+    <Input
+      placeholder={t('Email')} style={inputStyle}
+      autoComplete="email"
+      value={inputEmail} onChange={setEmail} />
+    <Input
+      placeholder={t('Mot de passe')} style={inputStyle}
+      type="password" autoComplete="new-password"
+      value={password} onChange={setPassword} />
     <Button type="secondLevel" onClick={onSave} >
       {t('Valider')}
     </Button>
