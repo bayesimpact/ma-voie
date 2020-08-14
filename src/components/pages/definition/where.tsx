@@ -41,7 +41,6 @@ const WherePage = (): React.ReactElement => {
     dispatch(updateProject({hasDefinedProject, projectId}))
   }, [dispatch, projectId])
 
-  // FIXME(émilie): Delete links and change them by the good handler
   return <Layout header={t('Définition')} title={title}>
     {BUTTONS.map((props: ButtonProps, index) => <SelectButton<boolean>
       onClick={onClick} key={index}
