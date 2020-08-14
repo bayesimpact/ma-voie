@@ -1,35 +1,27 @@
 import React, {useCallback} from 'react'
 import {useTranslation} from 'react-i18next'
+import {useHistory} from 'react-router'
 
 import {updateProject, useDispatch} from 'store/actions'
-import {prepareT} from 'store/i18n'
+import {LocalizableOption, localizeOptions, prepareT} from 'store/i18n'
 import {useProjectId} from 'store/selections'
-import {Page} from 'store/url'
+import {getPath} from 'store/url'
 
-import SelectButton from 'components/select_button'
+import Select from 'components/select'
 import Layout from 'components/layout'
 
-interface ButtonProps {
-  interest: bayes.maVoie.ProjectInterest
-  name: string
-  page: Page
-}
-// TODO(cyrille): Make a <select> component with button options.
-const BUTTONS: readonly ButtonProps[] = [
+const INTEREST_OPTIONS: readonly LocalizableOption<bayes.maVoie.ProjectInterest>[] = [
   {
-    interest: 'exciting',
     name: prepareT('Passionnant'),
-    page: ['DEFINITION', 'GO'],
+    value: 'exciting',
   },
   {
-    interest: 'interesting',
     name: prepareT('Intéressant'),
-    page: ['DEFINITION', 'GO'],
+    value: 'interesting',
   },
   {
-    interest: 'indifferent',
     name: prepareT('Un métier comme un autre'),
-    page: ['DEFINITION', 'REDEFINE'],
+    value: 'indifferent',
   },
 ]
 
@@ -41,16 +33,16 @@ const InterestPage = (): React.ReactElement => {
 
   const dispatch = useDispatch()
   const projectId = useProjectId()
+  const history = useHistory()
 
   const onClick = useCallback((value: bayes.maVoie.ProjectInterest): void => {
     dispatch(updateProject({interest: value, projectId}))
-  }, [dispatch, projectId])
+    // TODO(cyrille): Redirect to another page if experience is <2 and there's some interest.
+    history.push(getPath(['DEFINITION', value === 'indifferent' ? 'REDEFINE' : 'GO'], t))
+  }, [dispatch, history, projectId, t])
 
   return <Layout header={t('Définition')} title={title}>
-    {BUTTONS.map((props: ButtonProps) => <SelectButton<bayes.maVoie.ProjectInterest>
-      onClick={onClick} value={props.interest} key={props.interest}
-      name={props.name} page={props.page} />,
-    )}
+    <Select options={localizeOptions(t, INTEREST_OPTIONS)} onChange={onClick} />
   </Layout>
 }
 
