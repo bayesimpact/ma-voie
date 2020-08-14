@@ -92,6 +92,14 @@ export interface WithLocalizableName<T extends string = string> {
   readonly name: LocalizableString<T>
 }
 
+export interface LocalizableOption<O, T extends string = string> extends WithLocalizableName<T> {
+  value: O
+}
+function localizeOptions<T extends WithLocalizableName>(
+  translate: TFunction, options: readonly T[], tOptions?: TOptions):
+  readonly (Omit<T, 'name'> & {name: string})[] {
+  return options.map(({name, ...other}) => ({name: translate(name, tOptions), ...other}))
+}
 // Marker for string to be extracted for translation.
 function prepareT<T extends string = string>(str: T, unusedOptions?: TOptions):
 LocalizableString<T> {
@@ -118,4 +126,4 @@ const joinList = (values: readonly string[], t: TFunction): string => {
   return values.slice(0, -1).join(separator) + lastSeparator + values.slice(-1)[0]
 }
 
-export {init, joinList, prepareT, STATIC_NAMESPACE}
+export {init, joinList, localizeOptions, prepareT, STATIC_NAMESPACE}
