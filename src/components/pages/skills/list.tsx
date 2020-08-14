@@ -27,7 +27,7 @@ interface SkillType {
 
 // TODO(émilie): Move into another file
 // FIXME(émilie): Select by rome ID first
-const skillsByOgr: SkillType[] = [
+const skillsByOgr: readonly SkillType[] = [
   {
     codeOgr: '101343',
     isPriority: true,
@@ -112,7 +112,7 @@ const SkillsListPage = (): React.ReactElement => {
   const project = useProject()
   const history = useHistory()
 
-  const [valuesSelected, setValuesSelected] = useState<string[]>(project.skills || [])
+  const [valuesSelected, setValuesSelected] = useState<readonly string[]>(project.skills || [])
 
   const handleClick = useCallback((): void => {
     dispatch(updateProject({projectId, skills: valuesSelected}))

@@ -88,8 +88,8 @@ interface ListProps<T> {
     label: React.ReactNode
     value: T
   }[]
-  onChange: (value: T[]) => void
-  valuesSelected: T[]
+  onChange: (value: readonly T[]) => void
+  valuesSelected: readonly T[]
 }
 
 const CheckboxListBase = <T extends unknown = string>
