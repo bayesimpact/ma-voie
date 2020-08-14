@@ -1,17 +1,13 @@
 import React from 'react'
 import {useTranslation, Trans} from 'react-i18next'
-import {Link} from 'react-router-dom'
 
 import {useProjectId, useSelector} from 'store/selections'
-import {getPath} from 'store/url'
 
-import Button from 'components/button'
 import Layout from 'components/layout'
+import StepValidationButton from 'components/step_validation_button'
 
 const lowerFirstLetter = (phrase: string): string => phrase[0].toLowerCase() + phrase.slice(1)
-const linkStyle: React.CSSProperties = {
-  textDecoration: 'none',
-}
+
 const paragraphStyle: React.CSSProperties = {
   color: colors.DARK_FOREST_GREEN,
   fontSize: 22,
@@ -51,11 +47,9 @@ const SkillsTrainingPage = (): React.ReactElement => {
       </p>
     </Trans>
     <div style={buttonContainerStyle}>
-      <Link to={getPath(['STEPS'], t)} style={linkStyle}>
-        <Button type="secondLevel">
-          {t('C\'est parti\u00A0!')}
-        </Button>
-      </Link>
+      <StepValidationButton stepId="skills" stepValue="notRequired">
+        {t('C\'est parti\u00A0!')}
+      </StepValidationButton>
     </div>
   </Layout>
 }
