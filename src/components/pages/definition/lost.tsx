@@ -39,7 +39,7 @@ const LostPage = (): React.ReactElement => {
       On y va&nbsp;?
     </Trans>
     <div style={buttonContainerStyle}>
-      <Link to={getPath(['STEPS'], t)} style={linkStyle}>
+      <Link to={getPath(['DEFINITION', 'PARTNERS_INTERNAL'], t)} style={linkStyle}>
         <Button type="secondLevel">{t('C\'est parti\u00A0!')}</Button>
       </Link>
     </div>
