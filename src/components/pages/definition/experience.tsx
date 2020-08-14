@@ -1,14 +1,8 @@
-import React, {useCallback} from 'react'
-import {useTranslation} from 'react-i18next'
-import {useHistory} from 'react-router'
+import React from 'react'
 
-import {updateProject, useDispatch} from 'store/actions'
-import {LocalizableOption, localizeOptions, prepareT} from 'store/i18n'
-import {useProjectId} from 'store/selections'
-import {getPath} from 'store/url'
+import {LocalizableOption, prepareT} from 'store/i18n'
 
-import Select from 'components/select'
-import Layout from 'components/layout'
+import Step from './step'
 
 const EXPERIENCE_OPTIONS: readonly LocalizableOption<bayes.maVoie.ProjectExperience>[] = [
   {
@@ -29,25 +23,13 @@ const EXPERIENCE_OPTIONS: readonly LocalizableOption<bayes.maVoie.ProjectExperie
   },
 ]
 
+const redirect = (): 'INTEREST' => 'INTEREST'
+
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
-const ExperiencePage = (): React.ReactElement => {
-  const {t} = useTranslation()
-  const title = t('Quelle est votre expérience pour ce métier\u00A0?')
-
-  const dispatch = useDispatch()
-  const projectId = useProjectId()
-  const history = useHistory()
-
-  const onClick = useCallback((value: bayes.maVoie.ProjectExperience): void => {
-    dispatch(updateProject({experience: value, projectId}))
-    history.push(getPath(['DEFINITION', 'INTEREST'], t))
-  }, [dispatch, history, projectId, t])
-
-  return <Layout header={t('Définition')} title={title}>
-    <Select<bayes.maVoie.ProjectExperience>
-      onChange={onClick} options={localizeOptions(t, EXPERIENCE_OPTIONS)} />
-  </Layout>
-}
+const ExperiencePage = (): React.ReactElement =>
+  <Step
+    projectKey="experience" options={EXPERIENCE_OPTIONS} redirect={redirect}
+    title={prepareT('Quelle est votre expérience pour ce métier\u00A0?')} />
 
 export default React.memo(ExperiencePage)
