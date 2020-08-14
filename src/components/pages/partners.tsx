@@ -152,8 +152,6 @@ const PartnersPage = (): React.ReactElement => {
     transition: '450ms',
   }
   const bigTitle = prepareT('Voici les partenaires idéaux pour vous aider')
-  // TODO(émilie): When validating, indicate the level of validation
-  // TODO(émilie): get the right value for "XX personnes ont choisi Chance"
   // TODO(pascal): Fix the slider as it's not easy to get it right in CSS
   return <Layout header={translate(shortTitle)} bigTitle={bigTitle}>
     <TabsNav tabs={tabs} />
