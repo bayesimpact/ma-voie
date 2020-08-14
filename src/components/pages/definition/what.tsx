@@ -1,30 +1,23 @@
 import React, {useCallback} from 'react'
 import {useTranslation} from 'react-i18next'
+import {useHistory} from 'react-router'
 
 import {updateProject, useDispatch} from 'store/actions'
-import {prepareT} from 'store/i18n'
+import {LocalizableOption, localizeOptions, prepareT} from 'store/i18n'
 import {useProjectId} from 'store/selections'
-import {Page} from 'store/url'
+import {getPath} from 'store/url'
 
-import SelectButton from 'components/select_button'
+import Select from 'components/select'
 import Layout from 'components/layout'
 
-interface ButtonProps {
-  name: string
-  objective: bayes.maVoie.ProjectObjective
-  page: Page
-}
-// TODO(cyrille): Make a <select> component with button options.
-const BUTTONS: readonly ButtonProps[] = [
+const OBJECTIVE_OPTIONS: readonly LocalizableOption<bayes.maVoie.ProjectObjective>[] = [
   {
     name: prepareT('Retrouver un poste'),
-    objective: 'job',
-    page: ['DEFINITION', 'JOB'],
+    value: 'job',
   },
   {
     name: prepareT('Me former'),
-    objective: 'training',
-    page: ['DEFINITION', 'LOST'],
+    value: 'training',
   },
 ]
 
@@ -37,17 +30,16 @@ const WhatPage = (): React.ReactElement => {
 
   const dispatch = useDispatch()
   const projectId = useProjectId()
+  const history = useHistory()
 
   const onClick = useCallback((objective: bayes.maVoie.ProjectObjective): void => {
     dispatch(updateProject({objective, projectId}))
-  }, [dispatch, projectId])
+    history.push(getPath(['DEFINITION', objective === 'job' ? 'JOB' : 'LOST'], t))
+  }, [dispatch, history, projectId, t])
 
 
   return <Layout header={t('Définition')} bigTitle={bigTitle} title={title}>
-    {BUTTONS.map((props: ButtonProps) => <SelectButton<bayes.maVoie.ProjectObjective>
-      onClick={onClick} key={props.objective}
-      name={props.name} page={props.page} value={props.objective} />,
-    )}
+    <Select options={localizeOptions(t, OBJECTIVE_OPTIONS)} onChange={onClick} />
   </Layout>
 }
 

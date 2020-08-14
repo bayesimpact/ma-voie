@@ -1,30 +1,23 @@
 import React, {useCallback} from 'react'
 import {useTranslation} from 'react-i18next'
+import {useHistory} from 'react-router'
 
 import {updateProject, useDispatch} from 'store/actions'
-import {prepareT} from 'store/i18n'
+import {LocalizableOption, localizeOptions, prepareT} from 'store/i18n'
 import {useProjectId} from 'store/selections'
-import {Page} from 'store/url'
+import {getPath} from 'store/url'
 
-import SelectButton from 'components/select_button'
+import Select from 'components/select'
 import Layout from 'components/layout'
 
-interface ButtonProps {
-  hasDefinedProject: boolean
-  name: string
-  page: Page
-}
-// TODO(cyrille): Make a <select> component with button options.
-const BUTTONS: readonly ButtonProps[] = [
+const DEFINED_PROJECT_OPTIONS: readonly LocalizableOption<boolean>[] = [
   {
-    hasDefinedProject: true,
     name: prepareT('Je sais ce que je veux faire'),
-    page: ['DEFINITION', 'WHAT'],
+    value: true,
   },
   {
-    hasDefinedProject: false,
     name: prepareT('Je ne sais pas / Je suis perdu·e'),
-    page: ['DEFINITION', 'LOST'],
+    value: false,
   },
 ]
 
@@ -36,17 +29,17 @@ const WherePage = (): React.ReactElement => {
 
   const dispatch = useDispatch()
   const projectId = useProjectId()
+  const history = useHistory()
 
   const onClick = useCallback((hasDefinedProject: boolean): void => {
     dispatch(updateProject({hasDefinedProject, projectId}))
-  }, [dispatch, projectId])
+    history.push((getPath(['DEFINITION', hasDefinedProject ? 'WHAT' : 'LOST'], t)))
+  }, [dispatch, projectId, history, t])
 
   // FIXME(émilie): Delete links and change them by the good handler
+  // TODO(cyrille): Make a `DefinitionStep` component to DRY most of the behavior.
   return <Layout header={t('Définition')} title={title}>
-    {BUTTONS.map((props: ButtonProps, index) => <SelectButton<boolean>
-      onClick={onClick} key={index}
-      name={props.name} page={props.page} value={props.hasDefinedProject} />,
-    )}
+    <Select options={localizeOptions(t, DEFINED_PROJECT_OPTIONS)} onChange={onClick} />
   </Layout>
 }
 

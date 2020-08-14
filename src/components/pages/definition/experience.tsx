@@ -1,40 +1,31 @@
 import React, {useCallback} from 'react'
 import {useTranslation} from 'react-i18next'
+import {useHistory} from 'react-router'
 
 import {updateProject, useDispatch} from 'store/actions'
-import {prepareT} from 'store/i18n'
+import {LocalizableOption, localizeOptions, prepareT} from 'store/i18n'
 import {useProjectId} from 'store/selections'
-import {Page} from 'store/url'
+import {getPath} from 'store/url'
 
-import SelectButton from 'components/select_button'
+import Select from 'components/select'
 import Layout from 'components/layout'
 
-interface ButtonProps {
-  experience: bayes.maVoie.ProjectExperience
-  name: string
-  page: Page
-}
-// TODO(cyrille): Make a <select> component with button options.
-const BUTTONS: readonly ButtonProps[] = [
+const EXPERIENCE_OPTIONS: readonly LocalizableOption<bayes.maVoie.ProjectExperience>[] = [
   {
-    experience: 'new',
     name: prepareT('Je suis novice'),
-    page: ['DEFINITION', 'INTEREST'],
+    value: 'new',
   },
   {
-    experience: '1-3',
     name: prepareT('Entre 1-3 ans'),
-    page: ['DEFINITION', 'INTEREST'],
+    value: '1-3',
   },
   {
-    experience: '3-5',
     name: prepareT('Entre 3-5 ans'),
-    page: ['DEFINITION', 'INTEREST'],
+    value: '3-5',
   },
   {
-    experience: '5',
     name: prepareT('Plus de 5 ans'),
-    page: ['DEFINITION', 'INTEREST'],
+    value: '5',
   },
 ]
 
@@ -46,16 +37,16 @@ const ExperiencePage = (): React.ReactElement => {
 
   const dispatch = useDispatch()
   const projectId = useProjectId()
+  const history = useHistory()
 
   const onClick = useCallback((value: bayes.maVoie.ProjectExperience): void => {
     dispatch(updateProject({experience: value, projectId}))
-  }, [dispatch, projectId])
+    history.push(getPath(['DEFINITION', 'INTEREST'], t))
+  }, [dispatch, history, projectId, t])
 
   return <Layout header={t('Définition')} title={title}>
-    {BUTTONS.map((props: ButtonProps) => <SelectButton<bayes.maVoie.ProjectExperience>
-      onClick={onClick} value={props.experience} key={props.experience}
-      name={props.name} page={props.page} />,
-    )}
+    <Select<bayes.maVoie.ProjectExperience>
+      onChange={onClick} options={localizeOptions(t, EXPERIENCE_OPTIONS)} />
   </Layout>
 }
 
