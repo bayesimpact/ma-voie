@@ -5,22 +5,10 @@ import {LocalizableOption, prepareT} from 'store/i18n'
 import Step from './step'
 
 const EXPERIENCE_OPTIONS: readonly LocalizableOption<bayes.maVoie.ProjectExperience>[] = [
-  {
-    name: prepareT('Je suis novice'),
-    value: 'new',
-  },
-  {
-    name: prepareT('Entre 1-3 ans'),
-    value: '1-3',
-  },
-  {
-    name: prepareT('Entre 3-5 ans'),
-    value: '3-5',
-  },
-  {
-    name: prepareT('Plus de 5 ans'),
-    value: '5',
-  },
+  {name: prepareT('Je suis novice'), value: 'new'},
+  {name: prepareT('Entre 1-3 ans'), value: '1-3'},
+  {name: prepareT('Entre 3-5 ans'), value: '3-5'},
+  {name: prepareT('Plus de 5 ans'), value: '5'},
 ]
 
 const redirect = (): 'INTEREST' => 'INTEREST'
