@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {useTranslation, Trans} from 'react-i18next'
 
 import Layout from 'components/layout'
@@ -14,12 +14,6 @@ const contentStyle: React.CSSProperties = {
 const buttonContainerStyle: React.CSSProperties = {
   paddingTop: 20,
 }
-const layoutStyle: React.CSSProperties = {
-  height: '100vh',
-}
-const textContainerStyle: React.CSSProperties = {
-
-}
 const layoutContentStyle: React.CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
@@ -31,9 +25,21 @@ const layoutContentStyle: React.CSSProperties = {
 const GoPage = (): React.ReactElement => {
   const {t} = useTranslation()
 
+  const [isVisible, setIsVisible] = useState<boolean>(false)
+
+  useEffect(() => {
+    setIsVisible(true)
+  }, [setIsVisible])
+
+  const layoutStyle: React.CSSProperties = {
+    height: '100vh',
+    opacity: isVisible ? 1 : 0,
+    transition: 'opacity 300ms',
+  }
+
   return <Layout header={t('Définition')} bigTitle={t('Félicitations\u00A0!')} style={layoutStyle}>
     <div style={layoutContentStyle}>
-      <div style={textContainerStyle}>
+      <div>
         <Trans parent="p" style={contentStyle}>
           Votre projet semble clair et cohérent.
         </Trans>
