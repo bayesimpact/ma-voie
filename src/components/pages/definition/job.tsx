@@ -1,7 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react'
 import {useTranslation} from 'react-i18next'
 import {useHistory} from 'react-router'
-import {Link} from 'react-router-dom'
 
 import {updateProject, useDispatch} from 'store/actions'
 import {useProjectId} from 'store/selections'
@@ -11,9 +10,6 @@ import Button from 'components/button'
 import JobSuggest from 'components/job_suggest'
 import Layout from 'components/layout'
 
-const linkStyle: React.CSSProperties = {
-  textDecoration: 'none',
-}
 const inputStyle: React.CSSProperties = {
   borderColor: colors.SILVER_THREE,
   borderRadius: 15,
@@ -28,7 +24,7 @@ const inputStyle: React.CSSProperties = {
 }
 const buttonContainerStyle: React.CSSProperties = {
   fontSize: 16,
-  paddingTop: 20,
+  marginTop: 20,
 }
 
 
@@ -40,20 +36,38 @@ const JobPage = (): React.ReactElement => {
   const projectId = useProjectId()
   const dispatch = useDispatch()
   const history = useHistory()
+  const [job, setJob] = useState<bayes.maVoie.Job>()
+  const [isVisible, setIsVisible] = useState<boolean>(false)
+
+  const validateButtonStyle: React.CSSProperties = {
+    marginTop: 20,
+    opacity: job ? 1 : 0.75,
+  }
+
+  useEffect(() => {
+    setIsVisible(true)
+  }, [setIsVisible])
+
   const onSelect = useCallback((job: bayes.maVoie.Job|null): void => {
+    if (!job) {
+      return
+    }
+    setJob(job)
+  }, [setJob])
+
+  const onValidate = useCallback((): void => {
     if (!job) {
       return
     }
     dispatch(updateProject({job, projectId}))
     setIsVisible(false)
     setTimeout(() => history.push(getPath(['DEFINITION', 'EXPERIENCE'], t)), 350)
-  }, [dispatch, history, projectId, t])
+  }, [dispatch, history, job, projectId, setIsVisible, t])
 
-  const [isVisible, setIsVisible] = useState<boolean>(false)
-
-  useEffect(() => {
-    setIsVisible(true)
-  }, [setIsVisible])
+  const onLostClick = useCallback((): void => {
+    setIsVisible(false)
+    setTimeout(() => history.push(getPath(['DEFINITION', 'LOST'], t)), 350)
+  }, [history, setIsVisible, t])
 
   const layoutStyle: React.CSSProperties = {
     opacity: isVisible ? 1 : 0,
@@ -65,11 +79,10 @@ const JobPage = (): React.ReactElement => {
     <JobSuggest
       placeholder={t('entrez votre métier')} style={inputStyle}
       onChange={onSelect} />
-    <div style={buttonContainerStyle}>
-      <Link to={getPath(['DEFINITION', 'LOST'], t)} style={linkStyle}>
-        <Button type="discret">{t('Je ne sais pas')}</Button>
-      </Link>
-    </div>
+    <Button style={validateButtonStyle} type="variable" onClick={onValidate}>{t('Valider')}</Button>
+    <Button style={buttonContainerStyle} type="discret" onClick={onLostClick}>
+      {t('Je ne sais pas')}
+    </Button>
   </Layout>
 }
 
