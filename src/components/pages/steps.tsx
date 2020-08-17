@@ -1,5 +1,5 @@
 import ArrowDownIcon from 'mdi-react/ArrowDownIcon'
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {useCallback, useEffect, useRef, useState} from 'react'
 import {Trans, useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
 import {useHistory} from 'react-router'
@@ -62,7 +62,7 @@ const stepsStyle: React.CSSProperties = {
 }
 const arrowStyle: React.CSSProperties = {
   display: 'block',
-  margin: '30px auto',
+  margin: '30px auto 0',
 }
 const interviewStyle: React.CSSProperties = {
   color: colors.GREYISH_TEAL,
@@ -72,6 +72,9 @@ const interviewDisclaimerStyle: React.CSSProperties = {
   fontSize: 14,
   marginTop: 15,
   textAlign: 'center',
+}
+const scrollableStepStyle: React.CSSProperties = {
+  paddingTop: 30,
 }
 
 // This is a top level page and should never be nested in another one.
@@ -85,6 +88,17 @@ const StepsPage = (): React.ReactElement => {
   const lastName = useSelector(({user: {lastName}}: RootState) => lastName)
   const isConnected = (name !== undefined && lastName !== undefined)
   const project = useProject()
+
+  const nextStep = STEPS.find(({stepId}) => !project.completedSteps?.[stepId])?.stepId
+  const nextStepRef = useRef<HTMLDivElement>(null)
+  useEffect((): (() => void) => {
+    // TODO(cyrille): Try to scroll to the last completed step before.
+    const timeout = window.setTimeout(
+      (): void => nextStepRef.current?.scrollIntoView({behavior: 'smooth'}), 500)
+    return (): void => clearTimeout(timeout)
+  }, [nextStep])
+  const getStepRef = (index: number): undefined|React.RefObject<HTMLDivElement> =>
+    STEPS[index]?.stepId === nextStep ? nextStepRef : undefined
 
   const onClick = useCallback((page: Page): void => {
     if (!isConnected) {
@@ -114,15 +128,19 @@ const StepsPage = (): React.ReactElement => {
           && (!index || !!project.completedSteps?.[STEPS[index - 1].stepId])
         return <React.Fragment key={index}>
           {index ? <ArrowDownIcon style={arrowStyle} color={colors.SILVER_THREE} /> : null}
-          <Step index={index + 1} {...step} onClick={onClick} isOpen={isOpen} isDone={isDone}>
-            {translate(title)}
-          </Step>
+          <div style={scrollableStepStyle} ref={getStepRef(index)}>
+            <Step index={index + 1} {...step} onClick={onClick} isOpen={isOpen} isDone={isDone}>
+              {translate(title)}
+            </Step>
+          </div>
         </React.Fragment>
       })}
       <ArrowDownIcon style={arrowStyle} color={colors.SILVER_THREE} />
-      <Button style={interviewStyle} onClick={soonAvailable} type="variable">
-        {t('Préparer un entretien')}
-      </Button>
+      <div style={scrollableStepStyle} ref={getStepRef(STEPS.length)}>
+        <Button style={interviewStyle} onClick={soonAvailable} type="variable">
+          {t('Préparer un entretien')}
+        </Button>
+      </div>
       <Trans count={STEPS.length} style={interviewDisclaimerStyle}>
         Il est préférable de terminer
         l'étape {{steps: joinList(STEPS.map((step, index) => (index + 1).toString()), t)}} avant de
