@@ -26,7 +26,7 @@ const DefinitionStepBase = <K extends keyof bayes.maVoie.Project>
   const projectId = useProjectId()
   const history = useHistory()
 
-  const [isVisible, setIsVisible] = useState<boolean>(false)
+  const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
     setIsVisible(true)
