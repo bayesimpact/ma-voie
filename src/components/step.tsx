@@ -31,7 +31,7 @@ const forbiddenStyle: React.CSSProperties = {
   fontSize: 15,
   fontWeight: 'bold',
 }
-interface Props {
+export interface StepProps {
   children: React.ReactNode
   color: string
   icon: string
@@ -43,7 +43,7 @@ interface Props {
   style?: React.CSSProperties
 }
 const Step = ({
-  children, color, icon, index, isDone, isOpen, onClick, page, style}: Props):
+  children, color, icon, index, isDone, isOpen, onClick, page, style}: StepProps):
 React.ReactElement => {
   const {t} = useTranslation()
   const containerStyle: React.CSSProperties = {

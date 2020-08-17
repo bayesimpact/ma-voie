@@ -11,26 +11,32 @@ import Select from 'components/select'
 import Layout from 'components/layout'
 
 interface StepProps<K extends keyof bayes.maVoie.Project> {
+  bigTitle?: LocalizableString
   projectKey: K
   title: LocalizableString
   options: readonly LocalizableOption<bayes.maVoie.Project[K]>[]
-  redirect: (value: bayes.maVoie.Project[K]) => PageSegment
+  redirect: (value: NonNullable<bayes.maVoie.Project[K]>) => PageSegment
 }
 
 // TODO(cyrille): Use this directly in the router.
 const DefinitionStepBase = <K extends keyof bayes.maVoie.Project>
-({projectKey, title, options, redirect}: StepProps<K>): React.ReactElement => {
+({projectKey, bigTitle, title, options, redirect}: StepProps<K>): React.ReactElement => {
   const {t, t: translate} = useTranslation()
   const dispatch = useDispatch()
   const projectId = useProjectId()
   const history = useHistory()
 
   const onClick = useCallback((value: bayes.maVoie.Project[K]): void => {
+    if (!value) {
+      return
+    }
     dispatch(updateProject({projectId, [projectKey]: value}))
-    history.push((getPath(['DEFINITION', redirect(value)], t)))
+    history.push(
+      getPath(['DEFINITION', redirect(value as NonNullable<bayes.maVoie.Project[K]>)], t))
   }, [dispatch, history, projectId, projectKey, redirect, t])
 
-  return <Layout header={t('Définition')} title={translate(title)}>
+  return <Layout
+    header={t('Définition')} bigTitle={bigTitle && translate(bigTitle)} title={translate(title)}>
     <Select options={localizeOptions(t, options)} onChange={onClick} />
   </Layout>
 }
