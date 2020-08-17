@@ -36,6 +36,7 @@ declare namespace bayes {
       definition?: StepCertificate
       skills?: StepCertificate
       training?: StepCertificate
+      interview?: StepCertificate
     }
 
     interface Project {

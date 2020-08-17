@@ -25,7 +25,7 @@ export interface StepInfo {
   isOpen?: boolean
   page: Page
   shortTitle?: string
-  stepId: 'definition' | 'skills' | 'training'
+  stepId: 'definition' | 'skills' | 'training' | 'interview'
   title: string
 }
 export type StepId = StepInfo['stepId']
@@ -56,6 +56,15 @@ export const STEPS: readonly StepInfo[] = [
     title: prepareT('Formations'),
   },
 ]
+
+const stepInterview: StepInfo = {
+  color: colors.LIGHT_SKY_BLUE,
+  icon: formationIcon,
+  page: ['DEFINITION'], // TODO(émilie): set when done
+  shortTitle: prepareT('Entretiens'),
+  stepId: 'interview',
+  title: prepareT('Préparer un entretien'),
+}
 
 const stepsStyle: React.CSSProperties = {
   padding: '30px 0',
@@ -136,16 +145,26 @@ const StepsPage = (): React.ReactElement => {
         </React.Fragment>
       })}
       <ArrowDownIcon style={arrowStyle} color={colors.SILVER_THREE} />
-      <div style={scrollableStepStyle} ref={getStepRef(STEPS.length)}>
-        <Button style={interviewStyle} onClick={soonAvailable} type="variable">
+      {project.completedSteps?.training
+        ? <Step index={STEPS.length + 1}
+          {...stepInterview}
+          onClick={soonAvailable} isOpen={!project.completedSteps?.interview}
+          isDone={!!project.completedSteps?.interview && !!project.completedSteps?.training}>
           {t('Préparer un entretien')}
-        </Button>
-      </div>
-      <Trans count={STEPS.length} style={interviewDisclaimerStyle}>
-        Il est préférable de terminer
-        l'étape {{steps: joinList(STEPS.map((step, index) => (index + 1).toString()), t)}} avant de
-        vous préparer pour les entretiens.
-      </Trans>
+        </Step>
+        : <React.Fragment>
+          <div style={scrollableStepStyle} ref={getStepRef(STEPS.length)}>
+            <Button style={interviewStyle} onClick={soonAvailable} type="variable">
+              {t('Préparer un entretien')}
+            </Button>
+          </div>
+          <Trans count={STEPS.length} style={interviewDisclaimerStyle}>
+            Il est préférable de terminer
+            l'étape {{steps: joinList(STEPS.map((step, i) => (i + 1).toString()), t)}} avant
+            de vous préparer pour les entretiens.
+          </Trans>
+        </React.Fragment>
+      }
     </div>
     {isPopupShown ? <CreateAccountPopup onClose={onClose} /> : null}
   </Layout>
