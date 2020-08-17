@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {useCallback, useState} from 'react'
 import {useTranslation, Trans} from 'react-i18next'
-import {Link} from 'react-router-dom'
+import {useHistory} from 'react-router'
 
 import {getPath} from 'store/url'
 
@@ -8,9 +8,6 @@ import Button from 'components/button'
 import Layout from 'components/layout'
 import StepValidationButton from 'components/step_validation_button'
 
-const linkStyle: React.CSSProperties = {
-  textDecoration: 'none',
-}
 const contentStyle: React.CSSProperties = {
   color: colors.DARK_FOREST_GREEN,
   fontSize: 21,
@@ -26,8 +23,21 @@ const buttonContainerStyle: React.CSSProperties = {
 // TOP LEVEL PAGE
 const RedefinePage = (): React.ReactElement => {
   const {t} = useTranslation()
+  const history = useHistory()
 
-  return <Layout header={t('Définition')}>
+  const [opacity, setOpacity] = useState<boolean>(true)
+
+  const layoutStyle: React.CSSProperties = {
+    opacity: opacity ? 1 : 0,
+  }
+
+  const onClick = useCallback((): void => {
+    setOpacity(false)
+    setTimeout(() =>
+      history.push(getPath(['DEFINITION', 'PARTNERS_INTERNAL'], t)), 500)
+  }, [history, t])
+
+  return <Layout header={t('Définition')} style={layoutStyle}>
     <Trans parent="p" style={contentStyle}>
       Votre projet est clair mais ne semble pas vous passionner.
     </Trans>
@@ -42,9 +52,7 @@ const RedefinePage = (): React.ReactElement => {
       Qu'en pensez-vous&nbsp;?
     </Trans>
     <div style={buttonContainerStyle}>
-      <Link to={getPath(['DEFINITION', 'PARTNERS_INTERNAL'], t)} style={linkStyle}>
-        <Button type="secondLevel">{t('Je redéfinis mon projet')}</Button>
-      </Link>
+      <Button type="secondLevel" onClick={onClick}>{t('Je redéfinis mon projet')}</Button>
     </div>
     <div style={buttonContainerStyle}>
       <StepValidationButton stepId="definition" stepValue="notRequired">
