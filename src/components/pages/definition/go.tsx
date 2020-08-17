@@ -25,7 +25,7 @@ const layoutContentStyle: React.CSSProperties = {
 const GoPage = (): React.ReactElement => {
   const {t} = useTranslation()
 
-  const [isVisible, setIsVisible] = useState<boolean>(false)
+  const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
     setIsVisible(true)
