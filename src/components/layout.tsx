@@ -5,6 +5,7 @@ import Header from 'components/header'
 const containerStyle: React.CSSProperties = {
   fontFamily: 'ProximaSoft',
   margin: '0 30px',
+  transition: 'opacity 450ms',
 }
 const h1Style: React.CSSProperties = {
   color: colors.DARK_FOREST_GREEN,

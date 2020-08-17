@@ -20,4 +20,5 @@ const ExperiencePage = (): React.ReactElement =>
     projectKey="experience" options={EXPERIENCE_OPTIONS} redirect={redirect}
     title={prepareT('Quelle est votre expérience pour ce métier\u00A0?')} />
 
+
 export default React.memo(ExperiencePage)
