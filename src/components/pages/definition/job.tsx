@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import {useTranslation} from 'react-i18next'
 import {useHistory} from 'react-router'
 import {Link} from 'react-router-dom'
@@ -45,11 +45,23 @@ const JobPage = (): React.ReactElement => {
       return
     }
     dispatch(updateProject({job, projectId}))
-    history.push(getPath(['DEFINITION', 'EXPERIENCE'], t))
+    setIsVisible(false)
+    setTimeout(() => history.push(getPath(['DEFINITION', 'EXPERIENCE'], t)), 350)
   }, [dispatch, history, projectId, t])
 
+  const [isVisible, setIsVisible] = useState<boolean>(false)
+
+  useEffect(() => {
+    setIsVisible(true)
+  }, [setIsVisible])
+
+  const layoutStyle: React.CSSProperties = {
+    opacity: isVisible ? 1 : 0,
+    transition: 'opacity 300ms',
+  }
+
   // FIXME(émilie): Change link to redirect where it is needed.
-  return <Layout header={t('Définition')} title={title}>
+  return <Layout header={t('Définition')} title={title} style={layoutStyle}>
     <JobSuggest
       placeholder={t('entrez votre métier')} style={inputStyle}
       onChange={onSelect} />
