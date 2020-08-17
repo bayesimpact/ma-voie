@@ -23,9 +23,10 @@ export interface StepInfo {
   color: string
   icon: string
   isOpen?: boolean
+  isLastStep?: boolean
   page: Page
   shortTitle?: string
-  stepId: 'definition' | 'skills' | 'training'
+  stepId: 'definition' | 'skills' | 'training' | 'interview'
   title: string
 }
 export type StepId = StepInfo['stepId']
@@ -54,6 +55,15 @@ export const STEPS: readonly StepInfo[] = [
     shortTitle: prepareT('Formation'),
     stepId: 'training',
     title: prepareT('Formations'),
+  },
+  {
+    color: colors.LIGHT_SKY_BLUE,
+    icon: formationIcon, // TODO(émilie): Update when known
+    isLastStep: true,
+    page: ['TRAINING'], // TODO(émilie): Updated when done
+    shortTitle: prepareT('Entretiens'),
+    stepId: 'interview',
+    title: prepareT('Préparer un entretien'),
   },
 ]
 
@@ -122,30 +132,32 @@ const StepsPage = (): React.ReactElement => {
 
   return <Layout>
     <div style={stepsStyle}>
-      {STEPS.map(({title, ...step}, index) => {
+      {STEPS.map(({isLastStep, title, ...step}, index) => {
+        const stepListJoin = joinList(STEPS.map((step, index) => (index).toString()), t)
         const isDone = !!project.completedSteps?.[step.stepId]
         const isOpen = !isDone
           && (!index || !!project.completedSteps?.[STEPS[index - 1].stepId])
         return <React.Fragment key={index}>
           {index ? <ArrowDownIcon style={arrowStyle} color={colors.SILVER_THREE} /> : null}
-          <div style={scrollableStepStyle} ref={getStepRef(index)}>
-            <Step index={index + 1} {...step} onClick={onClick} isOpen={isOpen} isDone={isDone}>
-              {translate(title)}
-            </Step>
-          </div>
+          {!isLastStep || isOpen || isDone ?
+            <div style={scrollableStepStyle} ref={getStepRef(index)}>
+              <Step index={index + 1} {...step} onClick={onClick} isOpen={isOpen} isDone={isDone}>
+                {translate(title)}
+              </Step>
+            </div>
+            : <div style={scrollableStepStyle} ref={getStepRef(STEPS.length)}>
+              <Button style={interviewStyle} onClick={soonAvailable} type="variable">
+                {t('Préparer un entretien')}
+              </Button>
+            </div>}
+          {!!isLastStep && !isOpen && !isDone ?
+            <Trans count={STEPS.length} style={interviewDisclaimerStyle}>
+              Il est préférable de terminer
+              l'étape {{steps: stepListJoin}} avant
+              de vous préparer pour les entretiens.
+            </Trans> : null}
         </React.Fragment>
       })}
-      <ArrowDownIcon style={arrowStyle} color={colors.SILVER_THREE} />
-      <div style={scrollableStepStyle} ref={getStepRef(STEPS.length)}>
-        <Button style={interviewStyle} onClick={soonAvailable} type="variable">
-          {t('Préparer un entretien')}
-        </Button>
-      </div>
-      <Trans count={STEPS.length} style={interviewDisclaimerStyle}>
-        Il est préférable de terminer
-        l'étape {{steps: joinList(STEPS.map((step, index) => (index + 1).toString()), t)}} avant de
-        vous préparer pour les entretiens.
-      </Trans>
     </div>
     {isPopupShown ? <CreateAccountPopup onClose={onClose} /> : null}
   </Layout>
