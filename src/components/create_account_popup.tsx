@@ -71,7 +71,7 @@ const CreateAccountPopup = ({onClose, style}: Props): React.ReactElement => {
         <h1 style={titleStyle}>C'est le bon moment de créer un compte&nbsp;!</h1>
         <p style={paragraphStyle}>
           Créer un compte permet de sauvegarder votre progression et d'accéder
-          aux meilleures ressources pour ton futur emploi, <strong>gratuitement</strong>.
+          aux meilleures ressources pour votre futur emploi, <strong>gratuitement</strong>.
         </p>
       </Trans>
       <Link to={getPath(['ACCOUNT'], t)} style={linkStyle} >
