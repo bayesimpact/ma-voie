@@ -16,6 +16,9 @@
       "components/*": [
         "src/components/*"
       ],
+      "database/*": [
+        "src/database/*"
+      ],
       "images/*": [
         "src/images/*"
       ],

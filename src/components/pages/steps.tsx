@@ -4,6 +4,7 @@ import {Trans, useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
 import {useHistory} from 'react-router'
 
+import {FirebaseAuth} from 'database/firebase'
 import {RootState} from 'store/actions'
 import {joinList, prepareT} from 'store/i18n'
 import {useProject} from 'store/selections'
@@ -96,7 +97,8 @@ const StepsPage = (): React.ReactElement => {
 
   const name = useSelector(({user: {name}}: RootState) => name)
   const lastName = useSelector(({user: {lastName}}: RootState) => lastName)
-  const isConnected = (name !== undefined && lastName !== undefined)
+  const currentUser = FirebaseAuth.currentUser
+  const isConnected = (currentUser !== null && name !== undefined && lastName !== undefined)
   const project = useProject()
 
   const nextStep = STEPS.find(({stepId}) => !project.completedSteps?.[stepId])?.stepId

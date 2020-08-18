@@ -17,6 +17,7 @@ const isTunnelTest = !!process.env.TUNNEL_TESTING
 const mainSrcFolders = [
   'analytics',
   'components',
+  'database',
   'hooks',
   'images',
   'store',
