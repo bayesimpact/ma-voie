@@ -4,6 +4,7 @@ import {useTranslation} from 'react-i18next'
 import {useHistory} from 'react-router'
 import {Link} from 'react-router-dom'
 
+import {FirebaseAuth} from 'database/firebase'
 import {logoutAction, useDispatch, RootState} from 'store/actions'
 import {useProject, useSelector} from 'store/selections'
 import {getPath} from 'store/url'
@@ -126,6 +127,7 @@ const MenuPage = (): React.ReactElement => {
   const dispatch = useDispatch()
   const handleLogout = useCallback((): void => {
     dispatch(logoutAction)
+    FirebaseAuth.signOut()
   }, [dispatch])
 
   return <div style={pageStyle}>

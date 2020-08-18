@@ -3,6 +3,7 @@ import {useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
 import {useHistory} from 'react-router'
 
+import {FirebaseAuth, FirebaseErrorProp} from 'database/firebase'
 import {useFastForward} from 'hooks/fast_forward'
 import {RootState, updateUser, useDispatch} from 'store/actions'
 import {getPath} from 'store/url'
@@ -58,6 +59,7 @@ const AccountPage = (): React.ReactElement => {
   const [isErrorDisplayed, setIsErrorDisplayed] = useState(false)
   const [areErrorFields, setAreErrorFields] =
     useState<{[K in 'email'|'lastName'|'name'|'password']?: boolean}>({})
+  const [errorMessage, setErrorMessage] = useState('')
 
   const [updated, setUpdated] = useState(false)
   useEffect((): () => void => {
@@ -93,9 +95,27 @@ const AccountPage = (): React.ReactElement => {
     }
     if (Object.keys(update).length) {
       dispatch(updateUser(update))
+      // TODO(émilie): Move to actions.ts
+      FirebaseAuth.createUserWithEmailAndPassword(inputEmail, password).
+        catch((error: FirebaseErrorProp) => {
+          // TODO(émilie): delete login here and handle login somewhere else
+          if (error.code === 'auth/email-already-in-use') {
+            FirebaseAuth.signInWithEmailAndPassword(inputEmail, password).
+              catch((error: FirebaseErrorProp) => {
+                setErrorMessage(error.message)
+                return
+              })
+          } else {
+            setErrorMessage(error.message)
+            return
+          }
+        })
+      // TODO(émilie): After auth, save the user ID in the user
       setUpdated(true)
     }
-  }, [dispatch, email, name, inputEmail, inputName, lastName, inputLastName, password])
+  }, [dispatch,
+    email, name, inputEmail, inputName, lastName, inputLastName,
+    password, setErrorMessage])
   useFastForward(() => {
     if (inputName && inputLastName && inputEmail && password) {
       onSave()
@@ -176,6 +196,9 @@ const AccountPage = (): React.ReactElement => {
     {updated ? t('Vos identifiants ont été mis à jour.') : null}
     {isErrorDisplayed ? <div style={errorValidationStyle}>
       {t('Veuillez saisir les champs obligatoires pour continuer')}
+    </div> : null}
+    {errorMessage ? <div style={errorValidationStyle}>
+      {errorMessage}
     </div> : null}
   </Layout>
 }
