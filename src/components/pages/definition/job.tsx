@@ -2,7 +2,7 @@ import React, {useCallback, useState} from 'react'
 import {useTranslation} from 'react-i18next'
 import {useHistory} from 'react-router'
 
-import {useFadeInFadeOut} from 'hooks/fade'
+import FadingLink, {useFadeInFadeOut} from 'hooks/fade'
 import {updateProject, useDispatch} from 'store/actions'
 import {useProjectId} from 'store/selections'
 import {getPath} from 'store/url'
@@ -10,6 +10,8 @@ import {getPath} from 'store/url'
 import Button from 'components/button'
 import JobSuggest from 'components/job_suggest'
 import Layout from 'components/layout'
+
+const linkStyle: React.CSSProperties = {textDecoration: 'none'}
 
 const inputStyle: React.CSSProperties = {
   borderColor: colors.SILVER_THREE,
@@ -53,18 +55,16 @@ const JobPage = (): React.ReactElement => {
     fadeOut(() => history.push(getPath(['DEFINITION', 'EXPERIENCE'], t)))
   }, [dispatch, history, job, projectId, fadeOut, t])
 
-  const onLostClick = useCallback((): void => {
-    fadeOut(() => history.push(getPath(['DEFINITION', 'LOST'], t)))
-  }, [history, fadeOut, t])
-
   return <Layout header={t('Définition')} title={title} style={style}>
     <JobSuggest
       placeholder={t('entrez votre métier')} style={inputStyle}
       onChange={setJob} value={job || undefined} />
     <Button style={validateButtonStyle} type="variable" onClick={onValidate}>{t('Valider')}</Button>
-    <Button style={buttonContainerStyle} type="discret" onClick={onLostClick}>
-      {t('Je ne sais pas')}
-    </Button>
+    <FadingLink fadeOut={fadeOut} to={getPath(['DEFINITION', 'LOST'], t)} style={linkStyle}>
+      <Button style={buttonContainerStyle} type="discret">
+        {t('Je ne sais pas')}
+      </Button>
+    </FadingLink>
   </Layout>
 }
 
