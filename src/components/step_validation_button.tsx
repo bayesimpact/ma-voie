@@ -30,6 +30,7 @@ const StepValidationButton = (props: ButtonProps): React.ReactElement => {
     onClick?.()
   }, [dispatch, onClick, projectId, stepId, stepValue])
 
+  // TODO(cyrille): Allow a fade-out before redirect.
   return <Link to={getPath(['STEPS'], t)} style={linkStyle}>
     <Button type={type} onClick={handleClick}>{children}</Button>
   </Link>

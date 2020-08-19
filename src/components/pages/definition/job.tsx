@@ -1,7 +1,8 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {useCallback, useState} from 'react'
 import {useTranslation} from 'react-i18next'
 import {useHistory} from 'react-router'
 
+import {useFadeInFadeOut} from 'hooks/fade'
 import {updateProject, useDispatch} from 'store/actions'
 import {useProjectId} from 'store/selections'
 import {getPath} from 'store/url'
@@ -37,38 +38,26 @@ const JobPage = (): React.ReactElement => {
   const dispatch = useDispatch()
   const history = useHistory()
   const [job, setJob] = useState<bayes.maVoie.Job|null>(null)
-  const [isVisible, setIsVisible] = useState(false)
+  const {fadeOut, style} = useFadeInFadeOut()
 
   const validateButtonStyle: React.CSSProperties = {
     marginTop: 20,
     opacity: job ? 1 : 0.75,
   }
 
-  useEffect(() => {
-    setIsVisible(true)
-  }, [setIsVisible])
-
   const onValidate = useCallback((): void => {
     if (!job) {
       return
     }
     dispatch(updateProject({job, projectId}))
-    setIsVisible(false)
-    setTimeout(() => history.push(getPath(['DEFINITION', 'EXPERIENCE'], t)), 350)
-  }, [dispatch, history, job, projectId, setIsVisible, t])
+    fadeOut(() => history.push(getPath(['DEFINITION', 'EXPERIENCE'], t)))
+  }, [dispatch, history, job, projectId, fadeOut, t])
 
   const onLostClick = useCallback((): void => {
-    setIsVisible(false)
-    setTimeout(() => history.push(getPath(['DEFINITION', 'LOST'], t)), 350)
-  }, [history, setIsVisible, t])
+    fadeOut(() => history.push(getPath(['DEFINITION', 'LOST'], t)))
+  }, [history, fadeOut, t])
 
-  const layoutStyle: React.CSSProperties = {
-    opacity: isVisible ? 1 : 0,
-    transition: 'opacity 300ms',
-  }
-
-  // FIXME(émilie): Change link to redirect where it is needed.
-  return <Layout header={t('Définition')} title={title} style={layoutStyle}>
+  return <Layout header={t('Définition')} title={title} style={style}>
     <JobSuggest
       placeholder={t('entrez votre métier')} style={inputStyle}
       onChange={setJob} value={job || undefined} />

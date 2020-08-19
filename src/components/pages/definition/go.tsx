@@ -1,5 +1,7 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {useTranslation, Trans} from 'react-i18next'
+
+import {useFadeInFadeOut} from 'hooks/fade'
 
 import Layout from 'components/layout'
 import StepValidationButton from 'components/step_validation_button'
@@ -25,16 +27,11 @@ const layoutContentStyle: React.CSSProperties = {
 const GoPage = (): React.ReactElement => {
   const {t} = useTranslation()
 
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    setIsVisible(true)
-  }, [setIsVisible])
+  const {style} = useFadeInFadeOut()
 
   const layoutStyle: React.CSSProperties = {
     height: '100vh',
-    opacity: isVisible ? 1 : 0,
-    transition: 'opacity 300ms',
+    ...style,
   }
 
   return <Layout header={t('Définition')} bigTitle={t('Félicitations\u00A0!')} style={layoutStyle}>
