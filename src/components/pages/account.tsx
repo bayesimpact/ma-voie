@@ -3,7 +3,7 @@ import {useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
 import {useHistory} from 'react-router'
 
-import {FirebaseAuth, FirebaseErrorProp} from 'database/firebase'
+import {FirebaseAuth, FirebaseErrorProps} from 'database/firebase'
 import {useFastForward} from 'hooks/fast_forward'
 import {RootState, updateUser, useDispatch} from 'store/actions'
 import {getPath} from 'store/url'
@@ -13,7 +13,6 @@ import Input from 'components/input'
 import Layout from 'components/layout'
 
 const getUniqueExampleEmail = (): string => `test-${new Date().getTime()}@example.com`
-
 
 const inputStyle: React.CSSProperties = {
   border: `1px solid ${colors.SILVER_THREE}`,
@@ -31,6 +30,7 @@ const errorMessageStyle: React.CSSProperties = {
   fontSize: 13,
   marginLeft: 25,
 }
+
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 const AccountPage = (): React.ReactElement => {
@@ -74,6 +74,12 @@ const AccountPage = (): React.ReactElement => {
   })
 
   const dispatch = useDispatch()
+
+  FirebaseAuth.onAuthStateChanged((user: firebase.User|null) => {
+    if (user) {
+      dispatch(updateUser({uid: user.uid}))
+    }
+  })
   const onSave = useCallback((): void => {
     const errorsFields = {
       // TODO(émilie): validate the email
@@ -97,11 +103,11 @@ const AccountPage = (): React.ReactElement => {
       dispatch(updateUser(update))
       // TODO(émilie): Move to actions.ts
       FirebaseAuth.createUserWithEmailAndPassword(inputEmail, password).
-        catch((error: FirebaseErrorProp) => {
+        catch((error: FirebaseErrorProps) => {
           // TODO(émilie): delete login here and handle login somewhere else
           if (error.code === 'auth/email-already-in-use') {
             FirebaseAuth.signInWithEmailAndPassword(inputEmail, password).
-              catch((error: FirebaseErrorProp) => {
+              catch((error: FirebaseErrorProps) => {
                 setErrorMessage(error.message)
                 return
               })
@@ -110,7 +116,6 @@ const AccountPage = (): React.ReactElement => {
             return
           }
         })
-      // TODO(émilie): After auth, save the user ID in the user
       setUpdated(true)
     }
   }, [dispatch,

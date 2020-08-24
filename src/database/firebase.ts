@@ -5,7 +5,7 @@ export const FirebaseApp = firebase.initializeApp(firebaseConfig)
 
 export const FirebaseAuth = FirebaseApp.auth()
 
-export interface FirebaseErrorProp {
+export interface FirebaseErrorProps {
   code: string
   message: string
 }

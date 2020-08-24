@@ -7,6 +7,7 @@ declare namespace bayes {
       email?: string
       lastName?: string
       name?: string
+      uid?: string
     }
 
     // TODO(cyrille): Set profile as a property of User.
