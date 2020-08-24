@@ -15,6 +15,7 @@ const buttonStyle: React.CSSProperties = {
   color: '#fff',
   cursor: 'pointer',
   fontFamily: 'ProximaSoft',
+  fontSize: 18,
   fontWeight: 'bold',
   maxWidth: 255,
   padding: '14px 42px',
@@ -37,6 +38,7 @@ const JoinCardBase = ({topic, text, style}: JoinCardProps): React.ReactElement =
     display: 'flex',
     ...isMobileVersion ? {} : {flex: 1},
     flexDirection: 'column',
+    fontSize: 17,
     height: 228,
     justifyContent: 'center',
     maxWidth: 466,
@@ -60,14 +62,15 @@ const JoinCard = React.memo(JoinCardBase)
 const titleStyle: React.CSSProperties = {
   color: colors.DARK_FOREST_GREEN,
   fontFamily: 'ProximaSoft',
-  fontSize: 47,
+  fontSize: isMobileVersion ? 37 : 47,
   fontWeight: 'bold',
+  lineHeight: isMobileVersion ? 1 : 'initial',
   margin: 0,
-  padding: '0px 0px 40px',
+  padding: isMobileVersion ? '0 0 60px' : '0 0 40px',
 }
 const serviceStyle: React.CSSProperties = {
   backgroundColor: colors.REDDISH_ORANGE,
-  marginBottom: isMobileVersion ? 20 : 0,
+  marginBottom: isMobileVersion ? 40 : 0,
   marginRight: isMobileVersion ? 0 : 29,
 }
 
@@ -75,13 +78,16 @@ const supportStyle: React.CSSProperties = {
   backgroundColor: colors.TEAL_BLUE,
 }
 const sectionStyle: React.CSSProperties = {
-  padding: '70px 20px 100px',
+  padding: isMobileVersion ? '70px 35px 100px' : '70px 20px 100px',
+}
+const nonBreakStyle: React.CSSProperties = {
+  whiteSpace: 'nowrap',
 }
 const JoinSection = (): React.ReactElement => {
   const {t} = useTranslation()
   const serviceText = <Trans>
     <strong>Vous proposez un service d’accompagnement</strong><br />
-    et souhaitez être référencé sur $t(productName)
+    et souhaitez être référencé sur <span style={nonBreakStyle}>$t(productName)</span>&nbsp;?
   </Trans>
   const supportText = <Trans>
     Vous souhaitez soutenir $t(productName)<br />

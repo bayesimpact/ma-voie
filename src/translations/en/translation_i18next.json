@@ -11,7 +11,7 @@
   "<0>Nous allons faire tout en sorte pour que vous puissiez acquérir ces compétences avec les meilleurs ! :)</0><1>Une formation va donc être nécessaire.</1>": "<0>We are going to make everything possible for you to acquire these skills with the bests!</0><1>You need a training session.</1>",
   "<0>Quelle formation ?</0><p>Choisissez une formation en fonction de ce qui vous plaît, vos capacités financières, et des débouchés.</p>": "<0>Which training?</0><p>Choose a training session depending on what you like, your financial capacity and opportunities.</p>",
   "<0>Votre projet est clair et en plus vous avez les compétences essentielles !</0><1>Une formation n'est donc pas nécessaire pour vous.</1><2>Vous êtes prêt·e pour postuler au poste.</2><3>Et le mieux, c'est qu'on va vous aider à bien vous préparer :)</3>": "<0>Your project is clear and you have the required skills!</0><1>You don't need any training session.</1><2>You are ready to candidate for the job.</2><3>And we are going to help you to get prepared!</3>",
-  "<strong>Vous proposez un service d’accompagnement</strong><br/>et souhaitez être référencé sur $t(productName)": "<strong>Vous proposez un service d’accompagnement</strong><br/>et souhaitez être référencé sur $t(productName)",
+  "<strong>Vous proposez un service d’accompagnement</strong><br/>et souhaitez être référencé sur <3>$t(productName)</3> ?": "<strong>Vous proposez un service d’accompagnement</strong><br/>et souhaitez être référencé sur <3>$t(productName)</3>?",
   "<sup>*</sup>Champ obligatoire": "<sup>*</sup>Mandatory field",
   "Accueil": "Homepage",
   "Astuce": "Tip",
