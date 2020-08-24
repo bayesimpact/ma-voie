@@ -10,63 +10,8 @@ import definitionIcon from 'images/definition-ico.svg'
 import formationIcon from 'images/formation-ico.svg'
 import valorisationIcon from 'images/valorisation-ico.svg'
 
-const isMobileVersion = window.outerWidth <= 800
-
-const safeSidesStyle: React.CSSProperties = {
-  padding: '0 20px',
-}
-const sectionStyle: React.CSSProperties = {
-  color: colors.GREYISH_TEAL,
-  display: 'flex',
-  flexDirection: isMobileVersion ? 'column' : 'row',
-  fontSize: 18,
-  margin: '0 auto',
-  maxWidth: 960,
-}
-const titleStyle: React.CSSProperties = {
-  color: colors.REDDISH_ORANGE,
-  fontFamily: 'ProximaSoft',
-  fontSize: 47,
-  margin: '70px 0 50px',
-}
-const indexStyle: React.CSSProperties = {
-  alignItems: 'center',
-  backgroundColor: colorToAlpha(colors.TEAL_BLUE, .1),
-  borderRadius: 15,
-  color: colors.TEAL_BLUE,
-  display: 'flex',
-  height: 30,
-  justifyContent: 'center',
-  margin: '30px auto 0',
-  width: 30,
-}
 const strongStyle: React.CSSProperties = {
   color: colors.DARK_FOREST_GREEN,
-}
-const keyStepsStyle: React.CSSProperties = {
-  color: colors.TEAL_BLUE,
-  fontWeight: 'bold',
-}
-const cardOuterStyle: React.CSSProperties = {
-  alignSelf: isMobileVersion ? 'flex-start' : 'stretch',
-  marginLeft: isMobileVersion ? 0 : 40,
-  marginTop: 40,
-}
-const evenCardOuterStyle: React.CSSProperties = {
-  ...cardOuterStyle,
-  ...isMobileVersion ? {alignSelf: 'flex-end'} : {transform: 'translateY(70px)'},
-}
-const arrowsStyle: React.CSSProperties = {
-  bottom: 70,
-  left: 0,
-  position: 'absolute',
-}
-const cardsContainerStyle: React.CSSProperties = {
-  display: 'flex',
-  flexDirection: isMobileVersion ? 'column' : 'row',
-  flexWrap: 'wrap',
-  margin: isMobileVersion ? 0 : '-40px 0 70px -40px',
-  minWidth: isMobileVersion ? 'initial' : 480,
 }
 
 interface CardProps {
@@ -111,6 +56,76 @@ const CARDS: readonly (CardProps & {index?: never})[] = [
   },
 ]
 
+const isMobileVersion = window.outerWidth <= 800
+const cardWidth = 220
+
+const sectionStyle: React.CSSProperties = {
+  color: colors.GREYISH_TEAL,
+  display: 'flex',
+  flexDirection: isMobileVersion ? 'column' : 'row',
+  fontSize: 18,
+  padding: isMobileVersion ? '0 35px' : '0 20px',
+}
+const contentStyle: React.CSSProperties = {
+  margin: '0 auto',
+  maxWidth: 960,
+}
+const titleStyle: React.CSSProperties = {
+  color: colors.REDDISH_ORANGE,
+  fontFamily: 'ProximaSoft',
+  fontSize: isMobileVersion ? 37 : 47,
+  margin: isMobileVersion ? '65px 0 35px' : '70px 0 50px',
+}
+const indexStyle: React.CSSProperties = {
+  alignItems: 'center',
+  backgroundColor: colorToAlpha(colors.TEAL_BLUE, .1),
+  borderRadius: 15,
+  color: colors.TEAL_BLUE,
+  display: 'flex',
+  height: 30,
+  justifyContent: 'center',
+  margin: '30px auto 0',
+  width: 30,
+}
+const keyStepsStyle: React.CSSProperties = {
+  color: colors.TEAL_BLUE,
+  fontWeight: 'bold',
+}
+const cardOuterStyle: React.CSSProperties = {
+  alignSelf: isMobileVersion ? 'flex-start' : 'stretch',
+  marginLeft: isMobileVersion ? 0 : 40,
+  marginTop: 40,
+}
+const evenCardOuterStyle: React.CSSProperties = {
+  ...cardOuterStyle,
+  ...isMobileVersion ? {alignSelf: 'flex-end'} : {transform: 'translateY(70px)'},
+}
+const arrowsStyle: React.CSSProperties = {
+  bottom: 70,
+  left: 0,
+  position: 'absolute',
+}
+const carouselStyle: React.CSSProperties = isMobileVersion ? {
+  margin: '0 -35px',
+  overflow: 'scroll',
+  padding: '0 0 75px',
+  width: '100vw',
+} : {}
+const cardsContainerStyle: React.CSSProperties = {
+  display: 'flex',
+  flexWrap: isMobileVersion ? 'nowrap' : 'wrap',
+  justifyContent: isMobileVersion ? 'space-between' : 'initial',
+  margin: isMobileVersion ? 'initial' : '-40px 0 70px -40px',
+  minWidth: isMobileVersion ? 'initial' : 480,
+  padding: isMobileVersion ? `0 calc(50vw - ${cardWidth / 2}px)` : 'initial',
+  width: isMobileVersion ? cardWidth * CARDS.length + 30 * (CARDS.length - 1) : 'auto',
+}
+const presentationStyle: React.CSSProperties = isMobileVersion ? {} : {
+  maxWidth: 480,
+  paddingRight: 90,
+  position: 'relative',
+}
+
 interface DisplayCardProps extends CardProps {
   index: number
   style?: React.CSSProperties
@@ -123,7 +138,7 @@ React.ReactElement => {
     borderRadius: 20,
     boxShadow: '0 16px 35px 0 rgba(0,0,0,.1)',
     fontSize: 16,
-    maxWidth: 220,
+    maxWidth: cardWidth,
     overflow: 'hidden',
     ...style,
   }), [style])
@@ -150,16 +165,11 @@ React.ReactElement => {
 }
 const Card = React.memo(CardBase)
 
-// TODO(cyrille): Fix on mobile.
+
 const GoalSection = (): React.ReactElement => {
   const {t} = useTranslation()
-  const presentationStyle: React.CSSProperties = isMobileVersion ? {} : {
-    maxWidth: 480,
-    paddingRight: 90,
-    position: 'relative',
-  }
-  return <div style={safeSidesStyle}>
-    <section style={sectionStyle}>
+  return <section style={sectionStyle}>
+    <div style={contentStyle}>
       <div style={presentationStyle}>
         <h2 style={titleStyle}>{t("C'est quoi\u00A0?")}</h2>
         <Trans>
@@ -169,13 +179,15 @@ const GoalSection = (): React.ReactElement => {
         </Trans>
         {isMobileVersion ? null : <img style={arrowsStyle} src={grey6ArrowsImage} alt="" />}
       </div>
-      <div style={cardsContainerStyle}>
-        {CARDS.map((card, index) => <Card
-          key={index} index={index + 1} {...card}
-          style={index % 2 ? evenCardOuterStyle : cardOuterStyle} />)}
+      <div style={carouselStyle}>
+        <div style={cardsContainerStyle}>
+          {CARDS.map((card, index) => <Card
+            key={index} index={index + 1} {...card}
+            style={index % 2 ? evenCardOuterStyle : cardOuterStyle} />)}
+        </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 }
 
 
