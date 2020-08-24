@@ -1,7 +1,8 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {useCallback} from 'react'
 import {useTranslation, Trans} from 'react-i18next'
 import {useHistory} from 'react-router'
 
+import {useFadeInFadeOut} from 'hooks/fade'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
@@ -25,25 +26,14 @@ const RedefinePage = (): React.ReactElement => {
   const {t} = useTranslation()
   const history = useHistory()
 
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    setIsVisible(true)
-  }, [setIsVisible])
-
-  const layoutStyle: React.CSSProperties = {
-    opacity: isVisible ? 1 : 0,
-    transition: 'opacity 300ms',
-  }
+  const {fadeOut, style} = useFadeInFadeOut()
 
   const onClick = useCallback((): void => {
-    setIsVisible(false)
-    setTimeout(() =>
-      history.push(getPath(['DEFINITION', 'PARTNERS_INTERNAL'], t)), 350)
-  }, [history, t])
+    fadeOut(() =>
+      history.push(getPath(['DEFINITION', 'PARTNERS_INTERNAL'], t)))
+  }, [history, fadeOut, t])
 
-  // TODO(cyrille): to replace with a useFadeinFadeout hook
-  return <Layout header={t('Définition')} style={layoutStyle}>
+  return <Layout header={t('Définition')} style={style}>
     <Trans parent="p" style={contentStyle}>
       Votre projet est clair mais ne semble pas vous passionner.
     </Trans>
