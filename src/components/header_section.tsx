@@ -14,7 +14,7 @@ const sectionStyle: React.CSSProperties = {
   color: '#fff',
   fontFamily: 'ProximaSoft',
   overflow: 'hidden',
-  padding: isMobileVersion ? '200px 20px' : '150px 20px 280px',
+  padding: isMobileVersion ? '10px 50px 300px' : '150px 20px 280px',
   position: 'relative',
 }
 const contentStyle: React.CSSProperties = {
@@ -22,7 +22,10 @@ const contentStyle: React.CSSProperties = {
   maxWidth: 960,
   position: 'relative',
 }
-const logoStyle: React.CSSProperties = {
+const logoStyle: React.CSSProperties = isMobileVersion ? {
+  margin: '30px auto',
+  width: 'fit-content',
+} : {
   left: 30,
   margin: 0,
   position: 'absolute',
@@ -35,12 +38,15 @@ const tagLineStyle: React.CSSProperties = {
 }
 const subTagLineStyle: React.CSSProperties = {
   color: colors.PALE_SALMON,
-  fontSize: 26,
+  fontFamily: isMobileVersion ? 'Lato' : 'inherit',
+  fontSize: isMobileVersion ? 25 : 26,
   fontWeight: 'bold',
-  marginTop: 54,
+  marginTop: isMobileVersion ? 0 : 54,
+  textAlign: isMobileVersion ? 'center' : 'left',
 }
 const productNameStyle: React.CSSProperties = {
   color: '#fff',
+  whiteSpace: 'nowrap',
 }
 const orange6ArrowsStyle: React.CSSProperties = {
   bottom: -180,
@@ -49,15 +55,17 @@ const orange6ArrowsStyle: React.CSSProperties = {
 }
 const orange13ArrowsStyle: React.CSSProperties = {
   position: 'absolute',
-  right: isMobileVersion ? 0 : -80,
-  top: isMobileVersion ? -160 : 60,
+  right: -80,
+  top: 60,
 }
 const screenshotStyle: React.CSSProperties = {
   borderRadius: 31,
-  bottom: -280,
+  bottom: isMobileVersion ? -120 : -280,
   boxShadow: '0 16px 17.5px rgba(0, 0, 0, .1)',
   position: 'absolute',
-  right: 15,
+  right: isMobileVersion ? '50%' : 15,
+  transform: isMobileVersion ? 'translateX(50%)' : 'initial',
+  width: isMobileVersion ? 230 : 287,
 }
 // TODO(cyrille): Handle pixel-high line between triangle and next section.
 const whiteTriangleStyle: React.CSSProperties = {
@@ -75,21 +83,24 @@ const HeaderSection = (): React.ReactElement => {
   return <section style={sectionStyle}>
     <h1 style={logoStyle}><img src={logoImage} alt={t('productName')} /></h1>
     <div style={contentStyle}>
-      <Trans style={tagLineStyle}>
+      {isMobileVersion ? null : <Trans style={tagLineStyle}>
         La période que nous vivons<br />
         a mis un coup d'arrêt à votre<br />
         recherche d'emploi&nbsp;?
-      </Trans>
+      </Trans>}
       <Trans style={subTagLineStyle}>
         Face à la crise prenez le bon virage<br />
         vers l'emploi avec <strong style={productNameStyle}>
           $t(productName)
         </strong>
       </Trans>
-      <img src={orange13ArrowsImage} alt="" style={orange13ArrowsStyle} />
-      {isMobileVersion ? null : <img src={orange6ArrowsImage} alt="" style={orange6ArrowsStyle} />}
-      {isMobileVersion ? null : <img src={screenshotImage} style={screenshotStyle} alt="" />}
+      {isMobileVersion ? null : <React.Fragment>
+        <img src={orange13ArrowsImage} alt="" style={orange13ArrowsStyle} />
+        <img src={orange6ArrowsImage} alt="" style={orange6ArrowsStyle} />
+        <img src={screenshotImage} style={screenshotStyle} alt="" />
+      </React.Fragment>}
     </div>
+    {isMobileVersion ? <img src={screenshotImage} style={screenshotStyle} alt="" /> : null}
     <div style={whiteTriangleStyle} />
   </section>
 }
