@@ -3,7 +3,7 @@ import {useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
 import {useHistory} from 'react-router'
 
-import {FirebaseAuth, FirebaseErrorProp} from 'database/firebase'
+import {FirebaseAuth, FirebaseErrorProps} from 'database/firebase'
 import {RootState, updateUser, useDispatch} from 'store/actions'
 import {getPath} from 'store/url'
 
@@ -60,7 +60,7 @@ const LoginPage = (): React.ReactElement => {
       return
     }
     FirebaseAuth.signInWithEmailAndPassword(inputEmail, password).
-      catch((error: FirebaseErrorProp) => {
+      catch((error: FirebaseErrorProps) => {
         setErrorMessage(error.message)
         return
       }).
