@@ -6,11 +6,11 @@ const isMobileVersion = window.outerWidth < 800
 const sectionStyle: React.CSSProperties = {
   backgroundImage:
   // 3.2214rad = PI + atan(0.08)
-  `linear-gradient(3.2214rad, transparent, transparent 8vw, ${colors.TEAL_BLUE} 8.1vw, ` +
+  `linear-gradient(3.2214rad, transparent, transparent 8vw, ${colors.TEAL_BLUE} 8.3vw, ` +
   `${colors.TEAL_BLUE})`,
   color: '#fff',
   overflow: 'hidden',
-  padding: isMobileVersion ? '80px 35px 150px' : '120px 20px 100px',
+  padding: isMobileVersion ? '80px 35px 110px' : '120px 20px 100px',
   position: 'relative',
 }
 const contentStyle: React.CSSProperties = {
@@ -27,7 +27,7 @@ const tagLineStyle: React.CSSProperties = {
 }
 const blocsStyle: React.CSSProperties = {
   display: 'flex',
-  flexDirection: isMobileVersion ? 'column' : 'row',
+  flexDirection: isMobileVersion ? 'column-reverse' : 'row',
   justifyContent: 'space-between',
 }
 const blocDescriptionStyle: React.CSSProperties = {
@@ -49,29 +49,28 @@ const blockDescriptionEmphasisStyle: React.CSSProperties = {
 const blocDatesStyle: React.CSSProperties = {
   alignItems: isMobileVersion ? 'center' : 'flex-start',
   display: 'flex',
-  flexDirection: isMobileVersion ? 'column' : 'row',
   fontFamily: 'ProximaSoft',
   height: 94,
-  paddingTop: 15,
-  textAlign: isMobileVersion ? 'center' : 'left',
+  justifyContent: isMobileVersion ? 'space-between' : 'initial',
+  paddingBottom: isMobileVersion ? 60 : 0,
+  paddingTop: isMobileVersion ? 0 : 15,
 }
 const blockDatesDayStyle: React.CSSProperties = {
-  fontSize: 47,
+  fontSize: isMobileVersion ? 40 : 47,
   fontWeight: 'bold',
   lineHeight: 1.1,
 }
 const blocDateStyle: React.CSSProperties = {
   color: colors.DARK_TEAL,
-  fontSize: 32,
-  textAlign: isMobileVersion ? 'center' : 'left',
+  fontSize: isMobileVersion ? 24 : 32,
   textTransform: 'uppercase',
 }
 const blocDateSeparatorStyle: React.CSSProperties = {
   backgroundColor: colors.DARK_TEAL,
   borderRadius: 2.5,
-  height: isMobileVersion ? 3 : '100%',
+  height: '100%',
   margin: isMobileVersion ? '15px 0' : '0 38px',
-  width: isMobileVersion ? '15%' : 3,
+  width: 3,
 }
 const BeneficiariesSection = (): React.ReactElement => {
   return <section style={sectionStyle}>
