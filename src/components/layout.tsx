@@ -23,17 +23,18 @@ interface Props {
   bigTitle?: string
   children: React.ReactNode
   header?: string
+  menu?: 'in'|'out'
   style?: React.CSSProperties
   title?: string
 }
 
-const Layout = ({bigTitle, children, header, style, title}: Props): React.ReactElement => {
+const Layout = ({bigTitle, children, header, menu, style, title}: Props): React.ReactElement => {
   const layoutStyle = {
     ...containerStyle,
     ...style,
   }
   return <React.Fragment>
-    <Header title={header} />
+    <Header title={header} menu={menu} />
     <div style={layoutStyle}>
       {title || bigTitle ?
         <h1 style={h1Style}>
