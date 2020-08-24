@@ -47,7 +47,7 @@
                     <g transform="translate(7 16.8)">
                         <use fill="#8E8E93" fill-opacity=".12" xlink:href="#xcne8rd05g"/>
                     </g>
-                    <text fill="#030303" font-family="SFProText-Regular, SF Pro Text" font-size="11.9" letter-spacing="-.287">
+                    <text fill="#030303" font-family="SFProText-Regular, SF Pro Text, Helvetica" font-size="11.9" letter-spacing="-.287">
                         <tspan x="101.883" y="33.4">mavoie.org</tspan>
                     </text>
                     <path stroke="#000" stroke-linecap="round" stroke-width="1.4" d="M239.05 25.2l6.19 6.19 2.91 2.91m0-9.1l-6.19 6.19-2.91 2.91"/>
@@ -69,10 +69,10 @@
                     </g>
                 </g>
                 <path fill="#7F8584" d="M26.6 74.2c.387 0 .7.313.7.7 0 .387-.313.7-.7.7H14.7c-.387 0-.7-.313-.7-.7 0-.387.313-.7.7-.7h11.9zm0-4.9c.387 0 .7.313.7.7 0 .387-.313.7-.7.7H14.7c-.387 0-.7-.313-.7-.7 0-.387.313-.7.7-.7h11.9zm0-4.9c.387 0 .7.313.7.7 0 .387-.313.7-.7.7H14.7c-.387 0-.7-.313-.7-.7 0-.387.313-.7.7-.7h11.9z"/>
-                <text font-family="ProximaSoft-Regular, Proxima Soft" font-size="9.1">
+                <text font-family="ProximaSoft-Regular, Proxima Soft, Helvetica" font-size="9.1">
                     <tspan x="114.342" y="361.8" fill="#EA6625">ÉTAPE 2</tspan>
                 </text>
-                <text font-family="ProximaSoft-Bold, Proxima Soft" font-size="14" font-weight="bold">
+                <text font-family="ProximaSoft-Bold, Proxima Soft, Helvetica" font-size="14" font-weight="bold">
                     <tspan x="87.612" y="377.3" fill="#000C0A">Compétences</tspan>
                 </text>
                 <mask id="2t54ckxh6n" fill="#fff">
@@ -85,15 +85,15 @@
                 <g mask="url(#2t54ckxh6n)">
                     <g transform="translate(42 261.8)">
                         <rect width="178.5" height="35" fill="#EA6625" rx="17.5"/>
-                        <text font-family="ProximaSoft-Bold, Proxima Soft" font-size="12.6" font-weight="bold">
+                        <text font-family="ProximaSoft-Bold, Proxima Soft, Helvetica" font-size="12.6" font-weight="bold">
                             <tspan x="54.644" y="22.8" fill="#FFF">Commencer</tspan>
                         </text>
                     </g>
                 </g>
-                <text font-family="ProximaSoft-Regular, Proxima Soft" font-size="9.1" mask="url(#2t54ckxh6n)">
+                <text font-family="ProximaSoft-Regular, Proxima Soft, Helvetica" font-size="9.1" mask="url(#2t54ckxh6n)">
                     <tspan x="115.097" y="166.5" fill="#EA6625">ÉTAPE 1</tspan>
                 </text>
-                <text font-family="ProximaSoft-Bold, Proxima Soft" font-size="14" font-weight="bold" mask="url(#2t54ckxh6n)">
+                <text font-family="ProximaSoft-Bold, Proxima Soft, Helvetica" font-size="14" font-weight="bold" mask="url(#2t54ckxh6n)">
                     <tspan x="52.255" y="182" fill="#000C0A">Définition de votre projet</tspan>
                 </text>
                 <g mask="url(#2t54ckxh6n)">
@@ -111,7 +111,7 @@
                     </g>
                 </g>
                 <path fill="#099" d="M21 112H241.5V140H21z" mask="url(#2t54ckxh6n)"/>
-                <text font-family="ProximaSoft-Bold, Proxima Soft" font-size="9.1" font-weight="bold" mask="url(#2t54ckxh6n)">
+                <text font-family="ProximaSoft-Bold, Proxima Soft, Helvetica" font-size="9.1" font-weight="bold" mask="url(#2t54ckxh6n)">
                     <tspan x="113.5" y="129.4" fill="#FFF">En cours</tspan>
                 </text>
                 <g mask="url(#2t54ckxh6n)">
@@ -123,7 +123,7 @@
                         </g>
                     </g>
                 </g>
-                <text font-family="ProximaSoft-Bold, Proxima Soft" font-size="10.5" font-weight="bold" mask="url(#2t54ckxh6n)">
+                <text font-family="ProximaSoft-Bold, Proxima Soft, Helvetica" font-size="10.5" font-weight="bold" mask="url(#2t54ckxh6n)">
                     <tspan x="88.3" y="457.3" fill="#000C0A">Terminez l&apos;étape 1</tspan>
                 </text>
             </g>
