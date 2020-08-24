@@ -28,13 +28,13 @@ const partnerCardStyle: React.CSSProperties = {
   backgroundColor: '#fff',
   borderRadius: 20,
   display: 'flex',
-  height: 99,
+  height: isMobileVersion ? 64 : 99,
   justifyContent: 'center',
   marginBottom: isMobileVersion ? 20 : 0,
-  width: 219,
+  width: isMobileVersion ? 142 : 219,
 }
 const partnerImageStyle: React.CSSProperties = {
-  width: 150,
+  width: isMobileVersion ? 100 : 150,
 }
 
 const PartnerCardBase = ({image, name, url}: PartnerProps): React.ReactElement => {
@@ -45,33 +45,30 @@ const PartnerCardBase = ({image, name, url}: PartnerProps): React.ReactElement =
 const PartnerCard = React.memo(PartnerCardBase)
 
 const textStyle: React.CSSProperties = {
-  color: '#fff',
   fontSize: 18,
   maxWidth: 465,
   minHeight: 78,
   padding: '30px 0px 40px',
 }
 const titleStyle: React.CSSProperties = {
-  ...textStyle,
   fontFamily: 'ProximaSoft',
-  fontSize: 47,
+  fontSize: isMobileVersion ? 37 : 47,
   fontWeight: 'bold',
   margin: 0,
-  padding: '80px 0px 0px',
 }
 const containerStyle: React.CSSProperties = {
   backgroundColor: colors.DARK_TEAL,
-  padding: '0px 20px 100px',
+  color: '#fff',
+  padding: isMobileVersion ? '70px 35px 110px' : '80px 20px 100px',
+}
+const cardsStyle: React.CSSProperties = {
+  display: 'flex',
+  flexWrap: isMobileVersion ? 'wrap' : 'initial',
+  justifyContent: 'space-between',
 }
 
 const PartnersSection = (): React.ReactElement => {
   const {t} = useTranslation()
-  const cardsStyle: React.CSSProperties = {
-    alignItems: isMobileVersion ? 'center' : 'initial',
-    display: 'flex',
-    flexDirection: isMobileVersion ? 'column' : 'row',
-    justifyContent: isMobileVersion ? 'initial' : 'space-between',
-  }
   return <section style={containerStyle}>
     <div style={{margin: 'auto', maxWidth: 960}}>
       <h2 style={titleStyle}>{t('Nos partenaires')}</h2>
