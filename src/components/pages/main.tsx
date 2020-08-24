@@ -17,7 +17,9 @@ import {useSubPathDefiner} from 'store/url'
 import AccountPage from 'components/pages/account'
 import ComponentsPage from 'components/pages/components'
 import DefinitionPage from 'components/pages/definition'
+import LoginPage from 'components/pages/login'
 import MenuPage from 'components/pages/menu'
+import MenuOutPage from 'components/pages/menu_out'
 import PartnersPage from 'components/pages/partners'
 import SkillsPage from 'components/pages/skills'
 import SplashPage from 'components/pages/splash'
@@ -42,11 +44,13 @@ const App = (): React.ReactElement => {
     <Route path={`/:step${defineAndGetPath('PARTNERS_INTERNAL')}`} component={PartnersPage} />
     <Route path={`/:step${defineAndGetPath('PARTNERS_EXTERNAL')}`} component={PartnersPage} />
     <Route path={defineAndGetPath('ACCOUNT')} component={AccountPage} />
+    <Route path={defineAndGetPath('LOGIN')} component={LoginPage} />
     <Route path={defineAndGetPath('DEFINITION')} component={DefinitionPage} />
     <Route path={defineAndGetPath('SKILLS')} component={SkillsPage} />
     <Route path={defineAndGetPath('TRAINING')} component={TrainingPage} />
     <Route path={defineAndGetPath('DEFINITION')} component={DefinitionPage} />
     <Route path={defineAndGetPath('MENU')} component={MenuPage} />
+    <Route path={defineAndGetPath('MENU_OUT')} component={MenuOutPage} />
     <Route path={defineAndGetPath('SPLASH')} component={SplashPage} />
     <Route path={defineAndGetPath('STEPS')} component={StepsPage} />
     <Route path={defineAndGetPath('TERMS')} component={TermsPage} />

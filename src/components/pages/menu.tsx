@@ -17,7 +17,7 @@ const notAvailable = (): void => window.alert('Bientôt disponible...')
 
 const pageStyle: React.CSSProperties = {
   backgroundColor: colors.DARK_TEAL,
-  height: '100vh',
+  minHeight: '100vh',
 }
 const notConnectedCloseStyle: React.CSSProperties = {
   color: '#fff',
