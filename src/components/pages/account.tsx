@@ -109,9 +109,10 @@ const AccountPage = (): React.ReactElement => {
             setErrorMessage(error.message)
             return
           }
+        }).
+        then(() => {
+          setUpdated(true)
         })
-      // TODO(émilie): After auth, save the user ID in the user
-      setUpdated(true)
     }
   }, [dispatch,
     email, name, inputEmail, inputName, lastName, inputLastName,
