@@ -10,7 +10,7 @@ const sectionStyle: React.CSSProperties = {
   `${colors.TEAL_BLUE})`,
   color: '#fff',
   overflow: 'hidden',
-  padding: isMobileVersion ? '80px 20px 150px' : '120px 20px 100px',
+  padding: isMobileVersion ? '80px 35px 150px' : '120px 20px 100px',
   position: 'relative',
 }
 const contentStyle: React.CSSProperties = {
@@ -20,7 +20,7 @@ const contentStyle: React.CSSProperties = {
 }
 const tagLineStyle: React.CSSProperties = {
   fontFamily: 'ProximaSoft',
-  fontSize: 47,
+  fontSize: isMobileVersion ? 37 : 47,
   fontWeight: 'bold',
   lineHeight: 1.06,
   marginBottom: 50,
