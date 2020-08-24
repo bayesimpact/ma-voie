@@ -7,15 +7,17 @@ import {getPath} from 'store/url'
 
 import logoGoogleOrgImage from 'images/logo-google-org.png'
 
+const isMobileVersion = window.outerWidth < 800
+
 const footerStyle: React.CSSProperties = {
   backgroundColor: colors.DARK_FOREST_GREEN,
   color: colors.GREY,
-  padding: '50px 20px 20px',
+  padding: isMobileVersion ? '60px 35px 45px' : '50px 20px 20px',
 }
 const footerLogoStyle: React.CSSProperties = {
   display: 'block',
   height: 51,
-  marginBottom: 50,
+  marginBottom: isMobileVersion ? 30 : 50,
   marginTop: 14,
 }
 const contentStyle: React.CSSProperties = {
@@ -26,16 +28,17 @@ const contentStyle: React.CSSProperties = {
 const finalFooterStyle: React.CSSProperties = {
   borderTop: 'solid 2px rgba(255, 255, 255, .1)',
   display: 'flex',
-  fontSize: 13,
+  fontSize: isMobileVersion ? 16 : 13,
   justifyContent: 'space-between',
-  paddingTop: 14,
+  marginTop: isMobileVersion ? 30 : 0,
+  paddingTop: isMobileVersion ? 28 : 14,
 }
 const footerLinkStyle: React.CSSProperties = {
   color: colors.GREY,
-  fontSize: 13,
+  display: isMobileVersion ? 'block' : 'initial',
+  fontSize: isMobileVersion ? 16 : 13,
   fontWeight: 'bold',
-  paddingLeft: 30,
-  paddingTop: 14,
+  padding: isMobileVersion ? '20px 0' : '14px 0 0 30px',
   textDecoration: 'none',
   whiteSpace: 'nowrap',
 }
@@ -51,6 +54,20 @@ const Footer = (): React.ReactElement => {
   const termsPath = getPath(['TERMS'], t)
   const isSplash = pathname === splashPath
   const isTerms = pathname === termsPath
+
+  const nav = <div>
+    <Link
+      to={getPath(['SPLASH'], t)}
+      style={isSplash ? footerLinkSelectedStyle : footerLinkStyle}>
+      {t('Accueil')}
+    </Link>
+    <Link
+      to={getPath(['TERMS'], t)}
+      style={isTerms ? footerLinkSelectedStyle : footerLinkStyle}>
+      {t('Mentions légales')}
+    </Link>
+  </div>
+
   return <footer style={footerStyle}>
     <div style={contentStyle}>
       <div>
@@ -59,22 +76,12 @@ const Footer = (): React.ReactElement => {
           <img src={logoGoogleOrgImage} alt="Google.org" style={footerLogoStyle} />
         </a>
       </div>
+      {isMobileVersion ? nav : null}
       <div style={finalFooterStyle}>
         <div>
           © {(new Date().getFullYear())} by MaVoie.org
         </div>
-        <div>
-          <Link
-            to={getPath(['SPLASH'], t)}
-            style={isSplash ? footerLinkSelectedStyle : footerLinkStyle}>
-            {t('Accueil')}
-          </Link>
-          <Link
-            to={getPath(['TERMS'], t)}
-            style={isTerms ? footerLinkSelectedStyle : footerLinkStyle}>
-            {t('Mentions légales')}
-          </Link>
-        </div>
+        {isMobileVersion ? null : nav}
       </div>
     </div>
   </footer>
