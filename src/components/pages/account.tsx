@@ -3,7 +3,7 @@ import {useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
 import {useHistory} from 'react-router'
 
-import {FirebaseAuth, FirebaseErrorProps, googleAuthProvider} from 'database/firebase'
+import {FirebaseAuth, FirebaseErrorProps} from 'database/firebase'
 import {useFastForward} from 'hooks/fast_forward'
 import {RootState, updateUser, useDispatch} from 'store/actions'
 import {getPath} from 'store/url'
@@ -40,6 +40,7 @@ const AccountPage = (): React.ReactElement => {
   const {t} = useTranslation()
   const history = useHistory()
 
+  const uid = useSelector(({user: {uid}}: RootState) => uid)
   const name = useSelector(({user: {name}}: RootState) => name)
   const [inputName, setName] = useState(name || '')
   useEffect((): void => {
@@ -78,22 +79,16 @@ const AccountPage = (): React.ReactElement => {
 
   const dispatch = useDispatch()
 
-  FirebaseAuth.onAuthStateChanged((user: firebase.User|null) => {
-    if (user) {
-      // TODO(émilie): Manager the case where there is already a uid.
-      dispatch(updateUser({uid: user.uid}))
-    }
-  })
   const onSave = useCallback((): void => {
     const errorsFields = {
       // TODO(émilie): validate the email
       email: !inputEmail,
       lastName: !inputLastName,
       name: !inputName,
-      password: !password,
+      password: !password && !uid,
     }
     setAreErrorFields(errorsFields)
-    if (!inputName || !inputLastName || !inputEmail || !password) {
+    if (!inputName || !inputLastName || !inputEmail || (!password && !uid)) {
       setIsErrorDisplayed(true)
       return
     }
@@ -101,43 +96,26 @@ const AccountPage = (): React.ReactElement => {
     const update = {
       ...name === inputName ? {} : {name: inputName},
       ...lastName === inputLastName ? {} : {lastName: inputLastName},
-      ...email === inputEmail ? {} : {email: inputEmail},
+      ...email === inputEmail || uid ? {} : {email: inputEmail},
     }
     if (Object.keys(update).length) {
       dispatch(updateUser(update))
       // TODO(émilie): Move to actions.ts
-      FirebaseAuth.createUserWithEmailAndPassword(inputEmail, password).
-        catch((error: FirebaseErrorProps) => {
-          setErrorMessage(error.message)
-          return
-        }).
-        then(() => setUpdated(true))
+      if (!uid) {
+        FirebaseAuth.createUserWithEmailAndPassword(inputEmail, password).
+          catch((error: FirebaseErrorProps) => {
+            setErrorMessage(error.message)
+            return
+          }).
+          then(() => setUpdated(true))
+      } else {
+        // TODO(émilie): Update the user in firebase
+        setUpdated(true)
+      }
     }
   }, [dispatch,
     email, name, inputEmail, inputName, lastName, inputLastName,
-    password, setErrorMessage])
-  const onSignInWithGoogle = useCallback((): void => {
-    FirebaseAuth.signInWithPopup(googleAuthProvider).
-      then((result) => {
-        const firebaseUser = result.user
-        if (!firebaseUser) {
-          // This should never happen, see
-          // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
-          return
-        }
-        const update = {
-          ...firebaseUser.email ? {email: firebaseUser.email} : {},
-          ...firebaseUser.displayName ? {name: firebaseUser.displayName} : {},
-          uid: firebaseUser.uid,
-        }
-        dispatch(updateUser(update))
-        setUpdated(true)
-      }).
-      catch((error: FirebaseErrorProps) => {
-        setErrorMessage(error.message)
-        return
-      })
-  }, [dispatch])
+    password, setErrorMessage, uid])
   useFastForward(() => {
     if (inputName && inputLastName && inputEmail && password) {
       onSave()
@@ -159,7 +137,7 @@ const AccountPage = (): React.ReactElement => {
 
   const buttonStyle: React.CSSProperties = {
     marginTop: 20,
-    opacity: !inputName || !inputLastName || !inputEmail || !password ? 0.75 : 1,
+    opacity: !inputName || !inputLastName || !inputEmail || (!password && !uid) ? 0.75 : 1,
   }
 
   const errorValidationStyle: React.CSSProperties = {
@@ -200,18 +178,18 @@ const AccountPage = (): React.ReactElement => {
     </div> : null}
     <Input
       placeholder={t('Email')} style={inputEmailStyle}
-      autoComplete="email"
+      autoComplete="email" disabled={uid ? true : false}
       value={inputEmail} onChange={setEmail} />
     {areErrorFields.email ? <div style={errorMessageStyle}>
       {t('<sup>*</sup>Champ obligatoire')}
     </div> : null}
-    <Input
+    {uid ? null : <Input
       placeholder={t('Mot de passe')} style={inputPasswordStyle}
       type="password" autoComplete="new-password"
-      value={password} onChange={setPassword} />
-    {areErrorFields.password ? <div style={errorMessageStyle}>
-      {t('<sup>*</sup>Champ obligatoire')}
-    </div> : null}
+      value={password} onChange={setPassword} />}
+    {!uid && areErrorFields.password ?
+      <div style={errorMessageStyle}>{t('<sup>*</sup>Champ obligatoire')}</div>
+      : null}
     <Button type="secondLevel" onClick={onSave} style={buttonStyle} >
       {t('Valider')}
     </Button>
@@ -222,9 +200,6 @@ const AccountPage = (): React.ReactElement => {
     {errorMessage ? <div style={errorValidationStyle}>
       {errorMessage}
     </div> : null}
-    <Button type="secondLevel" onClick={onSignInWithGoogle} style={buttonStyle} >
-      {t('Inscription avec Google')}
-    </Button>
   </Layout>
 }
 
