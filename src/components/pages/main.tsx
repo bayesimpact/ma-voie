@@ -36,7 +36,7 @@ require('styles/app.css')
 i18nInit()
 
 const App = (): React.ReactElement => {
-  const {pathname} = useLocation()
+  const {hash, pathname, search} = useLocation()
   const defineAndGetPath = useSubPathDefiner()
   useEffect((): void => logPage(pathname), [pathname])
   // i18next-extract-mark-ns-start url
@@ -55,7 +55,7 @@ const App = (): React.ReactElement => {
     <Route path={defineAndGetPath('STEPS')} component={StepsPage} />
     <Route path={defineAndGetPath('TERMS')} component={TermsPage} />
     <Route path={defineAndGetPath('COMPONENTS')} component={ComponentsPage} />
-    <Redirect to={defineAndGetPath('SPLASH')} />
+    <Redirect to={defineAndGetPath('SPLASH') + search + hash} />
   </Switch>
   // i18next-extract-mark-ns-stop url
 }
