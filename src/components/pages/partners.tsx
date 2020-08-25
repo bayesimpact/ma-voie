@@ -87,7 +87,7 @@ const PartnersPage = (): React.ReactElement => {
       {partners.map((partner) =>
         <PartnerCard
           key={partner.partnerId} {...partner}
-          style={partnerCardStyle} onClick={scrollToPartner} />,
+          style={partnerCardStyle} onClick={scrollToPartner} stepId={stepId} />,
       )}
       <div style={{flexShrink: 0, width: outerPadding - 20}} />
     </div> : partners.map((partner) => <ExternalPartner

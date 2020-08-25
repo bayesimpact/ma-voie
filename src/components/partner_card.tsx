@@ -3,7 +3,9 @@ import {Trans, useTranslation} from 'react-i18next'
 import ReactMarkdown from 'react-markdown'
 import {Link} from 'react-router-dom'
 
+import {useDispatch, updateStep} from 'store/actions'
 import {Props as PartnerProps} from 'store/partners'
+import {useProjectId} from 'store/selections'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
@@ -66,12 +68,15 @@ const discreetAnchorStyle: React.CSSProperties = {
 
 interface Props extends PartnerProps {
   onClick?: (partnerId: string) => void
+  stepId: bayes.maVoie.StepId
   style?: React.CSSProperties
 }
 const PartnerCard = (props: Props): React.ReactElement => {
-  const {description, details, url, discoverUrl = url, logo, name, onClick, partnerId, style, title,
-    userCount = 1} = props
+  const {description, details, url, discoverUrl = url, logo, name, onClick, partnerId, stepId,
+    style, title, userCount = 1} = props
   const {t} = useTranslation()
+  const dispatch = useDispatch()
+  const projectId = useProjectId()
   const finalContainerStyle: React.CSSProperties = {
     ...containerStyle,
     ...style,
@@ -83,9 +88,9 @@ const PartnerCard = (props: Props): React.ReactElement => {
   }, [partnerId, onClick])
   const choosePartner = useCallback((): void => {
     // TODO(cyrille): Add user info to url.
-    // TODO(cyrille): Add chosen partners in user state.
+    dispatch(updateStep(projectId, stepId, {selectedPartnerId: partnerId}))
     window.open(url, '_blank')
-  }, [url])
+  }, [dispatch, partnerId, projectId, stepId, url])
   return <div style={finalContainerStyle} onClick={handleClick} id={partnerId} data-partner>
     <div style={contentStyle}>
       <div style={titleStyle}>
