@@ -1,7 +1,10 @@
-import React from 'react'
+import React, {useCallback, useState} from 'react'
 import {useTranslation} from 'react-i18next'
+import {useHistory} from 'react-router'
 import {Link} from 'react-router-dom'
 
+import {FirebaseAuth, FirebaseErrorProps, googleAuthProvider} from 'database/firebase'
+import {updateUser, useDispatch} from 'store/actions'
 import {getPath} from 'store/url'
 
 import ButtonWithIcon from 'components/button_with_icon'
@@ -24,6 +27,10 @@ const linkConnectStyle: React.CSSProperties = {
   color: colors.TURQUOISE_BLUE,
 }
 
+const errorValidationStyle: React.CSSProperties = {
+  color: colors.RED_ERROR,
+}
+
 const soonAvailable = (): void => window.alert('Bientôt disponible...')
 
 // This is a top level page and should never be nested in another one.
@@ -31,6 +38,40 @@ const soonAvailable = (): void => window.alert('Bientôt disponible...')
 // TODO(émilie): Link the buttons.
 const SignupPage = (): React.ReactElement => {
   const {t} = useTranslation()
+  const history = useHistory()
+  const [errorMessage, setErrorMessage] = useState('')
+
+  const dispatch = useDispatch()
+
+  FirebaseAuth.onAuthStateChanged((user: firebase.User|null) => {
+    if (user) {
+      // TODO(émilie): Manager the case where there is already a uid.
+      dispatch(updateUser({uid: user.uid}))
+    }
+  })
+
+  const onSignInWithGoogle = useCallback((): void => {
+    FirebaseAuth.signInWithPopup(googleAuthProvider).
+      then((result) => {
+        const firebaseUser = result.user
+        if (!firebaseUser) {
+          // This should never happen, see
+          // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
+          return
+        }
+        const update = {
+          ...firebaseUser.email ? {email: firebaseUser.email} : {},
+          ...firebaseUser.displayName ? {name: firebaseUser.displayName} : {},
+          uid: firebaseUser.uid,
+        }
+        dispatch(updateUser(update))
+        history.push(getPath(['ACCOUNT'], t))
+      }).
+      catch((error: FirebaseErrorProps) => {
+        setErrorMessage(error.message)
+        return
+      })
+  }, [dispatch, history, t])
 
   return <Layout bigTitle={t('Inscription')} menu="out">
     <Link to={getPath(['ACCOUNT'], t)} style={linkStyle}>
@@ -41,9 +82,12 @@ const SignupPage = (): React.ReactElement => {
     <ButtonWithIcon type="facebook" style={buttonStyle} onClick={soonAvailable}>
       {t('Continuer avec Facebook')}
     </ButtonWithIcon>
-    <ButtonWithIcon type="google" style={buttonStyle} onClick={soonAvailable}>
+    <ButtonWithIcon type="google" style={buttonStyle} onClick={onSignInWithGoogle}>
       {t('Continuer avec Google')}
     </ButtonWithIcon>
+    {errorMessage ? <div style={errorValidationStyle}>
+      {errorMessage}
+    </div> : null}
     <div style={divStyle}>
       {t('Déjà un compte\u00A0?')}&nbsp;
       <Link to={getPath(['LOGIN'], t)} style={linkConnectStyle}>{t('Se connecter')}</Link>
