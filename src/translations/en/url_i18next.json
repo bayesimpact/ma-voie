@@ -10,7 +10,7 @@
   "LOGIN": "login",
   "LOST": "lost",
   "MENU": "menu",
-  "MENU_OUT": "homeMenu",
+  "MENU_SITE": "siteMenu",
   "PARTNERS_EXTERNAL": "otherPartners",
   "PARTNERS_INTERNAL": "partners",
   "REDEFINE": "redefine",

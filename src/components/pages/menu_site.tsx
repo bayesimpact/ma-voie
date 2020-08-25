@@ -55,12 +55,11 @@ const buttonContainerStyle: React.CSSProperties = {
 
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
-// TODO(émilie): Link this menu from the button in the landing when done.
 // TODO(émilie): Set menuElementSelectedStyle on elements when on the right page.
 // TODO(émilie): Refactor one menu used by both menus.
 // This menu is displayed from the landing page and shows the outer pages only
 // ... such as home and legals.
-const MenuOutPage = (): React.ReactElement => {
+const MenuSitePage = (): React.ReactElement => {
   const {t} = useTranslation()
   const history = useHistory()
   const goBackClick = useCallback((): void => {
@@ -89,4 +88,4 @@ const MenuOutPage = (): React.ReactElement => {
   </div>
 }
 
-export default React.memo(MenuOutPage)
+export default React.memo(MenuSitePage)

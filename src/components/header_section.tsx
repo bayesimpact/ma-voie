@@ -98,7 +98,7 @@ const HeaderSection = (): React.ReactElement => {
 
   return <section style={sectionStyle}>
     {isMobileVersion && !isLandingOnlyVersion ? // TODO(émilie): Allow to sign in on desktop too.
-      <Link to={getPath(['MENU_OUT'], t)} style={menuLinkStyle}>
+      <Link to={getPath(['MENU_SITE'], t)} style={menuLinkStyle}>
         <MenuIcon />
       </Link> :
       null}

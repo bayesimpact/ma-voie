@@ -39,12 +39,12 @@ const logoStyle: React.CSSProperties = {
   width: 49,
 }
 interface Props {
-  menu?: 'in'|'out' // 'in' : inner menu with user data / 'out' : menu from outer pages
+  menu?: 'project'|'site'
   title?: string
 }
 
-// TODO(émilie): Remove the default menu value and sets it in each page using Header.
-const Header = ({menu = 'in', title}: Props): React.ReactElement => {
+// Default menu used is the project one.
+const Header = ({menu = 'project', title}: Props): React.ReactElement => {
   // TODO(émilie) : Add a menu burger when there is no title instead of the button.
   const {t} = useTranslation()
   const history = useHistory()
@@ -59,7 +59,7 @@ const Header = ({menu = 'in', title}: Props): React.ReactElement => {
           <div style={titleStyle}>{title}</div>
         </React.Fragment>
         : <React.Fragment>
-          <Link to={getPath([menu === 'in' ? 'MENU' : 'MENU_OUT'], t)} style={linkStyle}>
+          <Link to={getPath([menu === 'project' ? 'MENU' : 'MENU_SITE'], t)} style={linkStyle}>
             <MenuIcon />
           </Link>
           <img src={logoImage} alt={t('productName')} style={logoStyle} />

@@ -19,7 +19,7 @@ import ComponentsPage from 'components/pages/components'
 import DefinitionPage from 'components/pages/definition'
 import LoginPage from 'components/pages/login'
 import MenuPage from 'components/pages/menu'
-import MenuOutPage from 'components/pages/menu_out'
+import MenuSitePage from 'components/pages/menu_site'
 import PartnersPage from 'components/pages/partners'
 import SignupPage from 'components/pages/signup'
 import SkillsPage from 'components/pages/skills'
@@ -51,7 +51,7 @@ const App = (): React.ReactElement => {
     <Route path={defineAndGetPath('TRAINING')} component={TrainingPage} />
     <Route path={defineAndGetPath('DEFINITION')} component={DefinitionPage} />
     <Route path={defineAndGetPath('MENU')} component={MenuPage} />
-    <Route path={defineAndGetPath('MENU_OUT')} component={MenuOutPage} />
+    <Route path={defineAndGetPath('MENU_SITE')} component={MenuSitePage} />
     <Route path={defineAndGetPath('SIGNUP')} component={SignupPage} />
     <Route path={defineAndGetPath('SPLASH')} component={SplashPage} />
     <Route path={defineAndGetPath('STEPS')} component={StepsPage} />

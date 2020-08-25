@@ -32,7 +32,7 @@ const soonAvailable = (): void => window.alert('Bientôt disponible...')
 const SignupPage = (): React.ReactElement => {
   const {t} = useTranslation()
 
-  return <Layout bigTitle={t('Inscription')} menu="out">
+  return <Layout bigTitle={t('Inscription')} menu="site">
     <Link to={getPath(['ACCOUNT'], t)} style={linkStyle}>
       <ButtonWithIcon type="email" style={buttonStyle} onClick={soonAvailable}>
         {t('S\'inscrire avec un email')}
