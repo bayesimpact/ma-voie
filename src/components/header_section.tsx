@@ -1,5 +1,9 @@
+import MenuIcon from 'mdi-react/MenuIcon'
 import React from 'react'
 import {Trans, useTranslation} from 'react-i18next'
+import {Link} from 'react-router-dom'
+
+import {getPath} from 'store/url'
 
 // TODO(pascal): Add a name for the color below then comment those lines with the new name.
 import orange6ArrowsImage from 'images/arrows-6.svg?stroke=#992f00'
@@ -77,10 +81,24 @@ const whiteTriangleStyle: React.CSSProperties = {
   zIndex: 1,
 }
 
+const menuLinkStyle: React.CSSProperties = {
+  color: '#fff',
+  left: 20,
+  position: 'absolute',
+  textDecoration: 'none',
+  top: 22,
+}
+
+// TODO(émilie): Delete this flag when live
+const isDevVersion = window.location.href.indexOf('.bayes.org') > 0
 
 const HeaderSection = (): React.ReactElement => {
   const {t} = useTranslation()
+
   return <section style={sectionStyle}>
+    {isMobileVersion && isDevVersion ? <Link to={getPath(['MENU_OUT'], t)} style={menuLinkStyle}>
+      <MenuIcon />
+    </Link> : null}
     <h1 style={logoStyle}><img src={logoImage} alt={t('productName')} /></h1>
     <div style={contentStyle}>
       {isMobileVersion ? null : <Trans style={tagLineStyle}>
