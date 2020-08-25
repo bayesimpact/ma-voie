@@ -2,7 +2,7 @@ import React, {useCallback} from 'react'
 import {useTranslation} from 'react-i18next'
 import {Link} from 'react-router-dom'
 
-import {updateSteps, useDispatch} from 'store/actions'
+import {updateStep, useDispatch} from 'store/actions'
 import {useProjectId} from 'store/selections'
 import {getPath} from 'store/url'
 
@@ -26,7 +26,7 @@ const StepValidationButton = (props: ButtonProps): React.ReactElement => {
   const dispatch = useDispatch()
   const projectId = useProjectId()
   const handleClick = useCallback((): void => {
-    dispatch(updateSteps(projectId, {[stepId]: stepValue}))
+    dispatch(updateStep(projectId, stepId, {completed: stepValue}))
     onClick?.()
   }, [dispatch, onClick, projectId, stepId, stepValue])
 

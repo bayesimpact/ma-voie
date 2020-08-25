@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react'
 import {useTranslation, Trans} from 'react-i18next'
 
-import {updateSteps, useDispatch} from 'store/actions'
+import {updateStep, useDispatch} from 'store/actions'
 import {useProjectId} from 'store/selections'
 
 import Layout from 'components/layout'
@@ -27,7 +27,7 @@ const SkillsGoPage = (): React.ReactElement => {
   const dispatch = useDispatch()
   const projectId = useProjectId()
   const handleClick = useCallback((): void => {
-    dispatch(updateSteps(projectId, {training: 'notRequired'}))
+    dispatch(updateStep(projectId, 'training', {completed: 'notRequired'}))
   }, [dispatch, projectId])
 
   return <Layout header={t('Compétences')} bigTitle={bigTitle}>

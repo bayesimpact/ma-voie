@@ -101,7 +101,7 @@ const StepsPage = (): React.ReactElement => {
   const isConnected = (currentUser !== null && name !== undefined && lastName !== undefined)
   const project = useProject()
 
-  const nextStep = STEPS.find(({stepId}) => !project.completedSteps?.[stepId])?.stepId
+  const nextStep = STEPS.find(({stepId}) => !project.steps?.[stepId]?.completed)?.stepId
   const nextStepRef = useRef<HTMLDivElement>(null)
   useEffect((): (() => void) => {
     // TODO(cyrille): Try to scroll to the last completed step before.
@@ -136,9 +136,9 @@ const StepsPage = (): React.ReactElement => {
     <div style={stepsStyle}>
       {STEPS.map(({isLastStep, title, ...step}, index) => {
         const stepListJoin = joinList(STEPS.map((step, index) => (index).toString()), t)
-        const isDone = !!project.completedSteps?.[step.stepId]
+        const isDone = !!project.steps?.[step.stepId]?.completed
         const isOpen = !isDone
-          && (!index || !!project.completedSteps?.[STEPS[index - 1].stepId])
+          && (!index || !!project.steps?.[STEPS[index - 1].stepId]?.completed)
         return <React.Fragment key={index}>
           {index ? <ArrowDownIcon style={arrowStyle} color={colors.SILVER_THREE} /> : null}
           {!isLastStep || isOpen || isDone ?

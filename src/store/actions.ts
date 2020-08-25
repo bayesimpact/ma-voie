@@ -6,7 +6,7 @@ export type AllActions =
   | LogoutAction
   | UpdateProject
   | UpdateUser
-  | UpdateSteps
+  | UpdateStep
 
 // Type of the main dispatch function.
 export type DispatchAllActions = Dispatch<AllActions>
@@ -30,12 +30,14 @@ function updateProject(project: UpdateProject['project']): UpdateProject {
   return {project, type: 'UPDATE_PROJECT'}
 }
 
-interface UpdateSteps extends Readonly<Action<'UPDATE_STEPS'>> {
-  projectId: string
-  steps: Partial<bayes.maVoie.ProjectStep>
+interface UpdateStep extends Readonly<Action<'UPDATE_STEP'>> {
+  readonly projectId: string
+  readonly stepId: bayes.maVoie.StepId
+  readonly step: Partial<bayes.maVoie.ProjectStep>
 }
-function updateSteps(projectId: string, steps: UpdateSteps['steps']): UpdateSteps {
-  return {projectId, steps, type: 'UPDATE_STEPS'}
+function updateStep(
+  projectId: string, stepId: bayes.maVoie.StepId, step: UpdateStep['step']): UpdateStep {
+  return {projectId, step, stepId, type: 'UPDATE_STEP'}
 }
 
 export type LogoutAction = Readonly<Action<'LOGOUT'>>
@@ -45,4 +47,4 @@ export interface RootState {
   user: bayes.maVoie.User
 }
 
-export {createProjectAction, logoutAction, updateProject, updateSteps, updateUser}
+export {createProjectAction, logoutAction, updateProject, updateStep, updateUser}
