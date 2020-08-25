@@ -31,15 +31,18 @@ export const user = (state = initialUser, action: AllActions): bayes.maVoie.User
             ...action.project,
           } : project),
       }
-    case 'UPDATE_STEPS':
+    case 'UPDATE_STEP':
       return {
         ...state,
-        projects: (state.projects || []).map((project) =>
+        projects: (state.projects || []).map((project): bayes.maVoie.Project =>
           project.projectId === action.projectId ? {
             ...project,
-            completedSteps: {
-              ...project.completedSteps,
-              ...action.steps,
+            steps: {
+              ...project.steps,
+              [action.stepId]: {
+                ...project.steps?.[action.stepId],
+                ...action.step,
+              },
             },
           } : project),
       }

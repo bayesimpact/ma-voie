@@ -32,16 +32,18 @@ declare namespace bayes {
       | 'self'
       | 'partner'
 
-    // undefined means not certified yet
+    type StepId =
+      | 'definition'
+      | 'skills'
+      | 'training'
+      | 'interview'
+
     interface ProjectStep {
-      definition?: StepCertificate
-      skills?: StepCertificate
-      training?: StepCertificate
-      interview?: StepCertificate
+      // undefined means not certified yet
+      completed?: StepCertificate
     }
 
     interface Project {
-      completedSteps?: ProjectStep
       experience?: ProjectExperience
       interest?: ProjectInterest
       hasDefinedProject?: boolean
@@ -49,6 +51,7 @@ declare namespace bayes {
       job?: Job
       projectId: string
       skills?: readonly string[]
+      steps?: {[stepId in StepId]?: ProjectStep}
     }
 
     interface Job {
