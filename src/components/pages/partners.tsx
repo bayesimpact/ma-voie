@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo, useState} from 'react'
+import React, {useCallback, useMemo, useRef, useState} from 'react'
 import {useTranslation, Trans} from 'react-i18next'
 import {useLocation, useRouteMatch} from 'react-router'
 import {Redirect} from 'react-router-dom'
@@ -139,28 +139,41 @@ const PartnersPage = (): React.ReactElement => {
     redirect: [...page || [], ...redirect],
   })), [page])
   const areInternalShown = pathname.endsWith(getPath(['PARTNERS_INTERNAL'], t))
-  if (!url || !stepId) {
+  const partners = stepId && PARTNERS.filter(({isInternal, steps}) => steps.includes(stepId) &&
+    !isInternal === !areInternalShown)
+  const partnersContainerRef = useRef<HTMLDivElement>(null)
+  const scrollToPartner = useCallback((currentPartner: string): void => {
+    if (!partners) {
+      return
+    }
+    const position = Math.max(
+      0, partners.findIndex(({partnerId}) => currentPartner === partnerId))
+    partnersContainerRef.current?.scrollTo(335 * position, 0)
+  }, [partners])
+  if (!url || !stepId || !partners) {
     return <Redirect to={getPath([], t)} />
   }
-  const partners = PARTNERS.filter(({isInternal, steps}) => steps.includes(stepId) &&
-    !isInternal === !areInternalShown)
-  const position = Math.max(
-    0, partners.findIndex(({partnerId}) => currentPartner === partnerId))
+  // Extra padding addeded by a wrapper div in the Layout.
+  const outerPadding = 30
   const partnersContainerStyle: React.CSSProperties = {
+    boxSizing: 'border-box',
     display: 'flex',
-    marginLeft: -335 * position,
-    transition: '450ms',
+    margin: `0 ${-outerPadding}px`,
+    overflow: 'scroll',
+    scrollBehavior: 'smooth',
+    width: '100vw',
   }
   const bigTitle = prepareT('Voici les partenaires idéaux pour vous aider')
-  // TODO(pascal): Fix the slider as it's not easy to get it right in CSS
   return <Layout header={translate(shortTitle)} bigTitle={bigTitle}>
     <TabsNav tabs={tabs} />
-    {areInternalShown ? <div style={partnersContainerStyle}>
+    {areInternalShown ? <div style={partnersContainerStyle} ref={partnersContainerRef}>
+      <div style={{flexShrink: 0, width: outerPadding}} />
       {partners.map((partner) =>
         <PartnerCard
           key={partner.partnerId} {...partner}
-          style={partnerCardStyle} onClick={setCurrentPartner} />,
+          style={partnerCardStyle} onClick={scrollToPartner} />,
       )}
+      <div style={{flexShrink: 0, width: outerPadding - 20}} />
     </div> : partners.map((partner) => <ExternalPartner
       key={partner.partnerId} {...partner}
       isOpen={currentPartner === partner.partnerId} onSelect={onSelect} />)}
