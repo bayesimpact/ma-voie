@@ -11,4 +11,3 @@ export interface FirebaseErrorProps {
 }
 
 export const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
-
