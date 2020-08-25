@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 
 import {getPath} from 'store/url'
 
-import ButtonIcon from 'components/button_icon'
+import ButtonWithIcon from 'components/button_with_icon'
 import Layout from 'components/layout'
 
 const linkStyle: React.CSSProperties = {
@@ -34,16 +34,16 @@ const SignupPage = (): React.ReactElement => {
 
   return <Layout bigTitle={t('Inscription')} menu="out">
     <Link to={getPath(['ACCOUNT'], t)} style={linkStyle}>
-      <ButtonIcon type="email" style={buttonStyle} onClick={soonAvailable}>
+      <ButtonWithIcon type="email" style={buttonStyle} onClick={soonAvailable}>
         {t('S\'inscrire avec un email')}
-      </ButtonIcon>
+      </ButtonWithIcon>
     </Link>
-    <ButtonIcon type="facebook" style={buttonStyle} onClick={soonAvailable}>
+    <ButtonWithIcon type="facebook" style={buttonStyle} onClick={soonAvailable}>
       {t('Continuer avec Facebook')}
-    </ButtonIcon>
-    <ButtonIcon type="google" style={buttonStyle} onClick={soonAvailable}>
+    </ButtonWithIcon>
+    <ButtonWithIcon type="google" style={buttonStyle} onClick={soonAvailable}>
       {t('Continuer avec Google')}
-    </ButtonIcon>
+    </ButtonWithIcon>
     <div style={divStyle}>
       {t('Déjà un compte\u00A0?')}&nbsp;
       <Link to={getPath(['LOGIN'], t)} style={linkConnectStyle}>{t('Se connecter')}</Link>

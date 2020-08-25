@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Button from 'components/button'
-import ButtonIcon from 'components/button_icon'
+import ButtonWithIcon from 'components/button_with_icon'
 import Layout from 'components/layout'
 import Tip from 'components/tip'
 
@@ -24,11 +24,11 @@ const ComponentsPage = (): React.ReactElement => {
     <br />
     <Button type="menu" onClick={onClick}>Button menu</Button>
     <br />
-    <ButtonIcon type="email" onClick={onClick}>Button Email</ButtonIcon>
+    <ButtonWithIcon type="email" onClick={onClick}>Button Email</ButtonWithIcon>
     <br />
-    <ButtonIcon type="facebook" onClick={onClick}>Button Facebook</ButtonIcon>
+    <ButtonWithIcon type="facebook" onClick={onClick}>Button Facebook</ButtonWithIcon>
     <br />
-    <ButtonIcon type="google" onClick={onClick}>Button Google</ButtonIcon>
+    <ButtonWithIcon type="google" onClick={onClick}>Button Google</ButtonWithIcon>
     <br />
     <Tip title="Astuce">
       Vous pouvez utiliser votre crédit CPF pour financer votre formation.

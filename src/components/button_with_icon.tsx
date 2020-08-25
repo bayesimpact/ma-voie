@@ -75,7 +75,7 @@ interface ButtonProps {
   type: ButtonIconType
 }
 
-const ButtonIcon = ({children, onClick, style, type}: ButtonProps): React.ReactElement => {
+const ButtonWithIcon = ({children, onClick, style, type}: ButtonProps): React.ReactElement => {
   const buttonFinalStyle: React.CSSProperties = {
     ...onClick ? {cursor: 'pointer'} : {},
     ...buttonsStyle[type],
@@ -87,4 +87,4 @@ const ButtonIcon = ({children, onClick, style, type}: ButtonProps): React.ReactE
   </div>
 }
 
-export default React.memo(ButtonIcon)
+export default React.memo(ButtonWithIcon)
