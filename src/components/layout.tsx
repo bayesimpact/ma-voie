@@ -23,7 +23,7 @@ interface Props {
   bigTitle?: string
   children: React.ReactNode
   header?: string
-  menu?: 'in'|'out'
+  menu?: 'project'|'site'
   style?: React.CSSProperties
   title?: string
 }

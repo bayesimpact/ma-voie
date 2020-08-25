@@ -80,7 +80,7 @@ const LoginPage = (): React.ReactElement => {
     opacity: !inputEmail || !password ? 0.75 : 1,
   }
 
-  return <Layout bigTitle={t('Connexion')} menu="out">
+  return <Layout bigTitle={t('Connexion')} menu="site">
     <form onSubmit={onSubmit}>
       <Input
         placeholder={t('Email')} style={inputStyle}
