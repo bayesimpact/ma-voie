@@ -3,7 +3,7 @@ import {useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
 import {useHistory} from 'react-router'
 
-import {FirebaseAuth, FirebaseErrorProps} from 'database/firebase'
+import {FirebaseAuth, FirebaseErrorProps, googleAuthProvider} from 'database/firebase'
 import {useFastForward} from 'hooks/fast_forward'
 import {RootState, updateUser, useDispatch} from 'store/actions'
 import {getPath} from 'store/url'
@@ -29,6 +29,9 @@ const errorMessageStyle: React.CSSProperties = {
   color: colors.RED_ERROR,
   fontSize: 13,
   marginLeft: 25,
+}
+const layoutStyle: React.CSSProperties = {
+  marginBottom: 20,
 }
 
 // This is a top level page and should never be nested in another one.
@@ -113,6 +116,28 @@ const AccountPage = (): React.ReactElement => {
   }, [dispatch,
     email, name, inputEmail, inputName, lastName, inputLastName,
     password, setErrorMessage])
+  const onSignInWithGoogle = useCallback((): void => {
+    FirebaseAuth.signInWithPopup(googleAuthProvider).
+      then((result) => {
+        const firebaseUser = result.user
+        if (!firebaseUser) {
+          // This should never happen, see
+          // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
+          return
+        }
+        const update = {
+          ...firebaseUser.email ? {email: firebaseUser.email} : {},
+          ...firebaseUser.displayName ? {name: firebaseUser.displayName} : {},
+          uid: firebaseUser.uid,
+        }
+        dispatch(updateUser(update))
+        setUpdated(true)
+      }).
+      catch((error: FirebaseErrorProps) => {
+        setErrorMessage(error.message)
+        return
+      })
+  }, [dispatch])
   useFastForward(() => {
     if (inputName && inputLastName && inputEmail && password) {
       onSave()
@@ -158,7 +183,7 @@ const AccountPage = (): React.ReactElement => {
     borderColor: areErrorFields.password ? colors.RED_ERROR : colors.SILVER_THREE,
   }
 
-  return <Layout bigTitle={t('Inscription')}>
+  return <Layout bigTitle={t('Inscription')} style={layoutStyle}>
     <Input
       placeholder={t('Prénom')} style={inputNameStyle}
       autoComplete="given-name"
@@ -197,6 +222,9 @@ const AccountPage = (): React.ReactElement => {
     {errorMessage ? <div style={errorValidationStyle}>
       {errorMessage}
     </div> : null}
+    <Button type="secondLevel" onClick={onSignInWithGoogle} style={buttonStyle} >
+      {t('Inscription avec Google')}
+    </Button>
   </Layout>
 }
 
