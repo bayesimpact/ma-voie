@@ -1,8 +1,15 @@
 import React from 'react'
 import {useTranslation} from 'react-i18next'
+import {Link} from 'react-router-dom'
 
-import IconButton from 'components/button_icon'
+import {getPath} from 'store/url'
+
+import ButtonIcon from 'components/button_icon'
 import Layout from 'components/layout'
+
+const linkStyle: React.CSSProperties = {
+  textDecoration: 'none',
+}
 
 const buttonStyle: React.CSSProperties = {
   marginBottom: 15,
@@ -18,15 +25,17 @@ const SignupPage = (): React.ReactElement => {
   const {t} = useTranslation()
 
   return <Layout bigTitle={t('Inscription')}>
-    <IconButton type="email" style={buttonStyle} onClick={soonAvailable}>
-      {t('S\'inscrire avec un email')}
-    </IconButton>
-    <IconButton type="facebook" style={buttonStyle} onClick={soonAvailable}>
+    <Link to={getPath(['ACCOUNT'], t)} style={linkStyle}>
+      <ButtonIcon type="email" style={buttonStyle} onClick={soonAvailable}>
+        {t('S\'inscrire avec un email')}
+      </ButtonIcon>
+    </Link>
+    <ButtonIcon type="facebook" style={buttonStyle} onClick={soonAvailable}>
       {t('Continuer avec Facebook')}
-    </IconButton>
-    <IconButton type="google" style={buttonStyle} onClick={soonAvailable}>
+    </ButtonIcon>
+    <ButtonIcon type="google" style={buttonStyle} onClick={soonAvailable}>
       {t('Continuer avec Google')}
-    </IconButton>
+    </ButtonIcon>
   </Layout>
 }
 
