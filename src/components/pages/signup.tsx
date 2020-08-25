@@ -14,17 +14,20 @@ const linkStyle: React.CSSProperties = {
 const buttonStyle: React.CSSProperties = {
   marginBottom: 15,
 }
+const divStyle: React.CSSProperties = {
+  marginTop: 20,
+  textAlign: 'center',
+}
 
 const soonAvailable = (): void => window.alert('Bientôt disponible...')
 
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 // TODO(émilie): Link the buttons.
-// TODO(émilie): Add the Sign in link.
 const SignupPage = (): React.ReactElement => {
   const {t} = useTranslation()
 
-  return <Layout bigTitle={t('Inscription')}>
+  return <Layout bigTitle={t('Inscription')} menu="out">
     <Link to={getPath(['ACCOUNT'], t)} style={linkStyle}>
       <IconButton type="email" style={buttonStyle} onClick={soonAvailable}>
         {t('S\'inscrire avec un email')}
@@ -36,6 +39,9 @@ const SignupPage = (): React.ReactElement => {
     <IconButton type="google" style={buttonStyle} onClick={soonAvailable}>
       {t('Continuer avec Google')}
     </IconButton>
+    <div style={divStyle}>
+      {t('Déjà un compte\u00A0?')}&nbsp;<Link to={getPath(['LOGIN'], t)}>{t('Se connecter')}</Link>
+    </div>
   </Layout>
 }
 
