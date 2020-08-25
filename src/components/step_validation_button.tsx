@@ -4,10 +4,10 @@ import {Link} from 'react-router-dom'
 
 import {updateSteps, useDispatch} from 'store/actions'
 import {useProjectId} from 'store/selections'
+import {StepId} from 'store/steps'
 import {getPath} from 'store/url'
 
 import Button, {ButtonType} from 'components/button'
-import {StepId} from 'components/pages/steps'
 
 const linkStyle: React.CSSProperties = {
   textDecoration: 'none',

@@ -1,0 +1,55 @@
+[
+    {
+        "description":"  * Durée : 6 semaines\n  * Faisable en ligne\n  * Coach dédié pour vous accompagner\n  * Suivi quotidien de votre avancement\n  * Disponible 24h/24\n  * Ils sont sympas",
+        "details":"Finançable CPF",
+        "discoverUrl":"https://www.chance.co/fr/parcours",
+        "isInternal":true,
+        "logo":"chance.svg",
+        "name":"Chance",
+        "partnerId":"chance",
+        "steps":["definition"],
+        "title":"300€",
+        "url":"https://www.chance.co",
+        "userCount":37
+    },
+    {
+        "description":"  * Durée : 6 semaines\n  * Faisable en ligne\n  * Coach dédié pour vous accompagner\n  * Suivi quotidien de votre avancement\n  * Disponible 24h/24\n  * Ils sont sympas",
+        "details":"Finançable CPF",
+        "isInternal":true,
+        "logo":"jobready.png",
+        "name":"Jobready",
+        "partnerId":"job-ready",
+        "steps":["training"],
+        "title":"300€",
+        "url":"https://www.jobready.fr"
+    },
+    {
+        "description":"  * Durée : 6 semaines\n  * Faisable en ligne\n  * Coach dédié pour vous accompagner\n  * Suivi quotidien de votre avancement\n  * Disponible 24h/24\n  * Ils sont sympas",
+        "isInternal":true,
+        "logo":"generation.png",
+        "name":"Génération",
+        "partnerId":"generation",
+        "steps":["training"],
+        "title":"Gratuit",
+        "url":"https://france.generation.org",
+        "userCount":1
+    },
+    {
+        "description":"Ce cours en ligne* \"Focus compétences\" est composé de 4 séquences :\n\n1. Définir la notion de compétence\n\n2. Acquérir une méthodologie pour identifier ses compétences\n\n3. Valoriser ses compétences auprès d'un recruteur\n\n4. Augmenter sa visibilité et sa crédibilité sur les réseaux sociaux\n\nChaque séquence est composée de vidéos, quiz, et de ressources complémentaires**.\n\nVous pouvez suivre chaque séquence à votre rythme et selon vos besoins.",
+        "details":"MOOC",
+        "logo":"chance.svg",
+        "name":"Externe 1",
+        "partnerId":"chance-1",
+        "steps":["definition", "training"],
+        "url":""
+    },
+    {
+        "description":"Ce cours en ligne* \"Focus compétences\" est composé de 4 séquences :\n\n1. Définir la notion de compétence\n\n2. Acquérir une méthodologie pour identifier ses compétences\n\n3. Valoriser ses compétences auprès d'un recruteur\n\n4. Augmenter sa visibilité et sa crédibilité sur les réseaux sociaux\n\nChaque séquence est composée de vidéos, quiz, et de ressources complémentaires**.\n\nVous pouvez suivre chaque séquence à votre rythme et selon vos besoins.",
+        "details":"MOOC",
+        "logo":"chance.svg",
+        "name":"Externe 2",
+        "partnerId":"chance-2",
+        "steps":["definition", "training"],
+        "url":""
+    }
+]

@@ -5,36 +5,14 @@ import {Redirect} from 'react-router-dom'
 
 import {prepareT} from 'store/i18n'
 import {getPath} from 'store/url'
+import Partners from 'store/partners'
 
 import Layout from 'components/layout'
-import {STEPS, StepId, StepInfo} from 'components/pages/steps'
+import {STEPS, StepInfo} from 'components/pages/steps'
 import ExternalPartner from 'components/external_partner'
-import PartnerCard, {PartnerProps} from 'components/partner_card'
+import PartnerCard from 'components/partner_card'
 import StepValidationButton from 'components/step_validation_button'
 import TabsNav, {TabProps} from 'components/tabs_nav'
-
-// TODO(émilie): create with the good content
-const description = `
-  * Durée\u00A0: 6 semaines
-  * Faisable en ligne
-  * Coach dédié pour vous accompagner
-  * Suivi quotidien de votre avancement
-  * Disponible 24h/24
-  * Ils sont sympas
-`
-
-const externalDescription = `Ce cours en ligne* "Focus compétences" est composé de 4 séquences :
-
-1. Définir la notion de compétence
-
-2. Acquérir une méthodologie pour identifier ses compétences
-
-3. Valoriser ses compétences auprès d'un recruteur
-
-4. Augmenter sa visibilité et sa crédibilité sur les réseaux sociaux
-
-Chaque séquence est composée de vidéos, quiz, et de ressources complémentaires**.
-Vous pouvez suivre chaque séquence à votre rythme et selon vos besoins.`
 
 
 const partnerCardStyle: React.CSSProperties = {
@@ -59,68 +37,6 @@ const TABS_WITHOUT_STEP: readonly TabProps[] = [
   },
 ]
 
-type SelectablePartner = PartnerProps & {isInternal?: boolean; steps: readonly StepId[]}
-
-// TODO(cyrille): Fetch from a JSON file.
-const PARTNERS: readonly SelectablePartner[] = ([
-  {
-    description,
-    details: prepareT('Finançable CPF'),
-    discoverUrl: 'https://www.chance.co/fr/parcours',
-    isInternal: true,
-    logo: 'chance.svg',
-    name: 'Chance',
-    partnerId: 'chance',
-    steps: ['definition'],
-    title: '300€',
-    url: 'https://www.chance.co',
-    userCount: 37,
-  },
-  {
-    description,
-    details: prepareT('Finançable CPF'),
-    isInternal: true,
-    logo: 'jobready.png',
-    name: 'Jobready',
-    partnerId: 'job-ready',
-    steps: ['training'],
-    title: '300€',
-    url: 'https://www.jobready.fr',
-  },
-  {
-    description,
-    isInternal: true,
-    logo: 'generation.png',
-    name: 'Génération',
-    partnerId: 'generation',
-    steps: ['training'],
-    title: prepareT('Gratuit'),
-    url: 'https://france.generation.org',
-    userCount: 1,
-  },
-  {
-    description: externalDescription,
-    details: 'MOOC',
-    logo: 'chance.svg',
-    name: 'Externe 1',
-    partnerId: 'chance-1',
-    steps: ['definition', 'training'],
-    url: '',
-  },
-  {
-    description: externalDescription,
-    details: 'MOOC',
-    logo: 'chance.svg',
-    name: 'Externe 2',
-    partnerId: 'chance-2',
-    steps: ['definition', 'training'],
-    url: '',
-  },
-] as readonly SelectablePartner[]).map(({logo, ...partner}) => ({
-  ...partner,
-  // Add logos in the /assets/logo folder when adding new ones.
-  logo: `${config.canonicalUrl}/assets/logo/${logo}`,
-}))
 
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
@@ -139,7 +55,7 @@ const PartnersPage = (): React.ReactElement => {
     redirect: [...page || [], ...redirect],
   })), [page])
   const areInternalShown = pathname.endsWith(getPath(['PARTNERS_INTERNAL'], t))
-  const partners = stepId && PARTNERS.filter(({isInternal, steps}) => steps.includes(stepId) &&
+  const partners = stepId && Partners.filter(({isInternal, steps}) => steps.includes(stepId) &&
     !isInternal === !areInternalShown)
   const partnersContainerRef = useRef<HTMLDivElement>(null)
   const scrollToPartner = useCallback((currentPartner: string): void => {
