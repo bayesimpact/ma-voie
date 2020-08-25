@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react'
+import React, {useCallback, useMemo, useRef} from 'react'
 import {Trans, useTranslation} from 'react-i18next'
 
 import {prepareT} from 'store/i18n'
@@ -58,15 +58,16 @@ const CARDS: readonly (CardProps & {index?: never})[] = [
 
 const isMobileVersion = window.outerWidth <= 800
 const cardWidth = 220
+const cardPaddingWidth = 30
 
 const sectionStyle: React.CSSProperties = {
   color: colors.GREYISH_TEAL,
-  display: 'flex',
-  flexDirection: isMobileVersion ? 'column' : 'row',
   fontSize: 18,
   padding: isMobileVersion ? '0 35px' : '0 20px',
 }
 const contentStyle: React.CSSProperties = {
+  display: 'flex',
+  flexDirection: isMobileVersion ? 'column' : 'row',
   margin: '0 auto',
   maxWidth: 960,
 }
@@ -109,8 +110,12 @@ const carouselStyle: React.CSSProperties = isMobileVersion ? {
   margin: '0 -35px',
   overflow: 'scroll',
   padding: '0 0 75px',
+  scrollBehavior: 'smooth',
   width: '100vw',
-} : {}
+} : {
+  flex: 1,
+  minWidth: 480,
+}
 const cardsContainerStyle: React.CSSProperties = {
   display: 'flex',
   flexWrap: isMobileVersion ? 'nowrap' : 'wrap',
@@ -118,9 +123,11 @@ const cardsContainerStyle: React.CSSProperties = {
   margin: isMobileVersion ? 'initial' : '-40px 0 70px -40px',
   minWidth: isMobileVersion ? 'initial' : 480,
   padding: isMobileVersion ? `0 calc(50vw - ${cardWidth / 2}px)` : 'initial',
-  width: isMobileVersion ? cardWidth * CARDS.length + 30 * (CARDS.length - 1) : 'auto',
+  width: isMobileVersion ?
+    cardWidth * CARDS.length + cardPaddingWidth * (CARDS.length - 1) : 'auto',
 }
 const presentationStyle: React.CSSProperties = isMobileVersion ? {} : {
+  flex: 1,
   maxWidth: 480,
   paddingRight: 90,
   position: 'relative',
@@ -128,10 +135,11 @@ const presentationStyle: React.CSSProperties = isMobileVersion ? {} : {
 
 interface DisplayCardProps extends CardProps {
   index: number
+  onClick: (index: number) => void
   style?: React.CSSProperties
 }
 
-const CardBase = ({color, content, icon, index, name, style}: DisplayCardProps):
+const CardBase = ({color, content, icon, index, name, onClick, style}: DisplayCardProps):
 React.ReactElement => {
   const [translate] = useTranslation()
   const cardStyle: React.CSSProperties = useMemo(() => ({
@@ -155,7 +163,10 @@ React.ReactElement => {
     padding: '30px 29px',
     textAlign: 'center',
   }
-  return <div style={cardStyle}>
+  const handleClick = useCallback((): void => {
+    onClick(index)
+  }, [index, onClick])
+  return <div style={cardStyle} onClick={handleClick}>
     <header style={headerStyle}><img src={icon} alt={translate(name)} /></header>
     <div style={contentStyle}>
       {content}
@@ -168,6 +179,10 @@ const Card = React.memo(CardBase)
 
 const GoalSection = (): React.ReactElement => {
   const {t} = useTranslation()
+  const carouselRef = useRef<HTMLDivElement>(null)
+  const scrollToCard = useCallback((index: number): void => {
+    carouselRef.current?.scrollTo((index - 1) * (cardWidth + cardPaddingWidth), 0)
+  }, [])
   return <section style={sectionStyle}>
     <div style={contentStyle}>
       <div style={presentationStyle}>
@@ -179,11 +194,11 @@ const GoalSection = (): React.ReactElement => {
         </Trans>
         {isMobileVersion ? null : <img style={arrowsStyle} src={grey6ArrowsImage} alt="" />}
       </div>
-      <div style={carouselStyle}>
+      <div style={carouselStyle} ref={carouselRef}>
         <div style={cardsContainerStyle}>
           {CARDS.map((card, index) => <Card
             key={index} index={index + 1} {...card}
-            style={index % 2 ? evenCardOuterStyle : cardOuterStyle} />)}
+            style={index % 2 ? evenCardOuterStyle : cardOuterStyle} onClick={scrollToCard} />)}
         </div>
       </div>
     </div>
