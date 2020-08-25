@@ -3,7 +3,7 @@ import {useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
 import {useHistory} from 'react-router'
 
-import {FirebaseAuth, FirebaseErrorProps} from 'database/firebase'
+import {FirebaseAuth, FirebaseErrorProps, googleAuthProvider} from 'database/firebase'
 import {useFastForward} from 'hooks/fast_forward'
 import {RootState, updateUser, useDispatch} from 'store/actions'
 import {getPath} from 'store/url'
@@ -113,6 +113,25 @@ const AccountPage = (): React.ReactElement => {
   }, [dispatch,
     email, name, inputEmail, inputName, lastName, inputLastName,
     password, setErrorMessage])
+  const onSignInWithGoogle = useCallback((): void => {
+    FirebaseAuth.signInWithPopup(googleAuthProvider).
+      then((result) => {
+        const firebaseUser = result.user
+        if (firebaseUser) {
+          const update = {
+            ...firebaseUser.email ? {email: firebaseUser.email} : {},
+            ...firebaseUser.displayName ? {name: firebaseUser.displayName} : {},
+            uid: firebaseUser.uid,
+          }
+          dispatch(updateUser(update))
+          setUpdated(true)
+        }
+      }).
+      catch((error: FirebaseErrorProps) => {
+        setErrorMessage(error.message)
+        return
+      })
+  }, [dispatch])
   useFastForward(() => {
     if (inputName && inputLastName && inputEmail && password) {
       onSave()
@@ -197,6 +216,9 @@ const AccountPage = (): React.ReactElement => {
     {errorMessage ? <div style={errorValidationStyle}>
       {errorMessage}
     </div> : null}
+    <Button type="secondLevel" onClick={onSignInWithGoogle} style={buttonStyle} >
+      {t('Inscription avec Google')}
+    </Button>
   </Layout>
 }
 
