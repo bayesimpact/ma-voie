@@ -24,6 +24,9 @@ const headerStyle: React.CSSProperties = {
 }
 const buttonStyle: React.CSSProperties = {
   color: colors.DARK_FOREST_GREEN,
+  left: 20,
+  position: 'absolute',
+  top: 20,
 }
 const titleStyle: React.CSSProperties = {
   fontFamily: 'ProximaSoft',
