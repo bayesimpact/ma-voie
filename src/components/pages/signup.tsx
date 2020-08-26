@@ -3,7 +3,8 @@ import {useTranslation} from 'react-i18next'
 import {useHistory} from 'react-router'
 import {Link} from 'react-router-dom'
 
-import {FirebaseAuth, FirebaseErrorProps, googleAuthProvider} from 'database/firebase'
+import {FirebaseAuth, FirebaseErrorProps,
+  facebookAuthProvider, googleAuthProvider} from 'database/firebase'
 import {updateUser, useDispatch} from 'store/actions'
 import {getPath} from 'store/url'
 
@@ -74,13 +75,37 @@ const SignupPage = (): React.ReactElement => {
       })
   }, [dispatch, history, t])
 
+  const onSignInWithFacebook = useCallback((): void => {
+    FirebaseAuth.signInWithPopup(facebookAuthProvider).
+      then((result) => {
+        const firebaseUser = result.user
+        if (!firebaseUser) {
+          // This should never happen, see
+          // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
+          return
+        }
+        const update = {
+          ...firebaseUser.email ? {email: firebaseUser.email} : {},
+          // TODO (émilie): Split displayName into first and last name.
+          ...firebaseUser.displayName ? {name: firebaseUser.displayName} : {},
+          uid: firebaseUser.uid,
+        }
+        dispatch(updateUser(update))
+        history.push(getPath(['ACCOUNT'], t))
+      }).
+      catch((error) => {
+        setErrorMessage(error.message)
+        return
+      })
+  }, [dispatch, history, t])
+
   return <Layout bigTitle={t('Inscription')} menu="site">
     <Link to={getPath(['ACCOUNT'], t)} style={linkStyle}>
       <ButtonWithIcon type="email" style={buttonStyle} onClick={soonAvailable}>
         {t('S\'inscrire avec un email')}
       </ButtonWithIcon>
     </Link>
-    <ButtonWithIcon type="facebook" style={buttonStyle} onClick={soonAvailable}>
+    <ButtonWithIcon type="facebook" style={buttonStyle} onClick={onSignInWithFacebook}>
       {t('Continuer avec Facebook')}
     </ButtonWithIcon>
     <ButtonWithIcon type="google" style={buttonStyle} onClick={onSignInWithGoogle}>

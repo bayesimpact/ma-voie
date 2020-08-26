@@ -10,4 +10,7 @@ export interface FirebaseErrorProps {
   message: string
 }
 
-export const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
+const facebookAuthProvider = new firebase.auth.FacebookAuthProvider()
+
+export {facebookAuthProvider, googleAuthProvider}
