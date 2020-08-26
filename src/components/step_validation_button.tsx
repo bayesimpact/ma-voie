@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom'
 
 import {updateStep, useDispatch} from 'store/actions'
 import {useProjectId} from 'store/selections'
-import {StepId} from 'store/steps'
 import {getPath} from 'store/url'
 
 import Button, {ButtonType} from 'components/button'
@@ -16,7 +15,7 @@ const linkStyle: React.CSSProperties = {
 interface ButtonProps {
   children: React.ReactNode
   onClick?: () => void
-  stepId: StepId
+  stepId: bayes.maVoie.StepId
   stepValue: bayes.maVoie.StepCertificate
   type?: ButtonType
 }
