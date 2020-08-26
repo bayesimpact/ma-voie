@@ -41,6 +41,7 @@ declare namespace bayes {
     interface ProjectStep {
       // undefined means not certified yet
       completed?: StepCertificate
+      selectedPartnerId?: string
     }
 
     interface Project {
