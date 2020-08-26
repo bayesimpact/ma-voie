@@ -76,7 +76,7 @@ const SignupPage = (): React.ReactElement => {
 
   return <Layout bigTitle={t('Inscription')} menu="site">
     <Link to={getPath(['ACCOUNT'], t)} style={linkStyle}>
-      <ButtonWithIcon type="email" style={buttonStyle} onClick={soonAvailable}>
+      <ButtonWithIcon type="email" style={buttonStyle}>
         {t('S\'inscrire avec un email')}
       </ButtonWithIcon>
     </Link>
