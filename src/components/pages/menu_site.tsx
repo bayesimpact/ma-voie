@@ -9,8 +9,6 @@ import {getPath} from 'store/url'
 import Button from 'components/button'
 import {colorToAlpha} from 'components/colors'
 
-const notAvailable = (): void => window.alert('Bientôt disponible...')
-
 const pageStyle: React.CSSProperties = {
   backgroundColor: colors.DARK_TEAL,
   minHeight: '100vh',
@@ -71,12 +69,12 @@ const MenuSitePage = (): React.ReactElement => {
       <CloseIcon onClick={goBackClick} />
     </div>
     <div style={menuElementSelectedStyle}>
-      <Link onClick={notAvailable} to={getPath(['ACCOUNT'], t)} style={menuElementLinkStyle}>
+      <Link to={getPath(['ACCOUNT'], t)} style={menuElementLinkStyle}>
         {t('Accueil')}
       </Link>
     </div>
     <div style={menuElementStyle}>
-      <Link onClick={notAvailable} to={getPath(['ACCOUNT'], t)} style={menuElementLinkStyle}>
+      <Link to={getPath(['TERMS'], t)} style={menuElementLinkStyle}>
         {t('Mentions légales')}
       </Link>
     </div>
