@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 
 import {getPath} from 'store/url'
 
+import Button from 'components/button'
 // TODO(pascal): Add a name for the color below then comment those lines with the new name.
 import orange6ArrowsImage from 'images/arrows-6.svg?stroke=#992f00'
 import orange13ArrowsImage from 'images/arrows-13.svg?stroke=#992f00'
@@ -88,6 +89,11 @@ const menuLinkStyle: React.CSSProperties = {
   textDecoration: 'none',
   top: 22,
 }
+const startButtonStyle: React.CSSProperties = {
+  backgroundColor: colors.DARK_FOREST_GREEN,
+  margin: isMobileVersion ? '35px auto 0' : '35px 0 0',
+  maxWidth: 270,
+}
 
 // TODO(émilie): Delete this flag when live.
 const isLandingOnlyVersion = !window.location.href.includes('.bayes.org') &&
@@ -115,6 +121,11 @@ const HeaderSection = (): React.ReactElement => {
           $t(productName)
         </strong>
       </Trans>
+      {isLandingOnlyVersion ? null : <Link to={getPath(['STEPS'], t)}>
+        <Button type="firstLevel" style={startButtonStyle}>
+          {t('Commencer maintenant')}
+        </Button>
+      </Link>}
       {isMobileVersion ? null : <React.Fragment>
         <img src={orange13ArrowsImage} alt="" style={orange13ArrowsStyle} />
         <img src={orange6ArrowsImage} alt="" style={orange6ArrowsStyle} />
