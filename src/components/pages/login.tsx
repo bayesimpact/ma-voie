@@ -8,8 +8,11 @@ import {RootState, updateUser, useDispatch} from 'store/actions'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
+import ButtonWithIcon from 'components/button_with_icon'
 import Input from 'components/input'
 import Layout from 'components/layout'
+
+const soonAvailable = (): void => window.alert('Bientôt disponible...')
 
 const inputStyle: React.CSSProperties = {
   border: `1px solid ${colors.SILVER_THREE}`,
@@ -33,8 +36,19 @@ const errorValidationStyle: React.CSSProperties = {
   color: colors.RED_ERROR,
 }
 
+const orDivStyle: React.CSSProperties = {
+  marginBottom: 10,
+  marginTop: 20,
+  textAlign: 'center',
+}
+
+const buttonThirdPartyStyle: React.CSSProperties = {
+  marginTop: 20,
+}
+
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
+// TODO(émilie): Add a forgotten password link + create page
 const LoginPage = (): React.ReactElement => {
   const {t} = useTranslation()
 
@@ -100,6 +114,13 @@ const LoginPage = (): React.ReactElement => {
         {errorMessage}
       </div> : null}
     </form>
+    <div style={orDivStyle}>{t('ou')}</div>
+    <ButtonWithIcon type="facebook" style={buttonThirdPartyStyle} onClick={soonAvailable}>
+      {t('Continuer avec Facebook')}
+    </ButtonWithIcon>
+    <ButtonWithIcon type="google" style={buttonThirdPartyStyle} onClick={soonAvailable}>
+      {t('Continuer avec Google')}
+    </ButtonWithIcon>
   </Layout>
 }
 
