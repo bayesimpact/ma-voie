@@ -3,10 +3,13 @@ import {useTranslation, Trans} from 'react-i18next'
 import {useLocation, useRouteMatch} from 'react-router'
 import {Redirect} from 'react-router-dom'
 
+import {updateStep, useDispatch} from 'store/actions'
 import {prepareT} from 'store/i18n'
+import {useProject, useProjectId} from 'store/selections'
 import {getPath} from 'store/url'
-import Partners from 'store/partners'
+import Partners, {Props as PartnerProps} from 'store/partners'
 
+import Button from 'components/button'
 import Layout from 'components/layout'
 import {STEPS, StepInfo} from 'components/pages/steps'
 import ExternalPartner from 'components/external_partner'
@@ -38,6 +41,44 @@ const TABS_WITHOUT_STEP: readonly TabProps[] = [
 ]
 
 
+
+const introStyle: React.CSSProperties = {
+  color: colors.DARK_FOREST_GREEN,
+  fontSize: 12,
+  marginTop: 35,
+  textTransform: 'uppercase',
+}
+const stopButtonStyle: React.CSSProperties = {
+  border: `solid 1px ${colors.SILVER_THREE}`,
+  marginTop: 40,
+}
+
+
+interface SelectedPartnerProps {
+  partner: PartnerProps
+  step: {
+    stepId: bayes.maVoie.StepId
+    title: string
+  }
+}
+const SelectedPartnerPageBase = ({partner, step}: SelectedPartnerProps): React.ReactElement => {
+  const {t, t: translate} = useTranslation()
+  const dispatch = useDispatch()
+  const projectId = useProjectId()
+  const stopPartner = useCallback((): void => {
+    dispatch(updateStep(projectId, step.stepId, {selectedPartnerId: undefined}))
+  }, [dispatch, projectId, step])
+  return <Layout header={translate(step.title || '')}>
+    <div style={introStyle}>{t('Vous avez choisi\u00A0:')}</div>
+    <PartnerCard {...partner} isSelected={true} stepId={step.stepId} />
+    <Button type="discret" onClick={stopPartner} style={stopButtonStyle}>
+      {t('Arrêter maintenant')}
+    </Button>
+  </Layout>
+}
+const SelectedPartnerPage = React.memo(SelectedPartnerPageBase)
+
+
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 const PartnersPage = (): React.ReactElement => {
@@ -48,8 +89,8 @@ const PartnersPage = (): React.ReactElement => {
   const onSelect = useCallback((partnerId: string) =>
     setCurrentPartner(previousPartnerId => partnerId === previousPartnerId ? null : partnerId),
   [])
-  const {page, title = '', shortTitle = title, stepId}: Partial<StepInfo> =
-    STEPS.find(({page}) => getPath(page, t) === url) || {}
+  const step = STEPS.find(({page}) => getPath(page, t) === url)
+  const {page, title = '', shortTitle = title, stepId}: Partial<StepInfo> = step || {}
   const tabs = useMemo(() => TABS_WITHOUT_STEP.map(({redirect, ...tab}) => ({
     ...tab,
     redirect: [...page || [], ...redirect],
@@ -66,8 +107,18 @@ const PartnersPage = (): React.ReactElement => {
       0, partners.findIndex(({partnerId}) => currentPartner === partnerId))
     partnersContainerRef.current?.scrollTo(335 * position, 0)
   }, [partners])
-  if (!url || !stepId || !partners) {
+  const {steps} = useProject()
+  if (!url || !stepId || !partners || !step) {
     return <Redirect to={getPath([], t)} />
+  }
+  const {selectedPartnerId} = steps?.[stepId] || {}
+  const selectedPartner = selectedPartnerId &&
+    Partners.find(({partnerId}) => partnerId === selectedPartnerId)
+  if (selectedPartner) {
+    if (!areInternalShown) {
+      return <Redirect to={getPath(['PARTNERS_INTERNAL'], t)} />
+    }
+    return <SelectedPartnerPage partner={selectedPartner} step={step} />
   }
   // Extra padding addeded by a wrapper div in the Layout.
   const outerPadding = 30

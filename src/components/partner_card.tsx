@@ -1,12 +1,10 @@
 import React, {useCallback} from 'react'
 import {Trans, useTranslation} from 'react-i18next'
 import ReactMarkdown from 'react-markdown'
-import {Link} from 'react-router-dom'
 
 import {useDispatch, updateStep} from 'store/actions'
 import {Props as PartnerProps} from 'store/partners'
 import {useProjectId} from 'store/selections'
-import {getPath} from 'store/url'
 
 import Button from 'components/button'
 
@@ -19,9 +17,6 @@ const containerStyle: React.CSSProperties = {
   minWidth: 315,
   overflow: 'hidden',
   position: 'relative',
-}
-const contentStyle: React.CSSProperties = {
-  margin: '0 32px 50px 20px',
 }
 const titleStyle: React.CSSProperties = {
   alignItems: 'center',
@@ -55,11 +50,17 @@ const infoStyle: React.CSSProperties = {
   backgroundColor: colors.TEAL_BLUE,
   bottom: 0,
   color: '#fff',
+  fontWeight: 'bold',
   left: 0,
-  marginTop: 12,
   padding: '12px 60px',
   position: 'absolute',
-  width: '100%',
+  right: 0,
+  textAlign: 'center',
+}
+const topInfoStyle: React.CSSProperties = {
+  ...infoStyle,
+  bottom: 'initial',
+  top: 0,
 }
 const discreetAnchorStyle: React.CSSProperties = {
   color: 'inherit',
@@ -67,19 +68,23 @@ const discreetAnchorStyle: React.CSSProperties = {
 }
 
 interface Props extends PartnerProps {
+  isSelected?: boolean
   onClick?: (partnerId: string) => void
   stepId: bayes.maVoie.StepId
   style?: React.CSSProperties
 }
 const PartnerCard = (props: Props): React.ReactElement => {
-  const {description, details, url, discoverUrl = url, logo, name, onClick, partnerId, stepId,
-    style, title, userCount = 1} = props
+  const {description, details, url, discoverUrl = url, isSelected, logo, name, onClick, partnerId,
+    stepId, style, title, userCount = 1} = props
   const {t} = useTranslation()
   const dispatch = useDispatch()
   const projectId = useProjectId()
   const finalContainerStyle: React.CSSProperties = {
     ...containerStyle,
     ...style,
+  }
+  const contentStyle: React.CSSProperties = {
+    margin: isSelected ? '60px 30px 45px' : '0 30px 50px',
   }
   const handleClick = useCallback((): void => {
     if (onClick && partnerId) {
@@ -101,16 +106,23 @@ const PartnerCard = (props: Props): React.ReactElement => {
         </div>
       </div>
       <div style={descriptionStyle}><ReactMarkdown source={description} /></div>
-      <Link style={discreetAnchorStyle} to={getPath(['STEPS'], t)} onClick={choosePartner}>
-        <Button type="firstLevel">{t('Choisir')}</Button>
-      </Link>
-      <a style={discreetAnchorStyle} href={discoverUrl} rel="noopener noreferrer" target="_blank">
-        <Button type="discret">{t('Découvrir')}</Button>
-      </a>
+      {isSelected ?
+        <a style={discreetAnchorStyle} href={url} rel="noopener noreferrer" target="_blank">
+          <Button type="firstLevel">{t('Continuer')}</Button>
+        </a> : <React.Fragment>
+          <Button type="firstLevel" onClick={choosePartner}>{t('Choisir')}</Button>
+          <a
+            style={discreetAnchorStyle} href={discoverUrl} rel="noopener noreferrer"
+            target="_blank">
+            <Button type="discret">{t('Découvrir')}</Button>
+          </a>
+        </React.Fragment>}
     </div>
-    <Trans count={userCount} style={infoStyle}>
-      {{userCount}} personne a choisi {{name}}
-    </Trans>
+    {isSelected ?
+      <div style={topInfoStyle}>{t('En cours')}</div> :
+      <Trans count={userCount} style={infoStyle}>
+        {{userCount}} personne a choisi {{name}}
+      </Trans>}
   </div>
 }
 export default React.memo(PartnerCard)
