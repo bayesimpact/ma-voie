@@ -17,6 +17,7 @@ const buttonStyle: React.CSSProperties = {
 }
 
 const buttonsStyle = {
+  // TODO(pascal): Rename to discreet.
   discret: {
     ...buttonStyle,
     backgroundColor: '#fff',
