@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
-import {PartnerProps} from 'components/partner_card'
+import {Props as PartnerProps} from 'store/partners'
 
 const linkStyle: React.CSSProperties = {
   textDecoration: 'none',

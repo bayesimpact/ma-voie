@@ -8,6 +8,7 @@ import {FirebaseAuth} from 'database/firebase'
 import {RootState} from 'store/actions'
 import {joinList, prepareT} from 'store/i18n'
 import {useProject} from 'store/selections'
+import {StepId} from 'store/steps'
 import {Page, getPath} from 'store/url'
 
 import Button from 'components/button'
@@ -27,10 +28,9 @@ export interface StepInfo {
   isLastStep?: boolean
   page: Page
   shortTitle?: string
-  stepId: 'definition' | 'skills' | 'training' | 'interview'
+  stepId: StepId
   title: string
 }
-export type StepId = StepInfo['stepId']
 
 // TODO(cyrille): Move to store.
 export const STEPS: readonly StepInfo[] = [

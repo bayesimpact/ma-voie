@@ -3,6 +3,7 @@ import {Trans, useTranslation} from 'react-i18next'
 import ReactMarkdown from 'react-markdown'
 import {Link} from 'react-router-dom'
 
+import {Props as PartnerProps} from 'store/partners'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
@@ -63,17 +64,6 @@ const discreetAnchorStyle: React.CSSProperties = {
   textDecoration: 'none',
 }
 
-export interface PartnerProps {
-  details?: string
-  description?: string
-  discoverUrl?: string
-  logo: string
-  name: string
-  partnerId: string
-  title?: string
-  url: string
-  userCount?: number
-}
 interface Props extends PartnerProps {
   onClick?: (partnerId: string) => void
   style?: React.CSSProperties
