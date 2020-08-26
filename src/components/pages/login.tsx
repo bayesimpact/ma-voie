@@ -3,7 +3,7 @@ import {useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
 import {useHistory} from 'react-router'
 
-import {FirebaseAuth, FirebaseErrorProps} from 'database/firebase'
+import {FirebaseAuth, FirebaseErrorProps, googleAuthProvider} from 'database/firebase'
 import {RootState, updateUser, useDispatch} from 'store/actions'
 import {getPath} from 'store/url'
 
@@ -89,6 +89,30 @@ const LoginPage = (): React.ReactElement => {
       })
   }, [dispatch, email, inputEmail, history, password, setErrorMessage, t])
 
+  // TODO(émilie): Move to actions.ts.
+  const onSignInWithGoogle = useCallback((): void => {
+    FirebaseAuth.signInWithPopup(googleAuthProvider).
+      then((result) => {
+        const firebaseUser = result.user
+        if (!firebaseUser) {
+          // This should never happen, see
+          // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
+          return
+        }
+        // TODO(émilie): Retrieve user data from firestore.
+        const update = {
+          ...firebaseUser.email ? {email: firebaseUser.email} : {},
+          uid: firebaseUser.uid,
+        }
+        dispatch(updateUser(update))
+        history.push(getPath(['STEPS'], t))
+      }).
+      catch((error: FirebaseErrorProps) => {
+        setErrorMessage(error.message)
+        return
+      })
+  }, [dispatch, history, t])
+
   const buttonStyle: React.CSSProperties = {
     marginTop: 20,
     opacity: !inputEmail || !password ? 0.75 : 1,
@@ -118,7 +142,7 @@ const LoginPage = (): React.ReactElement => {
     <ButtonWithIcon type="facebook" style={buttonThirdPartyStyle} onClick={soonAvailable}>
       {t('Continuer avec Facebook')}
     </ButtonWithIcon>
-    <ButtonWithIcon type="google" style={buttonThirdPartyStyle} onClick={soonAvailable}>
+    <ButtonWithIcon type="google" style={buttonThirdPartyStyle} onClick={onSignInWithGoogle}>
       {t('Continuer avec Google')}
     </ButtonWithIcon>
   </Layout>
