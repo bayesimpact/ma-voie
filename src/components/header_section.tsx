@@ -94,6 +94,9 @@ const startButtonStyle: React.CSSProperties = {
   margin: isMobileVersion ? '35px auto 0' : '35px 0 0',
   maxWidth: 270,
 }
+const startLinkStyle: React.CSSProperties = {
+  textDecoration: 'none',
+}
 
 // TODO(émilie): Delete this flag when live.
 const isLandingOnlyVersion = !window.location.href.includes('.bayes.org') &&
@@ -121,7 +124,7 @@ const HeaderSection = (): React.ReactElement => {
           $t(productName)
         </strong>
       </Trans>
-      {isLandingOnlyVersion ? null : <Link to={getPath(['STEPS'], t)}>
+      {isLandingOnlyVersion ? null : <Link to={getPath(['STEPS'], t)} style={startLinkStyle}>
         <Button type="firstLevel" style={startButtonStyle}>
           {t('Commencer maintenant')}
         </Button>
