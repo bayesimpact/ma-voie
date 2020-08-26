@@ -59,7 +59,8 @@ export const localStorageMiddleware: Middleware<unknown, RootState, DispatchAllA
   (store: MiddlewareAPI<DispatchAllActions, RootState>): MiddlewareReturnType<RootState> =>
     (next: DispatchAllActions): ReturnType<MiddlewareReturnType<RootState>> =>
       (action: AllActions): ReturnType<ReturnType<MiddlewareReturnType<RootState>>> => {
+        const result = next(action)
         const {user} = store.getState()
         Storage.setItem(USER_IN_LOCAL_STORAGE, JSON.stringify(user))
-        return next(action)
+        return result
       }
