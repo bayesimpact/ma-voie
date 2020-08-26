@@ -8,10 +8,10 @@ import {prepareT} from 'store/i18n'
 import {useProject, useProjectId} from 'store/selections'
 import {getPath} from 'store/url'
 import Partners, {Props as PartnerProps} from 'store/partners'
+import Steps, {StepInfo} from 'store/steps'
 
 import Button from 'components/button'
 import Layout from 'components/layout'
-import {STEPS, StepInfo} from 'components/pages/steps'
 import ExternalPartner from 'components/external_partner'
 import PartnerCard from 'components/partner_card'
 import StepValidationButton from 'components/step_validation_button'
@@ -89,7 +89,7 @@ const PartnersPage = (): React.ReactElement => {
   const onSelect = useCallback((partnerId: string) =>
     setCurrentPartner(previousPartnerId => partnerId === previousPartnerId ? null : partnerId),
   [])
-  const step = STEPS.find(({page}) => getPath(page, t) === url)
+  const step = Steps.find(({page}) => getPath(page, t) === url)
   const {page, title = '', shortTitle = title, stepId}: Partial<StepInfo> = step || {}
   const tabs = useMemo(() => TABS_WITHOUT_STEP.map(({redirect, ...tab}) => ({
     ...tab,
