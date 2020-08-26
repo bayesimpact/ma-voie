@@ -3,6 +3,7 @@
   "COMPONENTS": "components",
   "DEFINITION": "definition",
   "EXPERIENCE": "experience",
+  "FORGOT_PASSWORD": "passwordForgotten",
   "GO": "go",
   "INTEREST": "interest",
   "JOB": "job",
