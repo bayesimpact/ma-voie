@@ -114,7 +114,7 @@ const PartnerCard = (props: Props): React.ReactElement => {
           <a
             style={discreetAnchorStyle} href={discoverUrl} rel="noopener noreferrer"
             target="_blank">
-            <Button type="discret">{t('Découvrir')}</Button>
+            <Button type="discreet">{t('Découvrir')}</Button>
           </a>
         </React.Fragment>}
     </div>

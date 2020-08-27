@@ -18,7 +18,7 @@ const ComponentsPage = (): React.ReactElement => {
     <br />
     <Button type="variable" onClick={onClick}>Button variable</Button>
     <br />
-    <Button type="discret" onClick={onClick}>Button discret</Button>
+    <Button type="discreet" onClick={onClick}>Button discreet</Button>
     <br />
     <Button type="specific" onClick={onClick}>Button specific</Button>
     <br />

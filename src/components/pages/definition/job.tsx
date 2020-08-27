@@ -60,7 +60,7 @@ const JobPage = (): React.ReactElement => {
       onChange={setJob} value={job || undefined} />
     <Button style={validateButtonStyle} type="variable" onClick={onValidate}>{t('Valider')}</Button>
     <FadingLink fadeTo={fadeTo} to={lostPage} style={linkStyle}>
-      <Button style={buttonContainerStyle} type="discret">
+      <Button style={buttonContainerStyle} type="discreet">
         {t('Je ne sais pas')}
       </Button>
     </FadingLink>
