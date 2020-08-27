@@ -32,8 +32,6 @@ const errorValidationStyle: React.CSSProperties = {
   color: colors.RED_ERROR,
 }
 
-const soonAvailable = (): void => window.alert('Bientôt disponible...')
-
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 // TODO(émilie): Link the buttons.
