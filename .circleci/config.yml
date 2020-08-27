@@ -55,6 +55,16 @@ jobs:
           name: Deploy app on AWS and OVH cloud
           command: bash -x release/deploy.sh "$CIRCLE_TAG"
 
+  check-for-fixmes:
+    docker:
+      - image: bayesimpact/circleci
+    steps:
+      - checkout
+      - run:
+          name: Check that no FIXME comment is left unresolved.
+          command: |
+            ! grep 'FIXME' src
+
   check-recent-todos:
     docker:
       - image: bayesimpact/circleci
@@ -84,12 +94,20 @@ workflows:
   # This will run for all tags, but not for branches.
   release:
     jobs:
+      - check-for-fixmes:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
       - build-test-publish:
           filters:
             tags:
               only: /.*/
             branches:
               ignore: /.*/
+          requires:
+            - check-for-fixmes
       - wait-for-manual-approval:
           type: approval
           requires:
