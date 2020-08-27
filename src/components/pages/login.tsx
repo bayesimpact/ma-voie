@@ -4,7 +4,8 @@ import {useSelector} from 'react-redux'
 import {useHistory} from 'react-router'
 import {Link} from 'react-router-dom'
 
-import {FirebaseAuth, FirebaseErrorProps, googleAuthProvider} from 'database/firebase'
+import {FirebaseAuth, FirebaseErrorProps,
+  facebookAuthProvider, googleAuthProvider} from 'database/firebase'
 import {RootState, updateUser, useDispatch} from 'store/actions'
 import {getPath} from 'store/url'
 
@@ -12,8 +13,6 @@ import Button from 'components/button'
 import ButtonWithIcon from 'components/button_with_icon'
 import Input from 'components/input'
 import Layout from 'components/layout'
-
-const soonAvailable = (): void => window.alert('Bientôt disponible...')
 
 const inputStyle: React.CSSProperties = {
   border: `1px solid ${colors.SILVER_THREE}`,
@@ -113,6 +112,31 @@ const LoginPage = (): React.ReactElement => {
       })
   }, [dispatch, history, t])
 
+  // TODO(émilie): Move to actions.ts.
+  // TODO(émilie): DRY with Google signin.
+  const onSignInWithFacebook = useCallback((): void => {
+    FirebaseAuth.signInWithPopup(facebookAuthProvider).
+      then((result) => {
+        const firebaseUser = result.user
+        if (!firebaseUser) {
+          // This should never happen, see
+          // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
+          return
+        }
+        // TODO(émilie): Retrieve user data from firestore.
+        const update = {
+          ...firebaseUser.email ? {email: firebaseUser.email} : {},
+          uid: firebaseUser.uid,
+        }
+        dispatch(updateUser(update))
+        history.push(getPath(['STEPS'], t))
+      }).
+      catch((error) => {
+        setErrorMessage(error.message)
+        return
+      })
+  }, [dispatch, history, t])
+
   const buttonStyle: React.CSSProperties = {
     marginTop: 20,
     opacity: !inputEmail || !password ? 0.75 : 1,
@@ -142,7 +166,7 @@ const LoginPage = (): React.ReactElement => {
       </div> : null}
     </form>
     <div style={orDivStyle}>{t('ou')}</div>
-    <ButtonWithIcon type="facebook" style={buttonThirdPartyStyle} onClick={soonAvailable}>
+    <ButtonWithIcon type="facebook" style={buttonThirdPartyStyle} onClick={onSignInWithFacebook}>
       {t('Continuer avec Facebook')}
     </ButtonWithIcon>
     <ButtonWithIcon type="google" style={buttonThirdPartyStyle} onClick={onSignInWithGoogle}>
