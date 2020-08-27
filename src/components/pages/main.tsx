@@ -22,6 +22,7 @@ import LoginPage from 'components/pages/login'
 import MenuPage from 'components/pages/menu'
 import MenuSitePage from 'components/pages/menu_site'
 import PartnersPage from 'components/pages/partners'
+import PasswordPage from 'components/pages/password'
 import SignupPage from 'components/pages/signup'
 import SkillsPage from 'components/pages/skills'
 import SplashPage from 'components/pages/splash'
@@ -53,6 +54,7 @@ const App = (): React.ReactElement => {
     <Route path={defineAndGetPath('FORGOT_PASSWORD')} component={ForgotPasswordPage} />
     <Route path={defineAndGetPath('MENU')} component={MenuPage} />
     <Route path={defineAndGetPath('MENU_SITE')} component={MenuSitePage} />
+    <Route path={defineAndGetPath('PASSWORD')} component={PasswordPage} />
     <Route path={defineAndGetPath('SIGNUP')} component={SignupPage} />
     <Route path={defineAndGetPath('SPLASH')} component={SplashPage} />
     <Route path={defineAndGetPath('STEPS')} component={StepsPage} />
