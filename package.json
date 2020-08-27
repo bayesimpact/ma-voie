@@ -60,6 +60,7 @@
     "exports-loader": "^1.x.x",
     "file-loader": "^6.x.x",
     "firebase": "^7.18.0",
+    "firebase-tools": "^7.x.x",
     "html-webpack-plugin": "^4.x.x",
     "i18next": "^19.x.x",
     "i18next-browser-languagedetector": "^5.x.x",

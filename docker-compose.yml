@@ -24,3 +24,15 @@ services:
       target: nginx
     ports:
       - 80
+  server:
+    image: bayesimpact/ma-voie-server:${CIRCLE_BUILD_NUM:-latest}
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+      target: dev
+  server-test:
+    image: bayesimpact/ma-voie-server-test:${CIRCLE_BUILD_NUM:-latest}
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+      target: test

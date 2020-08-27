@@ -24,6 +24,10 @@ jobs:
             docker rm test-$CIRCLE_BUILD_NUM
             test "$CIRCLE_BRANCH" == "master" && codecov -f /tmp/client_coverage/lcov.info -F frontend_client || echo "Skip Codecov"
       - run:
+          name: Test and lint Firebase server
+          command: |
+            docker-compose build --pull server-test
+      - run:
           name: Build and release as a docker image
           command: |
             TAG=$(.circleci/create-docker-tag.sh)
