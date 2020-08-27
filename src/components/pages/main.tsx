@@ -17,6 +17,7 @@ import {useSubPathDefiner} from 'store/url'
 import AccountPage from 'components/pages/account'
 import ComponentsPage from 'components/pages/components'
 import DefinitionPage from 'components/pages/definition'
+import ForgotPasswordPage from 'components/pages/forgot_password'
 import LoginPage from 'components/pages/login'
 import MenuPage from 'components/pages/menu'
 import MenuSitePage from 'components/pages/menu_site'
@@ -30,7 +31,6 @@ import TrainingPage from 'components/pages/training'
 
 import 'styles/fonts/Lato/font.css'
 import 'styles/fonts/ProximaSoft/font.css'
-
 
 require('styles/app.css')
 
@@ -50,6 +50,7 @@ const App = (): React.ReactElement => {
     <Route path={defineAndGetPath('SKILLS')} component={SkillsPage} />
     <Route path={defineAndGetPath('TRAINING')} component={TrainingPage} />
     <Route path={defineAndGetPath('DEFINITION')} component={DefinitionPage} />
+    <Route path={defineAndGetPath('FORGOT_PASSWORD')} component={ForgotPasswordPage} />
     <Route path={defineAndGetPath('MENU')} component={MenuPage} />
     <Route path={defineAndGetPath('MENU_SITE')} component={MenuSitePage} />
     <Route path={defineAndGetPath('SIGNUP')} component={SignupPage} />
