@@ -74,7 +74,7 @@ const CreateAccountPopup = ({onClose, style}: Props): React.ReactElement => {
           aux meilleures ressources pour votre futur emploi, <strong>gratuitement</strong>.
         </p>
       </Trans>
-      <Link to={getPath(['ACCOUNT'], t)} style={linkStyle} >
+      <Link to={getPath(['SIGNUP'], t)} style={linkStyle}>
         <Button type="firstLevel" >{t('Créer un compte')}</Button>
       </Link>
     </div>
