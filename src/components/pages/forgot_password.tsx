@@ -32,7 +32,6 @@ const errorStyle: React.CSSProperties = {
 
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
-// FIXME(émilie): Code the step 2 with the link and the code to reset password.
 const ForgotPasswordPage = (): React.ReactElement => {
   const {t} = useTranslation()
   const [email, setEmail] = useState('')
