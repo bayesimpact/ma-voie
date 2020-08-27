@@ -104,6 +104,11 @@ const linkReturnStyle: React.CSSProperties = {
   textDecoration: 'none',
 }
 
+const projectLinkStyle: React.CSSProperties = {
+  color: '#fff',
+  textDecoration: 'none',
+}
+
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 const MenuPage = (): React.ReactElement => {
@@ -166,7 +171,7 @@ const MenuPage = (): React.ReactElement => {
           }
           // TODO(émilie): onClick, change current selected project
           return <div style={finalProjectStyle} key={project.projectId}>
-            {project.job?.name}
+            <Link to={getPath(['STEPS'], t)} style={projectLinkStyle}>{project.job?.name}</Link>
           </div>
         })
         : null
