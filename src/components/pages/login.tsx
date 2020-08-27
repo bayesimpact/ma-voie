@@ -46,6 +46,11 @@ const buttonThirdPartyStyle: React.CSSProperties = {
   marginTop: 20,
 }
 
+const forgottenPasswordDivStyle: React.CSSProperties = {
+  marginTop: 20,
+  textAlign: 'center',
+}
+
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 const LoginPage = (): React.ReactElement => {
@@ -155,9 +160,11 @@ const LoginPage = (): React.ReactElement => {
         type="password" value={password} onChange={setPassword} />
       {areErrorFields.password ? <div style={errorMessageStyle}>
       </div> : null}
-      <Link to={getPath(['FORGOT_PASSWORD'], t)} >
-        {t('Mot de passe oublié\u00A0?')}
-      </Link>
+      <div style={forgottenPasswordDivStyle}>
+        <Link to={getPath(['FORGOT_PASSWORD'], t)} style={{color: colors.ALMOST_DARK}}>
+          {t('Mot de passe oublié\u00A0?')}
+        </Link>
+      </div>
       <Button type="secondLevel" onClick={onSubmit} style={buttonStyle} >
         {t('Valider')}
       </Button>
