@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react'
-import {useTranslation} from 'react-i18next'
+import {Trans, useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
 import {useHistory} from 'react-router'
 
@@ -80,15 +80,16 @@ const AccountPage = (): React.ReactElement => {
   const dispatch = useDispatch()
 
   const onSave = useCallback((): void => {
+    const emailReg = /^([\w+.-])+@([\w.-])+\.([A-Za-z]{2,4})$/
     const errorsFields = {
-      // TODO(émilie): validate the email
-      email: !inputEmail,
+      email: !inputEmail || !emailReg.test(inputEmail),
       lastName: !inputLastName,
       name: !inputName,
       password: !password && !uid,
     }
     setAreErrorFields(errorsFields)
-    if (!inputName || !inputLastName || !inputEmail || (!password && !uid)) {
+    if (!inputName || !inputLastName ||
+      !inputEmail || !emailReg.test(inputEmail) || (!password && !uid)) {
       setIsErrorDisplayed(true)
       return
     }
@@ -166,29 +167,31 @@ const AccountPage = (): React.ReactElement => {
       placeholder={t('Prénom')} style={inputNameStyle}
       autoComplete="given-name"
       value={inputName} onChange={setName} />
-    {areErrorFields.name ? <div style={errorMessageStyle}>
-      {t('<sup>*</sup>Champ obligatoire')}
-    </div> : null}
+    {areErrorFields.name ? <Trans style={errorMessageStyle}>
+      <sup>*</sup>Champ obligatoire
+    </Trans> : null}
     <Input
       placeholder={t('Nom')} style={inputLastNameStyle}
       autoComplete="family-name"
       value={inputLastName} onChange={setLastName} />
-    {areErrorFields.lastName ? <div style={errorMessageStyle}>
-      {t('<sup>*</sup>Champ obligatoire')}
-    </div> : null}
+    {areErrorFields.lastName ? <Trans style={errorMessageStyle}>
+      <sup>*</sup>Champ obligatoire
+    </Trans> : null}
     <Input
       placeholder={t('Email')} style={inputEmailStyle}
       autoComplete="email" disabled={uid ? true : false}
       value={inputEmail} onChange={setEmail} />
-    {areErrorFields.email ? <div style={errorMessageStyle}>
-      {t('<sup>*</sup>Champ obligatoire')}
-    </div> : null}
+    {areErrorFields.email ? <Trans style={errorMessageStyle}>
+      <sup>*</sup>Champ obligatoire
+    </Trans> : null}
     {uid ? null : <Input
       placeholder={t('Mot de passe')} style={inputPasswordStyle}
       type="password" autoComplete="new-password"
       value={password} onChange={setPassword} />}
     {!uid && areErrorFields.password ?
-      <div style={errorMessageStyle}>{t('<sup>*</sup>Champ obligatoire')}</div>
+      <Trans style={errorMessageStyle}>
+        <sup>*</sup>Champ obligatoire, vérifiez votre email
+      </Trans>
       : null}
     <Button type="secondLevel" onClick={onSave} style={buttonStyle} >
       {t('Valider')}
