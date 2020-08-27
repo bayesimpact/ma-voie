@@ -13,14 +13,14 @@
         "userCount":37
     },
     {
-        "description":"  * Durée : 6 semaines\n  * Faisable en ligne\n  * Coach dédié pour vous accompagner\n  * Suivi quotidien de votre avancement\n  * Disponible 24h/24\n  * Ils sont sympas",
-        "details":"Finançable CPF",
+        "description":"  * Identifiez et valorisez tous types d'expériences (personnelles, professionnelles, bénévolat... )\n  * Premières compétences transversales identifiées en moins de 10 minutes\n  * Référentiel de compétences transversales objectivé et reconnu par 30 entreprises\n  * Micro certifications exportables et valorisables sur CV, Linkedin...\n  * Programme en ligne\n  * Gratuit pour les utilisateurs de Mavoie",
+        "details":"",
         "isInternal":true,
         "logo":"jobready.png",
         "name":"Jobready",
         "partnerId":"job-ready",
         "steps":["training"],
-        "title":"300€",
+        "title":"",
         "url":"https://www.jobready.fr"
     },
     {
