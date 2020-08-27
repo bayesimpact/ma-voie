@@ -20,6 +20,7 @@ const mainSrcFolders = [
   'database',
   'hooks',
   'images',
+  'skills',
   'store',
   'styles',
   'translations',

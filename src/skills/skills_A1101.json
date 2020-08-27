@@ -1,0 +1,126 @@
+[
+{
+  "codeOgr": 100003,
+  "name": "Conduire les engins agricoles vers le lieu de production (champs, for\u00eat), de stockage, de livraison (fermes, coop\u00e9ratives)",
+  "isPriority": true
+},
+{
+  "codeOgr": 122563,
+  "name": "Atteler un \u00e9quipement",
+  "isPriority": true
+},
+{
+  "codeOgr": 122704,
+  "name": "Identifier le type d'intervention",
+  "isPriority": true
+},
+{
+  "codeOgr": 122564,
+  "name": "S\u00e9curiser un \u00e9quipement",
+  "isPriority": true
+},
+{
+  "codeOgr": 125978,
+  "name": "Pr\u00e9parer le mat\u00e9riel, les mat\u00e9riaux et les outillages",
+  "isPriority": true
+},
+{
+  "codeOgr": 125816,
+  "name": "R\u00e9aliser une op\u00e9ration de maintenance",
+  "isPriority": false
+},
+{
+  "codeOgr": 122001,
+  "name": "Engins agricoles",
+  "isPriority": false
+},
+{
+  "codeOgr": 116765,
+  "name": "Proc\u00e9dures de maintenance de mat\u00e9riel",
+  "isPriority": false
+},
+{
+  "codeOgr": 100011,
+  "name": "Techniques culturales",
+  "isPriority": false
+},
+{
+  "codeOgr": 100017,
+  "name": "R\u00e8gles de s\u00e9curit\u00e9",
+  "isPriority": false
+},
+{
+  "codeOgr": 104514,
+  "name": "M\u00e9canique",
+  "isPriority": false
+},
+{
+  "codeOgr": 100016,
+  "name": "Gestes et postures de manutention",
+  "isPriority": false
+},
+{
+  "codeOgr": 100010,
+  "name": "Utilisation d'engins forestiers",
+  "isPriority": false
+},
+{
+  "codeOgr": 123536,
+  "name": "Mat\u00e9rialiser une implantation de parcelle ou de passage",
+  "isPriority": false
+},
+{
+  "codeOgr": 118331,
+  "name": "Utilisation d'outillages manuels",
+  "isPriority": false
+},
+{
+  "codeOgr": 104547,
+  "name": "Pneumatique",
+  "isPriority": false
+},
+{
+  "codeOgr": 116766,
+  "name": "Proc\u00e9dures de maintenance de locaux",
+  "isPriority": false
+},
+{
+  "codeOgr": 121951,
+  "name": "Approvisionner des engins d'exploitation",
+  "isPriority": false
+},
+{
+  "codeOgr": 100015,
+  "name": "Normes environnementales",
+  "isPriority": false
+},
+{
+  "codeOgr": 104425,
+  "name": "Hydraulique",
+  "isPriority": false
+},
+{
+  "codeOgr": 100104,
+  "name": "Agronomie",
+  "isPriority": false
+},
+{
+  "codeOgr": 100057,
+  "name": "Techniques de pr\u00e9servation de la biodiversit\u00e9",
+  "isPriority": false
+},
+{
+  "codeOgr": 100131,
+  "name": "Biologie v\u00e9g\u00e9tale",
+  "isPriority": false
+},
+{
+  "codeOgr": 109995,
+  "name": "Utilisation de syst\u00e8me informatique (embarqu\u00e9 ou fixe)",
+  "isPriority": false
+},
+{
+  "codeOgr": 100007,
+  "name": "Techniques de soudage",
+  "isPriority": false
+}]
