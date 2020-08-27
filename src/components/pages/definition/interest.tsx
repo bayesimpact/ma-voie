@@ -11,8 +11,10 @@ const INTEREST_OPTIONS: readonly LocalizableOption<bayes.maVoie.ProjectInterest>
   {name: prepareT('Un métier comme un autre'), value: 'indifferent'},
 ]
 
-const redirect = (value: bayes.maVoie.ProjectInterest): PageSegment =>
-  value === 'indifferent' ? 'REDEFINE' : 'GO'
+// TODO(pascal): Check the experience as well.
+const redirect = (
+  value: bayes.maVoie.ProjectInterest, {experience}: bayes.maVoie.Project): PageSegment =>
+  value === 'indifferent' || experience === 'new' || experience === '1-3' ? 'REDEFINE' : 'GO'
 
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
