@@ -29,16 +29,4 @@ function useSubPathDefiner(): (segment: PageSegment) => string {
   return (segment: PageSegment): string => prefix + getSimplePath(segment, t)
 }
 
-
-// Find a page that matches a given pathname.
-// TODO(cyrille): Drop since unused.
-function getPage(pathname: string): Page|undefined {
-  const page = pathCache[pathname]
-  if (page) {
-    return page
-  }
-  return undefined
-}
-
-
-export {getPage, getPath, useSubPathDefiner}
+export {getPath, useSubPathDefiner}
