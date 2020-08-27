@@ -77,6 +77,7 @@ const buttonStyle: React.CSSProperties = {
   paddingRight: 44,
 }
 const linkStyle: React.CSSProperties = {
+  color: '#fff',
   textDecoration: 'none',
 }
 const newAccountDivContainerStyle: React.CSSProperties = {
@@ -98,10 +99,6 @@ const returnDivStyle: React.CSSProperties = {
   fontSize: 16,
   height: 55,
   justifyContent: 'center',
-}
-const linkReturnStyle: React.CSSProperties = {
-  color: '#fff',
-  textDecoration: 'none',
 }
 
 const projectLinkStyle: React.CSSProperties = {
@@ -145,7 +142,9 @@ const MenuPage = (): React.ReactElement => {
           <img src={avatarPlaceholder} alt="" style={avatarStyle} />
         </div>
         <div style={userStyle}>
-          <div style={userNameStyle}>{name} {lastName}</div>
+          <div style={userNameStyle}>
+            <Link to={getPath(['ACCOUNT'], t)} style={linkStyle}>{name} {lastName}</Link>
+          </div>
           {jobProjects
             ? jobProjects.length >= 1
               ? <div style={projectsCountStyle}>
@@ -192,10 +191,10 @@ const MenuPage = (): React.ReactElement => {
     <div style={returnDivContainerStyle}>
       <div style={returnDivStyle}>
         {isConnected ?
-          <Link to={getPath([], t)} style={linkReturnStyle} onClick={handleLogout}>
+          <Link to={getPath([], t)} style={linkStyle} onClick={handleLogout}>
             {t('Déconnexion')}
           </Link>
-          : <Link to={getPath([], t)} style={linkReturnStyle}>{t('Retour à l\'accueil')}</Link>}
+          : <Link to={getPath([], t)} style={linkStyle}>{t('Retour à l\'accueil')}</Link>}
       </div>
     </div>
   </div>
