@@ -85,7 +85,9 @@ const StepsPage = (): React.ReactElement => {
   return <Layout>
     <div style={stepsStyle}>
       {Steps.map(({isLastStep, title, ...step}, index) => {
-        const stepListJoin = joinList(Steps.map((step, index) => (index).toString()), t)
+        const stepListJoin = joinList(Steps.map((step, index) =>
+          !step.isLastStep ? (index + 1).toString() : '',
+        ).filter((step) => step !== ''), t)
         const isDone = !!project.steps?.[step.stepId]?.completed
         const isOpen = !isDone
           && (!index || !!project.steps?.[Steps[index - 1].stepId]?.completed)
