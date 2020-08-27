@@ -71,7 +71,7 @@ const SelectedPartnerPageBase = ({partner, step}: SelectedPartnerProps): React.R
   return <Layout header={translate(step.title || '')}>
     <div style={introStyle}>{t('Vous avez choisi\u00A0:')}</div>
     <PartnerCard {...partner} isSelected={true} stepId={step.stepId} />
-    <Button type="discret" onClick={stopPartner} style={stopButtonStyle}>
+    <Button type="discreet" onClick={stopPartner} style={stopButtonStyle}>
       {t('Arrêter maintenant')}
     </Button>
   </Layout>
