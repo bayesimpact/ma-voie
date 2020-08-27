@@ -25,6 +25,9 @@
       "hooks/*": [
         "src/hooks/*"
       ],
+      "skills/*": [
+        "src/skills/*"
+      ],
       "store/*": [
         "src/store/*"
       ],
