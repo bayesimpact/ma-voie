@@ -1,10 +1,14 @@
 // TODO(cyrille): Move to components.
 import React, {useCallback, useEffect, useRef, useState} from 'react'
+import {useTranslation} from 'react-i18next'
 import {useHistory} from 'react-router'
-import {Link, LinkProps} from 'react-router-dom'
+import {LinkProps} from 'react-router-dom'
+
+import {Page, getPath} from 'store/url'
 
 interface FadeHookResult {
   fadeOut: (onFaded: () => void) => void
+  fadeTo: (page: Page) => void
   style: React.CSSProperties
 }
 const useFadeInFadeOut = (durationMs = 300): FadeHookResult => {
@@ -23,22 +27,27 @@ const useFadeInFadeOut = (durationMs = 300): FadeHookResult => {
     setVisible(false)
     timeouts.current.push(setTimeout(onFaded, durationMs))
   }, [durationMs])
-  return {fadeOut, style}
+
+  const history = useHistory()
+  const {t} = useTranslation('url')
+  const fadeTo = useCallback(
+    (page: Page): void => fadeOut(() => history.push(getPath(page, t))),
+    [fadeOut, history, t],
+  )
+  return {fadeOut, fadeTo, style}
 }
 
 // TODO(cyrille): Consider dropping the limitation to string `to`.
 // TODO(cyrille): Consider dropping the limitation to `push`.
-type FadingLinkProps = Omit<LinkProps, 'replace'> & Pick<FadeHookResult, 'fadeOut'> & {to: string}
+interface FadingLinkProps extends Omit<LinkProps, 'replace'|'to'>, Pick<FadeHookResult, 'fadeTo'> {
+  to: Page
+}
 
-const FadingLink = ({fadeOut, to, onClick, ...props}: FadingLinkProps): React.ReactElement => {
-  const history = useHistory()
+const FadingLink = ({fadeTo, to, onClick, ...props}: FadingLinkProps): React.ReactElement => {
   const onFadingClick = useCallback((event: React.MouseEvent<HTMLAnchorElement>) => {
     onClick?.(event)
-    fadeOut((): void => history.push(to))
-  }, [fadeOut, history, onClick, to])
-  if (!fadeOut) {
-    return <Link to={to} onClick={onClick} {...props} />
-  }
+    fadeTo(to)
+  }, [fadeTo, onClick, to])
   return <a href="javascript:void 0" {...props} onClick={onFadingClick} />
 }
 export {useFadeInFadeOut}

@@ -1,11 +1,10 @@
 import React, {useCallback, useState} from 'react'
 import {useTranslation} from 'react-i18next'
-import {useHistory} from 'react-router'
 
 import FadingLink, {useFadeInFadeOut} from 'hooks/fade'
 import {updateProject, useDispatch} from 'store/actions'
 import {useProjectId} from 'store/selections'
-import {getPath} from 'store/url'
+import {Page} from 'store/url'
 
 import Button from 'components/button'
 import JobSuggest from 'components/job_suggest'
@@ -30,6 +29,7 @@ const buttonContainerStyle: React.CSSProperties = {
   marginTop: 20,
 }
 
+const lostPage: Page = ['DEFINITION', 'LOST']
 
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
@@ -38,9 +38,8 @@ const JobPage = (): React.ReactElement => {
   const title = t('Pour quel métier souhaitez-vous retrouver un poste\u00A0?')
   const projectId = useProjectId()
   const dispatch = useDispatch()
-  const history = useHistory()
   const [job, setJob] = useState<bayes.maVoie.Job|null>(null)
-  const {fadeOut, style} = useFadeInFadeOut()
+  const {fadeTo, style} = useFadeInFadeOut()
 
   const validateButtonStyle: React.CSSProperties = {
     marginTop: 20,
@@ -52,15 +51,15 @@ const JobPage = (): React.ReactElement => {
       return
     }
     dispatch(updateProject({job, projectId}))
-    fadeOut(() => history.push(getPath(['DEFINITION', 'EXPERIENCE'], t)))
-  }, [dispatch, history, job, projectId, fadeOut, t])
+    fadeTo(['DEFINITION', 'EXPERIENCE'])
+  }, [dispatch, job, projectId, fadeTo])
 
   return <Layout header={t('Définition')} title={title} style={style}>
     <JobSuggest
       placeholder={t('entrez votre métier')} style={inputStyle}
       onChange={setJob} value={job || undefined} />
     <Button style={validateButtonStyle} type="variable" onClick={onValidate}>{t('Valider')}</Button>
-    <FadingLink fadeOut={fadeOut} to={getPath(['DEFINITION', 'LOST'], t)} style={linkStyle}>
+    <FadingLink fadeTo={fadeTo} to={lostPage} style={linkStyle}>
       <Button style={buttonContainerStyle} type="discret">
         {t('Je ne sais pas')}
       </Button>
