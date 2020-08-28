@@ -69,7 +69,7 @@ const MenuSitePage = (): React.ReactElement => {
       <CloseIcon onClick={goBackClick} />
     </div>
     <div style={menuElementSelectedStyle}>
-      <Link to={getPath(['ACCOUNT'], t)} style={menuElementLinkStyle}>
+      <Link to={getPath([], t)} style={menuElementLinkStyle}>
         {t('Accueil')}
       </Link>
     </div>
