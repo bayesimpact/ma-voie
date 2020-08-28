@@ -38,6 +38,10 @@ const linkStyle: React.CSSProperties = {
 }
 const logoStyle: React.CSSProperties = {
   height: 30,
+  width: 49,
+}
+const linkLogoStyle: React.CSSProperties = {
+  height: 30,
   margin: 'auto',
   width: 49,
 }
@@ -48,7 +52,6 @@ interface Props {
 
 // Default menu used is the project one.
 const Header = ({menu = 'project', title}: Props): React.ReactElement => {
-  // TODO(émilie) : Add a menu burger when there is no title instead of the button.
   const {t} = useTranslation()
   const history = useHistory()
   const goBackClick = useCallback((): void => {
@@ -65,7 +68,9 @@ const Header = ({menu = 'project', title}: Props): React.ReactElement => {
           <Link to={getPath([menu === 'project' ? 'MENU' : 'MENU_SITE'], t)} style={linkStyle}>
             <MenuIcon />
           </Link>
-          <img src={logoImage} alt={t('productName')} style={logoStyle} />
+          <Link to={getPath([], t)} style={linkLogoStyle}>
+            <img src={logoImage} alt={t('productName')} style={logoStyle} />
+          </Link>
         </React.Fragment>
       }
     </div>
