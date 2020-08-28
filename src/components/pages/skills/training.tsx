@@ -6,7 +6,8 @@ import {useProject, useSkillsList} from 'store/selections'
 import Layout from 'components/layout'
 import StepValidationButton from 'components/step_validation_button'
 
-const lowerFirstLetter = (phrase: string): string => phrase[0].toLowerCase() + phrase.slice(1)
+const lowerFirstLetter = (phrase: string): string => phrase &&
+  phrase[0].toLowerCase() + phrase.slice(1)
 
 const paragraphStyle: React.CSSProperties = {
   color: colors.DARK_FOREST_GREEN,
