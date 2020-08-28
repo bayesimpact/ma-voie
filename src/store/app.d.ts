@@ -48,6 +48,7 @@ declare namespace bayes {
       experience?: ProjectExperience
       interest?: ProjectInterest
       hasDefinedProject?: boolean
+      hasNoClearJob?: boolean
       objective?: ProjectObjective
       job?: Job
       projectId: string
