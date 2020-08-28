@@ -4,5 +4,9 @@
   "contactEmail": "contact@mavoie.org",
   "productName": "Ma Voie",
   "{{count}} projet_plural": "{{count}} projets",
-  "{{userCount}} personne a choisi {{name}}_plural": "{{userCount}} personnes ont choisi {{name}}"
+  "{{userCount}} personne a choisi {{name}}_plural": "{{userCount}} personnes ont choisi {{name}}",
+  "Être {{jobName}} requiert d'avoir des compétences comme {{skill}}": "Faire ce métier requiert d'avoir certaines compétences",
+  "Être {{jobName}} requiert d'avoir des compétences comme {{skill}}_job": "Être {{jobName}} requiert d'avoir certaines compétences",
+  "Être {{jobName}} requiert d'avoir des compétences comme {{skill}}_jobskill": "Être {{jobName}} requiert d'avoir des compétences comme {{skill}}",
+  "Être {{jobName}} requiert d'avoir des compétences comme {{skill}}_skill": "Faire ce métier requiert d'avoir des compétences comme {{skill}}"
 }

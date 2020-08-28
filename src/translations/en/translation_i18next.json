@@ -44,7 +44,6 @@
   "Entre 3-5 ans": "3-5 years",
   "Entretiens": "Interviews",
   "Face à la crise prenez le bon virage<br/>vers l'emploi avec <3>$t(productName)</3>": "Face à la crise prenez le bon virage<br/>vers l'emploi avec <3>$t(productName)</3>",
-  "Faire ce métier requiert d'avoir les compétences XXX": "Faire ce métier requiert d'avoir les compétences XXX",
   "Formation": "Training",
   "Formations": "Formations",
   "Félicitations !": "Congratulations!",
@@ -134,6 +133,9 @@
   "{{count}} projet_plural": "{{count}} projects",
   "{{userCount}} personne a choisi {{name}}": "{{userCount}} person chose {{name}}",
   "{{userCount}} personne a choisi {{name}}_plural": "{{userCount}} people chose {{name}}",
-  "Être {{jobName}} requiert d'avoir les compétences XXX": "Être {{jobName}} requiert d'avoir les compétences XXX",
+  "Être {{jobName}} requiert d'avoir des compétences comme {{skill}}": "Faire ce métier requiert d'avoir certaines compétences",
+  "Être {{jobName}} requiert d'avoir des compétences comme {{skill}}_job": "Être {{jobName}} requiert d'avoir certaines compétences",
+  "Être {{jobName}} requiert d'avoir des compétences comme {{skill}}_jobskill": "Être {{jobName}} requiert d'avoir des compétences comme {{skill}}",
+  "Être {{jobName}} requiert d'avoir des compétences comme {{skill}}_skill": "Faire ce métier requiert d'avoir des compétences comme {{skill}}",
   "étape {{index}}": "step {{index}}"
 }

@@ -1,4 +1,7 @@
+import {useEffect, useState} from 'react'
 import {useSelector as genericUseSelector} from 'react-redux'
+
+import {SkillType, getSkills} from 'store/skills'
 
 import {RootState, createProjectAction, useDispatch} from './actions'
 
@@ -14,19 +17,30 @@ const useProjectId = (): string => {
   return projectId
 }
 
+const getProject = (projectId: string): ((state: RootState) => bayes.maVoie.Project|undefined) =>
+  ({user: {projects}}: RootState): bayes.maVoie.Project|undefined =>
+    projects?.find(({projectId: pId}) => pId === projectId) || undefined
+
 const useProject = (): bayes.maVoie.Project => {
   const dispatch = useDispatch()
   const projectId = useProjectId()
-  const projects = useSelector(({user: {projects}}: RootState) => projects)
-  if (!projects) {
-    return {projectId: ''}
-  }
-  const project = projects.find((project) => project.projectId === projectId)
+  const project = useSelector(getProject(projectId))
   if (!project) {
-    dispatch(createProjectAction)
-    return <bayes.maVoie.Project>{}
+    if (projectId) {
+      dispatch(createProjectAction)
+    }
+    return {projectId}
   }
   return project
 }
 
-export {useProject, useProjectId, useSelector}
+const useSkillsList = (): readonly SkillType[] => {
+  const projectId = useProjectId()
+  const romeId = useSelector(state => getProject(projectId)(state)?.job?.jobGroup?.romeId || '')
+  const [skills, setSkills] = useState<readonly SkillType[]>([])
+  // TODO(cyrille): Cancel the promise when unmounting.
+  useEffect((): void => void getSkills(romeId).then(setSkills), [romeId])
+  return skills
+}
+
+export {useProject, useProjectId, useSelector, useSkillsList}
