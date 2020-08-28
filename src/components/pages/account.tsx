@@ -193,7 +193,7 @@ const AccountPage = (): React.ReactElement => {
       <div style={errorMessageStyle}>
         <sup>*</sup>{t('Champ obligatoire, vérifiez votre email')}
       </div> :
-      null} ?
+      null}
     <Button type="secondLevel" onClick={onSave} style={buttonStyle} >
       {t('Valider')}
     </Button>
