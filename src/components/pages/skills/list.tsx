@@ -1,9 +1,9 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react'
+import React, {useCallback, useMemo, useState} from 'react'
 import {useTranslation} from 'react-i18next'
 import {useHistory} from 'react-router'
 
 import {updateProject, useDispatch} from 'store/actions'
-import {useProject, useProjectId} from 'store/selections'
+import {useProject, useProjectId, useSkillsList} from 'store/selections'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
@@ -19,12 +19,6 @@ const priorityStyle: React.CSSProperties = {
   fontWeight: 'bold',
 }
 
-interface SkillType {
-  codeOgr: string
-  isPriority?: boolean
-  name: string
-}
-
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 const SkillsListPage = (): React.ReactElement => {
@@ -35,15 +29,7 @@ const SkillsListPage = (): React.ReactElement => {
   const projectId = useProjectId()
   const project = useProject()
   const history = useHistory()
-  const {job: {jobGroup: {romeId = ''} = {}} = {}} = project
-  const [skillsList, setSkillsList] = useState<readonly SkillType[]>([])
-  useEffect((): void => {
-    if (!romeId) {
-      return
-    }
-    // TODO(cyrille): Rather fetch from static values in production assets.
-    import(`skills/skills_${romeId}.json`).then(({default: list}) => setSkillsList(list))
-  }, [romeId])
+  const skillsList = useSkillsList()
 
   const [valuesSelected, setValuesSelected] = useState<readonly string[]>(project.skills || [])
 

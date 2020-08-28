@@ -1,7 +1,7 @@
 import React from 'react'
 import {useTranslation, Trans} from 'react-i18next'
 
-import {useProjectId, useSelector} from 'store/selections'
+import {useProject, useSkillsList} from 'store/selections'
 
 import Layout from 'components/layout'
 import StepValidationButton from 'components/step_validation_button'
@@ -22,19 +22,19 @@ const buttonContainerStyle: React.CSSProperties = {
 // TOP LEVEL PAGE
 const SkillsTrainingPage = (): React.ReactElement => {
   const {t} = useTranslation()
-  const currentProjectId = useProjectId()
-  const jobName = useSelector(({user: {projects = []}}) => {
-    const project = projects.find(({projectId}) => currentProjectId === projectId)
-    if (!project) {
-      return ''
-    }
-    return project?.job?.name || ''
-  })
+  const {job: {name: jobName = ''} = {}, skills = []} = useProject()
+  const neededSkills = useSkillsList()
+  const firstNeededSkill = neededSkills.find(({codeOgr, isPriority}) =>
+    isPriority && !skills.includes(codeOgr))?.name || ''
   // FIXME(cyrille): Set skills by job.
-  const bigTitle = jobName ? t(
-    "Être {{jobName}} requiert d'avoir les compétences XXX",
-    {jobName: lowerFirstLetter(jobName)},
-  ) : t("Faire ce métier requiert d'avoir les compétences XXX")
+  // i18next-extract-mark-context-next-line ["","job","skill","jobskill"]
+  const bigTitle = t("Être {{jobName}} requiert d'avoir des compétences comme {{skill}}",
+    {
+      context: `${jobName ? 'job' : ''}${firstNeededSkill ? 'skill' : ''}`,
+      jobName: lowerFirstLetter(jobName),
+      skill: lowerFirstLetter(firstNeededSkill),
+    },
+  )
   // FIXME(émilie): button : save project state (unlock training)
   return <Layout header={t('Compétences')} bigTitle={bigTitle}>
     <Trans>
