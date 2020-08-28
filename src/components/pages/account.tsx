@@ -89,8 +89,8 @@ const AccountPage = (): React.ReactElement => {
       password: !password && !uid,
     }
     setAreErrorFields(errorsFields)
-    if (!errorsFields.email || !errorsFields.lastName ||
-      !errorsFields.name || !errorsFields.password) {
+    if (errorsFields.email || errorsFields.lastName ||
+      errorsFields.name || errorsFields.password) {
       setIsErrorDisplayed(true)
       return
     }
