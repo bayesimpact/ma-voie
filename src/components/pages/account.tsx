@@ -88,12 +88,10 @@ const AccountPage = (): React.ReactElement => {
       name: !inputName,
       password: !password && !uid,
     }
-    setAreErrorFields(errorsFields)
-    if (!errorsFields.email || !errorsFields.lastName ||
-      !errorsFields.name || !errorsFields.password) {
-      setIsErrorDisplayed(true)
+    if (Object.values(errorsFields).some(field => field)) {
       return
     }
+    setAreErrorFields(errorsFields)
     setIsErrorDisplayed(false)
     const update = {
       ...name === inputName ? {} : {name: inputName},
