@@ -7,6 +7,7 @@ import {FirebaseAuth, FirebaseErrorProps} from 'database/firebase'
 import {useFastForward} from 'hooks/fast_forward'
 import {RootState, updateUser, useDispatch} from 'store/actions'
 import {getPath} from 'store/url'
+import {validateEmail} from 'store/validations'
 
 import Button from 'components/button'
 import Input from 'components/input'
@@ -80,15 +81,16 @@ const AccountPage = (): React.ReactElement => {
   const dispatch = useDispatch()
 
   const onSave = useCallback((): void => {
+    const isEmailValid = validateEmail(inputEmail)
     const errorsFields = {
-      // TODO(émilie): validate the email
-      email: !inputEmail,
+      email: !inputEmail || !isEmailValid,
       lastName: !inputLastName,
       name: !inputName,
       password: !password && !uid,
     }
     setAreErrorFields(errorsFields)
-    if (!inputName || !inputLastName || !inputEmail || (!password && !uid)) {
+    if (!errorsFields.email || !errorsFields.lastName ||
+      !errorsFields.name || !errorsFields.password) {
       setIsErrorDisplayed(true)
       return
     }
@@ -166,30 +168,32 @@ const AccountPage = (): React.ReactElement => {
       placeholder={t('Prénom')} style={inputNameStyle}
       autoComplete="given-name"
       value={inputName} onChange={setName} />
-    {areErrorFields.name ? <div style={errorMessageStyle}>
-      {t('<sup>*</sup>Champ obligatoire')}
-    </div> : null}
+    {areErrorFields.name ?
+      <div style={errorMessageStyle}><sup>*</sup>{t('Champ obligatoire')}</div> :
+      null}
     <Input
       placeholder={t('Nom')} style={inputLastNameStyle}
       autoComplete="family-name"
       value={inputLastName} onChange={setLastName} />
-    {areErrorFields.lastName ? <div style={errorMessageStyle}>
-      {t('<sup>*</sup>Champ obligatoire')}
-    </div> : null}
+    {areErrorFields.lastName ?
+      <div style={errorMessageStyle}><sup>*</sup>{t('Champ obligatoire')}</div> :
+      null}
     <Input
       placeholder={t('Email')} style={inputEmailStyle}
       autoComplete="email" disabled={uid ? true : false}
       value={inputEmail} onChange={setEmail} />
-    {areErrorFields.email ? <div style={errorMessageStyle}>
-      {t('<sup>*</sup>Champ obligatoire')}
-    </div> : null}
+    {areErrorFields.email ?
+      <div style={errorMessageStyle}><sup>*</sup>{t('Champ obligatoire')}</div> :
+      null}
     {uid ? null : <Input
       placeholder={t('Mot de passe')} style={inputPasswordStyle}
       type="password" autoComplete="new-password"
       value={password} onChange={setPassword} />}
     {!uid && areErrorFields.password ?
-      <div style={errorMessageStyle}>{t('<sup>*</sup>Champ obligatoire')}</div>
-      : null}
+      <div style={errorMessageStyle}>
+        <sup>*</sup>{t('Champ obligatoire, vérifiez votre email')}
+      </div> :
+      null} ?
     <Button type="secondLevel" onClick={onSave} style={buttonStyle} >
       {t('Valider')}
     </Button>
