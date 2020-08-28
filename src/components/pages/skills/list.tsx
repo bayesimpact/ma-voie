@@ -49,13 +49,14 @@ const SkillsListPage = (): React.ReactElement => {
 
   const handleClick = useCallback((): void => {
     dispatch(updateProject({projectId, skills: valuesSelected}))
-    // TODO(émilie): validate when all the priority items are checked
-    if (valuesSelected.length === skillsList.length) {
-      history.push(getPath(['SKILLS', 'GO'], t))
-    } else {
+    const isMissingPrioritySkill = skillsList.some(({codeOgr, isPriority}) =>
+      isPriority && !valuesSelected.includes(codeOgr))
+    if (isMissingPrioritySkill) {
       history.push(getPath(['SKILLS', 'TRAINING'], t))
+      return
     }
-  }, [dispatch, history, projectId, skillsList.length, t, valuesSelected])
+    history.push(getPath(['SKILLS', 'GO'], t))
+  }, [dispatch, history, projectId, skillsList, t, valuesSelected])
 
   const checkboxListData = useMemo(() => skillsList.map(({codeOgr, isPriority, name}) =>
     isPriority
