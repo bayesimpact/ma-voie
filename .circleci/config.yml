@@ -66,7 +66,7 @@ jobs:
       - checkout
       - run:
           name: Check the TODOs that were added or removed recently.
-          command: bash -x .circleci/check_recent_todos.sh
+          command: check_recent_todos
 
   test-for-base-change:
     docker:
