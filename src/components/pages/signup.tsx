@@ -9,7 +9,7 @@ import {updateUser, useDispatch} from 'store/actions'
 import {getPath} from 'store/url'
 
 import ButtonWithIcon from 'components/button_with_icon'
-import Layout from 'components/layout'
+import LayoutSignIn from 'components/layout_sign_in'
 
 const linkStyle: React.CSSProperties = {
   textDecoration: 'none',
@@ -100,7 +100,7 @@ const SignupPage = (): React.ReactElement => {
       })
   }, [dispatch, history, t])
 
-  return <Layout bigTitle={t('Inscription')} menu="site">
+  return <LayoutSignIn bigTitle={t('Inscription')}>
     <Link to={getPath(['ACCOUNT'], t)} style={linkStyle}>
       <ButtonWithIcon type="email" style={buttonStyle}>
         {t('S\'inscrire avec un email')}
@@ -119,7 +119,7 @@ const SignupPage = (): React.ReactElement => {
       {t('Déjà un compte\u00A0?')}&nbsp;
       <Link to={getPath(['LOGIN'], t)} style={linkConnectStyle}>{t('Se connecter')}</Link>
     </div>
-  </Layout>
+  </LayoutSignIn>
 }
 
 export default React.memo(SignupPage)
