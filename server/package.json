@@ -3,11 +3,12 @@
   "scripts": {
     "lint": "eslint . --ext ts",
     "build": "tsc",
-    "serve": "npm run build && firebase emulators:start --only functions",
+    "serve": "npm run build && firebase emulators:start",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "deploy": "firebase --token \"$FIREBASE_TOKEN\" deploy --only functions",
+    "logs": "firebase functions:log",
+    "predeploy": "if [ -z \"$FIREBASE_TOKEN\" ]; then firebase login --no-localhost; fi"
   },
   "main": "lib/index.js",
   "dependencies": {
@@ -32,6 +33,7 @@
     "eslint-plugin-unicorn": "^20.x.x",
     "eslint-plugin-you-dont-need-lodash-underscore": "^6.x.x",
     "firebase-functions-test": "^0.2.0",
+    "firebase-tools": "^8.0.0",
     "typescript": "^3.8.0"
   },
   "private": true
