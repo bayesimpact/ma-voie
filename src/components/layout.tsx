@@ -2,9 +2,13 @@ import React from 'react'
 
 import Header from 'components/header'
 
+const isMobileVersion = window.innerWidth <= 800
+
 const containerStyle: React.CSSProperties = {
   fontFamily: 'ProximaSoft',
-  margin: '0 30px',
+  margin: isMobileVersion ? '0 auto' : '100px auto',
+  maxWidth: 400,
+  padding: '0 30px',
 }
 const h1Style: React.CSSProperties = {
   color: colors.DARK_FOREST_GREEN,
