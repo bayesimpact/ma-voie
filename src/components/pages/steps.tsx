@@ -21,6 +21,9 @@ const isMobileVersion = window.innerWidth <= 800
 
 const soonAvailable = (): void => window.alert('Bientôt disponible...')
 
+const layoutStyle: React.CSSProperties = {
+  maxWidth: 'initial',
+}
 const stepsStyle: React.CSSProperties = isMobileVersion ? {
   paddingTop: 30,
 } : {
@@ -117,7 +120,7 @@ const StepsPage = (): React.ReactElement => {
 
   const ArrowNextIcon = isMobileVersion ? ArrowDownIcon : ArrowRightIcon
 
-  return <Layout>
+  return <Layout style={layoutStyle}>
     <div style={stepsStyle}>
 
       {Steps.map(({isLastStep, title, ...step}, index) => {
