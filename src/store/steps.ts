@@ -8,7 +8,6 @@ import formationIcon from 'images/formation-ico.svg'
 export interface StepInfo {
   readonly color: string
   readonly icon: string
-  readonly isOpen?: boolean
   readonly isLastStep?: boolean
   readonly page: Page
   readonly shortTitle?: string
