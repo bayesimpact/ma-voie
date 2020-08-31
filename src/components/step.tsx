@@ -10,7 +10,7 @@ import Button from 'components/button'
 import doneIcon from 'images/done-ico.svg'
 import lockIcon from 'images/lock-ico.svg'
 
-// TODO(pascal): Fix alignment so that the step cards look aligned on desktop.
+
 const headerStyle: React.CSSProperties = {
   alignItems: 'center',
   backgroundColor: colors.TEAL_BLUE,
@@ -20,6 +20,10 @@ const headerStyle: React.CSSProperties = {
   justifyContent: 'center',
   textAlign: 'center',
 }
+const hiddenHeaderStyle: React.CSSProperties = {
+  ...headerStyle,
+  opacity: 0,
+}
 const indexStyle: React.CSSProperties = {
   color: colors.REDDISH_ORANGE,
   margin: '0 auto',
@@ -28,12 +32,34 @@ const indexStyle: React.CSSProperties = {
 const titleStyle: React.CSSProperties = {
   fontSize: 20,
   fontWeight: 'bold',
+  minHeight: 60,
   textAlign: 'center',
 }
 const forbiddenStyle: React.CSSProperties = {
+  alignItems: 'center',
+  display: 'flex',
   fontSize: 15,
   fontWeight: 'bold',
+  height: 50,
 }
+const contentStyle: React.CSSProperties = {
+  alignItems: 'center',
+  display: 'flex',
+  flexDirection: 'column',
+  padding: '15px 30px 30px',
+}
+const imageStyle: React.CSSProperties = {
+  padding: 20,
+  position: 'relative',
+}
+const doneStyle: React.CSSProperties = {
+  bottom: 20,
+  height: 24,
+  position: 'absolute',
+  right: 20,
+  width: 24,
+}
+
 export interface StepProps extends Pick<StepInfo, 'color'|'icon'|'page'> {
   children: React.ReactNode
   index: number
@@ -55,23 +81,6 @@ React.ReactElement => {
     overflow: 'hidden',
     ...style,
   }
-  const contentStyle: React.CSSProperties = {
-    alignItems: 'center',
-    display: 'flex',
-    flexDirection: 'column',
-    padding: isOpen ? '25px 30px 30px' : 35,
-  }
-  const imageStyle: React.CSSProperties = {
-    padding: 20,
-    position: 'relative',
-  }
-  const doneStyle: React.CSSProperties = {
-    bottom: 20,
-    height: 24,
-    position: 'absolute',
-    right: 20,
-    width: 24,
-  }
   const iconStyle: React.CSSProperties = {
     backgroundColor: color,
     borderRadius: 35,
@@ -84,7 +93,9 @@ React.ReactElement => {
     }
   }, [onClick, page])
   return <div style={containerStyle}>
-    {isOpen ? <div style={headerStyle}>{t('En cours')}</div> : null}
+    <div style={isOpen ? headerStyle : hiddenHeaderStyle}>
+      {isOpen ? t('En cours') : null}
+    </div>
     <div style={contentStyle}>
       <div style={indexStyle}>{t('étape {{index}}', {index})}</div>
       <div style={titleStyle}>{children}</div>
@@ -95,14 +106,14 @@ React.ReactElement => {
       {isDone ? <Button type="small">{t('Terminé')}</Button> :
         isOpen ? <Button type="firstLevel" onClick={handleClick}>{t('Commencez')}</Button> :
           // TODO(cyrille): Replace with the list of steps to complete beforehand.
-          <span style={forbiddenStyle}>
+          <div style={forbiddenStyle}>
             {t("Terminez l'étape {{steps}}", {
               count: index - 1,
               steps: joinList(new Array(index - 1).
                 fill(undefined).
                 map((step, index) => (index + 1).toString()), t),
             })}
-          </span>}
+          </div>}
     </div>
   </div>
 }
