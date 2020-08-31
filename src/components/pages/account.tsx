@@ -11,7 +11,7 @@ import {validateEmail} from 'store/validations'
 
 import Button from 'components/button'
 import Input from 'components/input'
-import Layout from 'components/layout'
+import LayoutSignIn from 'components/layout_sign_in'
 
 const getUniqueExampleEmail = (): string => `test-${new Date().getTime()}@example.com`
 
@@ -88,10 +88,10 @@ const AccountPage = (): React.ReactElement => {
       name: !inputName,
       password: !password && !uid,
     }
+    setAreErrorFields(errorsFields)
     if (Object.values(errorsFields).some(field => field)) {
       return
     }
-    setAreErrorFields(errorsFields)
     setIsErrorDisplayed(false)
     const update = {
       ...name === inputName ? {} : {name: inputName},
@@ -161,7 +161,8 @@ const AccountPage = (): React.ReactElement => {
     borderColor: areErrorFields.password ? colors.RED_ERROR : colors.SILVER_THREE,
   }
 
-  return <Layout bigTitle={t('Inscription')} style={layoutStyle}>
+  // TODO(pascal): Investigate how much the layoutStyle is useful.
+  return <LayoutSignIn bigTitle={t('Inscription')} style={layoutStyle}>
     <Input
       placeholder={t('Prénom')} style={inputNameStyle}
       autoComplete="given-name"
@@ -202,7 +203,7 @@ const AccountPage = (): React.ReactElement => {
     {errorMessage ? <div style={errorValidationStyle}>
       {errorMessage}
     </div> : null}
-  </Layout>
+  </LayoutSignIn>
 }
 
 export default React.memo(AccountPage)

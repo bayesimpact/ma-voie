@@ -12,7 +12,7 @@ import {getPath} from 'store/url'
 import Button from 'components/button'
 import ButtonWithIcon from 'components/button_with_icon'
 import Input from 'components/input'
-import Layout from 'components/layout'
+import LayoutSignIn from 'components/layout_sign_in'
 
 const inputStyle: React.CSSProperties = {
   border: `1px solid ${colors.SILVER_THREE}`,
@@ -147,7 +147,7 @@ const LoginPage = (): React.ReactElement => {
     opacity: !inputEmail || !password ? 0.75 : 1,
   }
 
-  return <Layout bigTitle={t('Connexion')} menu="site">
+  return <LayoutSignIn bigTitle={t('Connexion')}>
     <form onSubmit={onSubmit}>
       <Input
         placeholder={t('Email')} style={inputStyle}
@@ -179,7 +179,7 @@ const LoginPage = (): React.ReactElement => {
     <ButtonWithIcon type="google" style={buttonThirdPartyStyle} onClick={onSignInWithGoogle}>
       {t('Continuer avec Google')}
     </ButtonWithIcon>
-  </Layout>
+  </LayoutSignIn>
 }
 
 export default React.memo(LoginPage)
