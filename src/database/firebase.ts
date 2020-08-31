@@ -1,8 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
-import firebaseConfig from 'database/firebase.json'
 
-export const FirebaseApp = firebase.initializeApp(firebaseConfig)
+export const FirebaseApp = firebase.initializeApp(config.firebase)
 
 export const FirebaseAuth = FirebaseApp.auth()
 

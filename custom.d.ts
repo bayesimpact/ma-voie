@@ -42,11 +42,23 @@ interface RadiumCSSProperties extends React.CSSProperties {
 type ReactStylableElement = React.ReactElement<{style?: RadiumCSSProperties}>
 
 declare const colors: typeof import('./cfg/colors.json')
+
+interface FirebaseConfig {
+  apiKey: string
+  appId: string
+  authDomain: string
+  databaseURL: string
+  messagingSenderId: string
+  projectId: string
+  storageBucket: string
+}
+
 declare const config: {
   amplitudeToken: string
   canonicalUrl: string
   contactEmail: string
   clientVersion: string
+  firebase: FirebaseConfig
   environment: string
   sentryDsn: string
 }
