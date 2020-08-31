@@ -1,4 +1,5 @@
 import ArrowDownIcon from 'mdi-react/ArrowDownIcon'
+import ArrowRightIcon from 'mdi-react/ArrowRightIcon'
 import React, {useCallback, useEffect, useRef, useState} from 'react'
 import {Trans, useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
@@ -16,17 +17,43 @@ import Layout from 'components/layout'
 import CreateAccountPopup from 'components/create_account_popup'
 import Step from 'components/step'
 
+const isMobileVersion = window.innerWidth <= 800
+
 const soonAvailable = (): void => window.alert('Bientôt disponible...')
 
-const stepsStyle: React.CSSProperties = {
-  padding: '30px 0',
+const stepsStyle: React.CSSProperties = isMobileVersion ? {
+  paddingTop: 30,
+} : {
+  alignItems: 'center',
+  display: 'flex',
+  justifyContent: 'space-between',
+  margin: '0 auto',
+  maxWidth: 960,
+}
+const stepStyle: React.CSSProperties = isMobileVersion ? {} : {
+  height: 325,
+  width: 250,
+}
+const lastStepContainerStyle: React.CSSProperties = isMobileVersion ? {
+  paddingBottom: 30,
+} : {
+  border: `solid 1px ${colors.SILVER_TWO}`,
+  borderRadius: 21,
+  boxSizing: 'border-box',
+  display: 'flex',
+  flexDirection: 'column-reverse',
+  margin: '30px auto',
+  maxWidth: stepsStyle.maxWidth,
+  padding: 30,
 }
 const arrowStyle: React.CSSProperties = {
   display: 'block',
-  margin: '30px auto 0',
+  margin: isMobileVersion ? '30px auto 0' : '0 30px',
 }
 const interviewStyle: React.CSSProperties = {
   color: colors.GREYISH_TEAL,
+  margin: isMobileVersion ? 'initial' : '0 auto',
+  maxWidth: isMobileVersion ? 'initial' : 400,
 }
 const interviewDisclaimerStyle: React.CSSProperties = {
   color: colors.REDDISH_ORANGE,
@@ -88,6 +115,8 @@ const StepsPage = (): React.ReactElement => {
     map((step, index) => (index + 1).toString()), t)
   const lastStep = Steps.find(({isLastStep}) => isLastStep)
 
+  const ArrowNextIcon = isMobileVersion ? ArrowDownIcon : ArrowRightIcon
+
   return <Layout>
     <div style={stepsStyle}>
 
@@ -98,17 +127,22 @@ const StepsPage = (): React.ReactElement => {
         const isDone = !!project.steps?.[step.stepId]?.completed
         const isOpen = step.stepId === openStep?.stepId
         return <React.Fragment key={index}>
-          {index ? <ArrowDownIcon style={arrowStyle} color={colors.SILVER_THREE} /> : null}
+          {index ?
+            <ArrowNextIcon style={arrowStyle} color={colors.SILVER_THREE} size={36} /> : null}
           <div style={scrollableStepStyle} ref={getStepRef(index)}>
             <Step
-              index={index + 1} {...step} onClick={handleStepClick} isOpen={isOpen} isDone={isDone}>
+              index={index + 1} {...step} onClick={handleStepClick} isOpen={isOpen} isDone={isDone}
+              style={stepStyle}>
               {translate(title)}
             </Step>
           </div>
         </React.Fragment>
       })}
+    </div>
 
-      <ArrowDownIcon style={arrowStyle} color={colors.SILVER_THREE} />
+    <div style={lastStepContainerStyle}>
+      {isMobileVersion ?
+        <ArrowNextIcon style={arrowStyle} color={colors.SILVER_THREE} size={36} /> : null}
       {stepListJoin.length > 0 || !lastStep ?
         <React.Fragment>
           <div style={scrollableStepStyle} ref={getStepRef(Steps.length - 1)}>
