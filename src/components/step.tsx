@@ -10,6 +10,7 @@ import Button from 'components/button'
 import doneIcon from 'images/done-ico.svg'
 import lockIcon from 'images/lock-ico.svg'
 
+// TODO(pascal): Fix alignment so that the step cards look aligned on desktop.
 const headerStyle: React.CSSProperties = {
   alignItems: 'center',
   backgroundColor: colors.TEAL_BLUE,
@@ -27,6 +28,7 @@ const indexStyle: React.CSSProperties = {
 const titleStyle: React.CSSProperties = {
   fontSize: 20,
   fontWeight: 'bold',
+  textAlign: 'center',
 }
 const forbiddenStyle: React.CSSProperties = {
   fontSize: 15,
