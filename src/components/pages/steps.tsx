@@ -62,7 +62,7 @@ const StepsPage = (): React.ReactElement => {
   const getStepRef = (index: number): undefined|React.RefObject<HTMLDivElement> =>
     Steps[index]?.stepId === nextStep ? nextStepRef : undefined
 
-  const onClick = useCallback((page: Page): void => {
+  const handleStepClick = useCallback((page: Page): void => {
     if (!isConnected) {
       setIsPopupShown(true)
     } else {
@@ -82,35 +82,53 @@ const StepsPage = (): React.ReactElement => {
     }
   }, [isPopupShown])
 
+  const openStep = Steps.find(({stepId}): boolean => !(project.steps?.[stepId]?.completed))
+  // TODO(pascal): Drop the isLastStep bool and just use the last element of the array.
+  const stepListJoin = joinList(Steps.filter(({isLastStep}) => !isLastStep).
+    map((step, index) => (index + 1).toString()), t)
+  const lastStep = Steps.find(({isLastStep}) => isLastStep)
+
   return <Layout>
     <div style={stepsStyle}>
+
       {Steps.map(({isLastStep, title, ...step}, index) => {
-        const stepListJoin = joinList(Steps.filter(({isLastStep}) => !isLastStep).
-          map((step, index) => (index + 1).toString()), t)
+        if (isLastStep) {
+          return null
+        }
         const isDone = !!project.steps?.[step.stepId]?.completed
-        const isOpen = !isDone
-          && (!index || !!project.steps?.[Steps[index - 1].stepId]?.completed)
+        const isOpen = step.stepId === openStep?.stepId
         return <React.Fragment key={index}>
           {index ? <ArrowDownIcon style={arrowStyle} color={colors.SILVER_THREE} /> : null}
-          {!isLastStep || isOpen || isDone ?
-            <div style={scrollableStepStyle} ref={getStepRef(index)}>
-              <Step index={index + 1} {...step} onClick={onClick} isOpen={isOpen} isDone={isDone}>
-                {translate(title)}
-              </Step>
-            </div>
-            : <div style={scrollableStepStyle} ref={getStepRef(Steps.length)}>
-              <Button style={interviewStyle} onClick={soonAvailable} type="variable">
-                {t('Préparer un entretien')}
-              </Button>
-            </div>}
-          {!!isLastStep && !isOpen && !isDone ?
-            <Trans count={Steps.length} style={interviewDisclaimerStyle}>
-              Il est préférable de terminer
-              l'étape {{steps: stepListJoin}} avant
-              de vous préparer pour les entretiens.
-            </Trans> : null}
+          <div style={scrollableStepStyle} ref={getStepRef(index)}>
+            <Step
+              index={index + 1} {...step} onClick={handleStepClick} isOpen={isOpen} isDone={isDone}>
+              {translate(title)}
+            </Step>
+          </div>
         </React.Fragment>
       })}
+
+      <ArrowDownIcon style={arrowStyle} color={colors.SILVER_THREE} />
+      {stepListJoin.length > 0 || !lastStep ?
+        <React.Fragment>
+          <div style={scrollableStepStyle} ref={getStepRef(Steps.length - 1)}>
+            <Button style={interviewStyle} onClick={soonAvailable} type="variable">
+              {translate(lastStep?.title || '')}
+            </Button>
+          </div>
+          <Trans count={stepListJoin.length} style={interviewDisclaimerStyle}>
+            Il est préférable de terminer
+            l'étape {{steps: stepListJoin}} avant
+            de vous préparer pour les entretiens.
+          </Trans>
+        </React.Fragment> :
+        <div style={scrollableStepStyle} ref={getStepRef(Steps.length - 1)}>
+          <Step
+            index={Steps.length} {...lastStep} onClick={handleStepClick} isOpen={true}
+            isDone={false}>
+            {translate(lastStep?.title || '')}
+          </Step>
+        </div>}
     </div>
     {isPopupShown ? <CreateAccountPopup onClose={onClose} /> : null}
   </Layout>

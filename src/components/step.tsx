@@ -2,6 +2,7 @@ import React, {useCallback} from 'react'
 import {useTranslation} from 'react-i18next'
 
 import {joinList} from 'store/i18n'
+import {StepInfo} from 'store/steps'
 import {Page} from 'store/url'
 
 import Button from 'components/button'
@@ -31,15 +32,12 @@ const forbiddenStyle: React.CSSProperties = {
   fontSize: 15,
   fontWeight: 'bold',
 }
-export interface StepProps {
+export interface StepProps extends Pick<StepInfo, 'color'|'icon'|'page'> {
   children: React.ReactNode
-  color: string
-  icon: string
   index: number
   isDone?: boolean
   isOpen?: boolean
   onClick?: (page: Page) => void
-  page: Page
   style?: React.CSSProperties
 }
 const Step = ({
