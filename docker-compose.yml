@@ -30,6 +30,8 @@ services:
       context: .
       dockerfile: server/Dockerfile
       target: dev
+    environment:
+      FIREBASE_TOKEN:
   server-test:
     image: bayesimpact/ma-voie-server-test:${CIRCLE_BUILD_NUM:-latest}
     build:
