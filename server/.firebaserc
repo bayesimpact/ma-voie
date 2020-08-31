@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "ma-voie"
+    "default": "ma-voie",
+    "demo": "ma-voie-demo",
+    "dev": "ma-voie-dev"
   }
 }
