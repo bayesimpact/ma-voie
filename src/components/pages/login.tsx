@@ -77,6 +77,7 @@ const LoginPage = (): React.ReactElement => {
     if (!inputEmail || !password) {
       return
     }
+    // TODO(émilie): Change for react-redux-firebase.
     FirebaseAuth.signInWithEmailAndPassword(inputEmail, password).
       catch((error: FirebaseErrorProps) => {
         setErrorMessage(error.message)
@@ -94,6 +95,7 @@ const LoginPage = (): React.ReactElement => {
   }, [dispatch, email, inputEmail, history, password, setErrorMessage, t])
 
   // TODO(émilie): Move to actions.ts.
+  // TODO(émilie): Change for react-redux-firebase.
   const onSignInWithGoogle = useCallback((): void => {
     FirebaseAuth.signInWithPopup(googleAuthProvider).
       then((result) => {
@@ -119,6 +121,7 @@ const LoginPage = (): React.ReactElement => {
 
   // TODO(émilie): Move to actions.ts.
   // TODO(émilie): DRY with Google signin.
+  // TODO(émilie): Change for react-redux-firebase.
   const onSignInWithFacebook = useCallback((): void => {
     FirebaseAuth.signInWithPopup(facebookAuthProvider).
       then((result) => {

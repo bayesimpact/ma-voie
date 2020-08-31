@@ -51,6 +51,7 @@ const SignupPage = (): React.ReactElement => {
 
   // TODO(émilie): Move to actions.ts.
   const onSignInWithGoogle = useCallback((): void => {
+    // TODO(émilie): Change for react-redux-firebase.
     FirebaseAuth.signInWithPopup(googleAuthProvider).
       then((result) => {
         const firebaseUser = result.user
@@ -76,6 +77,7 @@ const SignupPage = (): React.ReactElement => {
 
   // TODO(émilie): Move to actions.ts.
   // TODO(émilie): DRY with Google signup.
+  // TODO(émilie): Change for react-redux-firebase.
   const onSignInWithFacebook = useCallback((): void => {
     FirebaseAuth.signInWithPopup(facebookAuthProvider).
       then((result) => {

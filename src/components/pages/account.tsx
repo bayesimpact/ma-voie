@@ -1,9 +1,10 @@
 import React, {useCallback, useEffect, useState} from 'react'
 import {useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
+import {useFirebase} from 'react-redux-firebase'
 import {useHistory} from 'react-router'
 
-import {FirebaseAuth, FirebaseErrorProps} from 'database/firebase'
+import {FirebaseAuth} from 'database/firebase'
 import {useFastForward} from 'hooks/fast_forward'
 import {RootState, updateUser, useDispatch} from 'store/actions'
 import {getPath} from 'store/url'
@@ -40,6 +41,7 @@ const layoutStyle: React.CSSProperties = {
 const AccountPage = (): React.ReactElement => {
   const {t} = useTranslation()
   const history = useHistory()
+  const firebase = useFirebase()
 
   const uid = useSelector(({user: {uid}}: RootState) => uid)
   const name = useSelector(({user: {name}}: RootState) => name)
@@ -102,19 +104,23 @@ const AccountPage = (): React.ReactElement => {
       dispatch(updateUser(update))
       // TODO(émilie): Move to actions.ts
       if (!uid) {
-        FirebaseAuth.createUserWithEmailAndPassword(inputEmail, password).
-          catch((error: FirebaseErrorProps) => {
+        firebase.createUser({email: inputEmail, password}).
+          then(() => {
+            const uid = FirebaseAuth?.currentUser?.uid
+            dispatch(updateUser({uid}))
+            setUpdated(true)
+          }).
+          catch((error) => {
             setErrorMessage(error.message)
             return
-          }).
-          then(() => setUpdated(true))
+          })
       } else {
         // TODO(émilie): Update the user in firebase
         setUpdated(true)
       }
     }
   }, [dispatch,
-    email, name, inputEmail, inputName, lastName, inputLastName,
+    email, firebase, name, inputEmail, inputName, lastName, inputLastName,
     password, setErrorMessage, uid])
   useFastForward(() => {
     if (inputName && inputLastName && inputEmail && password) {
