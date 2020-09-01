@@ -1,11 +1,10 @@
 import React, {useCallback, useEffect, useState} from 'react'
 import {useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
+import {useFirebase} from 'react-redux-firebase'
 import {useHistory} from 'react-router'
 import {Link} from 'react-router-dom'
 
-import {FirebaseAuth, FirebaseErrorProps,
-  facebookAuthProvider, googleAuthProvider} from 'database/firebase'
 import {RootState, updateUser, useDispatch} from 'store/actions'
 import {getPath} from 'store/url'
 
@@ -55,6 +54,7 @@ const forgottenPasswordDivStyle: React.CSSProperties = {
 // TOP LEVEL PAGE
 const LoginPage = (): React.ReactElement => {
   const {t} = useTranslation()
+  const firebase = useFirebase()
 
   const [areErrorFields, setAreErrorFields] = useState<{[K in 'email'|'password']?: boolean}>({})
 
@@ -68,6 +68,7 @@ const LoginPage = (): React.ReactElement => {
 
   const history = useHistory()
   const dispatch = useDispatch()
+  type AuthResult = {user: firebase.auth.UserCredential}
   const onSubmit = useCallback((): void => {
     const errorsFields = {
       email: !inputEmail,
@@ -77,50 +78,43 @@ const LoginPage = (): React.ReactElement => {
     if (!inputEmail || !password) {
       return
     }
-    FirebaseAuth.signInWithEmailAndPassword(inputEmail, password).
-      catch((error: FirebaseErrorProps) => {
+    firebase.login({email: inputEmail, password}).
+      catch((error) => {
         setErrorMessage(error.message)
         return
       }).
-      then(() => {
-        // TODO(émilie): Retrieve user data from sign in and set it into local storage
-        // ... such as uid, firstName, lastName, to be displayed.
-        const update = {
-          ...email === inputEmail ? {} : {email: inputEmail},
-        }
-        dispatch(updateUser(update))
-        history.push(getPath(['STEPS'], t))
-      })
-  }, [dispatch, email, inputEmail, history, password, setErrorMessage, t])
-
-  // TODO(émilie): Move to actions.ts.
-  const onSignInWithGoogle = useCallback((): void => {
-    FirebaseAuth.signInWithPopup(googleAuthProvider).
       then((result) => {
-        const firebaseUser = result.user
+        if (!result) {
+          return
+        }
+        // TODO(émilie): result should be typed void|UserCredential,
+        // but is typed {user : UserCredential} in email/pwd login.
+        // Correct this when the bug is solved (as in Google/Facebook login).
+        // https://github.com/prescottprue/react-redux-firebase/issues/996
+        const userCredential = (result as unknown as AuthResult).user
+        if (!userCredential) {
+          return
+        }
+        const firebaseUser = userCredential.user
         if (!firebaseUser) {
           // This should never happen, see
           // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
           return
         }
-        // TODO(émilie): Retrieve user data from firestore.
+        // TODO(émilie): Retrieve user data from sign in and set it into local storage
+        // ... such as uid, firstName, lastName, to be displayed.
         const update = {
-          ...firebaseUser.email ? {email: firebaseUser.email} : {},
+          ...email === inputEmail ? {} : {email: inputEmail},
           uid: firebaseUser.uid,
         }
         dispatch(updateUser(update))
         history.push(getPath(['STEPS'], t))
-      }).
-      catch((error: FirebaseErrorProps) => {
-        setErrorMessage(error.message)
-        return
       })
-  }, [dispatch, history, t])
+  }, [dispatch, email, firebase, inputEmail, history, password, setErrorMessage, t])
 
   // TODO(émilie): Move to actions.ts.
-  // TODO(émilie): DRY with Google signin.
-  const onSignInWithFacebook = useCallback((): void => {
-    FirebaseAuth.signInWithPopup(facebookAuthProvider).
+  const onSignInWithGoogle = useCallback((): void => {
+    firebase.login({provider: 'google', type: 'popup'}).
       then((result) => {
         const firebaseUser = result.user
         if (!firebaseUser) {
@@ -140,7 +134,32 @@ const LoginPage = (): React.ReactElement => {
         setErrorMessage(error.message)
         return
       })
-  }, [dispatch, history, t])
+  }, [dispatch, firebase, history, t])
+
+  // TODO(émilie): Move to actions.ts.
+  // TODO(émilie): DRY with Google signin.
+  const onSignInWithFacebook = useCallback((): void => {
+    firebase.login({provider: 'facebook', type: 'popup'}).
+      then((result) => {
+        const firebaseUser = result.user
+        if (!firebaseUser) {
+          // This should never happen, see
+          // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
+          return
+        }
+        // TODO(émilie): Retrieve user data from firestore.
+        const update = {
+          ...firebaseUser.email ? {email: firebaseUser.email} : {},
+          uid: firebaseUser.uid,
+        }
+        dispatch(updateUser(update))
+        history.push(getPath(['STEPS'], t))
+      }).
+      catch((error) => {
+        setErrorMessage(error.message)
+        return
+      })
+  }, [dispatch, firebase, history, t])
 
   const buttonStyle: React.CSSProperties = {
     marginTop: 20,
