@@ -71,6 +71,7 @@ const LoginPage = (): React.ReactElement => {
 
   const history = useHistory()
   const dispatch = useDispatch()
+  type AuthResult = {user: firebase.auth.UserCredential}
   const onSubmit = useCallback((): void => {
     const errorsFields = {
       email: !inputEmail,
