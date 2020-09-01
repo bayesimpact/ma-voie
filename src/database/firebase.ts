@@ -4,7 +4,7 @@ require('firebase/auth')
 require('firebase/firestore')
 
 export const FirebaseApp = firebase.initializeApp(config.firebase)
-export const FirebaseFirestore = firebase.firestore()
+export const Firestore = firebase.firestore()
 export const FirebaseAuth = FirebaseApp.auth()
 
 export interface FirebaseErrorProps {

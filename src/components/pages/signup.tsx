@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from 'react'
 import {useTranslation} from 'react-i18next'
-import {useFirebase} from 'react-redux-firebase'
+import {useFirebase, useFirestore} from 'react-redux-firebase'
 import {useHistory} from 'react-router'
 import {Link} from 'react-router-dom'
 
@@ -39,6 +39,7 @@ const SignupPage = (): React.ReactElement => {
   const {t} = useTranslation()
   const history = useHistory()
   const firebase = useFirebase()
+  const firestore = useFirestore()
   const [errorMessage, setErrorMessage] = useState('')
 
   const dispatch = useDispatch()
@@ -67,13 +68,14 @@ const SignupPage = (): React.ReactElement => {
           uid: firebaseUser.uid,
         }
         dispatch(updateUser(update))
+        firestore.update({collection: 'users', doc: firebaseUser.uid}, update)
         history.push(getPath(['ACCOUNT'], t))
       }).
       catch((error) => {
         setErrorMessage(error.message)
         return
       })
-  }, [dispatch, firebase, history, t])
+  }, [dispatch, firebase, firestore, history, t])
 
   // TODO(émilie): Move to actions.ts.
   // TODO(émilie): DRY with Google signup.
@@ -93,13 +95,14 @@ const SignupPage = (): React.ReactElement => {
           uid: firebaseUser.uid,
         }
         dispatch(updateUser(update))
+        firestore.update({collection: 'users', doc: firebaseUser.uid}, update)
         history.push(getPath(['ACCOUNT'], t))
       }).
       catch((error) => {
         setErrorMessage(error.message)
         return
       })
-  }, [dispatch, firebase, history, t])
+  }, [dispatch, firebase, firestore, history, t])
 
   return <LayoutSignIn bigTitle={t('Inscription')}>
     <Link to={getPath(['ACCOUNT'], t)} style={linkStyle}>

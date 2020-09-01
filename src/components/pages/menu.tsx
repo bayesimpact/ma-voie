@@ -116,9 +116,8 @@ const MenuPage = (): React.ReactElement => {
   const goBackClick = useCallback((): void => {
     history.goBack()
   }, [history])
-  const uid = useSelector(({user: {uid}}: RootState) => uid)
-  const name = useSelector(({user: {name}}: RootState) => name)
-  const lastName = useSelector(({user: {lastName}}: RootState) => lastName)
+  const uid = useSelector(({firebase: {auth: {uid}}}: RootState) => uid)
+  const {lastName, name} = useSelector(({firebase: {profile}}: RootState) => profile)
   const currentProject = useProject()
   const projects = useSelector(({user: {projects}}: RootState) => projects)
 

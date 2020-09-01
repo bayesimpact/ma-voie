@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react'
 import {useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
-import {useFirebase} from 'react-redux-firebase'
+import {useFirebase, useFirestore} from 'react-redux-firebase'
 import {useHistory} from 'react-router'
 
 import {FirebaseAuth} from 'database/firebase'
@@ -42,21 +42,20 @@ const AccountPage = (): React.ReactElement => {
   const {t} = useTranslation()
   const history = useHistory()
   const firebase = useFirebase()
+  const firestore = useFirestore()
 
-  const uid = useSelector(({user: {uid}}: RootState) => uid)
-  const name = useSelector(({user: {name}}: RootState) => name)
+  const uid = useSelector(({firebase: {auth: {uid}}}: RootState) => uid)
+  const {email, lastName, name} = useSelector(({firebase: {profile}}: RootState) => profile)
   const [inputName, setName] = useState(name || '')
   useEffect((): void => {
     name && setName(name)
   }, [name])
 
-  const lastName = useSelector(({user: {lastName}}: RootState) => lastName)
   const [inputLastName, setLastName] = useState(lastName || '')
   useEffect((): void => {
     lastName && setLastName(lastName)
   }, [lastName])
 
-  const email = useSelector(({user: {email}}: RootState) => email)
   const [inputEmail, setEmail] = useState(email || '')
   useEffect((): void => {
     email && setEmail(email)
@@ -108,6 +107,7 @@ const AccountPage = (): React.ReactElement => {
           then(() => {
             const uid = FirebaseAuth?.currentUser?.uid
             dispatch(updateUser({uid}))
+            firestore.update({collection: 'users', doc: uid}, update)
             setUpdated(true)
           }).
           catch((error) => {
@@ -115,13 +115,12 @@ const AccountPage = (): React.ReactElement => {
             return
           })
       } else {
-        // TODO(émilie): Update the user in firebase
+        firestore.update({collection: 'users', doc: uid}, update)
         setUpdated(true)
       }
     }
-  }, [dispatch,
-    email, firebase, name, inputEmail, inputName, lastName, inputLastName,
-    password, setErrorMessage, uid])
+  }, [dispatch, email, firebase, firestore, name, inputEmail,
+    inputName, lastName, inputLastName, password, setErrorMessage, uid])
   useFastForward(() => {
     if (inputName && inputLastName && inputEmail && password) {
       onSave()

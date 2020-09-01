@@ -61,7 +61,7 @@ const LoginPage = (): React.ReactElement => {
 
   const [areErrorFields, setAreErrorFields] = useState<{[K in 'email'|'password']?: boolean}>({})
 
-  const email = useSelector(({user: {email}}: RootState) => email)
+  const email = useSelector(({firebase: {profile: {email}}}: RootState) => email)
   const [inputEmail, setEmail] = useState(email || '')
   useEffect((): void => {
     email && setEmail(email)
