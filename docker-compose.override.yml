@@ -40,3 +40,4 @@ services:
       - ./server/firebase.json:/usr/app/firebase.json
       - ./server/tsconfig.json:/usr/app/tsconfig.json
       - ./server/src:/usr/app/src
+      - ./server/public:/usr/app/public
