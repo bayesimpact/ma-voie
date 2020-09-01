@@ -6,9 +6,8 @@
     "serve": "npm run build && firebase emulators:start",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
-    "deploy": "firebase --token \"$FIREBASE_TOKEN\" deploy --only functions",
-    "logs": "firebase functions:log",
-    "predeploy": "if [ -z \"$FIREBASE_TOKEN\" ]; then firebase login --no-localhost; fi"
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
   },
   "main": "lib/index.js",
   "dependencies": {
