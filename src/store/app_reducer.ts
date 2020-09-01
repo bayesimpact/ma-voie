@@ -48,7 +48,7 @@ export const user = (state = initialUser, action: AllActions): bayes.maVoie.User
       }
 
     case 'LOGOUT':
-      return initialUser
+      return {}
   }
   return state
 }

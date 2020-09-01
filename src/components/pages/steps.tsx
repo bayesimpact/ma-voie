@@ -2,11 +2,9 @@ import ArrowDownIcon from 'mdi-react/ArrowDownIcon'
 import ArrowRightIcon from 'mdi-react/ArrowRightIcon'
 import React, {useCallback, useEffect, useRef, useState} from 'react'
 import {Trans, useTranslation} from 'react-i18next'
-import {useSelector} from 'react-redux'
 import {useHistory} from 'react-router'
 
 import {FirebaseAuth} from 'database/firebase'
-import {RootState} from 'store/actions'
 import {joinList} from 'store/i18n'
 import {useProject} from 'store/selections'
 import Steps from 'store/steps'
@@ -75,10 +73,8 @@ const StepsPage = (): React.ReactElement => {
   const history = useHistory()
   const [isPopupShown, setIsPopupShown] = useState(false)
 
-  const name = useSelector(({user: {name}}: RootState) => name)
-  const lastName = useSelector(({user: {lastName}}: RootState) => lastName)
   const currentUser = FirebaseAuth.currentUser
-  const isConnected = (currentUser !== null && name !== undefined && lastName !== undefined)
+  const isConnected = (currentUser !== null)
   const project = useProject()
 
   const nextStep = Steps.find(({stepId}) => !project.steps?.[stepId]?.completed)?.stepId
