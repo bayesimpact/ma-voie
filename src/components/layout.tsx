@@ -1,8 +1,18 @@
 import React from 'react'
 
 import Header from 'components/header'
+import Menu from 'components/menu'
 
 const isMobileVersion = window.innerWidth <= 800
+const isMenuAlwaysShown = window.innerWidth > 1300
+
+const withMenuStyle: React.CSSProperties = {
+  display: 'flex',
+  minHeight: '100vh',
+}
+const mainContentStyle: React.CSSProperties = {
+  flex: 1,
+}
 
 const containerStyle: React.CSSProperties = {
   fontFamily: 'ProximaSoft',
@@ -37,8 +47,8 @@ const Layout = ({bigTitle, children, header, menu, style, title}: Props): React.
     ...containerStyle,
     ...style,
   }
-  return <React.Fragment>
-    <Header title={header} menu={menu} />
+  const mainContent = <React.Fragment>
+    <Header title={header} menu={isMenuAlwaysShown ? 'none' : menu} />
     <div style={layoutStyle}>
       {title || bigTitle ?
         <h1 style={h1Style}>
@@ -50,6 +60,15 @@ const Layout = ({bigTitle, children, header, menu, style, title}: Props): React.
       {children}
     </div>
   </React.Fragment>
+  if (isMenuAlwaysShown) {
+    return <div style={withMenuStyle}>
+      <div style={mainContentStyle}>
+        {mainContent}
+      </div>
+      <Menu style={{width: 270}} />
+    </div>
+  }
+  return mainContent
 }
 
 export default React.memo(Layout)
