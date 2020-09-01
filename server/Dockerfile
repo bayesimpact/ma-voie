@@ -9,3 +9,4 @@ COPY server/src src/
 
 FROM dev AS test
 RUN npm run lint
+RUN npm run build
