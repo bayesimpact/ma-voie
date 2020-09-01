@@ -1,6 +1,6 @@
 [
     {
-        "description":"  * Durée : 6 semaines\n  * Faisable en ligne\n  * Coach dédié pour vous accompagner\n  * Suivi quotidien de votre avancement\n  * Disponible 24h/24\n  * Ils sont sympas",
+        "description":"  * Le parcours de coaching digital pour choisir le travail qui vous rendra heureux(se)\n  * Durée 3 mois. 100% en ligne.\n  * 24h d'autocoaching en ligne et 6 séances de vidéo-coaching individuelles avec un coach professionnel certifié\n  * Essai gratuit sur www.chance.co avec démarrage immédiat",
         "details":"Finançable CPF",
         "discoverUrl":"https://www.chance.co/fr/parcours",
         "isInternal":true,
@@ -8,7 +8,7 @@
         "name":"Chance",
         "partnerId":"chance",
         "steps":["definition"],
-        "title":"300€",
+        "title":"1200€",
         "url":"https://www.chance.co",
         "userCount":37
     },
