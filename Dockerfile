@@ -26,6 +26,8 @@ COPY .babelrc diff_i18n_folder.sh i18n.babelrc.js entrypoint.sh .eslintrc.json .
 
 COPY vendor/patch-babel-plugin-i18next-extract.sh ./vendor/patch-babel-plugin-i18next-extract.sh
 RUN ./vendor/patch-babel-plugin-i18next-extract.sh
+COPY vendor/patch-react-redux-firebase-plugin-storage-types.sh ./vendor/patch-react-redux-firebase-plugin-storage-types.sh
+RUN ./vendor/patch-react-redux-firebase-plugin-storage-types.sh
 
 # TODO(pascal): Create a @types/autocomplete.js npm package.
 COPY vendor/autocomplete.js.d.ts node_modules/@types/autocomplete.js/index.d.ts

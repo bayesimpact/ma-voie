@@ -1,10 +1,10 @@
 import React, {useCallback, useState} from 'react'
 import {useTranslation} from 'react-i18next'
+import {useFirebase} from 'react-redux-firebase'
 import {useHistory} from 'react-router'
 import {Link} from 'react-router-dom'
 
-import {FirebaseAuth, FirebaseErrorProps,
-  facebookAuthProvider, googleAuthProvider} from 'database/firebase'
+import {FirebaseAuth} from 'database/firebase'
 import {updateUser, useDispatch} from 'store/actions'
 import {getPath} from 'store/url'
 
@@ -38,6 +38,7 @@ const errorValidationStyle: React.CSSProperties = {
 const SignupPage = (): React.ReactElement => {
   const {t} = useTranslation()
   const history = useHistory()
+  const firebase = useFirebase()
   const [errorMessage, setErrorMessage] = useState('')
 
   const dispatch = useDispatch()
@@ -51,33 +52,7 @@ const SignupPage = (): React.ReactElement => {
 
   // TODO(émilie): Move to actions.ts.
   const onSignInWithGoogle = useCallback((): void => {
-    FirebaseAuth.signInWithPopup(googleAuthProvider).
-      then((result) => {
-        const firebaseUser = result.user
-        if (!firebaseUser) {
-          // This should never happen, see
-          // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
-          return
-        }
-        const update = {
-          ...firebaseUser.email ? {email: firebaseUser.email} : {},
-          // TODO (émilie): Split displayName into first and last name.
-          ...firebaseUser.displayName ? {name: firebaseUser.displayName} : {},
-          uid: firebaseUser.uid,
-        }
-        dispatch(updateUser(update))
-        history.push(getPath(['ACCOUNT'], t))
-      }).
-      catch((error: FirebaseErrorProps) => {
-        setErrorMessage(error.message)
-        return
-      })
-  }, [dispatch, history, t])
-
-  // TODO(émilie): Move to actions.ts.
-  // TODO(émilie): DRY with Google signup.
-  const onSignInWithFacebook = useCallback((): void => {
-    FirebaseAuth.signInWithPopup(facebookAuthProvider).
+    firebase.login({provider: 'google', type: 'popup'}).
       then((result) => {
         const firebaseUser = result.user
         if (!firebaseUser) {
@@ -98,7 +73,33 @@ const SignupPage = (): React.ReactElement => {
         setErrorMessage(error.message)
         return
       })
-  }, [dispatch, history, t])
+  }, [dispatch, firebase, history, t])
+
+  // TODO(émilie): Move to actions.ts.
+  // TODO(émilie): DRY with Google signup.
+  const onSignInWithFacebook = useCallback((): void => {
+    firebase.login({provider: 'facebook', type: 'popup'}).
+      then((result) => {
+        const firebaseUser = result.user
+        if (!firebaseUser) {
+          // This should never happen, see
+          // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
+          return
+        }
+        const update = {
+          ...firebaseUser.email ? {email: firebaseUser.email} : {},
+          // TODO (émilie): Split displayName into first and last name.
+          ...firebaseUser.displayName ? {name: firebaseUser.displayName} : {},
+          uid: firebaseUser.uid,
+        }
+        dispatch(updateUser(update))
+        history.push(getPath(['ACCOUNT'], t))
+      }).
+      catch((error) => {
+        setErrorMessage(error.message)
+        return
+      })
+  }, [dispatch, firebase, history, t])
 
   return <Layout bigTitle={t('Inscription')} menu="site">
     <Link to={getPath(['ACCOUNT'], t)} style={linkStyle}>

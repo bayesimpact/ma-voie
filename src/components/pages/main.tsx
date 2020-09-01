@@ -1,7 +1,10 @@
 import {ConnectedRouter, connectRouter, routerMiddleware, RouterState} from 'connected-react-router'
+import firebase from 'firebase/app'
 import {History, createBrowserHistory} from 'history'
 import React, {Suspense, useEffect, useState} from 'react'
 import {Provider} from 'react-redux'
+import {ReactReduxFirebaseProvider, firebaseReducer} from 'react-redux-firebase'
+import {createFirestoreInstance, firestoreReducer} from 'redux-firestore'
 import {useLocation} from 'react-router'
 import {Switch, Redirect, Route} from 'react-router-dom'
 import {Store, createStore, applyMiddleware, combineReducers} from 'redux'
@@ -71,7 +74,11 @@ interface AppState {
   store: Store<RootState, AllActions>
 }
 
-type ReduxState = RootState & {router: RouterState<Record<string, undefined>|null|undefined>}
+type ReduxState = RootState & {
+  firebase: ReturnType<typeof firebaseReducer>
+  firestore: ReturnType<typeof firestoreReducer>
+  router: RouterState<Record<string, undefined>|null|undefined>
+}
 
 function createHistoryAndStore(): AppState {
   const history = createBrowserHistory()
@@ -85,6 +92,8 @@ function createHistoryAndStore(): AppState {
   // Create the store that will be provided to connected components via Context.
   const store = finalCreateStore<ReduxState, AllActions>(
     combineReducers({
+      firebase: firebaseReducer,
+      firestore: firestoreReducer,
       router: connectRouter(history),
       user,
     }),
@@ -94,6 +103,8 @@ function createHistoryAndStore(): AppState {
       const {user: newUser} =
         require('store/app_reducer')
       store.replaceReducer(combineReducers({
+        firebase: firebaseReducer,
+        firestore: firestoreReducer,
         router: connectRouter(history),
         user: newUser as typeof user,
       }))
@@ -101,16 +112,28 @@ function createHistoryAndStore(): AppState {
   }
   return {history, store}
 }
+const rrfConfig = {
+  useFirestoreForProfile: true,
+  userProfile: 'users',
+}
 // The app that will be augmented by top level wrappers.
 const WrappedApp = (): React.ReactElement => {
   const [{history, store}] = useState(createHistoryAndStore)
+  const rrfProps = {
+    config: rrfConfig,
+    createFirestoreInstance,
+    dispatch: store.dispatch,
+    firebase,
+  }
   // TODO(pascal): Add a scroll-up on page change.
   return <Provider store={store}>
     <ConnectedRouter history={history}>
-      {/* TODO(cyrille): Add a nice waiting page. */}
-      <Suspense fallback={<div />}>
-        <MemoApp />
-      </Suspense>
+      <ReactReduxFirebaseProvider {...rrfProps}>
+        {/* TODO(cyrille): Add a nice waiting page. */}
+        <Suspense fallback={<div />}>
+          <MemoApp />
+        </Suspense>
+      </ReactReduxFirebaseProvider>
     </ConnectedRouter>
   </Provider>
 }

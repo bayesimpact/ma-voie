@@ -114,12 +114,13 @@ const MenuPage = (): React.ReactElement => {
   const goBackClick = useCallback((): void => {
     history.goBack()
   }, [history])
+  const uid = useSelector(({user: {uid}}: RootState) => uid)
   const name = useSelector(({user: {name}}: RootState) => name)
   const lastName = useSelector(({user: {lastName}}: RootState) => lastName)
   const currentProject = useProject()
   const projects = useSelector(({user: {projects}}: RootState) => projects)
 
-  const isConnected = (name !== undefined && lastName !== undefined)
+  const isConnected = (uid !== undefined)
 
   // TODO(émilie): Check if necessary to filter the joblessProject
   const jobProjects = projects
@@ -129,8 +130,8 @@ const MenuPage = (): React.ReactElement => {
   const dispatch = useDispatch()
   const handleLogout = useCallback((): void => {
     dispatch(logoutAction)
-    FirebaseAuth.signOut()
-  }, [dispatch])
+    FirebaseAuth.signOut().then(() => history.push(getPath([], t)))
+  }, [dispatch, history, t])
 
   return <div style={pageStyle}>
     {!isConnected ?

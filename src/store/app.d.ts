@@ -7,6 +7,7 @@ declare namespace bayes {
       email?: string
       lastName?: string
       name?: string
+      // TODO(émilie): Rename uid to userId.
       uid?: string // Firebase unique ID for authentication
     }
 
