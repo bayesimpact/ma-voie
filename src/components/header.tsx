@@ -48,7 +48,7 @@ const linkLogoStyle: React.CSSProperties = {
   width: 49,
 }
 interface Props {
-  menu?: 'project'|'site'
+  menu?: 'project'|'site'|'none'
   title?: string
 }
 
@@ -69,9 +69,10 @@ const Header = ({menu = 'project', title}: Props): React.ReactElement => {
           <div style={titleStyle}>{title}</div>
         </React.Fragment>
         : <React.Fragment>
-          <Link to={getPath([menu === 'project' ? 'MENU' : 'MENU_SITE'], t)} style={linkStyle}>
-            <MenuIcon aria-label={t('menu')} />
-          </Link>
+          {menu === 'none' ? null :
+            <Link to={getPath([menu === 'project' ? 'MENU' : 'MENU_SITE'], t)} style={linkStyle}>
+              <MenuIcon aria-label={t('menu')} />
+            </Link>}
           <Link to={getPath([], t)} style={linkLogoStyle}>
             <img src={logoImage} alt={t('productName')} style={logoStyle} />
           </Link>
