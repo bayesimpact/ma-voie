@@ -38,6 +38,7 @@ services:
       - ./.eslintrc.json:/usr/app/.eslintrc.json
       - ./.eslintignore:/usr/app/.eslintignore
       - ./server/.firebaserc:/usr/app/.firebaserc
+      - ./server/entrypoint.sh:/usr/app/entrypoint.sh
       - ./server/firebase.json:/usr/app/firebase.json
       - ./server/tsconfig.json:/usr/app/tsconfig.json
       - ./server/src:/usr/app/src
