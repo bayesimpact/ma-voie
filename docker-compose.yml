@@ -30,9 +30,13 @@ services:
       context: .
       dockerfile: server/Dockerfile
       target: dev
+    command: npm run serve
     entrypoint: ./entrypoint.sh
     environment:
       FIREBASE_TOKEN:
+    ports:
+      - "4000:4000"
+      - "5001:5001"
   server-test:
     image: bayesimpact/ma-voie-server-test:${CIRCLE_BUILD_NUM:-latest}
     build:
