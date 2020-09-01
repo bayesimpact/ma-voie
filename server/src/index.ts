@@ -1,5 +1,5 @@
 import * as functions from 'firebase-functions'
-import {Express, Response} from 'express'
+import {Express, Request, Response} from 'express'
 import * as BasicAuth from 'express-basic-auth'
 
 const express = require('express')
@@ -12,8 +12,9 @@ app.use(BasicAuth({
   users: functions.config().basicauth,
 }))
 
-app.get('/', (request: BasicAuth.IBasicAuthedRequest, response: Response) => {
+app.get('/', (request: Request, response: Response) => {
   functions.logger.info('Hello logs!', {structuredData: true})
-  response.send(`Hello ${request.auth.user} from Firebase!`)
+  const {auth: {user}} = request as BasicAuth.IBasicAuthedRequest
+  response.send(`Hello ${user} from Firebase!`)
 })
 export const user = functions.https.onRequest(app)

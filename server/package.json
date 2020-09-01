@@ -6,11 +6,12 @@
     "serve": "npm run build && firebase emulators:start --project=dev",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
+    "deploy": "firebase deploy --only functions --project=prod",
     "logs": "firebase functions:log"
   },
   "main": "lib/index.js",
   "dependencies": {
+    "express-basic-auth": "1.2.0",
     "firebase-admin": "^8.10.0",
     "firebase-functions": "^3.6.1"
   },
@@ -33,7 +34,6 @@
     "eslint-plugin-unicorn": "^20.x.x",
     "eslint-plugin-you-dont-need-lodash-underscore": "^6.x.x",
     "express": "4.17.1",
-    "express-basic-auth": "1.2.0",
     "firebase-functions-test": "^0.2.0",
     "firebase-tools": "^8.0.0",
     "typescript": "^3.8.0"
