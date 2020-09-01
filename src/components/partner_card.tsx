@@ -96,10 +96,10 @@ const PartnerCard = (props: Props): React.ReactElement => {
     dispatch(updateStep(projectId, stepId, {selectedPartnerId: partnerId}))
     window.open(url, '_blank')
   }, [dispatch, partnerId, projectId, stepId, url])
-  return <div style={finalContainerStyle} onClick={handleClick} id={partnerId} data-partner>
+  return <section style={finalContainerStyle} onClick={handleClick} id={partnerId} data-partner>
     <div style={contentStyle}>
       <div style={titleStyle}>
-        <img src={logo} alt="logo" style={imageStyle} />
+        <img src={logo} alt={name} style={imageStyle} />
         <div style={titleDetailsStyle}>
           <div style={titleDetailsBoldStyle}>{title}</div>
           <div style={titleDetailsContentStyle}>{details}</div>
@@ -123,6 +123,6 @@ const PartnerCard = (props: Props): React.ReactElement => {
       <Trans count={userCount} style={infoStyle}>
         {{userCount}} personne a choisi {{name}}
       </Trans>}
-  </div>
+  </section>
 }
 export default React.memo(PartnerCard)

@@ -83,7 +83,7 @@ const Button = ({children, onClick, style, type}: ButtonProps): React.ReactEleme
     ...buttonsStyle[type],
     ...style,
   }
-  return <div onClick={onClick} style={buttonFinalStyle}>{children}</div>
+  return <div onClick={onClick} style={buttonFinalStyle} role={onClick && 'button'}>{children}</div>
 }
 
 export default React.memo(Button)
