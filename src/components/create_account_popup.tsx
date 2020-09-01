@@ -9,26 +9,34 @@ import Button from 'components/button'
 import {colorToAlpha} from 'components/colors'
 import iconDance from 'images/icon-dance.svg'
 
+const stopPropagation = (e: React.MouseEvent<HTMLDivElement>): void => {
+  e.stopPropagation()
+}
+
 const popupContainerStyle: React.CSSProperties = {
   backgroundColor: colorToAlpha(colors.TURQUOISE_BLUE, 0.88),
   color: colors.DARK_FOREST_GREEN,
   height: '100vh',
   left: 0,
+  padding: '0 30px',
   position: 'fixed',
+  right: 0,
   top: 0,
-  width: '100%',
 }
 const popupStyle: React.CSSProperties = {
   backgroundColor: '#fff',
   borderRadius: 20,
-  margin: '70px 30px 30px',
+  margin: '70px auto 30px',
+  maxWidth: 400,
   padding: 30,
 }
 const popupCloseStyle: React.CSSProperties = {
   color: '#fff',
+  cursor: 'pointer',
+  padding: 10,
   position: 'absolute',
-  right: 20,
-  top: 20,
+  right: 10,
+  top: 10,
 }
 const iconStyle: React.CSSProperties = {
   height: 118,
@@ -59,13 +67,16 @@ const CreateAccountPopup = ({onClose, style}: Props): React.ReactElement => {
     ...popupContainerStyle,
     ...style,
   }
-  const handleClose = useCallback((): void => {
+  const handleClose = useCallback((e: React.MouseEvent<HTMLDivElement>): void => {
+    e.stopPropagation()
     onClose()
   }, [onClose])
 
-  return <div style={globalStyle}>
-    <div style={popupCloseStyle} onClick={handleClose}><CloseIcon /></div>
-    <div style={popupStyle}>
+  return <div style={globalStyle} onClick={handleClose}>
+    <div style={popupCloseStyle} onClick={handleClose}>
+      <CloseIcon aria-label={t('fermer la pop-up')} />
+    </div>
+    <div style={popupStyle} onClick={stopPropagation}>
       <div style={iconStyle}><img src={iconDance} alt="" /></div>
       <Trans>
         <h1 style={titleStyle}>C'est le bon moment de créer un compte&nbsp;!</h1>
