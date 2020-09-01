@@ -21,6 +21,7 @@ const pageStyle: React.CSSProperties = {
 }
 const notConnectedCloseStyle: React.CSSProperties = {
   color: '#fff',
+  cursor: 'pointer',
   height: 110,
   paddingRight: 15,
   paddingTop: 20,
@@ -51,6 +52,7 @@ const projectsCountStyle: React.CSSProperties = {
 }
 const closeStyle: React.CSSProperties = {
   color: '#fff',
+  cursor: 'pointer',
 }
 const jobContainerStyle: React.CSSProperties = {
   backgroundColor: colorToAlpha(colors.DARK_FOREST_GREEN, .5),
@@ -134,8 +136,8 @@ const MenuPage = (): React.ReactElement => {
 
   return <div style={pageStyle}>
     {!isConnected ?
-      <div style={notConnectedCloseStyle}>
-        <CloseIcon onClick={goBackClick} />
+      <div onClick={goBackClick} style={notConnectedCloseStyle}>
+        <CloseIcon aria-label={t('fermer le menu')} />
       </div>
       : <div style={connectedCloseStyle}>
         <div style={avatarStyle}>
@@ -157,8 +159,8 @@ const MenuPage = (): React.ReactElement => {
             : null
           }
         </div>
-        <div style={closeStyle}>
-          <CloseIcon onClick={goBackClick} />
+        <div onClick={goBackClick} style={closeStyle}>
+          <CloseIcon aria-label={t('fermer le menu')} />
         </div>
       </div>}
     <div style={jobContainerStyle}>

@@ -24,9 +24,11 @@ const headerStyle: React.CSSProperties = {
 }
 const buttonStyle: React.CSSProperties = {
   color: colors.DARK_FOREST_GREEN,
-  left: 20,
+  cursor: 'pointer',
+  left: 5,
+  padding: 10,
   position: 'absolute',
-  top: 20,
+  top: 5,
 }
 const titleStyle: React.CSSProperties = {
   fontFamily: 'ProximaSoft',
@@ -61,12 +63,14 @@ const Header = ({menu = 'project', title}: Props): React.ReactElement => {
     <div style={headerStyle}>
       {title ?
         <React.Fragment>
-          <div style={buttonStyle} onClick={goBackClick}><ArrowLeftIcon /></div>
+          <div style={buttonStyle} onClick={goBackClick}>
+            <ArrowLeftIcon aria-label={t('précédent')} />
+          </div>
           <div style={titleStyle}>{title}</div>
         </React.Fragment>
         : <React.Fragment>
           <Link to={getPath([menu === 'project' ? 'MENU' : 'MENU_SITE'], t)} style={linkStyle}>
-            <MenuIcon />
+            <MenuIcon aria-label={t('menu')} />
           </Link>
           <Link to={getPath([], t)} style={linkLogoStyle}>
             <img src={logoImage} alt={t('productName')} style={logoStyle} />
