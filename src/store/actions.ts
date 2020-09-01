@@ -1,5 +1,7 @@
 import {Action, Dispatch} from 'redux'
 import {useDispatch as genericUseDispatch} from 'react-redux'
+import {firebaseReducer} from 'react-redux-firebase'
+import {firestoreReducer} from 'redux-firestore'
 
 export type AllActions =
   | CreateProject
@@ -16,6 +18,7 @@ interface UpdateUser extends Readonly<Action<'UPDATE_USER'>> {
   user: Partial<bayes.maVoie.User>
 }
 
+// TODO(émilie): Delete as it is no more used.
 function updateUser(user: Partial<bayes.maVoie.User>): UpdateUser {
   return {type: 'UPDATE_USER', user}
 }
@@ -44,6 +47,8 @@ export type LogoutAction = Readonly<Action<'LOGOUT'>>
 const logoutAction: LogoutAction = {type: 'LOGOUT'}
 
 export interface RootState {
+  firebase: ReturnType<typeof firebaseReducer>
+  firestore: ReturnType<typeof firestoreReducer>
   user: bayes.maVoie.User
 }
 
