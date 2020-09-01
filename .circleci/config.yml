@@ -26,7 +26,14 @@ jobs:
       - run:
           name: Test and lint Firebase server
           command: |
-            docker-compose build --pull server-test
+            docker-compose build --pull server server-test
+      - run:
+          name: Deploy server
+          command: |
+            if [ "$CIRCLE_BRANCH" == "master" ] || [[ "$CIRCLE_BRANCH" == *-test-auto-deploy ]] &&
+              ! git diff --exit-code HEAD^ -- server; then
+              docker-compose run --rm server npm run deploy
+            fi
       - run:
           name: Build and release as a docker image
           command: |
