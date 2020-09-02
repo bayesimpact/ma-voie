@@ -70,11 +70,11 @@ const Header = ({menuPosition, onMenuClick = 'project', title}: Props): React.Re
       </Link> :
       <MenuIcon
         aria-label={t('menu')} onClick={onMenuClick} role="button" style={clickableIconStyle} />
-  return <div style={headerContainerStyle}>
+  return <div style={headerContainerStyle} role="banner">
     <div style={headerStyle}>
       {title ?
         <React.Fragment>
-          <div style={buttonStyle} onClick={goBackClick}>
+          <div style={buttonStyle} onClick={goBackClick} role="link">
             <ArrowLeftIcon aria-label={t('précédent')} />
           </div>
           <div style={titleStyle}>{title}</div>

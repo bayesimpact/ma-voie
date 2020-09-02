@@ -1,5 +1,6 @@
+import _uniqueId from 'lodash/uniqueId'
 import CloseIcon from 'mdi-react/CloseIcon'
-import React, {useCallback} from 'react'
+import React, {useCallback, useState} from 'react'
 import {Trans, useTranslation} from 'react-i18next'
 import {Link} from 'react-router-dom'
 
@@ -62,6 +63,7 @@ interface Props {
 }
 const CreateAccountPopup = ({onClose, style}: Props): React.ReactElement => {
   const {t} = useTranslation()
+  const [titleId] = useState(_uniqueId)
 
   const globalStyle: React.CSSProperties = {
     ...popupContainerStyle,
@@ -72,14 +74,16 @@ const CreateAccountPopup = ({onClose, style}: Props): React.ReactElement => {
     onClose()
   }, [onClose])
 
-  return <div style={globalStyle} onClick={handleClose}>
-    <div style={popupCloseStyle} onClick={handleClose}>
+  return <div
+    style={globalStyle} onClick={handleClose} role="dialog" aria-modal={true}
+    aria-labelledby={titleId}>
+    <div style={popupCloseStyle} onClick={handleClose} role="button">
       <CloseIcon aria-label={t('fermer la pop-up')} />
     </div>
     <div style={popupStyle} onClick={stopPropagation}>
       <div style={iconStyle}><img src={iconDance} alt="" /></div>
       <Trans>
-        <h1 style={titleStyle}>C'est le bon moment de créer un compte&nbsp;!</h1>
+        <h1 style={titleStyle} id={titleId}>C'est le bon moment de créer un compte&nbsp;!</h1>
         <p style={paragraphStyle}>
           Créer un compte permet de sauvegarder votre progression et d'accéder
           aux meilleures ressources pour votre futur emploi, <strong>gratuitement</strong>.
