@@ -23,6 +23,8 @@ const popupContainerStyle: React.CSSProperties = {
   position: 'fixed',
   right: 0,
   top: 0,
+  // Move on top of the menu.
+  zIndex: 1,
 }
 const popupStyle: React.CSSProperties = {
   backgroundColor: '#fff',
