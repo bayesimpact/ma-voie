@@ -51,7 +51,7 @@ const JoinCardBase = ({topic, text, style}: JoinCardProps): React.ReactElement =
   }, [topic])
   return <div style={containerStyle}>
     <div style={textStyle}>{text}</div>
-    <div style={buttonStyle} onClick={handleClick}>
+    <div style={buttonStyle} onClick={handleClick} role="link">
       {t('contactEmail')}
     </div>
   </div>
@@ -86,11 +86,11 @@ const nonBreakStyle: React.CSSProperties = {
 const JoinSection = (): React.ReactElement => {
   const {t} = useTranslation()
   const serviceText = <Trans>
-    <strong>Vous proposez un service d’accompagnement</strong><br />
+    <strong>Vous proposez un service d’accompagnement</strong> <br />
     et souhaitez être référencé sur <span style={nonBreakStyle}>$t(productName)</span>&nbsp;?
   </Trans>
   const supportText = <Trans>
-    Vous souhaitez soutenir $t(productName)<br />
+    Vous souhaitez soutenir $t(productName) <br />
     <strong>Envoyez-nous un message</strong>
   </Trans>
 

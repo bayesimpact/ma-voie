@@ -120,9 +120,9 @@ const cardsContainerStyle: React.CSSProperties = {
   display: 'flex',
   flexWrap: isMobileVersion ? 'nowrap' : 'wrap',
   justifyContent: isMobileVersion ? 'space-between' : 'initial',
-  margin: isMobileVersion ? 'initial' : '-40px 0 70px -40px',
+  margin: isMobileVersion ? '0' : '-40px 0 70px -40px',
   minWidth: isMobileVersion ? 'initial' : 480,
-  padding: isMobileVersion ? `0 calc(50vw - ${cardWidth / 2}px)` : 'initial',
+  padding: isMobileVersion ? `0 calc(50vw - ${cardWidth / 2}px)` : '0',
   width: isMobileVersion ?
     cardWidth * CARDS.length + cardPaddingWidth * (CARDS.length - 1) : 'auto',
 }
@@ -139,12 +139,12 @@ interface DisplayCardProps extends CardProps {
   style?: React.CSSProperties
 }
 
-const CardBase = ({color, content, icon, index, name, onClick, style}: DisplayCardProps):
+const CardBase = ({color, content, icon, index, onClick, style}: DisplayCardProps):
 React.ReactElement => {
-  const [translate] = useTranslation()
   const cardStyle: React.CSSProperties = useMemo(() => ({
     borderRadius: 20,
     boxShadow: '0 16px 35px 0 rgba(0,0,0,.1)',
+    display: 'block',
     fontSize: 16,
     maxWidth: cardWidth,
     overflow: 'hidden',
@@ -166,13 +166,13 @@ React.ReactElement => {
   const handleClick = useCallback((): void => {
     onClick(index)
   }, [index, onClick])
-  return <div style={cardStyle} onClick={handleClick}>
-    <header style={headerStyle}><img src={icon} alt={translate(name)} /></header>
+  return <li style={cardStyle} onClick={handleClick}>
+    <div style={headerStyle}><img src={icon} alt="" /></div>
     <div style={contentStyle}>
       {content}
-      <div style={indexStyle}>{index}</div>
+      <div style={indexStyle} aria-hidden={true}>{index}</div>
     </div>
-  </div>
+  </li>
 }
 const Card = React.memo(CardBase)
 
@@ -195,11 +195,11 @@ const GoalSection = (): React.ReactElement => {
         {isMobileVersion ? null : <img style={arrowsStyle} src={grey6ArrowsImage} alt="" />}
       </div>
       <div style={carouselStyle} ref={carouselRef}>
-        <div style={cardsContainerStyle}>
+        <ol style={cardsContainerStyle}>
           {CARDS.map((card, index) => <Card
             key={index} index={index + 1} {...card}
             style={index % 2 ? evenCardOuterStyle : cardOuterStyle} onClick={scrollToCard} />)}
-        </div>
+        </ol>
       </div>
     </div>
   </section>

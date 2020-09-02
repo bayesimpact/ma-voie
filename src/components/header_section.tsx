@@ -114,12 +114,12 @@ const HeaderSection = (): React.ReactElement => {
     <h1 style={logoStyle}><img src={logoImage} alt={t('productName')} /></h1>
     <div style={contentStyle}>
       {isMobileVersion ? null : <Trans style={tagLineStyle}>
-        La période que nous vivons<br />
-        a mis un coup d'arrêt à votre<br />
+        La période que nous vivons <br />
+        a mis un coup d'arrêt à votre <br />
         recherche d'emploi&nbsp;?
       </Trans>}
       <Trans style={subTagLineStyle}>
-        Face à la crise prenez le bon virage<br />
+        Face à la crise prenez le bon virage <br />
         vers l'emploi avec <strong style={productNameStyle}>
           $t(productName)
         </strong>

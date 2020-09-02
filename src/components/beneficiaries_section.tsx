@@ -76,7 +76,7 @@ const BeneficiariesSection = (): React.ReactElement => {
   return <section style={sectionStyle}>
     <div style={contentStyle}>
       <Trans style={tagLineStyle} parent="h2">
-        On cherche nos<br />
+        On cherche nos <br />
         100 premiers bénéficiaires
       </Trans>
       <div style={blocsStyle}>
@@ -98,14 +98,14 @@ const BeneficiariesSection = (): React.ReactElement => {
         <div style={blocDatesStyle}>
           <div style={blocDateStyle}>
             <Trans>
-              <span style={blockDatesDayStyle}>20</span><br />
+              <span style={blockDatesDayStyle}>20</span> <br />
               septembre
             </Trans>
           </div>
           <div style={blocDateSeparatorStyle}>&nbsp;</div>
           <div style={blocDateStyle}>
             <Trans>
-              <span style={blockDatesDayStyle}>27</span><br />
+              <span style={blockDatesDayStyle}>27</span> <br />
               novembre
             </Trans>
           </div>
