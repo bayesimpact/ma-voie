@@ -81,7 +81,7 @@ const ButtonWithIcon = ({children, onClick, style, type}: ButtonProps): React.Re
     ...buttonsStyle[type],
     ...style,
   }
-  return <div onClick={onClick} style={buttonFinalStyle}>
+  return <div onClick={onClick} style={buttonFinalStyle} role="button">
     <img src={iconImage[type]} alt="" style={iconStyle[type]} />
     <span style={spanStyle}>{children}</span>
   </div>
