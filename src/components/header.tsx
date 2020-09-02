@@ -47,18 +47,29 @@ const linkLogoStyle: React.CSSProperties = {
   margin: 'auto',
   width: 49,
 }
+const clickableIconStyle: React.CSSProperties = {
+  cursor: 'pointer',
+}
 interface Props {
-  menu?: 'project'|'site'|'none'
+  onMenuClick?: 'project' |'site' | 'none'| (() => void)
+  menuPosition?: 'left' | 'right'
   title?: string
 }
 
 // Default menu used is the project one.
-const Header = ({menu = 'project', title}: Props): React.ReactElement => {
+const Header = ({menuPosition, onMenuClick = 'project', title}: Props): React.ReactElement => {
   const {t} = useTranslation()
   const history = useHistory()
   const goBackClick = useCallback((): void => {
     history.goBack()
   }, [history])
+  const menuIcon = onMenuClick === 'none' ? null :
+    onMenuClick === 'project' || onMenuClick === 'site' ?
+      <Link to={getPath([onMenuClick === 'project' ? 'MENU' : 'MENU_SITE'], t)} style={linkStyle}>
+        <MenuIcon aria-label={t('menu')} />
+      </Link> :
+      <MenuIcon
+        aria-label={t('menu')} onClick={onMenuClick} role="button" style={clickableIconStyle} />
   return <div style={headerContainerStyle}>
     <div style={headerStyle}>
       {title ?
@@ -69,13 +80,11 @@ const Header = ({menu = 'project', title}: Props): React.ReactElement => {
           <div style={titleStyle}>{title}</div>
         </React.Fragment>
         : <React.Fragment>
-          {menu === 'none' ? null :
-            <Link to={getPath([menu === 'project' ? 'MENU' : 'MENU_SITE'], t)} style={linkStyle}>
-              <MenuIcon aria-label={t('menu')} />
-            </Link>}
+          {menuPosition === 'left' ? menuIcon : null}
           <Link to={getPath([], t)} style={linkLogoStyle}>
             <img src={logoImage} alt={t('productName')} style={logoStyle} />
           </Link>
+          {menuPosition === 'right' ? menuIcon : null}
         </React.Fragment>
       }
     </div>
