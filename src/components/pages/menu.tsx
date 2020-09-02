@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 
 import {FirebaseAuth} from 'database/firebase'
 import {logoutAction, useDispatch, RootState} from 'store/actions'
-import {useProject, useSelector} from 'store/selections'
+import {getProjects, useProject, useSelector} from 'store/selections'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
@@ -119,7 +119,7 @@ const MenuPage = (): React.ReactElement => {
   const uid = useSelector(({firebase: {auth: {uid}}}: RootState) => uid)
   const {lastName, name} = useSelector(({firebase: {profile}}: RootState) => profile)
   const currentProject = useProject()
-  const projects = useSelector(({user: {projects}}: RootState) => projects)
+  const projects = getProjects()
 
   const isConnected = (uid !== undefined)
 

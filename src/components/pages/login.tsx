@@ -2,7 +2,7 @@ import {UserCredential} from '@firebase/auth-types'
 import React, {useCallback, useEffect, useState} from 'react'
 import {useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
-import {useFirebase} from 'react-redux-firebase'
+import {useFirebase, useFirestore} from 'react-redux-firebase'
 import {useHistory} from 'react-router'
 import {Link} from 'react-router-dom'
 
@@ -58,6 +58,7 @@ type AuthResult = {user: UserCredential}
 const LoginPage = (): React.ReactElement => {
   const {t} = useTranslation()
   const firebase = useFirebase()
+  const firestore = useFirestore()
 
   const [areErrorFields, setAreErrorFields] = useState<{[K in 'email'|'password']?: boolean}>({})
 
@@ -98,13 +99,7 @@ const LoginPage = (): React.ReactElement => {
           // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
           return
         }
-        // TODO(émilie): Retrieve user data from sign in and set it into local storage
-        // ... such as uid, firstName, lastName, to be displayed.
-        const update = {
-          ...email === inputEmail ? {} : {email: inputEmail},
-          uid: firebaseUser.uid,
-        }
-        dispatch(updateUser(update))
+        firestore.get({collection: 'projects', where: ['uid', '==', firebaseUser.uid]})
         history.push(getPath(['STEPS'], t))
       })
   }, [dispatch, email, firebase, inputEmail, history, password, setErrorMessage, t])
@@ -119,12 +114,7 @@ const LoginPage = (): React.ReactElement => {
           // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
           return
         }
-        // TODO(émilie): Retrieve user data from firestore.
-        const update = {
-          ...firebaseUser.email ? {email: firebaseUser.email} : {},
-          uid: firebaseUser.uid,
-        }
-        dispatch(updateUser(update))
+        firestore.get({collection: 'projects', where: ['uid', '==', firebaseUser.uid]})
         history.push(getPath(['STEPS'], t))
       }).
       catch((error) => {
@@ -144,12 +134,7 @@ const LoginPage = (): React.ReactElement => {
           // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
           return
         }
-        // TODO(émilie): Retrieve user data from firestore.
-        const update = {
-          ...firebaseUser.email ? {email: firebaseUser.email} : {},
-          uid: firebaseUser.uid,
-        }
-        dispatch(updateUser(update))
+        firestore.get({collection: 'projects', where: ['uid', '==', firebaseUser.uid]})
         history.push(getPath(['STEPS'], t))
       }).
       catch((error) => {

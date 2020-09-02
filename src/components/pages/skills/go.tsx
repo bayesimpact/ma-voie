@@ -1,8 +1,8 @@
 import React, {useCallback} from 'react'
 import {useTranslation, Trans} from 'react-i18next'
+import {useFirestore} from 'react-redux-firebase'
 
-import {updateStep, useDispatch} from 'store/actions'
-import {useProjectId} from 'store/selections'
+import {useProjectDocRefConfig, useProjectId} from 'store/selections'
 
 import Layout from 'components/layout'
 import StepValidationButton from 'components/step_validation_button'
@@ -24,11 +24,12 @@ const SkillsGoPage = (): React.ReactElement => {
   const {t} = useTranslation()
   const bigTitle = t('Félicitations\u00A0!')
 
-  const dispatch = useDispatch()
   const projectId = useProjectId()
+  const docRefConfig = useProjectDocRefConfig()
+  const firestore = useFirestore()
   const handleClick = useCallback((): void => {
-    dispatch(updateStep(projectId, 'training', {completed: 'notRequired'}))
-  }, [dispatch, projectId])
+    firestore.update(docRefConfig, {steps: {training: {completed: 'notRequired'}}})
+  }, [docRefConfig, firestore, projectId])
 
   return <Layout header={t('Compétences')} bigTitle={bigTitle}>
     <Trans>

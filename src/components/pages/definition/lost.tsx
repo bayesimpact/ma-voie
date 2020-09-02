@@ -1,9 +1,9 @@
 import React, {useCallback} from 'react'
 import {useTranslation, Trans} from 'react-i18next'
+import {useFirestore} from 'react-redux-firebase'
 import {Link} from 'react-router-dom'
 
-import {updateProject, useDispatch} from 'store/actions'
-import {useProjectId} from 'store/selections'
+import {useProjectDocRefConfig, useProjectId} from 'store/selections'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
@@ -28,11 +28,12 @@ const buttonContainerStyle: React.CSSProperties = {
 const LostPage = (): React.ReactElement => {
   const {t} = useTranslation()
   const projectId = useProjectId()
-  const dispatch = useDispatch()
+  const firestore = useFirestore()
+  const docRefConfig = useProjectDocRefConfig()
 
   const onClick = useCallback((): void => {
-    dispatch(updateProject({hasNoClearJob: true, projectId}))
-  }, [dispatch, projectId])
+    firestore.update(docRefConfig, {hasNoClearJob: true})
+  }, [firestore, projectId])
 
   return <Layout header={t('Définition')} bigTitle={t('Ne vous inquiétez pas, on est là\u00A0!')}>
     <Trans parent="p" style={contentStyle}>

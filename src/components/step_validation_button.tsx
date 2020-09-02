@@ -1,9 +1,9 @@
 import React, {useCallback} from 'react'
 import {useTranslation} from 'react-i18next'
+import {useFirestore} from 'react-redux-firebase'
 import {Link} from 'react-router-dom'
 
-import {updateStep, useDispatch} from 'store/actions'
-import {useProjectId} from 'store/selections'
+import {useProjectDocRefConfig, useProjectId} from 'store/selections'
 import {getPath} from 'store/url'
 
 import Button, {ButtonType} from 'components/button'
@@ -22,12 +22,13 @@ interface ButtonProps {
 const StepValidationButton = (props: ButtonProps): React.ReactElement => {
   const {children, onClick, stepId, stepValue, type = 'secondLevel'} = props
   const {t} = useTranslation()
-  const dispatch = useDispatch()
   const projectId = useProjectId()
+  const docRefConfig = useProjectDocRefConfig()
+  const firestore = useFirestore()
   const handleClick = useCallback((): void => {
-    dispatch(updateStep(projectId, stepId, {completed: stepValue}))
+    firestore.update(docRefConfig, {steps: {[stepId]: {completed: stepValue}}})
     onClick?.()
-  }, [dispatch, onClick, projectId, stepId, stepValue])
+  }, [firestore, onClick, projectId, stepId, stepValue])
 
   // TODO(cyrille): Allow a fade-out before redirect.
   return <Link to={getPath(['STEPS'], t)} style={linkStyle}>

@@ -76,7 +76,7 @@ const StepsPage = (): React.ReactElement => {
   const currentUser = FirebaseAuth.currentUser
   const isConnected = (currentUser !== null)
   const project = useProject()
-
+console.log(project)
   const nextStep = Steps.find(({stepId}) => !project.steps?.[stepId]?.completed)?.stepId
   const nextStepRef = useRef<HTMLDivElement>(null)
   useEffect((): (() => void) => {

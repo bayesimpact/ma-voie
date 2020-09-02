@@ -2,12 +2,12 @@ import {ConnectedRouter, connectRouter, routerMiddleware, RouterState} from 'con
 import firebase from 'firebase/app'
 import {History, createBrowserHistory} from 'history'
 import React, {Suspense, useEffect, useState} from 'react'
-import {Provider} from 'react-redux'
-import {ReactReduxFirebaseProvider, firebaseReducer} from 'react-redux-firebase'
-import {createFirestoreInstance, firestoreReducer} from 'redux-firestore'
+import {Provider, connect} from 'react-redux'
+import {ReactReduxFirebaseProvider, firebaseReducer, firestoreConnect} from 'react-redux-firebase'
+import {actionTypes, createFirestoreInstance, firestoreReducer} from 'redux-firestore'
 import {useLocation} from 'react-router'
 import {Switch, Redirect, Route} from 'react-router-dom'
-import {Store, createStore, applyMiddleware, combineReducers} from 'redux'
+import {Store, compose, createStore, applyMiddleware, combineReducers} from 'redux'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 
@@ -67,7 +67,14 @@ const App = (): React.ReactElement => {
   </Switch>
   // i18next-extract-mark-ns-stop url
 }
-const MemoApp = React.memo(App)
+const MemoApp = React.memo(
+  compose(
+    firestoreConnect(() => ['projects']),
+    connect((state) => ({
+      projectsList: state.firestore.data.projects,
+    })),
+  )(App),
+)
 
 interface AppState {
   history: History
@@ -115,6 +122,12 @@ function createHistoryAndStore(): AppState {
 const rrfConfig = {
   useFirestoreForProfile: true,
   userProfile: 'users',
+  onAuthStateChanged: (authData, firebase, dispatch) => {
+  // Clear redux-firestore state if auth does not exist (i.e logout)
+  if (!authData) {
+    dispatch({ type: actionTypes.CLEAR_DATA })
+  }
+}
 }
 // The app that will be augmented by top level wrappers.
 const WrappedApp = (): React.ReactElement => {

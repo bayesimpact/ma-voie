@@ -29,6 +29,7 @@ const createProjectAction: CreateProject = {type: 'CREATE_PROJECT'}
 interface UpdateProject extends Readonly<Action<'UPDATE_PROJECT'>> {
   project: Partial<bayes.maVoie.Project> & {projectId: string}
 }
+// TODO(émilie): Delete as it is no more used.
 function updateProject(project: UpdateProject['project']): UpdateProject {
   return {project, type: 'UPDATE_PROJECT'}
 }
@@ -38,6 +39,7 @@ interface UpdateStep extends Readonly<Action<'UPDATE_STEP'>> {
   readonly stepId: bayes.maVoie.StepId
   readonly step: Partial<bayes.maVoie.ProjectStep>
 }
+// TODO(émilie): Delete as it is no more used.
 function updateStep(
   projectId: string, stepId: bayes.maVoie.StepId, step: UpdateStep['step']): UpdateStep {
   return {projectId, step, stepId, type: 'UPDATE_STEP'}

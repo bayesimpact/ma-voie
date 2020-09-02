@@ -1,9 +1,9 @@
 import React, {useCallback, useState} from 'react'
 import {useTranslation} from 'react-i18next'
+import {useFirestore} from 'react-redux-firebase'
 
 import FadingLink, {useFadeInFadeOut} from 'hooks/fade'
-import {updateProject, useDispatch} from 'store/actions'
-import {useProjectId} from 'store/selections'
+import {useProjectDocRefConfig, useProjectId} from 'store/selections'
 import {Page} from 'store/url'
 
 import Button from 'components/button'
@@ -37,9 +37,10 @@ const JobPage = (): React.ReactElement => {
   const {t} = useTranslation()
   const title = t('Pour quel métier souhaitez-vous retrouver un poste\u00A0?')
   const projectId = useProjectId()
-  const dispatch = useDispatch()
+  const docRefConfig = useProjectDocRefConfig()
   const [job, setJob] = useState<bayes.maVoie.Job|null>(null)
   const {fadeTo, style} = useFadeInFadeOut()
+  const firestore = useFirestore()
 
   const validateButtonStyle: React.CSSProperties = {
     marginTop: 20,
@@ -50,9 +51,9 @@ const JobPage = (): React.ReactElement => {
     if (!job) {
       return
     }
-    dispatch(updateProject({job, projectId}))
+    firestore.update(docRefConfig, {job})
     fadeTo(['DEFINITION', 'EXPERIENCE'])
-  }, [dispatch, job, projectId, fadeTo])
+  }, [firestore, job, projectId, fadeTo])
 
   return <Layout header={t('Définition')} title={title} style={style}>
     <JobSuggest
