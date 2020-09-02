@@ -39,4 +39,5 @@ services:
       - ./server/entrypoint.sh:/usr/app/entrypoint.sh
       - ./server/firebase.json:/usr/app/firebase.json
       - ./server/tsconfig.json:/usr/app/tsconfig.json
+      - ./server/public:/usr/app/public
       - ./server/src:/usr/app/src

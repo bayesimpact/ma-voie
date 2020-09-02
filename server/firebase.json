@@ -11,5 +11,11 @@
     "predeploy": "npm --prefix \"$RESOURCE_DIR\" run build",
     "runtime": "nodejs12",
     "source": "."
+  },
+  "hosting": {
+    "public": "public",
+    "rewrites": [{
+      "source": "/user", "function": "user"
+    }]
   }
 }

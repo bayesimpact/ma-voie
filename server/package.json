@@ -6,7 +6,7 @@
     "serve": "npm run build && firebase emulators:start --project=dev",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
-    "deploy": "firebase deploy --only functions --project=prod",
+    "deploy": "firebase deploy --project=prod",
     "logs": "firebase functions:log"
   },
   "main": "lib/index.js",
