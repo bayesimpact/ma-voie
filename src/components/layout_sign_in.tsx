@@ -45,8 +45,9 @@ const LayoutSignIn = ({bigTitle, children, style}: Props): React.ReactElement =>
       {children}
     </Layout>
   }
+  // TODO(pascal): Fix the header to go back instead of proposing a menu.
   return <div style={{display: 'flex', flexDirection: 'column', minHeight: '100vh'}}>
-    <Header menu="site" />
+    <Header onMenuClick="site" />
     <div style={{display: 'flex', flex: 1}}>
       <div style={leftPanelStyle}>
         <div style={{flex: 1, maxWidth: 360}}>

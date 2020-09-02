@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {useCallback, useEffect, useMemo, useState} from 'react'
+
+import {useWindowWidth} from 'hooks/resize'
 
 import Header from 'components/header'
 import Menu from 'components/menu'
 
 const isMobileVersion = window.innerWidth <= 800
-const isMenuAlwaysShown = window.innerWidth > 1300
+const menuWidth = 270
 
 const withMenuStyle: React.CSSProperties = {
   display: 'flex',
@@ -43,12 +45,29 @@ interface Props {
 }
 
 const Layout = ({bigTitle, children, header, menu, style, title}: Props): React.ReactElement => {
+  const windowWidth = useWindowWidth()
+  const isMenuAlwaysShown = windowWidth > 1300
+  const [isMenuShown, setIsMenuShown] = useState(isMenuAlwaysShown)
+  const showMenu = useCallback((): void => setIsMenuShown(true), [])
+  const hideMenu = useCallback((): void => setIsMenuShown(false), [])
+  const menuStyle = useMemo((): React.CSSProperties => ({
+    transform: `translateX(${isMenuShown ? 0 : 100}%)`,
+    transition: '450ms',
+    width: menuWidth,
+  }), [isMenuShown])
+  useEffect((): void => {
+    setIsMenuShown(isMenuAlwaysShown)
+  }, [isMenuAlwaysShown])
+
   const layoutStyle = {
     ...containerStyle,
     ...style,
   }
   const mainContent = <React.Fragment>
-    <Header title={header} menu={isMenuAlwaysShown ? 'none' : menu} />
+    <Header
+      title={header}
+      onMenuClick={isMobileVersion ? menu : isMenuAlwaysShown ? 'none' : showMenu}
+      menuPosition={isMobileVersion ? 'left' : 'right'} />
     <div style={layoutStyle}>
       {title || bigTitle ?
         <h1 style={h1Style}>
@@ -60,15 +79,31 @@ const Layout = ({bigTitle, children, header, menu, style, title}: Props): React.
       {children}
     </div>
   </React.Fragment>
-  if (isMenuAlwaysShown) {
-    return <div style={withMenuStyle}>
-      <div style={mainContentStyle}>
-        {mainContent}
-      </div>
-      <Menu style={{width: 270}} />
-    </div>
+
+  if (isMobileVersion) {
+    return mainContent
   }
-  return mainContent
+
+  const menuContainerStyle: React.CSSProperties = isMenuAlwaysShown ? {
+    width: menuWidth,
+  } : {
+    bottom: 0,
+    overflow: 'hidden',
+    pointerEvents: isMenuShown ? 'initial' : 'none',
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    width: menuWidth,
+  }
+
+  return <div style={withMenuStyle}>
+    <div style={mainContentStyle}>
+      {mainContent}
+    </div>
+    <div style={menuContainerStyle}>
+      <Menu onClose={isMenuAlwaysShown ? undefined : hideMenu} style={menuStyle} />
+    </div>
+  </div>
 }
 
 export default React.memo(Layout)
