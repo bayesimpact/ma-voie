@@ -39,7 +39,7 @@ const DefinitionStepBase = <K extends keyof bayes.maVoie.Project>
     if (!value) {
       return
     }
-    projectUpdater({projectId, [projectKey]: value, uid})
+    projectUpdater({projectId, [projectKey]: value, userId: uid})
     fadeOut(() => history.push(
       getPath(['DEFINITION', redirect(value as NonNullable<bayes.maVoie.Project[K]>, project)], t)))
   }, [fadeOut, history, project, projectUpdater, projectId, projectKey, redirect, t, uid])

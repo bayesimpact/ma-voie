@@ -35,7 +35,7 @@ const useProject = (): bayes.maVoie.Project => {
   const projects = useSelector((state) => state.firestore.data.projects)
   const uid = useSelector(({firebase: {auth: {uid}}}: RootState) => uid)
   if (!projects?.[projectId]) {
-    return {projectId, uid}
+    return {projectId, userId: uid}
   }
   return projects[projectId]
 }
