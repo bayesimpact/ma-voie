@@ -1,6 +1,7 @@
 /**
  * @apiVersion 0.1.0
  */
+import * as bodyParser from 'body-parser'
 import * as functions from 'firebase-functions'
 import {Express, Request, Response} from 'express'
 import * as BasicAuth from 'express-basic-auth'
@@ -14,6 +15,8 @@ app.use(BasicAuth({
   realm: 'MaVoie',
   users: functions.config().basicauth,
 }))
+
+app.use(bodyParser.json({strict: false}))
 
 /**
  * @apiDefine basicAuth
@@ -59,9 +62,9 @@ app.use(BasicAuth({
 app.post('/:userId/register', (request: Request, response: Response) => {
   // TODO(cyrille): Update type definitions in @types/express to avoid recasting.
   const {auth: {user: partner}} = request as BasicAuth.IBasicAuthedRequest
-  const {params: {userId}} = request
+  const {body: {stepId}, params: {userId}} = request
   // TODO(cyrille): Replace status to 204 once we've actually done something with the request.
-  response.status(202).send(`Thank you ${partner} for registering ${userId}.`)
+  response.status(202).send(`Thank you ${partner} for registering ${userId} for step ${stepId}.`)
 })
 
 /**
@@ -77,9 +80,8 @@ app.post('/:userId/register', (request: Request, response: Response) => {
 app.post('/:userId/confirm', (request: Request, response: Response) => {
   // TODO(cyrille): Update type definitions in @types/express to avoid recasting.
   const {auth: {user: partner}} = request as BasicAuth.IBasicAuthedRequest
-  const {params: {userId}} = request
-  // TODO(cyrille): Replace status to 204 once we've actually done something with the request.
-  response.status(202).send(`Thank you ${partner} for confirming ${userId}.`)
+  const {body: {stepId}, params: {userId}} = request
+  response.status(202).send(`Thank you ${partner} for validating ${userId} on step ${stepId}.`)
 })
 
 export const user = functions.https.onRequest(app)
