@@ -2,12 +2,12 @@ import ChevronDownIcon from 'mdi-react/ChevronDownIcon'
 import ChevronUpIcon from 'mdi-react/ChevronUpIcon'
 import React, {useCallback, useMemo, useRef, useState} from 'react'
 import {useTranslation, Trans} from 'react-i18next'
+import {useFirestore} from 'react-redux-firebase'
 import {useLocation, useRouteMatch} from 'react-router'
 import {Redirect} from 'react-router-dom'
 
-import {updateStep, useDispatch} from 'store/actions'
 import {prepareT} from 'store/i18n'
-import {useProject, useProjectId} from 'store/selections'
+import {useProject, useProjectDocRefConfig} from 'store/selections'
 import {getPath} from 'store/url'
 import Partners, {Props as PartnerProps} from 'store/partners'
 import Steps, {StepInfo} from 'store/steps'
@@ -98,11 +98,11 @@ interface SelectedPartnerProps {
 }
 const SelectedPartnerPageBase = ({partner, step}: SelectedPartnerProps): React.ReactElement => {
   const {t, t: translate} = useTranslation()
-  const dispatch = useDispatch()
-  const projectId = useProjectId()
+  const projectDocRefConfig = useProjectDocRefConfig()
+  const firestore = useFirestore()
   const stopPartner = useCallback((): void => {
-    dispatch(updateStep(projectId, step.stepId, {selectedPartnerId: undefined}))
-  }, [dispatch, projectId, step])
+    firestore.update(projectDocRefConfig, {steps: {[step.stepId]: {selectedPartnerId: undefined}}})
+  }, [firestore, projectDocRefConfig, step])
   return <Layout header={translate(step.title || '')}>
     <div style={introStyle}>{t('Vous avez choisi\u00A0:')}</div>
     <PartnerCard {...partner} isSelected={true} stepId={step.stepId} />
