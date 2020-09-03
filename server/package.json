@@ -7,7 +7,7 @@
     "serve": "npm run build && firebase emulators:start --project=dev",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
-    "deploy": "firebase deploy --project=prod",
+    "deploy": "firebase deploy",
     "logs": "firebase functions:log",
     "predeploy": "npm run apidoc"
   },
