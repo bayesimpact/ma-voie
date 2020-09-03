@@ -41,3 +41,4 @@ services:
       - ./server/tsconfig.json:/usr/app/tsconfig.json
       - ./server/public:/usr/app/public
       - ./server/src:/usr/app/src
+      - ./server/public:/usr/app/public
