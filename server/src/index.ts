@@ -72,4 +72,4 @@ app.get('/', (request: Request, response: Response) => {
   const {auth: {user}} = request as BasicAuth.IBasicAuthedRequest
   response.send(`Hello ${user} from Firebase!`)
 })
-export const user = functions.region('europe-west1').https.onRequest(app)
+export const user = functions.https.onRequest(app)
