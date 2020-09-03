@@ -5,9 +5,8 @@ import {useTranslation, Trans} from 'react-i18next'
 import {useLocation, useRouteMatch} from 'react-router'
 import {Redirect} from 'react-router-dom'
 
-import {updateStep, useDispatch} from 'store/actions'
 import {prepareT} from 'store/i18n'
-import {useProject, useProjectId} from 'store/selections'
+import {useProject, useProjectUpdater} from 'store/selections'
 import {getPath} from 'store/url'
 import Partners, {Props as PartnerProps} from 'store/partners'
 import Steps, {StepInfo} from 'store/steps'
@@ -76,7 +75,6 @@ const TABS_WITHOUT_STEP: readonly TabProps[] = [
   },
 ]
 
-
 const introStyle: React.CSSProperties = {
   color: colors.DARK_FOREST_GREEN,
   fontSize: 12,
@@ -98,11 +96,10 @@ interface SelectedPartnerProps {
 }
 const SelectedPartnerPageBase = ({partner, step}: SelectedPartnerProps): React.ReactElement => {
   const {t, t: translate} = useTranslation()
-  const dispatch = useDispatch()
-  const projectId = useProjectId()
+  const projectUpdater = useProjectUpdater()
   const stopPartner = useCallback((): void => {
-    dispatch(updateStep(projectId, step.stepId, {selectedPartnerId: undefined}))
-  }, [dispatch, projectId, step])
+    projectUpdater({steps: {[step.stepId]: {selectedPartnerId: undefined}}})
+  }, [projectUpdater, step])
   return <Layout header={translate(step.title || '')}>
     <div style={introStyle}>{t('Vous avez choisi\u00A0:')}</div>
     <PartnerCard {...partner} isSelected={true} stepId={step.stepId} />
