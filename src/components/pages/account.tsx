@@ -6,7 +6,7 @@ import {useHistory} from 'react-router'
 
 import {FirebaseAuth} from 'database/firebase'
 import {useFastForward} from 'hooks/fast_forward'
-import {RootState, updateUser, useDispatch} from 'store/actions'
+import {RootState} from 'store/actions'
 import {getPath} from 'store/url'
 import {validateEmail} from 'store/validations'
 
@@ -79,8 +79,6 @@ const AccountPage = (): React.ReactElement => {
     }
   })
 
-  const dispatch = useDispatch()
-
   const onSave = useCallback((): void => {
     const isEmailValid = validateEmail(inputEmail)
     const errorsFields = {
@@ -100,13 +98,11 @@ const AccountPage = (): React.ReactElement => {
       ...email === inputEmail || uid ? {} : {email: inputEmail},
     }
     if (Object.keys(update).length) {
-      dispatch(updateUser(update))
       // TODO(émilie): Move to actions.ts
       if (!uid) {
         firebase.createUser({email: inputEmail, password}).
           then(() => {
             const uid = FirebaseAuth?.currentUser?.uid
-            dispatch(updateUser({uid}))
             firestore.update({collection: 'users', doc: uid}, update)
             setUpdated(true)
           }).
@@ -119,7 +115,7 @@ const AccountPage = (): React.ReactElement => {
         setUpdated(true)
       }
     }
-  }, [dispatch, email, firebase, firestore, name, inputEmail,
+  }, [email, firebase, firestore, name, inputEmail,
     inputName, lastName, inputLastName, password, setErrorMessage, uid])
   useFastForward(() => {
     if (inputName && inputLastName && inputEmail && password) {

@@ -1,9 +1,9 @@
 import React, {useCallback, useMemo, useState} from 'react'
 import {useTranslation} from 'react-i18next'
+import {useFirestore} from 'react-redux-firebase'
 import {useHistory} from 'react-router'
 
-import {updateProject, useDispatch} from 'store/actions'
-import {useProject, useProjectId, useSkillsList} from 'store/selections'
+import {useProject, useProjectDocRefConfig, useSkillsList} from 'store/selections'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
@@ -25,16 +25,16 @@ const SkillsListPage = (): React.ReactElement => {
   const {t} = useTranslation()
   const title = t('Avez-vous les compétences suivantes\u00A0?')
 
-  const dispatch = useDispatch()
-  const projectId = useProjectId()
+  const projectDocRefConfig = useProjectDocRefConfig()
   const project = useProject()
   const history = useHistory()
   const skillsList = useSkillsList()
+  const firestore = useFirestore()
 
   const [valuesSelected, setValuesSelected] = useState<readonly string[]>(project.skills || [])
 
   const handleClick = useCallback((): void => {
-    dispatch(updateProject({projectId, skills: valuesSelected}))
+    firestore.update(projectDocRefConfig, {skills: valuesSelected})
     const isMissingPrioritySkill = skillsList.some(({codeOgr, isPriority}) =>
       isPriority && !valuesSelected.includes(codeOgr))
     if (isMissingPrioritySkill) {
@@ -42,7 +42,7 @@ const SkillsListPage = (): React.ReactElement => {
       return
     }
     history.push(getPath(['SKILLS', 'GO'], t))
-  }, [dispatch, history, projectId, skillsList, t, valuesSelected])
+  }, [firestore, history, projectDocRefConfig, skillsList, t, valuesSelected])
 
   const checkboxListData = useMemo(() => skillsList.map(({codeOgr, isPriority, name}) =>
     isPriority

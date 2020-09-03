@@ -2,11 +2,11 @@ import {UserCredential} from '@firebase/auth-types'
 import React, {useCallback, useEffect, useState} from 'react'
 import {useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
-import {useFirebase} from 'react-redux-firebase'
+import {useFirebase, useFirestore} from 'react-redux-firebase'
 import {useHistory} from 'react-router'
 import {Link} from 'react-router-dom'
 
-import {RootState, updateUser, useDispatch} from 'store/actions'
+import {RootState} from 'store/actions'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
@@ -58,6 +58,7 @@ type AuthResult = {user: UserCredential}
 const LoginPage = (): React.ReactElement => {
   const {t} = useTranslation()
   const firebase = useFirebase()
+  const firestore = useFirestore()
 
   const [areErrorFields, setAreErrorFields] = useState<{[K in 'email'|'password']?: boolean}>({})
 
@@ -70,7 +71,6 @@ const LoginPage = (): React.ReactElement => {
   const [errorMessage, setErrorMessage] = useState('')
 
   const history = useHistory()
-  const dispatch = useDispatch()
   const onSubmit = useCallback((): void => {
     const errorsFields = {
       email: !inputEmail,
@@ -98,16 +98,10 @@ const LoginPage = (): React.ReactElement => {
           // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
           return
         }
-        // TODO(émilie): Retrieve user data from sign in and set it into local storage
-        // ... such as uid, firstName, lastName, to be displayed.
-        const update = {
-          ...email === inputEmail ? {} : {email: inputEmail},
-          uid: firebaseUser.uid,
-        }
-        dispatch(updateUser(update))
+        firestore.get({collection: 'projects', where: ['uid', '==', firebaseUser.uid]})
         history.push(getPath(['STEPS'], t))
       })
-  }, [dispatch, email, firebase, inputEmail, history, password, setErrorMessage, t])
+  }, [firebase, firestore, inputEmail, history, password, setErrorMessage, t])
 
   // TODO(émilie): Move to actions.ts.
   const onSignInWithGoogle = useCallback((): void => {
@@ -119,19 +113,14 @@ const LoginPage = (): React.ReactElement => {
           // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
           return
         }
-        // TODO(émilie): Retrieve user data from firestore.
-        const update = {
-          ...firebaseUser.email ? {email: firebaseUser.email} : {},
-          uid: firebaseUser.uid,
-        }
-        dispatch(updateUser(update))
+        firestore.get({collection: 'projects', where: ['uid', '==', firebaseUser.uid]})
         history.push(getPath(['STEPS'], t))
       }).
       catch((error) => {
         setErrorMessage(error.message)
         return
       })
-  }, [dispatch, firebase, history, t])
+  }, [firebase, firestore, history, t])
 
   // TODO(émilie): Move to actions.ts.
   // TODO(émilie): DRY with Google signin.
@@ -144,19 +133,14 @@ const LoginPage = (): React.ReactElement => {
           // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
           return
         }
-        // TODO(émilie): Retrieve user data from firestore.
-        const update = {
-          ...firebaseUser.email ? {email: firebaseUser.email} : {},
-          uid: firebaseUser.uid,
-        }
-        dispatch(updateUser(update))
+        firestore.get({collection: 'projects', where: ['uid', '==', firebaseUser.uid]})
         history.push(getPath(['STEPS'], t))
       }).
       catch((error) => {
         setErrorMessage(error.message)
         return
       })
-  }, [dispatch, firebase, history, t])
+  }, [firebase, firestore, history, t])
 
   const buttonStyle: React.CSSProperties = {
     marginTop: 20,
