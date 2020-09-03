@@ -56,6 +56,13 @@ app.use(BasicAuth({
  * @apiUse basicAuth
  * @apiUse stepParam
  */
+app.post('/:userId/register', (request: Request, response: Response) => {
+  // TODO(cyrille): Update type definitions in @types/express to avoid recasting.
+  const {auth: {user: partner}} = request as BasicAuth.IBasicAuthedRequest
+  const {params: {userId}} = request
+  // TODO(cyrille): Replace status to 204 once we've actually done something with the request.
+  response.status(202).send(`Thank you ${partner} for registering ${userId}.`)
+})
 
 /**
  *
@@ -67,9 +74,12 @@ app.use(BasicAuth({
  * @apiUse basicAuth
  * @apiUse stepParam
  */
-app.get('/', (request: Request, response: Response) => {
-  functions.logger.info('Hello logs!', {structuredData: true})
-  const {auth: {user}} = request as BasicAuth.IBasicAuthedRequest
-  response.send(`Hello ${user} from Firebase!`)
+app.post('/:userId/confirm', (request: Request, response: Response) => {
+  // TODO(cyrille): Update type definitions in @types/express to avoid recasting.
+  const {auth: {user: partner}} = request as BasicAuth.IBasicAuthedRequest
+  const {params: {userId}} = request
+  // TODO(cyrille): Replace status to 204 once we've actually done something with the request.
+  response.status(202).send(`Thank you ${partner} for confirming ${userId}.`)
 })
+
 export const user = functions.https.onRequest(app)
