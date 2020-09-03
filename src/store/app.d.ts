@@ -55,6 +55,7 @@ declare namespace bayes {
       projectId: string
       skills?: readonly string[]
       steps?: {[stepId in StepId]?: ProjectStep}
+      uid?: string
     }
 
     interface Job {

@@ -2,9 +2,8 @@ import React, {useCallback} from 'react'
 import {Trans, useTranslation} from 'react-i18next'
 import ReactMarkdown from 'react-markdown'
 
-import {useDispatch, updateStep} from 'store/actions'
 import {Props as PartnerProps} from 'store/partners'
-import {useProjectId} from 'store/selections'
+import {useProjectUpdater} from 'store/selections'
 
 import Button from 'components/button'
 
@@ -77,8 +76,7 @@ const PartnerCard = (props: Props): React.ReactElement => {
   const {description, details, url, discoverUrl = url, isSelected, logo, name, onClick, partnerId,
     stepId, style, title, userCount = 1} = props
   const {t} = useTranslation()
-  const dispatch = useDispatch()
-  const projectId = useProjectId()
+  const projectUpdater = useProjectUpdater()
   const finalContainerStyle: React.CSSProperties = {
     ...containerStyle,
     ...style,
@@ -93,9 +91,10 @@ const PartnerCard = (props: Props): React.ReactElement => {
   }, [partnerId, onClick])
   const choosePartner = useCallback((): void => {
     // TODO(cyrille): Add user info to url.
-    dispatch(updateStep(projectId, stepId, {selectedPartnerId: partnerId}))
+    projectUpdater({steps: {[stepId]: {selectedPartnerId: partnerId}}})
     window.open(url, '_blank')
-  }, [dispatch, partnerId, projectId, stepId, url])
+  }, [partnerId, stepId, url, projectUpdater])
+
   return <section style={finalContainerStyle} onClick={handleClick} id={partnerId} data-partner>
     <div style={contentStyle}>
       <div style={titleStyle}>

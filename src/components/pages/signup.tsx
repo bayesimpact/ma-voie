@@ -4,8 +4,6 @@ import {useFirebase, useFirestore} from 'react-redux-firebase'
 import {useHistory} from 'react-router'
 import {Link} from 'react-router-dom'
 
-import {FirebaseAuth} from 'database/firebase'
-import {updateUser, useDispatch} from 'store/actions'
 import {getPath} from 'store/url'
 
 import ButtonWithIcon from 'components/button_with_icon'
@@ -42,14 +40,15 @@ const SignupPage = (): React.ReactElement => {
   const firestore = useFirestore()
   const [errorMessage, setErrorMessage] = useState('')
 
-  const dispatch = useDispatch()
-
-  FirebaseAuth.onAuthStateChanged((user: firebase.User|null) => {
-    if (user) {
-      // TODO(émilie): Manager the case where there is already a uid.
-      dispatch(updateUser({uid: user.uid}))
+  const updateUser = useCallback((firebaseUser): void => {
+    const update = {
+      ...firebaseUser.email ? {email: firebaseUser.email} : {},
+      // TODO (émilie): Split displayName into first and last name.
+      ...firebaseUser.displayName ? {name: firebaseUser.displayName} : {},
+      uid: firebaseUser.uid,
     }
-  })
+    firestore.update({collection: 'users', doc: firebaseUser.uid}, update)
+  }, [firestore])
 
   // TODO(émilie): Move to actions.ts.
   const onSignInWithGoogle = useCallback((): void => {
@@ -61,24 +60,16 @@ const SignupPage = (): React.ReactElement => {
           // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
           return
         }
-        const update = {
-          ...firebaseUser.email ? {email: firebaseUser.email} : {},
-          // TODO (émilie): Split displayName into first and last name.
-          ...firebaseUser.displayName ? {name: firebaseUser.displayName} : {},
-          uid: firebaseUser.uid,
-        }
-        dispatch(updateUser(update))
-        firestore.update({collection: 'users', doc: firebaseUser.uid}, update)
+        updateUser(firebaseUser)
         history.push(getPath(['ACCOUNT'], t))
       }).
       catch((error) => {
         setErrorMessage(error.message)
         return
       })
-  }, [dispatch, firebase, firestore, history, t])
+  }, [firebase, history, t, updateUser])
 
   // TODO(émilie): Move to actions.ts.
-  // TODO(émilie): DRY with Google signup.
   const onSignInWithFacebook = useCallback((): void => {
     firebase.login({provider: 'facebook', type: 'popup'}).
       then((result) => {
@@ -88,21 +79,14 @@ const SignupPage = (): React.ReactElement => {
           // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
           return
         }
-        const update = {
-          ...firebaseUser.email ? {email: firebaseUser.email} : {},
-          // TODO (émilie): Split displayName into first and last name.
-          ...firebaseUser.displayName ? {name: firebaseUser.displayName} : {},
-          uid: firebaseUser.uid,
-        }
-        dispatch(updateUser(update))
-        firestore.update({collection: 'users', doc: firebaseUser.uid}, update)
+        updateUser(firebaseUser)
         history.push(getPath(['ACCOUNT'], t))
       }).
       catch((error) => {
         setErrorMessage(error.message)
         return
       })
-  }, [dispatch, firebase, firestore, history, t])
+  }, [firebase, history, t, updateUser])
 
   return <LayoutSignIn bigTitle={t('Inscription')}>
     <Link to={getPath(['ACCOUNT'], t)} style={linkStyle}>
