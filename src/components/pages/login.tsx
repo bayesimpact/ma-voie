@@ -98,7 +98,7 @@ const LoginPage = (): React.ReactElement => {
           // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
           return
         }
-        firestore.get({collection: 'projects', where: ['uid', '==', firebaseUser.uid]})
+        firestore.get({collection: 'projects', where: ['userId', '==', firebaseUser.uid]})
         history.push(getPath(['STEPS'], t))
       })
   }, [firebase, firestore, inputEmail, history, password, setErrorMessage, t])
@@ -113,7 +113,7 @@ const LoginPage = (): React.ReactElement => {
           // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
           return
         }
-        firestore.get({collection: 'projects', where: ['uid', '==', firebaseUser.uid]})
+        firestore.get({collection: 'projects', where: ['userId', '==', firebaseUser.uid]})
         history.push(getPath(['STEPS'], t))
       }).
       catch((error) => {
@@ -133,7 +133,7 @@ const LoginPage = (): React.ReactElement => {
           // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
           return
         }
-        firestore.get({collection: 'projects', where: ['uid', '==', firebaseUser.uid]})
+        firestore.get({collection: 'projects', where: ['userId', '==', firebaseUser.uid]})
         history.push(getPath(['STEPS'], t))
       }).
       catch((error) => {

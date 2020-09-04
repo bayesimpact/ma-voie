@@ -7,6 +7,7 @@ import {useHistory} from 'react-router'
 import {FirebaseAuth} from 'database/firebase'
 import {useFastForward} from 'hooks/fast_forward'
 import {RootState} from 'store/actions'
+import {useUserId} from 'store/selections'
 import {getPath} from 'store/url'
 import {validateEmail} from 'store/validations'
 
@@ -44,7 +45,7 @@ const AccountPage = (): React.ReactElement => {
   const firebase = useFirebase()
   const firestore = useFirestore()
 
-  const uid = useSelector(({firebase: {auth: {uid}}}: RootState) => uid)
+  const userId = useUserId()
   const {email, lastName, name} = useSelector(({firebase: {profile}}: RootState) => profile)
   const [inputName, setName] = useState(name || '')
   useEffect((): void => {
@@ -85,7 +86,7 @@ const AccountPage = (): React.ReactElement => {
       email: !inputEmail || !isEmailValid,
       lastName: !inputLastName,
       name: !inputName,
-      password: !password && !uid,
+      password: !password && !userId,
     }
     setAreErrorFields(errorsFields)
     if (Object.values(errorsFields).some(field => field)) {
@@ -95,15 +96,15 @@ const AccountPage = (): React.ReactElement => {
     const update = {
       ...name === inputName ? {} : {name: inputName},
       ...lastName === inputLastName ? {} : {lastName: inputLastName},
-      ...email === inputEmail || uid ? {} : {email: inputEmail},
+      ...email === inputEmail || userId ? {} : {email: inputEmail},
     }
     if (Object.keys(update).length) {
       // TODO(émilie): Move to actions.ts
-      if (!uid) {
+      if (!userId) {
         firebase.createUser({email: inputEmail, password}).
           then(() => {
-            const uid = FirebaseAuth?.currentUser?.uid
-            firestore.update({collection: 'users', doc: uid}, update)
+            const userId = FirebaseAuth?.currentUser?.uid
+            firestore.update({collection: 'users', doc: userId}, update)
             setUpdated(true)
           }).
           catch((error) => {
@@ -111,12 +112,12 @@ const AccountPage = (): React.ReactElement => {
             return
           })
       } else {
-        firestore.update({collection: 'users', doc: uid}, update)
+        firestore.update({collection: 'users', doc: userId}, update)
         setUpdated(true)
       }
     }
   }, [email, firebase, firestore, name, inputEmail,
-    inputName, lastName, inputLastName, password, setErrorMessage, uid])
+    inputName, lastName, inputLastName, password, setErrorMessage, userId])
   useFastForward(() => {
     if (inputName && inputLastName && inputEmail && password) {
       onSave()
@@ -138,7 +139,7 @@ const AccountPage = (): React.ReactElement => {
 
   const buttonStyle: React.CSSProperties = {
     marginTop: 20,
-    opacity: !inputName || !inputLastName || !inputEmail || (!password && !uid) ? 0.75 : 1,
+    opacity: !inputName || !inputLastName || !inputEmail || (!password && !userId) ? 0.75 : 1,
   }
 
   const errorValidationStyle: React.CSSProperties = {
@@ -180,16 +181,16 @@ const AccountPage = (): React.ReactElement => {
       null}
     <Input
       placeholder={t('Email')} style={inputEmailStyle}
-      autoComplete="email" disabled={uid ? true : false}
+      autoComplete="email" disabled={userId ? true : false}
       value={inputEmail} onChange={setEmail} />
     {areErrorFields.email ?
       <div style={errorMessageStyle}><sup>*</sup>{t('Champ obligatoire')}</div> :
       null}
-    {uid ? null : <Input
+    {userId ? null : <Input
       placeholder={t('Mot de passe')} style={inputPasswordStyle}
       type="password" autoComplete="new-password"
       value={password} onChange={setPassword} />}
-    {!uid && areErrorFields.password ?
+    {!userId && areErrorFields.password ?
       <div style={errorMessageStyle}>
         <sup>*</sup>{t('Champ obligatoire, vérifiez votre email')}
       </div> :
