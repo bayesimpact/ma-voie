@@ -11,13 +11,6 @@ import {registerUser, validateUser} from './firestore'
 
 const app = express()
 
-app.use(BasicAuth({
-  challenge: true,
-  realm: 'MaVoie',
-  users: functions.config().basicauth,
-}))
-
-app.use(bodyParser.json({strict: false}))
 
 /**
  * @apiDefine basicAuth
@@ -31,6 +24,11 @@ app.use(bodyParser.json({strict: false}))
  * @apiErrorExample Forbidden-Response:
  *         HTTP/1.1 403 Forbidden
  */
+app.use(BasicAuth({
+  challenge: true,
+  realm: 'MaVoie',
+  users: functions.config().basicauth,
+}))
 
 /**
  * @apiDefine userIdParam
@@ -47,7 +45,18 @@ app.use(bodyParser.json({strict: false}))
      program validates for the user
  * @apiParamExample {json} Request-Example:
                  { "stepId": "definition" }
+ * @apiError MissingStepId The stepId parameter is missing from the JSON body.
+ * @apiErrorExample MissingStepId-Response:
+ *          HTTP/1.1 400 Bad Request
+ *
  */
+app.use(bodyParser.json({strict: false}), (request: Request, response, next) => {
+  if (!request.body.stepId) {
+    response.status(400).send('Parameter "stepId" is missing.')
+    return
+  }
+  next()
+})
 
 
 /**
