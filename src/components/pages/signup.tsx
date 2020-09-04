@@ -45,7 +45,7 @@ const SignupPage = (): React.ReactElement => {
       ...firebaseUser.email ? {email: firebaseUser.email} : {},
       // TODO (émilie): Split displayName into first and last name.
       ...firebaseUser.displayName ? {name: firebaseUser.displayName} : {},
-      uid: firebaseUser.uid,
+      userId: firebaseUser.uid,
     }
     firestore.update({collection: 'users', doc: firebaseUser.uid}, update)
   }, [firestore])

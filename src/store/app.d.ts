@@ -7,8 +7,7 @@ declare namespace bayes {
       email?: string
       lastName?: string
       name?: string
-      // TODO(émilie): Rename uid to userId.
-      uid?: string // Firebase unique ID for authentication
+      userId?: string // Firebase unique ID for authentication
     }
 
     // TODO(cyrille): Set profile as a property of User.
@@ -55,7 +54,7 @@ declare namespace bayes {
       projectId: string
       skills?: readonly string[]
       steps?: {[stepId in StepId]?: ProjectStep}
-      uid?: string
+      userId?: string
     }
 
     interface Job {

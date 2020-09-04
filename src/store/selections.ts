@@ -10,9 +10,9 @@ const useSelector = <T>(selector: (state: RootState) => T): T => genericUseSelec
 
 const useProjectId = (): string => {
   const projects = useSelector((state) => state.firestore.data.projects)
-  const uid = useSelector(({firebase: {auth: {uid}}}: RootState) => uid)
+  const userId = useUserId()
   if (!projects) {
-    return `${uid}-0`
+    return `${userId}-0`
   }
   const projectKeys = Object.keys(projects)
   return projectKeys[projectKeys.length - 1]
@@ -33,9 +33,9 @@ const getProject = (projectId: string): ((state: RootState) => bayes.maVoie.Proj
 const useProject = (): bayes.maVoie.Project => {
   const projectId = useProjectId()
   const projects = useSelector((state) => state.firestore.data.projects)
-  const uid = useSelector(({firebase: {auth: {uid}}}: RootState) => uid)
+  const userId = useUserId()
   if (!projects?.[projectId]) {
-    return {projectId, uid}
+    return {projectId, userId}
   }
   return projects[projectId]
 }
@@ -55,6 +55,10 @@ const useProjectUpdater = (): ((updatedProject: Partial<bayes.maVoie.Project>) =
   }, [firestore, projectId])
 }
 
+const useUserId = (): string => {
+  return useSelector(({firebase: {auth: {uid}}}: RootState) => uid)
+}
+
 const useSkillsList = (): readonly SkillType[] => {
   const projectId = useProjectId()
   const romeId = useSelector(state => getProject(projectId)(state)?.job?.jobGroup?.romeId || '')
@@ -64,4 +68,5 @@ const useSkillsList = (): readonly SkillType[] => {
   return skills
 }
 
-export {useProject, useProjects, useProjectId, useProjectUpdater, useSelector, useSkillsList}
+export {useProject, useProjects, useProjectId, useProjectUpdater,
+  useSelector, useSkillsList, useUserId}
