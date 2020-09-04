@@ -30,10 +30,9 @@ jobs:
       - run:
           name: Deploy server
           command: |
-            # FIXME(cyrille): Deploy to demo once the first version is officially released.
             if [ "$CIRCLE_BRANCH" == "master" ] || [[ "$CIRCLE_BRANCH" == *-test-auto-deploy ]] &&
               ! git diff --exit-code HEAD^ -- server; then
-              docker-compose run --rm server npm run deploy -- --project=prod
+              docker-compose run --rm server npm run deploy -- --project=demo
             fi
       - run:
           name: Build and release as a docker image
@@ -44,6 +43,7 @@ jobs:
               echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
               echo "Publish $TAG"
               docker tag bayesimpact/ma-voie:$CIRCLE_BUILD_NUM bayesimpact/ma-voie:$TAG
+              docker tag bayesimpact/ma-voie-server:$CIRCLE_BUILD_NUM bayesimpact/ma-voie-server:$TAG
               docker push bayesimpact/ma-voie:$TAG
               gcloud --quiet auth configure-docker
               DEMO_VARS=$(get_demo_vars)
