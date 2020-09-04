@@ -1,9 +1,11 @@
 import React, {useCallback} from 'react'
 import {Trans, useTranslation} from 'react-i18next'
 import ReactMarkdown from 'react-markdown'
+import {useFirestore} from 'react-redux-firebase'
+import sha1 from 'sha1'
 
 import {Props as PartnerProps} from 'store/partners'
-import {useProjectUpdater} from 'store/selections'
+import {useProjectId, useProjectUpdater, useUserId} from 'store/selections'
 
 import Button from 'components/button'
 
@@ -76,6 +78,9 @@ const PartnerCard = (props: Props): React.ReactElement => {
   const {description, details, url, discoverUrl = url, isSelected, logo, name, onClick, partnerId,
     stepId, style, title, userCount = 1} = props
   const {t} = useTranslation()
+  const firestore = useFirestore()
+  const projectId = useProjectId()
+  const userId = useUserId()
   const projectUpdater = useProjectUpdater()
   const finalContainerStyle: React.CSSProperties = {
     ...containerStyle,
@@ -89,12 +94,19 @@ const PartnerCard = (props: Props): React.ReactElement => {
       onClick(partnerId)
     }
   }, [partnerId, onClick])
+  const userPartnerId = sha1(userId + partnerId)
   const choosePartner = useCallback((): void => {
+    // TODO(cyrille): Only add it once per user/partner/project/step.
+    firestore.add<bayes.maVoie.PartnerIdentification>(`users/${userId}/partners`, {
+      partnerId,
+      projectId,
+      stepId,
+      userPartnerId,
+    })
     // TODO(cyrille): Add user info to url.
-    // TODO(cyrille): Create a partnerIdentification in firebase with the relevant info.
     projectUpdater({steps: {[stepId]: {selectedPartnerId: partnerId}}})
     window.open(url, '_blank')
-  }, [partnerId, stepId, url, projectUpdater])
+  }, [firestore, partnerId, stepId, url, userPartnerId, userId, projectUpdater, projectId])
 
   return <section style={finalContainerStyle} onClick={handleClick} id={partnerId} data-partner>
     <div style={contentStyle}>
