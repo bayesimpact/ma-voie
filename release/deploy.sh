@@ -70,7 +70,9 @@ fi
 
 readonly DOCKER_TAG="tag-$TAG"
 readonly DOCKER_REPO="bayesimpact/ma-voie"
+readonly DOCKER_REPO_SERVER="bayesimpact/ma-voie-server"
 readonly DOCKER_IMAGE="$DOCKER_REPO:$DOCKER_TAG"
+readonly DOCKER_SERVER_IMAGE="$DOCKER_REPO_SERVER:$DOCKER_TAG"
 # Our s3 bucket, see
 # https://s3.console.aws.amazon.com/s3/buckets/ma-voie/?region=eu-west-3&tab=overview
 readonly S3_BUCKET=ma-voie
@@ -82,11 +84,16 @@ function docker_tag_exists {
 }
 
 echo 'Checking that the Docker images exists…'
-if (! docker_tag_exists $DOCKER_REPO $DOCKER_TAG); then
+if (! docker_tag_exists $DOCKER_REPO $DOCKER_TAG) ||
+    (! docker_tag_exists $DOCKER_REPO $DOCKER_TAG); then
   echo "The tag $DOCKER_TAG is not present in Docker Registry."
   exit 10
 fi
 
+
+echo 'Downloading the server Docker Image…'
+docker pull $DOCKER_SERVER_IMAGE
+docker run $DOCKER_SERVER_IMAGE npm run deploy -- --project=prod
 
 # To get the files, this script downloads the Docker Images from Docker
 # Registry, then extract the html folder from the Docker Image (note that to do
