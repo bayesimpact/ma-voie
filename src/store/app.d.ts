@@ -3,6 +3,15 @@
 declare namespace bayes {
   namespace maVoie {
 
+    interface PartnerIdentification {
+      partnerId: string
+      userPartnerId: string
+      projectId?: string
+      registeredAt?: string
+      stepId: StepId
+      validatedAt?: string
+    }
+
     interface Profile {
       email?: string
       lastName?: string
@@ -13,6 +22,7 @@ declare namespace bayes {
 
     // TODO(cyrille): Set profile as a property of User.
     interface User extends Profile {
+      partners?: readonly PartnerIdentification[]
       projects?: readonly Project[]
     }
 

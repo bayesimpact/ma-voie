@@ -123,6 +123,7 @@ const StepsPage = (): React.ReactElement => {
         if (isLastStep) {
           return null
         }
+        // FIXME(cyrille): Use partnerIdentifications to decide whether a step is complete.
         const isDone = !!project.steps?.[step.stepId]?.completed
         const isOpen = step.stepId === openStep?.stepId
         return <React.Fragment key={index}>
