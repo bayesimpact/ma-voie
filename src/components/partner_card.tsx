@@ -91,6 +91,7 @@ const PartnerCard = (props: Props): React.ReactElement => {
   }, [partnerId, onClick])
   const choosePartner = useCallback((): void => {
     // TODO(cyrille): Add user info to url.
+    // TODO(cyrille): Create a partnerIdentification in firebase with the relevant info.
     projectUpdater({steps: {[stepId]: {selectedPartnerId: partnerId}}})
     window.open(url, '_blank')
   }, [partnerId, stepId, url, projectUpdater])
