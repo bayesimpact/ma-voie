@@ -50,7 +50,7 @@ app.use(BasicAuth({
  *          HTTP/1.1 400 Bad Request
  *
  */
-app.use(bodyParser.json({strict: false}), (request: Request, response, next) => {
+app.use(bodyParser.json({type: '*/*'}), (request: Request, response, next) => {
   if (!request.body.stepId) {
     response.status(400).send('Parameter "stepId" is missing.')
     return
