@@ -18,4 +18,9 @@ const validateUser = (
   // FIXME(cyrille): Fetch user from Firestore, and save the validation.
 }
 
-export {registerUser, validateUser}
+const updatePartnerCount = (partnerId: string): void => {
+  const db = admin.firestore()
+  db.doc(`partnerCounts/${partnerId}`).update({users: admin.firestore.FieldValue.increment(1)})
+}
+
+export {registerUser, updatePartnerCount, validateUser}

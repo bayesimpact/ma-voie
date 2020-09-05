@@ -98,3 +98,4 @@ app.post('/:userId/confirm', (request: Request, response: Response) => {
 })
 
 export const user = functions.https.onRequest(app)
+export {updateCount} from './count'
