@@ -4,7 +4,7 @@
 import * as bodyParser from 'body-parser'
 import * as functions from 'firebase-functions'
 import * as express from 'express'
-import {Request, Response} from 'express'
+import {NextFunction, Request, Response} from 'express'
 import * as BasicAuth from 'express-basic-auth'
 
 import {registerUser, validateUser} from './firestore'
@@ -26,9 +26,12 @@ const app = express()
  */
 app.use(BasicAuth({
   challenge: true,
+  // TODO(cyrille): Use a different realm for different deployments.
   realm: 'MaVoie',
   users: functions.config().basicauth,
 }))
+
+app.use(bodyParser.json({strict: false}))
 
 /**
  * @apiDefine userIdParam
@@ -50,13 +53,13 @@ app.use(BasicAuth({
  *          HTTP/1.1 400 Bad Request
  *
  */
-app.use(bodyParser.json({strict: false}), (request: Request, response, next) => {
+const checkForStepId = (request: Request, response: Response, next: NextFunction): void => {
   if (!request.body.stepId) {
-    response.status(400).send('Parameter "stepId" is missing.')
+    response.status(400).json({error: {stepId: 'Missing parameter'}})
     return
   }
   next()
-})
+}
 
 
 /**
@@ -69,7 +72,7 @@ app.use(bodyParser.json({strict: false}), (request: Request, response, next) => 
  * @apiUse basicAuth
  * @apiUse stepParam
  */
-app.post('/:userId/register', (request: Request, response: Response) => {
+app.post('/:userId/register', checkForStepId, (request: Request, response: Response) => {
   // TODO(cyrille): Update type definitions in @types/express to avoid recasting.
   const {auth: {user: partner}} = request as BasicAuth.IBasicAuthedRequest
   const {body: {stepId}, params: {userId}} = request
@@ -88,7 +91,7 @@ app.post('/:userId/register', (request: Request, response: Response) => {
  * @apiUse basicAuth
  * @apiUse stepParam
  */
-app.post('/:userId/confirm', (request: Request, response: Response) => {
+app.post('/:userId/confirm', checkForStepId, (request: Request, response: Response) => {
   // TODO(cyrille): Update type definitions in @types/express to avoid recasting.
   const {auth: {user: partner}} = request as BasicAuth.IBasicAuthedRequest
   const {body: {stepId}, params: {userId}} = request
@@ -96,5 +99,7 @@ app.post('/:userId/confirm', (request: Request, response: Response) => {
   // TODO(cyrille): Replace status to 204 once we've actually done something with the request.
   response.status(202).send(`Thank you ${partner} for validating ${userId} on step ${stepId}.`)
 })
+
+app.all('*', (request: Request, response: Response) => response.status(404).send())
 
 export const user = functions.https.onRequest(app)
