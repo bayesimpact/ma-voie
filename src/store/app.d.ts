@@ -1,15 +1,19 @@
-
+// TODO(cyrille): Move to top-level, to be used both in client and server.
 // TODO(cyrille): Use protobuffers.
 declare namespace bayes {
   namespace maVoie {
 
-    interface PartnerIdentification {
-      partnerId: string
-      userPartnerId: string
+    interface PartnerStep {
       projectId?: string
       registeredAt?: string
       stepId: StepId
       validatedAt?: string
+    }
+
+    interface PartnerIdentification {
+      partnerId: string
+      steps?: readonly PartnerStep[]
+      userPartnerId: string
     }
 
     interface Profile {
