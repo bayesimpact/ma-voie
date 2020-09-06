@@ -15,7 +15,7 @@
   "hosting": {
     "public": "public",
     "rewrites": [{
-      "source": "/user", "function": "user"
+      "source": "/user/**", "function": "user"
     }]
   }
 }
