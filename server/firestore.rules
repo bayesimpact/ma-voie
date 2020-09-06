@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      // Replace with true for quickly enabling all read/writes.
+      allow read, write: if false
+    }
+    match /users/{userId} {
+      // Users can read and update their profile.
+      allow read, update: if request.auth != null && request.auth.uid == userId;
+      allow create: if request.auth != null;
+
+      match /partners/{userPartnerId} {
+        // Users can read their own partner identifications
+        allow read: if request.auth != null && request.auth.uid == userId;
+        allow create: if true
+          // Users can create their own partner identifications but:
+          && request.auth != null && request.auth.uid == userId
+          // the partner should be identifiable.
+          && request.resource.data.partnerId && request.resource.data.userPartnerId
+          // the document ID should be the same as the userPartnerId
+          && request.resource.id == request.resource.data.userPartnerId
+          // the steps should be empty (the server updates them).
+          && !request.resource.data.steps
+      }
+    }
+  }
+}
