@@ -31,8 +31,6 @@ app.use(BasicAuth({
   users: functions.config().basicauth,
 }))
 
-app.use(bodyParser.json({strict: false}))
-
 /**
  * @apiDefine userIdParam
  * @apiParam {sha1} userId Unique identifier for the user and the partner
@@ -53,13 +51,17 @@ app.use(bodyParser.json({strict: false}))
  *          HTTP/1.1 400 Bad Request
  *
  */
-const checkForStepId = (request: Request, response: Response, next: NextFunction): void => {
-  if (!request.body.stepId) {
-    response.status(400).json({error: {stepId: 'Missing parameter'}})
-    return
-  }
-  next()
-}
+// TODO(cyrille): Consider using a middleware composer.
+const checkForStepId = [
+  bodyParser.json({type: '*/*'}),
+  (request: Request, response: Response, next: NextFunction): void => {
+    if (!request.body.stepId) {
+      response.status(400).json({error: {stepId: 'Missing parameter'}})
+      return
+    }
+    next()
+  },
+]
 
 
 /**
@@ -72,7 +74,7 @@ const checkForStepId = (request: Request, response: Response, next: NextFunction
  * @apiUse basicAuth
  * @apiUse stepParam
  */
-app.post('/:userId/register', checkForStepId, (request: Request, response: Response) => {
+app.post('/:userId/register', ...checkForStepId, (request: Request, response: Response) => {
   // TODO(cyrille): Update type definitions in @types/express to avoid recasting.
   const {auth: {user: partner}} = request as BasicAuth.IBasicAuthedRequest
   const {body: {stepId}, params: {userId}} = request
@@ -91,7 +93,7 @@ app.post('/:userId/register', checkForStepId, (request: Request, response: Respo
  * @apiUse basicAuth
  * @apiUse stepParam
  */
-app.post('/:userId/confirm', checkForStepId, (request: Request, response: Response) => {
+app.post('/:userId/confirm', ...checkForStepId, (request: Request, response: Response) => {
   // TODO(cyrille): Update type definitions in @types/express to avoid recasting.
   const {auth: {user: partner}} = request as BasicAuth.IBasicAuthedRequest
   const {body: {stepId}, params: {userId}} = request
