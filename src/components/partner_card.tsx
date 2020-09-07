@@ -5,7 +5,7 @@ import {useFirestore} from 'react-redux-firebase'
 import sha1 from 'sha1'
 
 import {Props as PartnerProps} from 'store/partners'
-import {useProjectId, useProjectUpdater, useUserId} from 'store/selections'
+import {useProjectUpdater, useUserId} from 'store/selections'
 
 import Button from 'components/button'
 
@@ -79,7 +79,6 @@ const PartnerCard = (props: Props): React.ReactElement => {
     stepId, style, title, userCount = 1} = props
   const {t} = useTranslation()
   const firestore = useFirestore()
-  const projectId = useProjectId()
   const userId = useUserId()
   const projectUpdater = useProjectUpdater()
   const finalContainerStyle: React.CSSProperties = {
@@ -96,17 +95,20 @@ const PartnerCard = (props: Props): React.ReactElement => {
   }, [partnerId, onClick])
   const userPartnerId = sha1(userId + partnerId)
   const choosePartner = useCallback((): void => {
-    // TODO(cyrille): Only add it once per user/partner/project/step.
-    firestore.add<bayes.maVoie.PartnerIdentification>(`users/${userId}/partners`, {
-      partnerId,
-      projectId,
-      stepId,
-      userPartnerId,
-    })
+    // TODO(cyrille): Do not try to set it if it's already there.
+    firestore.
+      collection('users').
+      doc(userId).
+      collection('partners').
+      doc(userPartnerId).
+      set({
+        partnerId,
+        userPartnerId,
+      })
     // TODO(cyrille): Add user info to url.
     projectUpdater({steps: {[stepId]: {selectedPartnerId: partnerId}}})
     window.open(url, '_blank')
-  }, [firestore, partnerId, stepId, url, userPartnerId, userId, projectUpdater, projectId])
+  }, [firestore, partnerId, stepId, url, userPartnerId, userId, projectUpdater])
 
   return <section style={finalContainerStyle} onClick={handleClick} id={partnerId} data-partner>
     <div style={contentStyle}>
