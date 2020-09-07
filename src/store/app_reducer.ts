@@ -9,44 +9,6 @@ const initialUser: bayes.maVoie.User =
 
 export const user = (state = initialUser, action: AllActions): bayes.maVoie.User => {
   switch (action.type) {
-    case 'UPDATE_USER':
-      return {
-        ...state,
-        ...action.user,
-      }
-    case 'CREATE_PROJECT':
-      return {
-        ...state,
-        projects: [
-          ...state.projects || [],
-          {projectId: '' + (state.projects?.length || 0)},
-        ],
-      }
-    case 'UPDATE_PROJECT':
-      return {
-        ...state,
-        projects: (state.projects || []).map((project) =>
-          project.projectId === action.project.projectId ? {
-            ...project,
-            ...action.project,
-          } : project),
-      }
-    case 'UPDATE_STEP':
-      return {
-        ...state,
-        projects: (state.projects || []).map((project): bayes.maVoie.Project =>
-          project.projectId === action.projectId ? {
-            ...project,
-            steps: {
-              ...project.steps,
-              [action.stepId]: {
-                ...project.steps?.[action.stepId],
-                ...action.step,
-              },
-            },
-          } : project),
-      }
-
     case 'LOGOUT':
       return {}
   }
