@@ -1,3 +1,4 @@
+import {stringify} from 'query-string'
 import React, {useCallback} from 'react'
 import {Trans, useTranslation} from 'react-i18next'
 import ReactMarkdown from 'react-markdown'
@@ -5,7 +6,7 @@ import {useFirestore} from 'react-redux-firebase'
 import sha1 from 'sha1'
 
 import {Props as PartnerProps} from 'store/partners'
-import {usePartnerCount, useProjectUpdater, useUserId} from 'store/selections'
+import {usePartnerCount, useProjectUpdater, useSelector, useUserId} from 'store/selections'
 
 import Button from 'components/button'
 
@@ -81,6 +82,8 @@ const PartnerCard = (props: Props): React.ReactElement => {
   const userCount = usePartnerCount(partnerId)
   const firestore = useFirestore()
   const userId = useUserId()
+  const {email, lastName, name: userName} = useSelector(({firebase: {profile}}) =>
+    profile as bayes.maVoie.User)
   const projectUpdater = useProjectUpdater()
   const finalContainerStyle: React.CSSProperties = {
     ...containerStyle,
@@ -108,8 +111,16 @@ const PartnerCard = (props: Props): React.ReactElement => {
       })
     // TODO(cyrille): Add user info to url.
     projectUpdater({steps: {[stepId]: {selectedPartnerId: partnerId}}})
-    window.open(url, '_blank')
-  }, [firestore, partnerId, stepId, url, userPartnerId, userId, projectUpdater])
+    const query = stringify({
+      email,
+      lastName,
+      maVoieId: userPartnerId,
+      name: userName,
+      stepId,
+    })
+    window.open(`${url}?${query}`, '_blank')
+  }, [email, firestore, lastName, partnerId, projectUpdater, stepId, url, userId, userName,
+    userPartnerId])
 
   return <section style={finalContainerStyle} onClick={handleClick} id={partnerId} data-partner>
     <div style={contentStyle}>
