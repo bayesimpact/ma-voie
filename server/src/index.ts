@@ -75,12 +75,8 @@ const checkForStepId = [
  * @apiUse stepParam
  */
 app.post('/user/:userId/register', ...checkForStepId, (request: Request, response: Response) => {
-  // TODO(cyrille): Update type definitions in @types/express to avoid recasting.
-  const {auth: {user: partner}} = request as BasicAuth.IBasicAuthedRequest
   const {body: {stepId}, params: {userId}} = request
-  registerUser(partner, userId, stepId)
-  // TODO(cyrille): Replace status to 204 once we've actually done something with the request.
-  response.status(202).send(`Thank you ${partner} for registering ${userId} for step ${stepId}.`)
+  registerUser(userId, stepId).then(() => response.status(204).send())
 })
 
 /**
@@ -94,12 +90,8 @@ app.post('/user/:userId/register', ...checkForStepId, (request: Request, respons
  * @apiUse stepParam
  */
 app.post('/user/:userId/confirm', ...checkForStepId, (request: Request, response: Response) => {
-  // TODO(cyrille): Update type definitions in @types/express to avoid recasting.
-  const {auth: {user: partner}} = request as BasicAuth.IBasicAuthedRequest
   const {body: {stepId}, params: {userId}} = request
-  validateUser(partner, userId, stepId)
-  // TODO(cyrille): Replace status to 204 once we've actually done something with the request.
-  response.status(202).send(`Thank you ${partner} for validating ${userId} on step ${stepId}.`)
+  validateUser(userId, stepId).then(() => response.status(204).send())
 })
 
 app.all('*', (request: Request, response: Response) => response.status(404).send())

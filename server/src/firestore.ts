@@ -12,15 +12,16 @@ interface PartnerStep {
 }
 
 const updateField = (field: 'registeredAt' | 'validatedAt') => (
-  partner: string,
   userPartnerId: string,
   stepId: string,
   projectId = '0',
-): void => {
+): Promise<unknown> => {
   const db = admin.firestore()
-  db.collectionGroup('partners').
+  return db.collectionGroup('partners').
     where('userPartnerId', '==', userPartnerId).
+    // TODO(cyrille): Only fetch one element.
     select().get().then(snapshot => {
+      // TODO(cyrille): Return a 404 if snapshot is empty.
       const batch = db.batch()
       snapshot.forEach(doc => {
         const oldSteps: readonly PartnerStep[] = doc.get('steps') || []
