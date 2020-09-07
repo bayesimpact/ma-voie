@@ -5,6 +5,9 @@ service cloud.firestore {
       // Never set to true in prod, as it enables all read/writes.
       allow read, write: if false
     }
+    match /partnerCounts/{partnerId} {
+      allow read: if true
+    }
     match /users/{userId} {
       // Users can read and update their profile.
       allow read, update: if request.auth != null && request.auth.uid == userId;
