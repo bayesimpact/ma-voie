@@ -3,12 +3,12 @@ import {ConnectedRouter, connectRouter, routerMiddleware, RouterState} from 'con
 import firebase from 'firebase/app'
 import {History, createBrowserHistory} from 'history'
 import React, {Suspense, useEffect, useState} from 'react'
-import {Provider, connect} from 'react-redux'
-import {ReactReduxFirebaseProvider, firebaseReducer, firestoreConnect} from 'react-redux-firebase'
+import {Provider} from 'react-redux'
+import {ReactReduxFirebaseProvider, firebaseReducer} from 'react-redux-firebase'
 import {actionTypes, createFirestoreInstance, firestoreReducer} from 'redux-firestore'
 import {useLocation} from 'react-router'
 import {Switch, Redirect, Route} from 'react-router-dom'
-import {Store, compose, createStore, applyMiddleware, combineReducers} from 'redux'
+import {Store, createStore, applyMiddleware, combineReducers} from 'redux'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 
@@ -69,12 +69,6 @@ const App = (): React.ReactElement => {
   // i18next-extract-mark-ns-stop url
 }
 const MemoApp = React.memo(App)
-const StoredApp = compose(
-  firestoreConnect(() => ['projects']), // TODO (émilie): change to listen to the subcollection.
-  connect((state: RootState) => ({
-    projectsList: state.firestore.data.projects,
-  })),
-)(MemoApp) as React.ComponentType
 
 interface AppState {
   history: History
@@ -142,7 +136,7 @@ const WrappedApp = (): React.ReactElement => {
       <ReactReduxFirebaseProvider {...rrfProps}>
         {/* TODO(cyrille): Add a nice waiting page. */}
         <Suspense fallback={<div />}>
-          <StoredApp />
+          <MemoApp />
         </Suspense>
       </ReactReduxFirebaseProvider>
     </ConnectedRouter>
