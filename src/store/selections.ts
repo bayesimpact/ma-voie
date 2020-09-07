@@ -1,6 +1,6 @@
-import {useCallback, useEffect, useState} from 'react'
+import {useCallback, useEffect, useMemo, useState} from 'react'
 import {useSelector as genericUseSelector} from 'react-redux'
-import {useFirestore} from 'react-redux-firebase'
+import {useFirestore, useFirestoreConnect} from 'react-redux-firebase'
 
 import {SkillType, getSkills} from 'store/skills'
 
@@ -68,5 +68,15 @@ const useSkillsList = (): readonly SkillType[] => {
   return skills
 }
 
-export {useProject, useProjects, useProjectId, useProjectUpdater,
+const usePartnerCount = (partnerId: string): number => {
+  const countListener = useMemo(() => ({
+    collection: 'partnerCounts',
+    doc: partnerId,
+  }), [partnerId])
+  useFirestoreConnect(countListener)
+  return useSelector(({firestore: {data: {partnerCounts}}}) =>
+    partnerCounts?.[partnerId]?.users || 0)
+}
+
+export {usePartnerCount, useProject, useProjects, useProjectId, useProjectUpdater,
   useSelector, useSkillsList, useUserId}

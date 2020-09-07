@@ -5,7 +5,7 @@ import {useFirestore} from 'react-redux-firebase'
 import sha1 from 'sha1'
 
 import {Props as PartnerProps} from 'store/partners'
-import {useProjectUpdater, useUserId} from 'store/selections'
+import {usePartnerCount, useProjectUpdater, useUserId} from 'store/selections'
 
 import Button from 'components/button'
 
@@ -76,8 +76,9 @@ interface Props extends PartnerProps {
 }
 const PartnerCard = (props: Props): React.ReactElement => {
   const {description, details, url, discoverUrl = url, isSelected, logo, name, onClick, partnerId,
-    stepId, style, title, userCount = 1} = props
+    stepId, style, title} = props
   const {t} = useTranslation()
+  const userCount = usePartnerCount(partnerId)
   const firestore = useFirestore()
   const userId = useUserId()
   const projectUpdater = useProjectUpdater()
@@ -133,10 +134,10 @@ const PartnerCard = (props: Props): React.ReactElement => {
         </React.Fragment>}
     </div>
     {isSelected ?
-      <div style={topInfoStyle}>{t('En cours')}</div> :
-      <Trans count={userCount} style={infoStyle}>
-        {{userCount}} personne a choisi {{name}}
-      </Trans>}
+      <div style={topInfoStyle}>{t('En cours')}</div> : userCount ?
+        <Trans count={userCount} style={infoStyle}>
+          {{userCount}} personne a choisi {{name}}
+        </Trans> : null}
   </section>
 }
 export default React.memo(PartnerCard)
