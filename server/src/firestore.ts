@@ -45,4 +45,9 @@ const updateField = (field: 'registeredAt' | 'validatedAt') => (
 const registerUser = updateField('registeredAt')
 const validateUser = updateField('validatedAt')
 
-export {registerUser, validateUser}
+const incrementPartnerCount = (partnerId: string): void => {
+  const db = admin.firestore()
+  db.doc(`partnerCounts/${partnerId}`).update({users: admin.firestore.FieldValue.increment(1)})
+}
+
+export {incrementPartnerCount, registerUser, validateUser}
