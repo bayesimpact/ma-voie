@@ -18,23 +18,15 @@ const useProjectId = (): string => {
   return projectKeys[projectKeys.length - 1]
 }
 
-const useProjects = (): readonly bayes.maVoie.Project[] => {
-  const projects = useSelector((state) => state.firestore.data.projects)
-  if (!projects) {
-    return []
-  }
-  return Object.keys(projects).map((key) => projects[key])
+const useProjects = (): bayes.maVoie.User['projects'] => {
+  return useSelector(({firebase: {profile: {projects}}}: RootState) => projects)
 }
-
-const getProject = (projectId: string): ((state: RootState) => bayes.maVoie.Project|undefined) =>
-  ({user: {projects}}: RootState): bayes.maVoie.Project|undefined =>
-    projects?.find(({projectId: pId}) => pId === projectId) || undefined
 
 const useProject = (): bayes.maVoie.Project => {
   const projectId = useProjectId()
-  const projects = useSelector((state) => state.firestore.data.projects)
+  const projects = useSelector(({firebase: {profile: {projects}}}: RootState) => projects)
   const userId = useUserId()
-  if (!projects?.[projectId]) {
+  if (!projects || !projects[projectId]) {
     return {projectId, userId}
   }
   return projects[projectId]
@@ -42,17 +34,43 @@ const useProject = (): bayes.maVoie.Project => {
 
 const useProjectUpdater = (): ((updatedProject: Partial<bayes.maVoie.Project>) => void) => {
   const firestore = useFirestore()
+  const userId = useUserId()
   const projectId = useProjectId()
+  const project = useProject()
+  const projects = useProjects()
   return useCallback((updatedProject: Partial<bayes.maVoie.Project>) => {
     const projectRefConfig = {
-      collection: 'projects',
-      doc: projectId,
+      collection: 'users',
+      doc: userId,
     }
-    firestore.update(projectRefConfig, updatedProject).
-      catch(() => {
-        firestore.set(projectRefConfig, updatedProject)
-      })
-  }, [firestore, projectId])
+    const computedProjects = {
+      ...projects,
+      [projectId]: {...project, ...updatedProject},
+    }
+    firestore.update(projectRefConfig, {projects: computedProjects})
+  }, [firestore, project, projectId, projects, userId])
+}
+
+const useStepUpdater = (): ((updatedStep: Partial<bayes.maVoie.ProjectStep>) => void) => {
+  const firestore = useFirestore()
+  const userId = useUserId()
+  const projectId = useProjectId()
+  const project = useProject()
+  const projects = useProjects()
+  return useCallback((updatedStep: Partial<bayes.maVoie.ProjectStep>) => {
+    const projectRefConfig = {
+      collection: 'users',
+      doc: userId,
+    }
+    const computedProjects = {
+      ...projects,
+      [projectId]: {
+        ...project,
+        steps: {...project.steps, ...updatedStep},
+      },
+    }
+    firestore.update(projectRefConfig, {projects: computedProjects})
+  }, [firestore, project, projectId, projects, userId])
 }
 
 const useUserId = (): string => {
@@ -60,8 +78,10 @@ const useUserId = (): string => {
 }
 
 const useSkillsList = (): readonly SkillType[] => {
+  const projects = useSelector(({firebase: {profile: {projects}}}: RootState) => projects)
   const projectId = useProjectId()
-  const romeId = useSelector(state => getProject(projectId)(state)?.job?.jobGroup?.romeId || '')
+  const project = projects?.[projectId]
+  const romeId = project?.job?.jobGroup?.romeId || ''
   const [skills, setSkills] = useState<readonly SkillType[]>([])
   // TODO(cyrille): Cancel the promise when unmounting.
   useEffect((): void => void getSkills(romeId).then(setSkills), [romeId])
@@ -69,4 +89,4 @@ const useSkillsList = (): readonly SkillType[] => {
 }
 
 export {useProject, useProjects, useProjectId, useProjectUpdater,
-  useSelector, useSkillsList, useUserId}
+  useSelector, useSkillsList, useStepUpdater, useUserId}
