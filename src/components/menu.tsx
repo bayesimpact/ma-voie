@@ -129,7 +129,8 @@ const Menu = ({onClose, style}: MenuProps): React.ReactElement => {
 
   // TODO(émilie): Check if necessary to filter the joblessProject
   const jobProjects = projects
-    ? projects.filter((project: bayes.maVoie.Project) => project.job !== undefined)
+    ? Object.values(projects).
+      filter((project: bayes.maVoie.Project) => project.job !== undefined)
     : null
 
   const dispatch = useDispatch()
@@ -155,8 +156,7 @@ const Menu = ({onClose, style}: MenuProps): React.ReactElement => {
             ? jobProjects.length >= 1
               ? <div style={projectsCountStyle}>
                 {t('{{count}} projet', {
-                  count: projects?.filter(
-                    (project: bayes.maVoie.Project) => project.job !== undefined).length,
+                  count: jobProjects.length,
                 })}
               </div>
               : null

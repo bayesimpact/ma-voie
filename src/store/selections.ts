@@ -19,11 +19,7 @@ const useProjectId = (): string => {
 }
 
 const useProjects = (): readonly bayes.maVoie.Project[] => {
-  const projects = useSelector((state) => state.firestore.data.projects)
-  if (!projects) {
-    return []
-  }
-  return Object.keys(projects).map((key) => projects[key])
+  return useSelector(({firebase: {profile: {projects}}}: RootState) => projects)
 }
 
 const getProject = (projectId: string): ((state: RootState) => bayes.maVoie.Project|undefined) =>
@@ -32,9 +28,9 @@ const getProject = (projectId: string): ((state: RootState) => bayes.maVoie.Proj
 
 const useProject = (): bayes.maVoie.Project => {
   const projectId = useProjectId()
-  const projects = useSelector((state) => state.firestore.data.projects)
+  const projects = useSelector(({firebase: {profile: {projects}}}: RootState) => projects)
   const userId = useUserId()
-  if (!projects?.[projectId]) {
+  if (!projects || !projects[projectId]) {
     return {projectId, userId}
   }
   return projects[projectId]
@@ -42,17 +38,24 @@ const useProject = (): bayes.maVoie.Project => {
 
 const useProjectUpdater = (): ((updatedProject: Partial<bayes.maVoie.Project>) => void) => {
   const firestore = useFirestore()
+  const userId = useUserId()
   const projectId = useProjectId()
+  const project = useProject()
+  const projects = useProjects()
   return useCallback((updatedProject: Partial<bayes.maVoie.Project>) => {
     const projectRefConfig = {
-      collection: 'projects',
-      doc: projectId,
+      collection: 'users',
+      doc: userId,
     }
-    firestore.update(projectRefConfig, updatedProject).
+    const computedProjects = {
+      ...projects,
+      [projectId]: {...project, ...updatedProject},
+    }
+    firestore.update(projectRefConfig, {projects: computedProjects}).
       catch(() => {
-        firestore.set(projectRefConfig, updatedProject)
+        firestore.set(projectRefConfig, {projects: computedProjects})
       })
-  }, [firestore, projectId])
+  }, [firestore, project, projectId, projects, userId])
 }
 
 const useUserId = (): string => {
