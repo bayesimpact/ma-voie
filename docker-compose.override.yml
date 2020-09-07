@@ -43,4 +43,16 @@ services:
       - ./server/tsconfig.json:/usr/app/tsconfig.json
       - ./server/public:/usr/app/public
       - ./server/src:/usr/app/src
-      - ./server/public:/usr/app/public
+  server-test:
+    volumes:
+      - ./server/package.json:/usr/app/package.json
+      - ./.eslintrc.json:/usr/app/.eslintrc.json
+      - ./.eslintignore:/usr/app/.eslintignore
+      - ./server/.firebaserc:/usr/app/.firebaserc
+      - ./server/entrypoint.sh:/usr/app/entrypoint.sh
+      - ./server/firebase.json:/usr/app/firebase.json
+      - ./server/firestore.rules:/usr/app/firestore.rules
+      - ./server/firestore.indexes.json:/usr/app/firestore.indexes.json
+      - ./server/tsconfig.json:/usr/app/tsconfig.json
+      - ./server/src:/usr/app/src
+      - ./server/test:/usr/app/test
