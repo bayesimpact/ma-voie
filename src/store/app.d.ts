@@ -58,6 +58,8 @@ declare namespace bayes {
       // undefined means not certified yet
       completed?: StepCertificate
       selectedPartnerId?: string
+      // This is for incomplete steps which have been recorded as started by a partner.
+      started?: boolean
     }
 
     interface Project {

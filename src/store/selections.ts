@@ -1,6 +1,7 @@
-import {useCallback, useEffect, useState} from 'react'
+import _flatMap from 'lodash/flatMap'
+import {useCallback, useEffect, useMemo, useState} from 'react'
 import {useSelector as genericUseSelector} from 'react-redux'
-import {useFirestore} from 'react-redux-firebase'
+import {useFirestore, useFirestoreConnect} from 'react-redux-firebase'
 
 import {SkillType, getSkills} from 'store/skills'
 
@@ -73,6 +74,7 @@ const useStepUpdater = (): ((updatedStep: Partial<bayes.maVoie.ProjectStep>) => 
   }, [firestore, project, projectId, projects, userId])
 }
 
+// TODO(cyrille): Move at the top of the file.
 const useUserId = (): string => {
   return useSelector(({firebase: {auth: {uid}}}: RootState) => uid)
 }
@@ -88,5 +90,50 @@ const useSkillsList = (): readonly SkillType[] => {
   return skills
 }
 
-export {useProject, useProjects, useProjectId, useProjectUpdater,
+const sortSteps = (first: bayes.maVoie.PartnerStep, second: bayes.maVoie.PartnerStep): number => {
+  if (first.validatedAt && second.validatedAt) {
+    return first.validatedAt < second.validatedAt ? -1 : 1
+  }
+  if (second.validatedAt) {
+    return 1
+  }
+  if (first.registeredAt && second.registeredAt) {
+    return first.registeredAt < second.registeredAt ? -1 : 1
+  }
+  return second.registeredAt ? 1 : -1
+}
+
+const useCertifiedSteps = (): bayes.maVoie.Project['steps'] => {
+  const userId = useUserId()
+  const projectId = useProjectId()
+  const connectConfig = useMemo(() => userId ? {
+    collection: 'users',
+    doc: userId,
+    storeAs: 'partners',
+    subcollections: [{collection: 'partners'}],
+  } : [], [userId])
+  const {steps} = useProject()
+  const partnerSteps: bayes.maVoie.Project['steps'] = {}
+  useFirestoreConnect(connectConfig)
+  const identifications: readonly bayes.maVoie.PartnerIdentification[] =
+    useSelector(({firestore: {data: {partners}}}) => partners || [])
+  _flatMap(identifications, ({partnerId, steps = []}) => steps.
+    map(step => ({...step, partnerId})).
+    // Only keep partnedSteps relevant to this project.
+    filter((step) => step.projectId === projectId)).
+    // Sort by increasing registration/validation date.
+    sort(sortSteps).
+    forEach(({partnerId, registeredAt, stepId, validatedAt}) => {
+      partnerSteps[stepId] = {
+        ...validatedAt ? {completed: 'partner'} : registeredAt ? {started: true} : {},
+        selectedPartnerId: partnerId,
+      }
+    })
+  return {
+    ...steps,
+    ...partnerSteps,
+  }
+}
+
+export {useCertifiedSteps, useProject, useProjects, useProjectId, useProjectUpdater,
   useSelector, useSkillsList, useStepUpdater, useUserId}
