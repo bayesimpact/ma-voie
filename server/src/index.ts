@@ -76,7 +76,10 @@ const checkForStepId = [
  */
 app.post('/user/:userId/register', ...checkForStepId, (request: Request, response: Response) => {
   const {body: {stepId}, params: {userId}} = request
-  registerUser(userId, stepId).then(() => response.status(204).send())
+  registerUser(userId, stepId).then((result) => {
+    const status = result === 'UPDATED' ? 204 : result === 'NOT_FOUND' ? 404 : 500
+    response.status(status).send()
+  })
 })
 
 /**
@@ -91,7 +94,10 @@ app.post('/user/:userId/register', ...checkForStepId, (request: Request, respons
  */
 app.post('/user/:userId/confirm', ...checkForStepId, (request: Request, response: Response) => {
   const {body: {stepId}, params: {userId}} = request
-  validateUser(userId, stepId).then(() => response.status(204).send())
+  validateUser(userId, stepId).then((result) => {
+    const status = result === 'UPDATED' ? 204 : result === 'NOT_FOUND' ? 404 : 500
+    response.status(status).send()
+  })
 })
 
 app.all('*', (request: Request, response: Response) => response.status(404).send())

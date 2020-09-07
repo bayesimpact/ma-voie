@@ -11,18 +11,19 @@ interface PartnerStep {
   validatedAt?: string
 }
 
+type Result = 'ERROR'|'NOT_FOUND'|'UPDATED'
+
 const updateField = (field: 'registeredAt' | 'validatedAt') => (
   userPartnerId: string,
   stepId: string,
   projectId = '0',
-): Promise<unknown> => {
+): Promise<Result> => {
   const db = admin.firestore()
   return db.collectionGroup('partners').
     where('userPartnerId', '==', userPartnerId).
-    limit(1).get().then(({docs: [partnerStepDoc]}) => {
+    limit(1).get().then(({docs: [partnerStepDoc]}): Promise<Result> => {
       if (!partnerStepDoc) {
-        // TODO(cyrille): Return a 404.
-        return
+        return Promise.resolve('NOT_FOUND')
       }
       const oldSteps: readonly PartnerStep[] = partnerStepDoc.get('steps') || []
       const newStep: PartnerStep = {[field]: new Date().toISOString(), projectId, stepId}
@@ -37,9 +38,10 @@ const updateField = (field: 'registeredAt' | 'validatedAt') => (
       })
       return partnerStepDoc.ref.update({
         steps: alreadyHasStep ? updatedSteps : [...oldSteps, newStep],
-      })
+      }).then(() => 'UPDATED')
     }).catch(error => {
       functions.logger.error('An error occured while updating ' + userPartnerId, error)
+      return 'ERROR'
     })
 }
 
