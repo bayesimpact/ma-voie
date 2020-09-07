@@ -74,7 +74,7 @@ const checkForStepId = [
  * @apiUse basicAuth
  * @apiUse stepParam
  */
-app.post('/:userId/register', ...checkForStepId, (request: Request, response: Response) => {
+app.post('/user/:userId/register', ...checkForStepId, (request: Request, response: Response) => {
   // TODO(cyrille): Update type definitions in @types/express to avoid recasting.
   const {auth: {user: partner}} = request as BasicAuth.IBasicAuthedRequest
   const {body: {stepId}, params: {userId}} = request
@@ -93,7 +93,7 @@ app.post('/:userId/register', ...checkForStepId, (request: Request, response: Re
  * @apiUse basicAuth
  * @apiUse stepParam
  */
-app.post('/:userId/confirm', ...checkForStepId, (request: Request, response: Response) => {
+app.post('/user/:userId/confirm', ...checkForStepId, (request: Request, response: Response) => {
   // TODO(cyrille): Update type definitions in @types/express to avoid recasting.
   const {auth: {user: partner}} = request as BasicAuth.IBasicAuthedRequest
   const {body: {stepId}, params: {userId}} = request
