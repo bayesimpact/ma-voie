@@ -74,13 +74,20 @@ const checkForStepId = [
  * @apiUse basicAuth
  * @apiUse stepParam
  */
-app.post('/user/:userId/register', ...checkForStepId, (request: Request, response: Response) => {
-  const {body: {stepId}, params: {userId}} = request
-  registerUser(userId, stepId).then((result) => {
-    const status = result === 'UPDATED' ? 204 : result === 'NOT_FOUND' ? 404 : 500
-    response.status(status).send()
-  })
-})
+app.post(
+  '/user/:userId/register', ...checkForStepId,
+  async (request: Request, response: Response) => {
+    const {body: {stepId}, params: {userId}} = request
+    try {
+      const status = await registerUser(userId, stepId) === 'UPDATED' ? 204 : 404
+      response.status(status).send()
+      return
+    } catch (error) {
+      functions.logger.error('Unable to register user', userId, error)
+      response.status(500).send()
+    }
+  },
+)
 
 /**
  *
