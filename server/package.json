@@ -15,7 +15,8 @@
   "dependencies": {
     "express-basic-auth": "1.2.0",
     "firebase-admin": "^8.10.0",
-    "firebase-functions": "^3.6.1"
+    "firebase-functions": "^3.6.1",
+    "lodash": "^4.x.x"
   },
   "devDependencies": {
     "@mysticatea/eslint-plugin": "^13.x.x",
