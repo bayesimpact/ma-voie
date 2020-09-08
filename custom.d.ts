@@ -65,4 +65,6 @@ declare const config: {
 
 type GetProps<T> = T extends React.ComponentType<infer Props> ? Props : never
 
+type Mutable<T extends Record<string, unknown>> = {-readonly [K in keyof T]: T[K]}
+
 // TODO(cyrille): Find a way to statically restrict font families and weights.

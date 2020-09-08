@@ -6,7 +6,7 @@ import {useLocation, useRouteMatch} from 'react-router'
 import {Redirect} from 'react-router-dom'
 
 import {prepareT} from 'store/i18n'
-import {useProject, useProjectUpdater} from 'store/selections'
+import {useCertifiedSteps, useProjectUpdater} from 'store/selections'
 import {getPath} from 'store/url'
 import Partners, {Props as PartnerProps} from 'store/partners'
 import Steps, {StepInfo} from 'store/steps'
@@ -143,7 +143,7 @@ const PartnersPage = (): React.ReactElement => {
       0, partners.findIndex(({partnerId}) => currentPartner === partnerId))
     partnersContainerRef.current?.scrollTo(335 * position, 0)
   }, [partners])
-  const {steps} = useProject()
+  const steps = useCertifiedSteps()
   if (!url || !stepId || !partnersForStep || !partners || !step) {
     return <Redirect to={getPath([], t)} />
   }

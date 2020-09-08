@@ -57,6 +57,8 @@ declare namespace bayes {
     interface ProjectStep {
       // undefined means not certified yet
       completed?: StepCertificate
+      // This is for incomplete steps which have been recorded as started by a partner.
+      isStarted?: boolean
       selectedPartnerId?: string
     }
 
@@ -69,7 +71,7 @@ declare namespace bayes {
       job?: Job
       projectId: string
       skills?: readonly string[]
-      steps?: {[stepId in StepId]?: ProjectStep}
+      steps?: {readonly [stepId in StepId]?: ProjectStep}
       userId?: string
     }
 

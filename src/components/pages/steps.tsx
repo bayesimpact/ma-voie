@@ -6,7 +6,7 @@ import {useHistory} from 'react-router'
 
 import {FirebaseAuth} from 'database/firebase'
 import {joinList} from 'store/i18n'
-import {useProject} from 'store/selections'
+import {useCertifiedSteps} from 'store/selections'
 import Steps from 'store/steps'
 import {Page, getPath} from 'store/url'
 
@@ -75,9 +75,9 @@ const StepsPage = (): React.ReactElement => {
 
   const currentUser = FirebaseAuth.currentUser
   const isConnected = (currentUser !== null)
-  const project = useProject()
+  const steps = useCertifiedSteps()
 
-  const nextStep = Steps.find(({stepId}) => !project.steps?.[stepId]?.completed)?.stepId
+  const nextStep = Steps.find(({stepId}) => steps?.[stepId]?.completed)?.stepId
   const nextStepRef = useRef<HTMLDivElement>(null)
   useEffect((): (() => void) => {
     // TODO(cyrille): Try to scroll to the last completed step before.
@@ -108,7 +108,7 @@ const StepsPage = (): React.ReactElement => {
     }
   }, [isPopupShown])
 
-  const openStep = Steps.find(({stepId}): boolean => !(project.steps?.[stepId]?.completed))
+  const openStep = Steps.find(({stepId}): boolean => !(steps?.[stepId]?.completed))
   // TODO(pascal): Drop the isLastStep bool and just use the last element of the array.
   const stepListJoin = joinList(Steps.filter(({isLastStep}) => !isLastStep).
     map((step, index) => (index + 1).toString()), t)
@@ -123,8 +123,7 @@ const StepsPage = (): React.ReactElement => {
         if (isLastStep) {
           return null
         }
-        // FIXME(cyrille): Use partnerIdentifications to decide whether a step is complete.
-        const isDone = !!project.steps?.[step.stepId]?.completed
+        const isDone = !!steps?.[step.stepId]?.completed
         const isOpen = step.stepId === openStep?.stepId
         return <React.Fragment key={index}>
           {index ?
