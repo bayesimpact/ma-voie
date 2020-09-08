@@ -52,7 +52,10 @@ const validateUser = updateField('validatedAt')
 
 const incrementPartnerCount = (partnerId: string): void => {
   const db = admin.firestore()
-  db.doc(`partnerCounts/${partnerId}`).update({users: admin.firestore.FieldValue.increment(1)})
+  db.doc(`partnerCounts/${partnerId}`).set(
+    {users: admin.firestore.FieldValue.increment(1)},
+    {merge: true},
+  )
 }
 
 const recomputePartnerCounts = (): void => {
