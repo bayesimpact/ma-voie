@@ -5,26 +5,30 @@ service cloud.firestore {
       // Never set to true in prod, as it enables all read/writes.
       allow read, write: if false
     }
+
     match /partnerCounts/{partnerId} {
       allow read: if true
     }
-    match /users/{userId} {
-      // Users can read and update their profile.
-      allow read, update: if request.auth != null && request.auth.uid == userId;
-      allow create: if request.auth != null && request.auth.uid == request.resource.id;
 
+    match /users/{userId} {
+      function isAuthUser() {
+        return request.auth != null && request.auth.uid == userId;
+      }
+      // Users can read and update their profile.
+      allow read, create, update: if isAuthUser();
+
+      // TODO(cyrille): Add tests once we can make sure the JS heap does not overflow.
       match /partners/{userPartnerId} {
         // Users can read their own partner identifications
-        allow read: if request.auth != null && request.auth.uid == userId;
-        allow create: if true
-          // Users can create their own partner identifications but:
-          && request.auth != null && request.auth.uid == userId
-          // the partner should be identifiable.
-          && request.resource.data.partnerId && request.resource.data.userPartnerId
+        allow read: if isAuthUser();
+        // Users can create their own partner identifications but:
+        allow create: if isAuthUser()
+          // the document should only specify the partnerId and the userPartnerId
+          && request.resource.data.keys().hasOnly(['partnerId', 'userPartnerId'])
           // the document ID should be the same as the userPartnerId
           && request.resource.id == request.resource.data.userPartnerId
-          // the steps should be empty (the server updates them).
-          && !request.resource.data.steps
+          // the partnerId should be one of the pre-defined partner IDs.
+          && request.resource.data.partnerId in ['chance', 'job-ready', 'generation']
       }
     }
   }
