@@ -3,13 +3,10 @@ import * as functions from 'firebase-functions'
 import {incrementPartnerCount, recomputePartnerCounts} from './firestore'
 
 // TODO(cyrille): Add tests.
-export const updateCount = functions.firestore.document('user/{userId}/partners/{partnerId}').
-  onWrite(({after: {data: getDocument}, before: {exists: isUpdate}}) => {
-    if (isUpdate) {
-      return
-    }
-    const {partnerId, userPartnerId} = getDocument() || {}
-    if (!partnerId || !userPartnerId) {
+export const updateCount = functions.firestore.document('users/{userId}/partners/{partnerId}').
+  onCreate(snapshot => {
+    const partnerId = snapshot.get('partnerId')
+    if (!partnerId) {
       return
     }
     incrementPartnerCount(partnerId)
