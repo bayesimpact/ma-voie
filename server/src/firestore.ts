@@ -4,6 +4,14 @@ import {groupBy} from 'lodash'
 
 admin.initializeApp()
 
+const logErrors = <T = never>(fallback?: T): ((error: unknown) => T) => (error: unknown): T => {
+  functions.logger.error(error)
+  if (typeof fallback === 'undefined') {
+    throw error
+  }
+  return fallback
+}
+
 // TODO(cyrille): use the one from app.d.ts
 interface PartnerStep {
   stepId: string
@@ -41,10 +49,7 @@ const updateField = (field: 'registeredAt' | 'validatedAt') => (
       return partnerStepDoc.ref.update({
         steps: alreadyHasStep ? updatedSteps : [...oldSteps, newStep],
       }).then(() => 'UPDATED')
-    }).catch(error => {
-      functions.logger.error('An error occured while updating ' + userPartnerId, error)
-      return 'ERROR'
-    })
+    }).catch(logErrors('ERROR'))
 }
 
 const registerUser = updateField('registeredAt')
@@ -55,7 +60,7 @@ const incrementPartnerCount = (partnerId: string): void => {
   db.doc(`partnerCounts/${partnerId}`).set(
     {users: admin.firestore.FieldValue.increment(1)},
     {merge: true},
-  )
+  ).catch(logErrors())
 }
 
 const recomputePartnerCounts = (): void => {
@@ -66,7 +71,7 @@ const recomputePartnerCounts = (): void => {
       forEach(([partnerId, docs]) => {
         db.doc(`partnerCounts/${partnerId}`).set({users: docs.length}, {merge: true})
       })
-  })
+  }).catch(logErrors())
 }
 
 export {incrementPartnerCount, recomputePartnerCounts, registerUser, validateUser}
