@@ -4,7 +4,6 @@ import {useSelector} from 'react-redux'
 import {useFirebase, useFirestore} from 'react-redux-firebase'
 import {useHistory} from 'react-router'
 
-import {FirebaseAuth} from 'database/firebase'
 import {useFastForward} from 'hooks/fast_forward'
 import {RootState} from 'store/actions'
 import {useUserId} from 'store/selections'
@@ -101,16 +100,14 @@ const AccountPage = (): React.ReactElement => {
     if (Object.keys(update).length) {
       // TODO(émilie): Move to actions.ts
       if (!userId) {
-        firebase.createUser({email: inputEmail, password}).
-          then(() => {
-            const userId = FirebaseAuth?.currentUser?.uid
-            firestore.update({collection: 'users', doc: userId}, update)
-            setUpdated(true)
-          }).
-          catch((error) => {
-            setErrorMessage(error.message)
-            return
-          })
+        firebase.createUser({email: inputEmail, password}, update).
+          then(
+            () => setUpdated(true),
+            (error) => {
+              setErrorMessage(error.message)
+              return
+            },
+          )
       } else {
         firestore.update({collection: 'users', doc: userId}, update)
         setUpdated(true)
