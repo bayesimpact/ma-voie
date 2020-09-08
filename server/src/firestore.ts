@@ -1,5 +1,6 @@
 import * as admin from 'firebase-admin'
 import * as functions from 'firebase-functions'
+import {groupBy} from 'lodash'
 
 admin.initializeApp()
 
@@ -54,4 +55,15 @@ const incrementPartnerCount = (partnerId: string): void => {
   db.doc(`partnerCounts/${partnerId}`).update({users: admin.firestore.FieldValue.increment(1)})
 }
 
-export {incrementPartnerCount, registerUser, validateUser}
+const recomputePartnerCounts = (): void => {
+  const db = admin.firestore()
+  // TODO(cyrille): Stop doing it this way if the collection ever gets too big.
+  db.collectionGroup('partners').get().then(snapshot => {
+    Object.entries(groupBy(snapshot.docs, doc => doc.data().partnerId)).
+      forEach(([partnerId, docs]) => {
+        db.doc(`partnerCounts/${partnerId}`).set({users: docs.length}, {merge: true})
+      })
+  })
+}
+
+export {incrementPartnerCount, recomputePartnerCounts, registerUser, validateUser}
