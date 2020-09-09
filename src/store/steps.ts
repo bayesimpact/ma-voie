@@ -9,7 +9,6 @@ import formationIcon from 'images/formation-ico.svg'
 export interface StepInfo {
   readonly color: string
   readonly icon: string
-  readonly isLastStep?: boolean
   readonly page: Page
   readonly shortTitle?: string
   readonly stepId: bayes.maVoie.StepId
@@ -43,7 +42,6 @@ const Steps: readonly StepInfo[] = [
   {
     color: colors.LIGHT_SKY_BLUE,
     icon: entretienIcon,
-    isLastStep: true,
     page: ['INTERVIEW'],
     shortTitle: prepareT('Entretiens'),
     stepId: 'interview',

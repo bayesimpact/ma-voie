@@ -107,21 +107,18 @@ const StepsPage = (): React.ReactElement => {
   }, [isPopupShown])
 
   const openStep = Steps.find(({stepId}): boolean => !(steps?.[stepId]?.completed))
-  // TODO(pascal): Drop the isLastStep bool and just use the last element of the array.
-  const stepListJoin = joinList(Steps.
-    filter(({isLastStep, stepId}) => !isLastStep && !(steps?.[stepId]?.completed)).
+  const lastStep = Steps[Steps.length - 1]
+  const firstSteps = Steps.slice(0, -1)
+  const stepListJoin = joinList(firstSteps.
+    filter(({stepId}) => !(steps?.[stepId]?.completed)).
     map((step, index) => (index + 1).toString()), t)
-  const lastStep = Steps.find(({isLastStep}) => isLastStep)
 
   const ArrowNextIcon = isMobileVersion ? ArrowDownIcon : ArrowRightIcon
 
   return <Layout style={layoutStyle}>
     <div style={stepsStyle}>
 
-      {Steps.map(({isLastStep, title, ...step}, index) => {
-        if (isLastStep) {
-          return null
-        }
+      {firstSteps.map(({title, ...step}, index) => {
         const isDone = !!steps?.[step.stepId]?.completed
         const isOpen = step.stepId === openStep?.stepId
         return <React.Fragment key={index}>
