@@ -38,7 +38,8 @@ const titleDetailsContentStyle: React.CSSProperties = {
   marginTop: -3,
 }
 const imageStyle: React.CSSProperties = {
-  width: 126,
+  maxHeight: 32,
+  maxWidth: 126,
 }
 const descriptionStyle: React.CSSProperties = {
   color: colors.DARK_FOREST_GREEN,
