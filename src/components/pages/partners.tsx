@@ -147,10 +147,10 @@ const PartnersPage = (): React.ReactElement => {
   if (!url || !stepId || !partnersForStep || !partners || !step) {
     return <Redirect to={getPath([], t)} />
   }
-  const {selectedPartnerId} = steps?.[stepId] || {}
+  const {isStarted, selectedPartnerId} = steps?.[stepId] || {}
   const selectedPartner = selectedPartnerId &&
     Partners.find(({partnerId}) => partnerId === selectedPartnerId)
-  if (selectedPartner) {
+  if (isStarted && selectedPartner) {
     if (!areInternalShown) {
       return <Redirect to={getPath(['PARTNERS_INTERNAL'], t)} />
     }
