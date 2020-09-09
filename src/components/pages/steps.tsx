@@ -108,7 +108,8 @@ const StepsPage = (): React.ReactElement => {
 
   const openStep = Steps.find(({stepId}): boolean => !(steps?.[stepId]?.completed))
   // TODO(pascal): Drop the isLastStep bool and just use the last element of the array.
-  const stepListJoin = joinList(Steps.filter(({isLastStep}) => !isLastStep).
+  const stepListJoin = joinList(Steps.
+    filter(({isLastStep, stepId}) => !isLastStep && !(steps?.[stepId]?.completed)).
     map((step, index) => (index + 1).toString()), t)
   const lastStep = Steps.find(({isLastStep}) => isLastStep)
 
