@@ -54,7 +54,9 @@ const App = (): React.ReactElement => {
     <Route path={defineAndGetPath('DEFINITION')} component={DefinitionPage} />
     <Route path={defineAndGetPath('SKILLS')} component={SkillsPage} />
     <Route path={defineAndGetPath('TRAINING')} component={TrainingPage} />
-    <Route path={defineAndGetPath('DEFINITION')} component={DefinitionPage} />
+    <Route path={defineAndGetPath('INTERVIEW')}>
+      <Redirect to={`${defineAndGetPath('INTERVIEW')}${defineAndGetPath('PARTNERS_INTERNAL')}`} />
+    </Route>
     <Route path={defineAndGetPath('FORGOT_PASSWORD')} component={ForgotPasswordPage} />
     <Route path={defineAndGetPath('MENU')} component={MenuPage} />
     <Route path={defineAndGetPath('MENU_SITE')} component={MenuSitePage} />
