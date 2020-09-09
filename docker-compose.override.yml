@@ -50,6 +50,7 @@ services:
       - ./.eslintignore:/usr/app/.eslintignore
       - ./server/.firebaserc:/usr/app/.firebaserc
       - ./server/entrypoint.sh:/usr/app/entrypoint.sh
+      - ./server/clean_dependencies.sh:/usr/app/clean_dependencies.sh
       - ./server/firebase.json:/usr/app/firebase.json
       - ./server/firestore.rules:/usr/app/firestore.rules
       - ./server/firestore.indexes.json:/usr/app/firestore.indexes.json
