@@ -173,7 +173,7 @@ const PartnersPage = (): React.ReactElement => {
       "Je l'ai fait moi-même" pour passer à l'étape suivante.
     </Trans>
     <div style={buttonWrapperStyle}>
-      <StepValidationButton type="specific" stepId="training" stepValue="self">
+      <StepValidationButton type="specific" stepId={stepId} stepValue="self">
         {t('Je l\'ai fait moi-même')}
       </StepValidationButton>
     </div>
