@@ -23,6 +23,7 @@ const StepValidationButton = (props: ButtonProps): React.ReactElement => {
   const {t} = useTranslation()
   const stepUpdated = useStepUpdater()
   const handleClick = useCallback((): void => {
+    // TODO(cyrille): Make sure we want to completely override the step.
     stepUpdated({[stepId]: {completed: stepValue}})
     onClick?.()
   }, [onClick, stepId, stepUpdated, stepValue])

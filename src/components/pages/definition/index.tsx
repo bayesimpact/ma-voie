@@ -6,7 +6,6 @@ import {useSubPathDefiner} from 'store/url'
 import ExperiencePage from './experience'
 import GoPage from './go'
 import InterestPage from './interest'
-import JobPage from './job'
 import LostPage from './lost'
 import RedefinePage from './redefine'
 import WhatPage from './what'
@@ -19,7 +18,6 @@ const DefinitionPage = (): React.ReactElement => {
     <Route path={defineAndGetPath('EXPERIENCE')} component={ExperiencePage} />
     <Route path={defineAndGetPath('GO')} component={GoPage} />
     <Route path={defineAndGetPath('INTEREST')} component={InterestPage} />
-    <Route path={defineAndGetPath('JOB')} component={JobPage} />
     <Route path={defineAndGetPath('LOST')} component={LostPage} />
     <Route path={defineAndGetPath('REDEFINE')} component={RedefinePage} />
     <Route path={defineAndGetPath('WHAT')} component={WhatPage} />

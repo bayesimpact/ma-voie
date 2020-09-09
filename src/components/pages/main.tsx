@@ -27,6 +27,7 @@ import MenuPage from 'components/pages/menu'
 import MenuSitePage from 'components/pages/menu_site'
 import PartnersPage from 'components/pages/partners'
 import PasswordPage from 'components/pages/password'
+import JobPage from 'components/pages/job'
 import SignupPage from 'components/pages/signup'
 import SkillsPage from 'components/pages/skills'
 import SplashPage from 'components/pages/splash'
@@ -49,6 +50,7 @@ const App = (): React.ReactElement => {
   return <Switch>
     <Route path={`/:step${defineAndGetPath('PARTNERS_INTERNAL')}`} component={PartnersPage} />
     <Route path={`/:step${defineAndGetPath('PARTNERS_EXTERNAL')}`} component={PartnersPage} />
+    <Route path={`/:step${defineAndGetPath('JOB')}`} component={JobPage} />
     <Route path={defineAndGetPath('ACCOUNT')} component={AccountPage} />
     <Route path={defineAndGetPath('LOGIN')} component={LoginPage} />
     <Route path={defineAndGetPath('DEFINITION')} component={DefinitionPage} />
