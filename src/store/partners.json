@@ -13,6 +13,24 @@
         "userCount":37
     },
     {
+        "description":"Ce quiz \"IDMétiers\" vous interroge sur 25 compétences dans les domaines suivants :\n  * Comportements professionnels, par exemple si vous aimez travailler en équipe\n  * Savoirs professionnels, par exemple si vous savez bien communiquer par écrit\n  * Savoir-faire professionnels, par exemple si vous savez intégrer le développement durable dans votre travail\n  * À la fin, on vous propose des métiers correspondant le plus à vos compétences.\n  * Les questions sont assez avancées, mais vous pouvez laisser vide si vous n'avez pas encore d'idée.",
+        "details":"Quiz",
+        "logo":"idmetiers.jpeg",
+        "name":"IDMétiers",
+        "partnerId":"idmetiers",
+        "steps":["definition"],
+        "url":"https://www.afpa.fr/id-metiers"
+    },
+    {
+        "description":"Pour ce cours en ligne \"OpenClassrooms\" on vous demande d'y consacrer une heure. Le cours est composé d'exercises, en quatre étapes :\n\n1. J'explore qui je suis\n\n2. J'explore mon appétence professionnelle (ça veut dire vos goûts et vos préférences) \n\n3. Je me projette dans une situation professionnelle\n\n4. J'étudie la faisabilité (ça veut dire à quel point votre projet est-il réaliste ?)\n\nVous pouvez suivre le cours à votre rythme et selon vos besoins.",
+        "details":"Cours en ligne",
+        "logo":"openclassrooms.png",
+        "name":"OpenClassrooms",
+        "partnerId":"openclassrooms",
+        "steps":["definition"],
+        "url":"https://openclassrooms.com/fr/courses/3848146-definir-son-projet-professionnel"
+    },
+    {
         "description":"  * Identifiez et valorisez tous types d'expériences (personnelles, professionnelles, bénévolat... )\n  * Premières compétences transversales identifiées en moins de 10 minutes\n  * Référentiel de compétences transversales objectivé et reconnu par 30 entreprises\n  * Micro certifications exportables et valorisables sur CV, Linkedin...\n  * Programme en ligne\n  * Gratuit pour les utilisateurs de Mavoie",
         "details":"",
         "isInternal":true,
@@ -35,22 +53,13 @@
         "userCount":1
     },
     {
-        "description":"Ce cours en ligne* \"Focus compétences\" est composé de 4 séquences :\n\n1. Définir la notion de compétence\n\n2. Acquérir une méthodologie pour identifier ses compétences\n\n3. Valoriser ses compétences auprès d'un recruteur\n\n4. Augmenter sa visibilité et sa crédibilité sur les réseaux sociaux\n\nChaque séquence est composée de vidéos, quiz, et de ressources complémentaires**.\n\nVous pouvez suivre chaque séquence à votre rythme et selon vos besoins.",
-        "details":"MOOC",
-        "logo":"chance.svg",
-        "name":"Externe 1",
-        "partnerId":"chance-1",
-        "steps":["definition", "training"],
-        "url":""
-    },
-    {
-        "description":"Ce cours en ligne* \"Focus compétences\" est composé de 4 séquences :\n\n1. Définir la notion de compétence\n\n2. Acquérir une méthodologie pour identifier ses compétences\n\n3. Valoriser ses compétences auprès d'un recruteur\n\n4. Augmenter sa visibilité et sa crédibilité sur les réseaux sociaux\n\nChaque séquence est composée de vidéos, quiz, et de ressources complémentaires**.\n\nVous pouvez suivre chaque séquence à votre rythme et selon vos besoins.",
-        "details":"MOOC",
-        "logo":"chance.svg",
-        "name":"Externe 2",
-        "partnerId":"chance-2",
-        "steps":["definition", "training"],
-        "url":""
+        "description":"Ce site \"Walt\" est une super ressource qui vous explique comment être efficace dans une recherche d'alternance.\n  * C'est aussi un moteur de recherche pour toutes vos questions d'orientation : informations sur des métiers, témoignages en vidéo, entreprises à cibler, informations sur des écoles...\n  * On vous recommande de réserver votre après-midi et d'explorer à fond, ce site est une mine d'or.",
+        "details":"Site",
+        "logo":"walt.png",
+        "name":"Walt",
+        "partnerId":"walt",
+        "steps":["training"],
+        "url":"https://walt.community/home-candidat"
     },
     {
         "description":"  * Le **coach gratuit** qui vous aide à comprendre et agir sur votre recherche d'emploi\n  * En moins de 10 minutes, Bob vous montre comment **débloquer** votre recherche d'emploi\n  * **Stratégies sur mesure** pour vous suggérer les meilleures actions à réaliser\n  * Totalement **gratuit** et **confidentiel**",
