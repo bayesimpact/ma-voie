@@ -17,8 +17,6 @@ import Step from 'components/step'
 
 const isMobileVersion = window.innerWidth <= 800
 
-const soonAvailable = (): void => window.alert('Bientôt disponible...')
-
 const layoutStyle: React.CSSProperties = {
   maxWidth: 'initial',
 }
@@ -145,7 +143,7 @@ const StepsPage = (): React.ReactElement => {
       {stepListJoin.length > 0 || !lastStep ?
         <React.Fragment>
           <div style={scrollableStepStyle} ref={getStepRef(Steps.length - 1)}>
-            <Button style={interviewStyle} onClick={soonAvailable} type="variable">
+            <Button style={interviewStyle} type="variable">
               {translate(lastStep?.title || '')}
             </Button>
           </div>
