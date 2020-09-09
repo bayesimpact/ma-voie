@@ -196,6 +196,7 @@ const PartnersPage = (): React.ReactElement => {
     </Layout>
   }
   const ChevronIcon = areExternalsShown ? ChevronUpIcon : ChevronDownIcon
+  const externalPartners = (partnersForStep || []).filter(({isInternal}) => !isInternal)
   return <Layout header={translate(shortTitle)} style={desktopLayoutStyle}>
     <h1 style={titleStyle}>{bigTitle}</h1>
     <h2 style={tabTitleStyle}>{TABS_WITHOUT_STEP[0].title}</h2>
@@ -211,22 +212,24 @@ const PartnersPage = (): React.ReactElement => {
 
     <div style={hrStyle} />
 
-    <h2 style={{...tabTitleStyle, alignItems: 'center', display: 'flex'}}>
-      {TABS_WITHOUT_STEP[1].title}
-      <span style={{flex: 1}} />
-      <ChevronIcon
-        onClick={toggleExternals}
-        style={chevronIconStyle} role="button"
-        aria-label={areInternalShown ?
-          t('montrer les autres partenaires') : t('masquer les autres partenaires')
-        } size={34} />
-    </h2>
-    {areExternalsShown && partnersForStep?.filter(({isInternal}) => !isInternal).
-      map((partner) => <ExternalPartner
-        key={partner.partnerId} {...partner}
-        isOpen={currentPartner === partner.partnerId} onSelect={onSelect} />)}
+    {externalPartners.length ? <React.Fragment>
+      <h2 style={{...tabTitleStyle, alignItems: 'center', display: 'flex'}}>
+        {TABS_WITHOUT_STEP[1].title}
+        <span style={{flex: 1}} />
+        <ChevronIcon
+          onClick={toggleExternals}
+          style={chevronIconStyle} role="button"
+          aria-label={areInternalShown ?
+            t('montrer les autres partenaires') : t('masquer les autres partenaires')
+          } size={34} />
+      </h2>
+      {areExternalsShown && externalPartners.
+        map((partner) => <ExternalPartner
+          key={partner.partnerId} {...partner}
+          isOpen={currentPartner === partner.partnerId} onSelect={onSelect} />)}
 
-    <div style={hrStyle} />
+      <div style={hrStyle} />
+    </React.Fragment> : null}
 
     <div style={autoValidationBoxStyle}>
       {autoValidation}
