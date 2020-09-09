@@ -1,4 +1,5 @@
 import _flatMap from 'lodash/flatMap'
+import _merge from 'lodash/merge'
 import {useCallback, useEffect, useMemo, useState} from 'react'
 import {useSelector as genericUseSelector} from 'react-redux'
 import {useFirestore, useFirestoreConnect} from 'react-redux-firebase'
@@ -159,10 +160,7 @@ const useCertifiedSteps = (): bayes.maVoie.Project['steps'] => {
     () => makeCertifiedSteps(identifications, projectId),
     [identifications, projectId],
   )
-  return useMemo(() => ({
-    ...steps,
-    ...partnerSteps,
-  }), [partnerSteps, steps])
+  return useMemo(() => _merge(steps, partnerSteps), [partnerSteps, steps])
 }
 
 export {useCertifiedSteps, usePartnerCount, useProject, useProjects, useProjectId,
