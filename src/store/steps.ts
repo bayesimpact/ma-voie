@@ -3,6 +3,7 @@ import {Page} from 'store/url'
 
 import competencesIcon from 'images/competences-ico.svg'
 import definitionIcon from 'images/definition-ico.svg'
+import entretienIcon from 'images/entretien-ico.svg'
 import formationIcon from 'images/formation-ico.svg'
 
 export interface StepInfo {
@@ -41,7 +42,7 @@ const Steps: readonly StepInfo[] = [
   },
   {
     color: colors.LIGHT_SKY_BLUE,
-    icon: formationIcon, // TODO(émilie): Update when known
+    icon: entretienIcon,
     isLastStep: true,
     page: ['INTERVIEW'],
     shortTitle: prepareT('Entretiens'),
