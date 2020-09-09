@@ -1,7 +1,8 @@
 import React from 'react'
 import {Trans, useTranslation} from 'react-i18next'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 
+import {useCertifiedSteps} from 'store/selections'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
@@ -23,6 +24,12 @@ const linkStyle: React.CSSProperties = {
 // TOP LEVEL PAGE
 const TrainingWhichPage = (): React.ReactElement => {
   const {t} = useTranslation()
+
+  const steps = useCertifiedSteps()
+  if (steps?.training?.selectedPartnerId && !steps?.training?.completed) {
+    return <Redirect to={getPath(['TRAINING', 'PARTNERS_INTERNAL'], t)} />
+  }
+
   return <Layout header={t('Formation')}>
     <Trans style={containerStyle}>
       <h1 style={titleStyle}>Quelle formation&nbsp;?</h1>
