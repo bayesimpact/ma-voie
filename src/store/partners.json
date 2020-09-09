@@ -53,14 +53,13 @@
         "url":""
     },
     {
-        "description":"Bob fait le point sur votre recherche\n\n- Il vous donne des méthodes pour la préparer\n\n- Et plein d'astuces pour vos entretiens",
-        "details":"",
+        "description":"  * Le **coach gratuit** qui vous aide à comprendre et agir sur votre recherche d'emploi\n  * En moins de 10 minutes, Bob vous montre comment **débloquer** votre recherche d'emploi\n  * **Stratégies sur mesure** pour vous suggérer les meilleures actions à réaliser\n  * Totalement **gratuit** et **confidentiel**",
         "isInternal":true,
         "logo":"bob.png",
         "name":"Bob",
         "partnerId":"bob",
         "steps":["interview"],
-        "title":"",
+        "title": "Gratuit",
         "url":"https://www.bob-emploi.fr"
     }
 ]
