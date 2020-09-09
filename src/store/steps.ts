@@ -43,7 +43,7 @@ const Steps: readonly StepInfo[] = [
     color: colors.LIGHT_SKY_BLUE,
     icon: formationIcon, // TODO(émilie): Update when known
     isLastStep: true,
-    page: ['TRAINING'], // TODO(émilie): Updated when done
+    page: ['INTERVIEW'], // TODO(émilie): Updated when done
     shortTitle: prepareT('Entretiens'),
     stepId: 'interview',
     title: prepareT('Préparer un entretien'),
