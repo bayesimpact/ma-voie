@@ -13,6 +13,7 @@ const OBJECTIVE_OPTIONS: readonly LocalizableOption<bayes.maVoie.ProjectObjectiv
 const redirect = (objective: bayes.maVoie.ProjectObjective): PageSegment =>
   objective === 'job' ? 'JOB' : 'LOST'
 
+
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 const WhatPage = (): React.ReactElement => <Step

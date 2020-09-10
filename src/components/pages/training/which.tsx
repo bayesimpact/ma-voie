@@ -23,6 +23,7 @@ const linkStyle: React.CSSProperties = {
 // TOP LEVEL PAGE
 const TrainingWhichPage = (): React.ReactElement => {
   const {t} = useTranslation()
+
   return <Layout header={t('Formation')}>
     <Trans style={containerStyle}>
       <h1 style={titleStyle}>Quelle formation&nbsp;?</h1>
