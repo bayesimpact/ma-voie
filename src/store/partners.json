@@ -64,13 +64,14 @@
     },
     {
         "description":"  * Le **coach gratuit** qui vous aide à comprendre et agir sur votre recherche d'emploi\n  * En moins de 10 minutes, Bob vous montre comment **débloquer** votre recherche d'emploi\n  * **Stratégies sur mesure** pour vous suggérer les meilleures actions à réaliser\n  * Totalement **gratuit** et **confidentiel**",
+        "discoverUrl": "https://www.bob-emploi.fr",
         "isInternal":true,
         "logo":"bob.png",
         "name":"Bob",
         "partnerId":"bob",
         "steps":["interview"],
         "title": "Gratuit",
-        "url":"https://www.bob-emploi.fr"
+        "url":"https://www.bob-emploi.fr/intro"
     },
     {
         "description":"Ces guides en ligne faits par \"Welcome to the Jungle\" vous donnent des exercises pratiques à faire pour préparer un entretien. Avoir un entretien implique que vous n'avez jamais été plus près de décrocher un poste. Ces articles vous montrent pourquoi la préparation, c'est la clé\u00A0:\n\n1. Comment déceler la culture de l'entreprise pour savoir quel ton adopter, comment s'habiller etc.\n\n2. Sur quoi se renseigner avant l'entretien.\n\n3. Les erreurs fréquentes à éviter.\n\n4. Comment rédiger le mail que l'on envoie au recruteur suite à l'entretien.",

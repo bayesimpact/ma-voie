@@ -52,6 +52,7 @@ declare const config: {
   // https://console.firebase.google.com/project/<project>/settings/general
   firebase: string
   environment: string
+  partnerUrls: string
   sentryDsn: string
 }
 
