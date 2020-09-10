@@ -55,8 +55,7 @@ const useProjectUpdater = (): ((updatedProject: Partial<bayes.maVoie.Project>) =
   }, [firestore, project, projectId, projects, userId])
 }
 
-// TODO(cyrille): Rename to updateStepsUpdater, to make clear we override complete steps.
-const useStepUpdater = (): ((updatedStep: bayes.maVoie.Project['steps']) => void) => {
+const useStepsUpdater = (): ((updatedStep: bayes.maVoie.Project['steps']) => void) => {
   const firestore = useFirestore()
   const userId = useUserId()
   const projectId = useProjectId()
@@ -165,4 +164,4 @@ const useCertifiedSteps = (): bayes.maVoie.Project['steps'] => {
 }
 
 export {useCertifiedSteps, usePartnerCount, useProject, useProjects, useProjectId,
-  useProjectUpdater, useSelector, useSkillsList, useStepUpdater, useUserId}
+  useProjectUpdater, useSelector, useSkillsList, useStepsUpdater, useUserId}

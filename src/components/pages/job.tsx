@@ -4,7 +4,7 @@ import {useRouteMatch} from 'react-router'
 import {Redirect} from 'react-router-dom'
 
 import FadingLink, {useFadeInFadeOut} from 'hooks/fade'
-import {useCertifiedSteps, useProject, useProjectUpdater, useStepUpdater} from 'store/selections'
+import {useCertifiedSteps, useProject, useProjectUpdater, useStepsUpdater} from 'store/selections'
 import Steps, {StepInfo} from 'store/steps'
 import {Page, getPath} from 'store/url'
 
@@ -42,10 +42,10 @@ const JobPage = (): React.ReactElement => {
   const {page, title: stepTitle = '', shortTitle = stepTitle, stepId}: StepInfo = step || Steps[0]
   const {definition: {completed = undefined} = {}} = useCertifiedSteps() || {}
   const isSelfCertified = completed === 'self'
-  const updateSteps = useStepUpdater()
+  const stepsUpdater = useStepsUpdater()
   const onLost = useCallback(() => {
-    updateSteps({definition: {}})
-  }, [updateSteps])
+    stepsUpdater({definition: {}})
+  }, [stepsUpdater])
   const {job: previousJob} = useProject()
   const title = stepId === 'definition' ?
     t('Pour quel métier souhaitez-vous retrouver un poste\u00A0?') :
