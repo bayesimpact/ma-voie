@@ -16,6 +16,7 @@ services:
       context: .
       args:
         - REACT_BASE_TAG
+        - SKIP_TEST
       target: test
   nginx:
     image: bayesimpact/ma-voie:${CIRCLE_BUILD_NUM:-latest}
