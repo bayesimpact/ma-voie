@@ -14,9 +14,8 @@ const useSelector = <T>(selector: (state: RootState) => T): T => genericUseSelec
 
 const useProjectId = (): string => {
   const projects = useSelector((state) => state.firestore.data.projects)
-  const userId = useUserId()
   if (!projects) {
-    return `${userId}-0`
+    return '0'
   }
   const projectKeys = Object.keys(projects)
   return projectKeys[projectKeys.length - 1]
