@@ -144,7 +144,7 @@ export const makeCertifiedSteps = (
 //   Partner certification information is not saved in the user in firestore to avoid
 //   users modifying them. This hook returns a `steps` object with the certifications from
 //   partners added.
-const useCertifiedSteps = (): bayes.maVoie.Project['steps'] => {
+const useCertifiedSteps = (): NonNullable<bayes.maVoie.Project['steps']> => {
   const userId = useUserId()
   const projectId = useProjectId()
   const {steps} = useProject()
@@ -160,7 +160,7 @@ const useCertifiedSteps = (): bayes.maVoie.Project['steps'] => {
     () => makeCertifiedSteps(identifications, projectId),
     [identifications, projectId],
   )
-  return useMemo(() => _merge(steps, partnerSteps), [partnerSteps, steps])
+  return useMemo(() => _merge(steps || {}, partnerSteps), [partnerSteps, steps])
 }
 
 export {useCertifiedSteps, usePartnerCount, useProject, useProjects, useProjectId,
