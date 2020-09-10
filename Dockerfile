@@ -33,6 +33,7 @@ RUN ./vendor/patch-react-redux-firebase-plugin-storage-types.sh
 COPY vendor/autocomplete.js.d.ts node_modules/@types/autocomplete.js/index.d.ts
 
 FROM dev AS test
+RUN ./entrypoint.sh npm run checks
 CMD ./entrypoint.sh npm run checks
 
 
