@@ -1,4 +1,3 @@
-import {stringify} from 'query-string'
 import React, {useCallback} from 'react'
 import {Trans, useTranslation} from 'react-i18next'
 import ReactMarkdown from 'react-markdown'
@@ -112,14 +111,21 @@ const PartnerCard = (props: Props): React.ReactElement => {
       })
     // TODO(cyrille): Add user info to url.
     projectUpdater({steps: {[stepId]: {selectedPartnerId: partnerId}}})
-    const query = stringify({
+    const parsedUrl = new URL(url)
+    const query = new URLSearchParams(parsedUrl.search)
+    Object.entries({
       email,
       lastName,
       maVoieId: userPartnerId,
       name: userName,
       stepId,
-    })
-    window.open(`${url}?${query}`, '_blank')
+    }).
+      filter((pair): pair is [string, string] => !!pair[1]).
+      forEach(([key, value]) => {
+        query.append(key, value)
+      })
+    parsedUrl.search = query.toString()
+    window.open(parsedUrl.toString(), '_blank')
   }, [email, firestore, lastName, partnerId, projectUpdater, stepId, url, userId, userName,
     userPartnerId])
 
