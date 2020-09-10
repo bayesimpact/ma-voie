@@ -43,22 +43,14 @@ type ReactStylableElement = React.ReactElement<{style?: RadiumCSSProperties}>
 
 declare const colors: typeof import('./cfg/colors.json')
 
-interface FirebaseConfig {
-  apiKey: string
-  appId: string
-  authDomain: string
-  databaseURL: string
-  messagingSenderId: string
-  projectId: string
-  storageBucket: string
-}
-
 declare const config: {
   amplitudeToken: string
   canonicalUrl: string
   contactEmail: string
   clientVersion: string
-  firebase: FirebaseConfig
+  // This is a stringified version of `firebaseConfig` from
+  // https://console.firebase.google.com/project/<project>/settings/general
+  firebase: string
   environment: string
   sentryDsn: string
 }
