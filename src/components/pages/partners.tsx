@@ -6,7 +6,7 @@ import {useLocation, useRouteMatch} from 'react-router'
 import {Redirect} from 'react-router-dom'
 
 import {prepareT} from 'store/i18n'
-import {useCertifiedSteps, useProjectUpdater} from 'store/selections'
+import {useCertifiedSteps, useProject, useStepUpdater} from 'store/selections'
 import {getPath} from 'store/url'
 import Partners, {Props as PartnerProps} from 'store/partners'
 import Steps, {StepInfo} from 'store/steps'
@@ -89,20 +89,23 @@ const stopButtonStyle: React.CSSProperties = {
 
 interface SelectedPartnerProps {
   partner: PartnerProps
-  step: {
-    stepId: bayes.maVoie.StepId
-    title: string
-  }
+  step: StepInfo
 }
-const SelectedPartnerPageBase = ({partner, step}: SelectedPartnerProps): React.ReactElement => {
+const SelectedPartnerPageBase = ({partner, step: {stepId, title}}: SelectedPartnerProps):
+React.ReactElement => {
   const {t, t: translate} = useTranslation()
-  const projectUpdater = useProjectUpdater()
+  const stepsUpdater = useStepUpdater()
+  const currentStep = useProject()?.steps?.[stepId] || undefined
+  const stepWithoutPartner = useMemo(() => {
+    const {selectedPartnerId: omittedPartnerId = undefined, ...rest} = currentStep || {}
+    return rest
+  }, [currentStep])
   const stopPartner = useCallback((): void => {
-    projectUpdater({steps: {[step.stepId]: {selectedPartnerId: undefined}}})
-  }, [projectUpdater, step])
-  return <Layout header={translate(step.title || '')}>
+    stepsUpdater({[stepId]: stepWithoutPartner})
+  }, [stepsUpdater, stepId, stepWithoutPartner])
+  return <Layout header={translate(title || '')}>
     <div style={introStyle}>{t('Vous avez choisi\u00A0:')}</div>
-    <PartnerCard {...partner} isSelected={true} stepId={step.stepId} />
+    <PartnerCard {...partner} isSelected={true} stepId={stepId} />
     <Button type="discreet" onClick={stopPartner} style={stopButtonStyle}>
       {t('Arrêter maintenant')}
     </Button>
