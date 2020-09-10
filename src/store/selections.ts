@@ -1,5 +1,4 @@
 import _flatMap from 'lodash/flatMap'
-import _merge from 'lodash/merge'
 import {useCallback, useEffect, useMemo, useState} from 'react'
 import {useSelector as genericUseSelector} from 'react-redux'
 import {useFirestore, useFirestoreConnect} from 'react-redux-firebase'
@@ -122,12 +121,16 @@ const sortSteps = (first: bayes.maVoie.PartnerStep, second: bayes.maVoie.Partner
 export const makeCertifiedSteps = (
   identifications: readonly bayes.maVoie.PartnerIdentification[],
   projectId: string,
-): bayes.maVoie.Project['steps'] => {
+  steps: bayes.maVoie.Project['steps'],
+): NonNullable<bayes.maVoie.Project['steps']> => {
   const certifiedSteps: Mutable<NonNullable<bayes.maVoie.Project['steps']>> = {}
-  _flatMap(identifications, ({partnerId, steps = []}) => steps.
+  _flatMap(identifications, ({partnerId, steps: partnerSteps = []}) => partnerSteps.
     map(step => ({...step, partnerId})).
-    // Only keep partnedSteps relevant to this project.
-    filter((step) => step.projectId === projectId)).
+    filter((step) =>
+      // Only keep partnerSteps relevant to this project.
+      step.projectId === projectId &&
+      // Ignore partners which are not currently selected.
+      step.partnerId === steps?.[step.stepId]?.selectedPartnerId)).
     // Sort by increasing registration/validation date.
     sort(sortSteps).
     forEach(({partnerId, registeredAt, stepId, validatedAt}) => {
@@ -136,7 +139,8 @@ export const makeCertifiedSteps = (
         selectedPartnerId: partnerId,
       }
     })
-  return certifiedSteps
+  // Keep uncertified steps, but completely override steps that are certified.
+  return {...steps, ...certifiedSteps}
 }
 
 // Get the steps of the current project, with possible partner-certification.
@@ -156,10 +160,10 @@ const useCertifiedSteps = (): NonNullable<bayes.maVoie.Project['steps']> => {
   const identifications: readonly bayes.maVoie.PartnerIdentification[] =
     useSelector(({firestore: {data: {partners}}}) => partners || emptyArray)
   const partnerSteps = useMemo(
-    () => makeCertifiedSteps(identifications, projectId),
-    [identifications, projectId],
+    () => makeCertifiedSteps(identifications, projectId, steps),
+    [identifications, projectId, steps],
   )
-  return useMemo(() => _merge(steps || {}, partnerSteps), [partnerSteps, steps])
+  return partnerSteps
 }
 
 export {useCertifiedSteps, usePartnerCount, useProject, useProjects, useProjectId,

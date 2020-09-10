@@ -6,7 +6,7 @@ import {useLocation, useRouteMatch} from 'react-router'
 import {Redirect} from 'react-router-dom'
 
 import {prepareT} from 'store/i18n'
-import {useCertifiedSteps, useProject, useStepsUpdater} from 'store/selections'
+import {useCertifiedSteps, useStepsUpdater} from 'store/selections'
 import {getPath} from 'store/url'
 import Partners, {Props as PartnerProps} from 'store/partners'
 import Steps, {StepInfo} from 'store/steps'
@@ -95,14 +95,7 @@ const SelectedPartnerPageBase = ({partner, step: {stepId, title}}: SelectedPartn
 React.ReactElement => {
   const {t, t: translate} = useTranslation()
   const stepsUpdater = useStepsUpdater()
-  const currentStep = useProject()?.steps?.[stepId] || undefined
-  const stepWithoutPartner = useMemo(() => {
-    const {selectedPartnerId: omittedPartnerId = undefined, ...rest} = currentStep || {}
-    return rest
-  }, [currentStep])
-  const stopPartner = useCallback((): void => {
-    stepsUpdater({[stepId]: stepWithoutPartner})
-  }, [stepsUpdater, stepId, stepWithoutPartner])
+  const stopPartner = useCallback((): void => stepsUpdater({[stepId]: {}}), [stepsUpdater, stepId])
   return <Layout header={translate(title || '')}>
     <div style={introStyle}>{t('Vous avez choisi\u00A0:')}</div>
     <PartnerCard {...partner} isSelected={true} stepId={stepId} />
