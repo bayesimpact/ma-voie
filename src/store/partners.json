@@ -70,5 +70,23 @@
         "steps":["interview"],
         "title": "Gratuit",
         "url":"https://www.bob-emploi.fr"
+    },
+    {
+        "description":"Ces guides en ligne faits par \"Welcome to the Jungle\" vous donnent des exercises pratiques à faire pour préparer un entretien. Avoir un entretien implique que vous n'avez jamais été plus près de décrocher un poste. Ces articles vous montrent pourquoi la préparation, c'est la clé\u00A0:\n\n1. Comment déceler la culture de l'entreprise pour savoir quel ton adopter, comment s'habiller etc.\n\n2. Sur quoi se renseigner avant l'entretien.\n\n3. Les erreurs fréquentes à éviter.\n\n4. Comment rédiger le mail que l'on envoie au recruteur suite à l'entretien.",
+        "logo":"welcome-to-the-jungle.png",
+        "name":"Welcome to the Jungle",
+        "partnerId":"welcome-to-the-jungle",
+        "steps":["interview"],
+        "title": "Gratuit",
+        "url":"https://www.welcometothejungle.com/fr/collections/guides-candidats/preparer-un-entretien-d-embauche"
+    },
+    {
+        "description":"C'est un classique\u00A0: on passe des heures à préparer un entretien, pour avoir l'impression en sortant que sa préparation n'aurait servi à rien. Ce super article fait par \"Dessine toi un emploi\" vous explique que préparer trois questions suffit pour la plupart des entretiens, à condition de très bien les préparer !\n\n1. Qui êtes-vous\u00A0?\n\n2. Pourquoi nous et pas un autre\u00A0?\n\n3. Pourquoi cette fonction, pourquoi ce secteur\u00A0?",
+        "logo":"dessine-toi-un-emploi.jpg",
+        "name":"Dessine toi un emploi",
+        "partnerId":"dessine-toi-un-emploi",
+        "steps":["interview"],
+        "title": "Gratuit",
+        "url":"http://dessinetoiunemploi.com/3-uniques-questions-a-preparer-lentretien/"
     }
 ]
