@@ -43,13 +43,14 @@
     },
     {
         "description":"  * Formation entièrement gratuite\n  * Durée : 4 semaines\n  * Lieu : en présentiel à Paris\n  * Accompagnement au soft-skills et aux entretiens\n  * Coaching pendant 7 mois par un mentor\n  * Un job dating à la clé avec des partenaires employeurs !",
+        "discoverUrl":"https://france.generation.org",
         "isInternal":true,
         "logo":"generation.png",
         "name":"Génération",
         "partnerId":"generation",
         "steps":["training"],
         "title":"Gratuit",
-        "url":"https://france.generation.org",
+        "url":"https://genrecruiting.generation.org/welcome?country=61&program=278&location=11184",
         "userCount":1
     },
     {
