@@ -125,7 +125,9 @@ const PartnersPage = (): React.ReactElement => {
   const onSelect = useCallback((partnerId: string) =>
     setCurrentPartner(previousPartnerId => partnerId === previousPartnerId ? null : partnerId),
   [])
-  const step = Steps.find(({page}) => getPath(page, t) === url)
+  const stepIndex = Steps.findIndex(({page}) => getPath(page, t) === url)
+  const step = Steps[stepIndex]
+  const hasNextStep = !!Steps[stepIndex + 1]
   const {page, title = '', shortTitle = title, stepId}: Partial<StepInfo> = step || {}
   const tabs = useMemo(() => TABS_WITHOUT_STEP.map(({redirect, ...tab}) => ({
     ...tab,
@@ -192,7 +194,7 @@ const PartnersPage = (): React.ReactElement => {
       </div> : partners.map((partner) => <ExternalPartner
         key={partner.partnerId} {...partner}
         isOpen={currentPartner === partner.partnerId} onSelect={onSelect} />)}
-      {autoValidation}
+      {hasNextStep ? autoValidation : null}
     </Layout>
   }
   const ChevronIcon = areExternalsShown ? ChevronUpIcon : ChevronDownIcon
@@ -210,9 +212,9 @@ const PartnersPage = (): React.ReactElement => {
       <div style={{flexShrink: 0, width: outerPadding - 20}} />
     </div>
 
-    <div style={hrStyle} />
-
     {externalPartners.length ? <React.Fragment>
+      <div style={hrStyle} />
+
       <h2 style={{...tabTitleStyle, alignItems: 'center', display: 'flex'}}>
         {TABS_WITHOUT_STEP[1].title}
         <span style={{flex: 1}} />
@@ -227,13 +229,15 @@ const PartnersPage = (): React.ReactElement => {
         map((partner) => <ExternalPartner
           key={partner.partnerId} {...partner}
           isOpen={currentPartner === partner.partnerId} onSelect={onSelect} />)}
-
-      <div style={hrStyle} />
     </React.Fragment> : null}
 
-    <div style={autoValidationBoxStyle}>
-      {autoValidation}
-    </div>
+    {hasNextStep ? <React.Fragment>
+      <div style={hrStyle} />
+
+      <div style={autoValidationBoxStyle}>
+        {autoValidation}
+      </div>
+    </React.Fragment> : null}
   </Layout>
 }
 
