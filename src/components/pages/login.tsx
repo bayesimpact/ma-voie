@@ -2,7 +2,7 @@ import {UserCredential} from '@firebase/auth-types'
 import React, {useCallback, useEffect, useState} from 'react'
 import {useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
-import {useFirebase, useFirestore} from 'react-redux-firebase'
+import {useFirebase} from 'react-redux-firebase'
 import {useHistory} from 'react-router'
 import {Link} from 'react-router-dom'
 
@@ -58,7 +58,6 @@ type AuthResult = {user: UserCredential}
 const LoginPage = (): React.ReactElement => {
   const {t} = useTranslation()
   const firebase = useFirebase()
-  const firestore = useFirestore()
 
   const [areErrorFields, setAreErrorFields] = useState<{[K in 'email'|'password']?: boolean}>({})
 
@@ -98,10 +97,9 @@ const LoginPage = (): React.ReactElement => {
           // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
           return
         }
-        firestore.get({collection: 'projects', where: ['userId', '==', firebaseUser.uid]})
         history.push(getPath(['STEPS'], t))
       })
-  }, [firebase, firestore, inputEmail, history, password, setErrorMessage, t])
+  }, [firebase, inputEmail, history, password, setErrorMessage, t])
 
   // TODO(émilie): Move to actions.ts.
   const onSignInWithGoogle = useCallback((): void => {
@@ -113,14 +111,13 @@ const LoginPage = (): React.ReactElement => {
           // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
           return
         }
-        firestore.get({collection: 'projects', where: ['userId', '==', firebaseUser.uid]})
         history.push(getPath(['STEPS'], t))
       }).
       catch((error) => {
         setErrorMessage(error.message)
         return
       })
-  }, [firebase, firestore, history, t])
+  }, [firebase, history, t])
 
   // TODO(émilie): Move to actions.ts.
   // TODO(émilie): DRY with Google signin.
@@ -133,14 +130,13 @@ const LoginPage = (): React.ReactElement => {
           // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
           return
         }
-        firestore.get({collection: 'projects', where: ['userId', '==', firebaseUser.uid]})
         history.push(getPath(['STEPS'], t))
       }).
       catch((error) => {
         setErrorMessage(error.message)
         return
       })
-  }, [firebase, firestore, history, t])
+  }, [firebase, history, t])
 
   const buttonStyle: React.CSSProperties = {
     marginTop: 20,
