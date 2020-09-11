@@ -6,7 +6,7 @@ import {useHistory} from 'react-router'
 import sha1 from 'sha1'
 
 import {Props as PartnerProps} from 'store/partners'
-import {usePartnerCount, useProjectUpdater, useSelector, useUserId} from 'store/selections'
+import {usePartnerCount, useSelector, useStepsUpdater, useUserId} from 'store/selections'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
@@ -87,7 +87,7 @@ const PartnerCard = (props: Props): React.ReactElement => {
   const history = useHistory()
   const {email, lastName, name: userName} = useSelector(({firebase: {profile}}) =>
     profile as bayes.maVoie.User)
-  const projectUpdater = useProjectUpdater()
+  const stepsUpdater = useStepsUpdater()
   const finalContainerStyle: React.CSSProperties = {
     ...containerStyle,
     ...style,
@@ -113,7 +113,7 @@ const PartnerCard = (props: Props): React.ReactElement => {
         userPartnerId,
       })
     // TODO(cyrille): Add user info to url.
-    projectUpdater({steps: {[stepId]: {selectedPartnerId: partnerId}}})
+    stepsUpdater({[stepId]: {selectedPartnerId: partnerId}})
     const parsedUrl = new URL(url)
     const query = new URLSearchParams(parsedUrl.search)
     Object.entries({
@@ -132,7 +132,7 @@ const PartnerCard = (props: Props): React.ReactElement => {
     if (stepId === 'interview') {
       history.push(getPath(['CONGRATULATIONS'], t))
     }
-  }, [email, firestore, history, lastName, partnerId, projectUpdater, stepId, t, url, userId,
+  }, [email, firestore, history, lastName, partnerId, stepId, stepsUpdater, t, url, userId,
     userName, userPartnerId])
 
   return <section style={finalContainerStyle} onClick={handleClick} id={partnerId} data-partner>
