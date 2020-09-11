@@ -19,6 +19,7 @@ import {init as i18nInit} from 'store/i18n'
 import {useSubPathDefiner} from 'store/url'
 
 import AccountPage from 'components/pages/account'
+import CongratulationsPage from 'components/pages/congratulations'
 import ComponentsPage from 'components/pages/components'
 import DefinitionPage from 'components/pages/definition'
 import ForgotPasswordPage from 'components/pages/forgot_password'
@@ -52,6 +53,7 @@ const App = (): React.ReactElement => {
     <Route path={`/:step${defineAndGetPath('PARTNERS_EXTERNAL')}`} component={PartnersPage} />
     <Route path={`/:step${defineAndGetPath('JOB')}`} component={JobPage} />
     <Route path={defineAndGetPath('ACCOUNT')} component={AccountPage} />
+    <Route path={defineAndGetPath('CONGRATULATIONS')} component={CongratulationsPage} />
     <Route path={defineAndGetPath('LOGIN')} component={LoginPage} />
     <Route path={defineAndGetPath('DEFINITION')} component={DefinitionPage} />
     <Route path={defineAndGetPath('SKILLS')} component={SkillsPage} />

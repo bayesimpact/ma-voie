@@ -1,6 +1,7 @@
 import React, {useCallback} from 'react'
 import {useTranslation} from 'react-i18next'
 import ReactMarkdown from 'react-markdown'
+import {useHistory} from 'react-router'
 import {Link} from 'react-router-dom'
 
 import {getPath} from 'store/url'
@@ -81,6 +82,7 @@ const ExternalPartner = (props: ExternalPartnerProps): React.ReactElement => {
   const {isOpen, onSelect, partnerId, name, logo, details, description, url} = props
 
   const {t} = useTranslation()
+  const history = useHistory()
   const finalPartnerDetailsStyle = {
     display: isOpen ? 'block' : 'none',
     ...partnerDetailsStyle,
@@ -88,7 +90,8 @@ const ExternalPartner = (props: ExternalPartnerProps): React.ReactElement => {
   const handleOpen = useCallback((): void => onSelect(partnerId), [partnerId, onSelect])
   const handleChoose = useCallback((): void => {
     window.open(url, '_blank')
-  }, [url])
+    history.push(getPath(['CONGRATULATIONS'], t))
+  }, [history, t, url])
 
 
   return <div style={partnerContainerStyle}>
