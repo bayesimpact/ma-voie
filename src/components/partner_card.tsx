@@ -2,10 +2,12 @@ import React, {useCallback} from 'react'
 import {Trans, useTranslation} from 'react-i18next'
 import ReactMarkdown from 'react-markdown'
 import {useFirestore} from 'react-redux-firebase'
+import {useHistory} from 'react-router'
 import sha1 from 'sha1'
 
 import {Props as PartnerProps} from 'store/partners'
 import {usePartnerCount, useProjectUpdater, useSelector, useUserId} from 'store/selections'
+import {getPath} from 'store/url'
 
 import Button from 'components/button'
 
@@ -82,6 +84,7 @@ const PartnerCard = (props: Props): React.ReactElement => {
   const userCount = usePartnerCount(partnerId)
   const firestore = useFirestore()
   const userId = useUserId()
+  const history = useHistory()
   const {email, lastName, name: userName} = useSelector(({firebase: {profile}}) =>
     profile as bayes.maVoie.User)
   const projectUpdater = useProjectUpdater()
@@ -126,8 +129,11 @@ const PartnerCard = (props: Props): React.ReactElement => {
       })
     parsedUrl.search = query.toString()
     window.open(parsedUrl.toString(), '_blank')
-  }, [email, firestore, lastName, partnerId, projectUpdater, stepId, url, userId, userName,
-    userPartnerId])
+    if (stepId === 'interview') {
+      history.push(getPath(['CONGRATULATIONS'], t))
+    }
+  }, [email, firestore, history, lastName, partnerId, projectUpdater, stepId, t, url, userId,
+    userName, userPartnerId])
 
   return <section style={finalContainerStyle} onClick={handleClick} id={partnerId} data-partner>
     <div style={contentStyle}>

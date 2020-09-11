@@ -76,9 +76,10 @@ const partnerButtonStyle: React.CSSProperties = {
 interface ExternalPartnerProps extends PartnerProps {
   isOpen: boolean
   onSelect: (id: string) => void
+  stepId: bayes.maVoie.StepId
 }
 const ExternalPartner = (props: ExternalPartnerProps): React.ReactElement => {
-  const {isOpen, onSelect, partnerId, name, logo, details, description, url} = props
+  const {isOpen, onSelect, partnerId, name, logo, details, description, url, stepId} = props
 
   const {t} = useTranslation()
   const finalPartnerDetailsStyle = {
@@ -90,6 +91,8 @@ const ExternalPartner = (props: ExternalPartnerProps): React.ReactElement => {
     window.open(url, '_blank')
   }, [url])
 
+  const choosePath = stepId === 'interview' ?
+    getPath(['CONGRATULATIONS'], t) : getPath(['STEPS'], t)
 
   return <div style={partnerContainerStyle}>
     <div style={partnerHeaderStyle} onClick={handleOpen}>
@@ -123,7 +126,7 @@ const ExternalPartner = (props: ExternalPartnerProps): React.ReactElement => {
           </a>
         </div>
         <div style={partnerButtonStyle}>
-          <Link onClick={handleChoose} to={getPath(['STEPS'], t)} style={linkStyle}>
+          <Link onClick={handleChoose} to={choosePath} style={linkStyle}>
             <Button type="firstLevel">
               {t('Choisir')}
             </Button>

@@ -188,7 +188,7 @@ const PartnersPage = (): React.ReactElement => {
         )}
         <div style={{flexShrink: 0, width: outerPadding - 20}} />
       </div> : partners.map((partner) => <ExternalPartner
-        key={partner.partnerId} {...partner}
+        key={partner.partnerId} {...partner} stepId={stepId}
         isOpen={currentPartner === partner.partnerId} onSelect={onSelect} />)}
       {hasNextStep ? autoValidation : null}
     </Layout>
@@ -223,7 +223,7 @@ const PartnersPage = (): React.ReactElement => {
       </h2>
       {areExternalsShown && externalPartners.
         map((partner) => <ExternalPartner
-          key={partner.partnerId} {...partner}
+          key={partner.partnerId} {...partner} stepId={stepId}
           isOpen={currentPartner === partner.partnerId} onSelect={onSelect} />)}
     </React.Fragment> : null}
 
