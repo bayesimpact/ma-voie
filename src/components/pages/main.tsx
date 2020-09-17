@@ -81,8 +81,8 @@ interface AppState {
   store: Store<RootState, AllActions>
 }
 
-type ReduxState = RootState & {
-  router: RouterState<Record<string, undefined>|null|undefined>
+interface ReduxState extends RootState {
+  router: RouterState<unknown>
 }
 
 function createHistoryAndStore(): AppState {
