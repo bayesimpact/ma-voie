@@ -104,10 +104,10 @@ React.ReactElement => {
         {isDone ? <img style={doneStyle} src={doneIcon} alt="" /> : null}
       </div>
       {isDone ? <Button type="small">{t('Terminé')}</Button> :
-        isOpen ? <Button type="firstLevel" onClick={handleClick}>{t('Commencez')}</Button> :
+        isOpen ? <Button type="firstLevel" onClick={handleClick}>{t('Commencer')}</Button> :
           // TODO(cyrille): Replace with the list of steps to complete beforehand.
           <div style={forbiddenStyle}>
-            {t("Terminez l'étape {{steps}}", {
+            {t("Terminer l'étape {{steps}}", {
               count: index - 1,
               steps: joinList(new Array(index - 1).
                 fill(undefined).
