@@ -22,7 +22,7 @@ const priorityStyle: React.CSSProperties = {
 // TOP LEVEL PAGE
 const SkillsListPage = (): React.ReactElement => {
   const {t} = useTranslation()
-  const title = t('Avez-vous les compétences suivantes\u00A0?')
+  const title = t('Maîtrisez-vous les compétences suivantes\u00A0?')
 
   const projectUpdater = useProjectUpdater()
   const project = useProject()
