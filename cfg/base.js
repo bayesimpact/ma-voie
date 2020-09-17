@@ -58,15 +58,6 @@ module.exports = {
         },
       },
       {
-        resourceQuery: /multi/,
-        test: /\.(jpe?g|png)$/,
-        use: [
-          {
-            loader: 'responsive-loader',
-          },
-        ],
-      },
-      {
         test: /\.svg(\?fill=.*)?$/,
         use: [
           {
