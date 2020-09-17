@@ -54,6 +54,18 @@
         "userCount":1
     },
     {
+        "description":"  * Formation entièrement gratuite\n  * Lieu : présentiel et en ligne\n  * Formation données par des Coaches Google Ateliers Numériques ou des partenaires du programme",
+        "discoverUrl":"https://learndigital.withgoogle.com/ateliersnumeriques",
+        "isInternal":true,
+        "logo":"google-ateliers-numerique.png",
+        "name":"Google - Les ateliers numérique",
+        "partnerId":"google-ateliers-numerique",
+        "steps":["training"],
+        "title":"Gratuit",
+        "url":"https://learndigital.withgoogle.com/ateliersnumeriques",
+        "userCount":1
+    },
+    {
         "description":"Ce site \"Walt\" est une super ressource qui vous explique comment être efficace dans une recherche d'alternance.\n  * C'est aussi un moteur de recherche pour toutes vos questions d'orientation : informations sur des métiers, témoignages en vidéo, entreprises à cibler, informations sur des écoles...\n  * On vous recommande de réserver votre après-midi et d'explorer à fond, ce site est une mine d'or.",
         "details":"Site",
         "logo":"walt.png",
