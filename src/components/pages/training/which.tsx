@@ -27,8 +27,7 @@ const TrainingWhichPage = (): React.ReactElement => {
     <Trans style={containerStyle}>
       <h1 style={titleStyle}>Quelle formation&nbsp;?</h1>
       <p>
-        Choisissez une formation en fonction de ce qui vous plaît,
-        vos capacités financières, et des débouchés.
+        Choisissez une formation en fonction de ce qui vous plaît et de vos capacités financières.
       </p>
     </Trans>
     <Tip title={t('Astuce')}>
