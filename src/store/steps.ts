@@ -29,13 +29,13 @@ const Steps: readonly StepInfo[] = [
     icon: competencesIcon,
     page: ['SKILLS'],
     stepId: 'skills',
-    title: prepareT('Compétences'),
+    title: prepareT('Compétences nécessaires pour votre projet'),
   },
   {
     color: colors.LIGHT_SKY_BLUE,
     icon: formationIcon,
     page: ['TRAINING'],
-    shortTitle: prepareT('Formation'),
+    shortTitle: prepareT('Formations liées à votre projet'),
     stepId: 'training',
     title: prepareT('Formations'),
   },
@@ -45,7 +45,7 @@ const Steps: readonly StepInfo[] = [
     page: ['INTERVIEW'],
     shortTitle: prepareT('Entretiens'),
     stepId: 'interview',
-    title: prepareT('Préparer un entretien'),
+    title: prepareT('Préparer vos entretiens'),
   },
 ]
 
