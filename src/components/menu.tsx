@@ -13,8 +13,6 @@ import Button from 'components/button'
 import {colorToAlpha} from 'components/colors'
 import avatarPlaceholder from 'images/avatar-placeholder.svg'
 
-const notAvailable = (): void => window.alert('Bientôt disponible...')
-
 const containerStyle: React.CSSProperties = {
   backgroundColor: colors.DARK_TEAL,
   minHeight: '100vh',
@@ -65,14 +63,6 @@ const jobContentStyle: React.CSSProperties = {
   paddingBottom: 19,
   paddingLeft: 20,
   paddingTop: 17,
-}
-const buttonContainerStyle: React.CSSProperties = {
-  margin: '0 30px',
-}
-const buttonNewStyle: React.CSSProperties = {
-  marginTop: 20,
-  paddingLeft: 47,
-  paddingRight: 44,
 }
 const buttonStyle: React.CSSProperties = {
   margin: '20px 30px 0',
@@ -182,13 +172,6 @@ const Menu = ({onClose, style}: MenuProps): React.ReactElement => {
         : null
       }
     </div>
-    {isConnected
-      ? <div style={buttonContainerStyle}>
-        <Button type="menu" onClick={notAvailable} style={buttonNewStyle}>
-          {t('+ Ajouter un projet')}
-        </Button>
-      </div>
-      : null}
     {!isConnected ? <div style={newAccountDivContainerStyle}>
       <Link to={getPath(['ACCOUNT'], t)} style={linkStyle}>
         <Button type="firstLevel" style={buttonStyle}>{t('Créer un compte')}</Button>
