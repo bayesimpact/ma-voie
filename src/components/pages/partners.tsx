@@ -163,7 +163,9 @@ const PartnersPage = (): React.ReactElement => {
     overflow: 'scroll',
     scrollBehavior: 'smooth',
     width: '100vw',
-  } : {}
+  } : {
+    display: 'flex',
+  }
   const bigTitle = prepareT('Voici les partenaires idéaux pour vous aider')
   const autoValidation = <React.Fragment>
     <Trans parent="p" style={paragrapheStyle}>

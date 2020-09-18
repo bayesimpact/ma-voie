@@ -15,6 +15,7 @@ const containerStyle: React.CSSProperties = {
   backgroundColor: '#fff',
   borderRadius: 20,
   boxShadow: '0 4px 24px 0 rgba(0,0,0,.2)',
+  display: 'flex',
   fontSize: 13,
   margin: '20px 0',
   minWidth: 315,
@@ -44,6 +45,7 @@ const imageStyle: React.CSSProperties = {
 }
 const descriptionStyle: React.CSSProperties = {
   color: colors.DARK_FOREST_GREEN,
+  flex: 1,
   fontSize: 14,
   lineHeight: 1.2,
   marginBottom: 12,
@@ -93,6 +95,8 @@ const PartnerCard = (props: Props): React.ReactElement => {
     ...style,
   }
   const contentStyle: React.CSSProperties = {
+    display: 'flex',
+    flexDirection: 'column',
     margin: isSelected ? '60px 30px 45px' : '0 30px 50px',
   }
   const handleClick = useCallback((): void => {
