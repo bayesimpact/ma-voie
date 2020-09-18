@@ -26,7 +26,7 @@
         "userCount":0
     },
     {
-        "description":"Ce quiz \"IDMétiers\" vous interroge sur 25 compétences dans les domaines suivants :\n  * Comportements professionnels, par exemple si vous aimez travailler en équipe\n  * Savoirs professionnels, par exemple si vous savez bien communiquer par écrit\n  * Savoir-faire professionnels, par exemple si vous savez intégrer le développement durable dans votre travail\n  * À la fin, on vous propose des métiers correspondant le plus à vos compétences.\n  * Les questions sont assez avancées, mais vous pouvez laisser vide si vous n'avez pas encore d'idée.",
+        "description":"Ce quiz \"IDMétiers\" vous interroge sur 25 compétences dans les domaines suivants\u00A0:\n  * Comportements professionnels, par exemple si vous aimez travailler en équipe\n  * Savoirs professionnels, par exemple si vous savez bien communiquer par écrit\n  * Savoir-faire professionnels, par exemple si vous savez intégrer le développement durable dans votre travail\n  * À la fin, on vous propose des métiers correspondant le plus à vos compétences.\n  * Les questions sont assez avancées, mais vous pouvez laisser vide si vous n'avez pas encore d'idée.",
         "details":"Quiz",
         "logo":"idmetiers.jpeg",
         "name":"IDMétiers",
@@ -35,7 +35,7 @@
         "url":"https://www.afpa.fr/id-metiers"
     },
     {
-        "description":"Pour ce cours en ligne \"OpenClassrooms\" on vous demande d'y consacrer une heure. Le cours est composé d'exercises, en quatre étapes :\n\n1. J'explore qui je suis\n\n2. J'explore mon appétence professionnelle (ça veut dire vos goûts et vos préférences) \n\n3. Je me projette dans une situation professionnelle\n\n4. J'étudie la faisabilité (ça veut dire à quel point votre projet est-il réaliste ?)\n\nVous pouvez suivre le cours à votre rythme et selon vos besoins.",
+        "description":"Pour ce cours en ligne \"OpenClassrooms\" on vous demande d'y consacrer une heure. Le cours est composé d'exercises, en quatre étapes\u00A0:\n\n1. J'explore qui je suis\n\n2. J'explore mon appétence professionnelle (ça veut dire vos goûts et vos préférences) \n\n3. Je me projette dans une situation professionnelle\n\n4. J'étudie la faisabilité (ça veut dire à quel point votre projet est-il réaliste\u00A0?)\n\nVous pouvez suivre le cours à votre rythme et selon vos besoins.",
         "details":"Cours en ligne",
         "logo":"openclassrooms.png",
         "name":"OpenClassrooms",
@@ -55,7 +55,7 @@
         "url":"https://www.jobready.fr"
     },
     {
-        "description":"  * Formation entièrement gratuite\n  * Durée : 4 semaines\n  * Lieu : en présentiel à Paris\n  * Accompagnement au soft-skills et aux entretiens\n  * Coaching pendant 7 mois par un mentor\n  * Un job dating à la clé avec des partenaires employeurs !",
+        "description":"  * Formation entièrement gratuite au métier de Customer Care, la relation client 2.0\n  * Accompagnement au soft-skills et aux entretiens\n  * Coaching pendant 7 mois par un mentor\n  * Un job dating à la clé avec des partenaires employeurs !\n  * Durée\u00A0: 4 semaines\n  * Lieu\u00A0: en présentiel à Paris\n  * Plus de formations à venir",
         "discoverUrl":"https://france.generation.org",
         "isInternal":true,
         "logo":"generation.png",
@@ -67,7 +67,7 @@
         "userCount":1
     },
     {
-        "description":"  * Formation entièrement gratuite\n  * Lieu : présentiel et en ligne\n  * Formation données par des Coaches Google Ateliers Numériques ou des partenaires du programme",
+        "description":"  * Formation entièrement gratuite\n  * Lieu\u00A0: présentiel et en ligne\n  * Formation données par des Coaches Google Ateliers Numériques ou des partenaires du programme",
         "discoverUrl":"https://learndigital.withgoogle.com/ateliersnumeriques",
         "isInternal":true,
         "logo":"google-ateliers-numerique.png",
@@ -105,7 +105,7 @@
         "userCount":0
     },
     {
-        "description":"Ce site \"Walt\" est une super ressource qui vous explique comment être efficace dans une recherche d'alternance.\n  * C'est aussi un moteur de recherche pour toutes vos questions d'orientation : informations sur des métiers, témoignages en vidéo, entreprises à cibler, informations sur des écoles...\n  * On vous recommande de réserver votre après-midi et d'explorer à fond, ce site est une mine d'or.",
+        "description":"Ce site \"Walt\" est une super ressource qui vous explique comment être efficace dans une recherche d'alternance.\n  * C'est aussi un moteur de recherche pour toutes vos questions d'orientation\u00A0: informations sur des métiers, témoignages en vidéo, entreprises à cibler, informations sur des écoles...\n  * On vous recommande de réserver votre après-midi et d'explorer à fond, ce site est une mine d'or.",
         "details":"Site",
         "logo":"walt.png",
         "name":"Walt",
