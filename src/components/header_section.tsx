@@ -114,15 +114,13 @@ const HeaderSection = (): React.ReactElement => {
     <h1 style={logoStyle}><img src={logoImage} alt={t('productName')} /></h1>
     <div style={contentStyle}>
       {isMobileVersion ? null : <Trans style={tagLineStyle}>
-        La période que nous vivons <br />
-        a mis un coup d'arrêt à votre <br />
-        recherche d'emploi&nbsp;?
+        Besoin d'aide pour construire<br />
+        votre chemin vers l'emploi&nbsp;?
       </Trans>}
       <Trans style={subTagLineStyle}>
-        Face à la crise prenez le bon virage <br />
-        vers l'emploi avec <strong style={productNameStyle}>
-          $t(productName)
-        </strong>
+        <strong style={productNameStyle}>$t(productName)</strong> vous accompagne dans votre<br />
+        recherche d'emploi en 4 étapes clés. <br />
+        Simple. 100% en ligne. Personnalisé.<br />
       </Trans>
       {isLandingOnlyVersion ? null : <Link to={getPath(['STEPS'], t)} style={startLinkStyle}>
         <Button type="firstLevel" style={startButtonStyle}>
