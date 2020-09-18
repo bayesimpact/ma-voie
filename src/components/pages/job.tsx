@@ -46,9 +46,11 @@ const JobPage = (): React.ReactElement => {
   const onLost = useCallback(() => {
     stepsUpdater({definition: {}})
   }, [stepsUpdater])
-  const {job: previousJob} = useProject()
+  const {job: previousJob, objective} = useProject()
   const title = stepId === 'definition' ?
-    t('Pour quel métier souhaitez-vous retrouver un poste\u00A0?') :
+    objective === 'interview' ?
+      t('Pour quel métier souhaitez-vous préparer vos entretiens\u00A0?') :
+      t('Pour quel métier souhaitez-vous retrouver un poste\u00A0?') :
     previousJob ? t("Avez vous validé votre métier lors de l'étape précédente\u00A0?") :
       t("Vous n'avez pas encore choisi de métier, choisissez en un avant de continuer")
   const projectUpdater = useProjectUpdater()

@@ -7,11 +7,12 @@ import Step from './step'
 
 const OBJECTIVE_OPTIONS: readonly LocalizableOption<bayes.maVoie.ProjectObjective>[] = [
   {name: prepareT('Retrouver un poste'), value: 'job'},
+  {name: prepareT('Me préparer à un entretien'), value: 'interview'},
   {name: prepareT('Me former'), value: 'training'},
 ]
 
 const redirect = (objective: bayes.maVoie.ProjectObjective): PageSegment =>
-  objective === 'job' ? 'JOB' : 'LOST'
+  objective === 'job' || objective === 'interview' ? 'JOB' : 'LOST'
 
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE

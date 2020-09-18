@@ -42,6 +42,7 @@ declare namespace bayes {
       | 'interesting'
     type ProjectObjective =
       | 'job'
+      | 'interview'
       | 'training'
     type StepCertificate =
       | 'notRequired'
