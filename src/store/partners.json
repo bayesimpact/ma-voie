@@ -13,6 +13,19 @@
         "userCount":37
     },
     {
+        "description":"**Get Into Tech**\n  * Intéressé par l'univers du web, vous voulez vous lancer mais vous avez besoin d'un coup de boost pour cibler la carrière qui vous convient vraiment ?\n  * Découvez **Get Into Tech**, 1 mois pour développer vos compétences techniques et booster votre orientation professionnelle dans le domaine du numérique.\n  * Durée 4 semaines. 100% en ligne.",
+        "details":"",
+        "discoverUrl":"https://inco-group.co/fr/",
+        "isInternal":true,
+        "logo":"inco.png",
+        "name":"Inco - Get Into Tech",
+        "partnerId":"inco-get-into-tech",
+        "steps":["definition"],
+        "title":"Gratuit",
+        "url":"https://inco-group.co/fr/",
+        "userCount":0
+    },
+    {
         "description":"Ce quiz \"IDMétiers\" vous interroge sur 25 compétences dans les domaines suivants :\n  * Comportements professionnels, par exemple si vous aimez travailler en équipe\n  * Savoirs professionnels, par exemple si vous savez bien communiquer par écrit\n  * Savoir-faire professionnels, par exemple si vous savez intégrer le développement durable dans votre travail\n  * À la fin, on vous propose des métiers correspondant le plus à vos compétences.\n  * Les questions sont assez avancées, mais vous pouvez laisser vide si vous n'avez pas encore d'idée.",
         "details":"Quiz",
         "logo":"idmetiers.jpeg",
@@ -64,6 +77,32 @@
         "title":"Gratuit",
         "url":"https://learndigital.withgoogle.com/ateliersnumeriques",
         "userCount":1
+    },
+    {
+        "description":"**In Code**\n  * Devenez développeur et apprenez un des langages de programmation les plus en vogue !\n  * Construit sur un modèle blended - en présentiel et en ligne - INCODE vous permet d’acquérir en 400 heures toutes les compétences pour devenir développeur fullstack JavaScript et maîtriser les codes pour vous lancer en tant que développeur junior.\n  * Durée 3 mois. Blended (En ligne et présentiel)",
+        "details":"",
+        "discoverUrl":"https://inco-group.co/fr/",
+        "isInternal":true,
+        "logo":"inco.png",
+        "name":"Inco - In Code",
+        "partnerId":"inco-in-code",
+        "steps":["training"],
+        "title":"Gratuit",
+        "url":"https://inco-group.co/fr/",
+        "userCount":0
+    },
+    {
+        "description":"**Build and Click**\n  * Les clés pour devenir dessinateur-projeteur 3D avec REVIT ! Construit sur un modèle blended - en présentiel et en ligne - BUILD AND CLICK vous permet d’acquérir en 400 heures toutes les compétences pour devenir dessinateur-projeteur 3D et maîtriser le logiciel REVIT.\n   Durée 3 mois. Blended (En ligne et présentiel)",
+        "details":"",
+        "discoverUrl":"https://inco-group.co/fr/",
+        "isInternal":true,
+        "logo":"inco.png",
+        "name":"Inco - Build and Click",
+        "partnerId":"inco-build-and-click",
+        "steps":["training"],
+        "title":"Gratuit",
+        "url":"https://inco-group.co/fr/",
+        "userCount":0
     },
     {
         "description":"Ce site \"Walt\" est une super ressource qui vous explique comment être efficace dans une recherche d'alternance.\n  * C'est aussi un moteur de recherche pour toutes vos questions d'orientation : informations sur des métiers, témoignages en vidéo, entreprises à cibler, informations sur des écoles...\n  * On vous recommande de réserver votre après-midi et d'explorer à fond, ce site est une mine d'or.",
