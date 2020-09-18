@@ -89,10 +89,6 @@ const indexStyle: React.CSSProperties = {
   margin: '30px auto 0',
   width: 30,
 }
-const keyStepsStyle: React.CSSProperties = {
-  color: colors.TEAL_BLUE,
-  fontWeight: 'bold',
-}
 const cardOuterStyle: React.CSSProperties = {
   alignSelf: isMobileVersion ? 'flex-start' : 'stretch',
   marginLeft: isMobileVersion ? 0 : 40,
@@ -187,11 +183,11 @@ const GoalSection = (): React.ReactElement => {
   return <section style={sectionStyle}>
     <div style={contentStyle}>
       <div style={presentationStyle}>
-        <h2 style={titleStyle}>{t("C'est quoi\u00A0?")}</h2>
+        <h2 style={titleStyle}>{t('Les quatre étapes-clés')}</h2>
         <Trans>
-          Sur la route de l’emploi et en
-          ligne, <strong style={strongStyle}>$t(productName)</strong> vous offre un parcours
-          personnalisé à vos besoins à travers <span style={keyStepsStyle}>4 étapes clefs</span>
+          En fonction de votre situation, les partenaires certifiés
+          {' '}<strong style={strongStyle}>$t(productName)</strong>{' '}
+          vous accompagneront à chaque étape de votre parcours
         </Trans>
         {isMobileVersion ? null : <img style={arrowsStyle} src={grey6ArrowsImage} alt="" />}
       </div>
