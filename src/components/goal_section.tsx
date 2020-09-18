@@ -49,7 +49,8 @@ const CARDS: readonly (CardProps & {index?: never})[] = [
   {
     color: colors.PALE_MAUVE,
     content: <Trans parent={null}>
-      <strong style={strongStyle}>La valorisation</strong> de vos compétences
+      Un <strong style={strongStyle}>soutien</strong> et une
+      {' '}<strong style={strongStyle}>préparation</strong> pour réussir vos entretiens
     </Trans>,
     icon: valorisationIcon,
     name: prepareT('valorisation'),
