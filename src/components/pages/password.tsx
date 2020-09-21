@@ -6,7 +6,7 @@ import {FirebaseAuth} from 'database/firebase'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
-import Input from 'components/input'
+import PasswordInput from 'components/password_input'
 import Layout from 'components/layout'
 
 const inputStyle: React.CSSProperties = {
@@ -83,8 +83,8 @@ const PasswordPage = (): React.ReactElement => {
       Réinitialisez votre mot de passe pour <b>{{email}}</b>.
     </Trans> : null}
     <form onSubmit={onSubmit}>
-      <Input
-        placeholder={t('Nouveau mot de passe')} style={inputStyle} type="password"
+      <PasswordInput
+        placeholder={t('Nouveau mot de passe')} style={inputStyle}
         value={password} onChange={setPassword} />
       <Button type="secondLevel" onClick={onSubmit} style={buttonStyle} >
         {t('Valider')}

@@ -13,6 +13,7 @@ import Button from 'components/button'
 import ButtonWithIcon from 'components/button_with_icon'
 import Input from 'components/input'
 import LayoutSignIn from 'components/layout_sign_in'
+import PasswordInput from 'components/password_input'
 
 const inputStyle: React.CSSProperties = {
   border: `1px solid ${colors.SILVER_THREE}`,
@@ -151,9 +152,7 @@ const LoginPage = (): React.ReactElement => {
         value={inputEmail} onChange={setEmail} />
       {areErrorFields.email ? <div style={errorMessageStyle}>
       </div> : null}
-      <Input
-        placeholder={t('Mot de passe')} style={inputStyle}
-        type="password" value={password} onChange={setPassword} />
+      <PasswordInput style={inputStyle} value={password} onChange={setPassword} />
       {areErrorFields.password ? <div style={errorMessageStyle}>
       </div> : null}
       <div style={forgottenPasswordDivStyle}>

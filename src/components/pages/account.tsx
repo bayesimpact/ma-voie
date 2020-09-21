@@ -13,6 +13,7 @@ import {validateEmail} from 'store/validations'
 import Button from 'components/button'
 import Input from 'components/input'
 import LayoutSignIn from 'components/layout_sign_in'
+import PasswordInput from 'components/password_input'
 
 const getUniqueExampleEmail = (): string => `test-${new Date().getTime()}@example.com`
 
@@ -183,9 +184,8 @@ const AccountPage = (): React.ReactElement => {
     {areErrorFields.email ?
       <div style={errorMessageStyle}><sup>*</sup>{t('Champ obligatoire')}</div> :
       null}
-    {userId ? null : <Input
-      placeholder={t('Mot de passe')} style={inputPasswordStyle}
-      type="password" autoComplete="new-password"
+    {userId ? null : <PasswordInput
+      style={inputPasswordStyle} autoComplete="new-password"
       value={password} onChange={setPassword} />}
     {!userId && areErrorFields.password ?
       <div style={errorMessageStyle}>
