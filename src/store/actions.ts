@@ -1,12 +1,17 @@
 import {UserCredential} from '@firebase/auth-types'
+import {CallHistoryMethodAction, RouterState, push} from 'connected-react-router'
+import i18next from 'i18next'
 import {Action, Dispatch} from 'redux'
 import {useDispatch as genericUseDispatch} from 'react-redux'
 import {ThunkAction, ThunkDispatch} from 'redux-thunk'
 import {Credentials, FirebaseReducer, FirestoreReducer, getFirebase} from 'react-redux-firebase'
 import {actionTypes} from 'redux-firestore'
 
+import {getPath} from 'store/url'
+
 export type AllActions =
   | AuthenticateUser
+  | CallHistoryMethodAction
   | ClearData
   | Logout
 
@@ -37,7 +42,7 @@ interface ProviderAuthentication {
 type Authentication = PasswordAuthentication | ProviderAuthentication
 type AuthenticateUser = Readonly<Action<'AUTHENTICATE_USER'>> & Omit<Authentication, 'type'>
 function authenticateUser(auth: Authentication):
-ThunkAction<Promise<UserCredential>, RootState, unknown, AuthenticateUser> {
+ThunkAction<Promise<UserCredential>, RootState, unknown, AllActions> {
   return async (dispatch): Promise<UserCredential> => {
     const firebase = getFirebase()
     const firebaseAuth: Credentials = auth.provider === 'password' ?
@@ -57,6 +62,7 @@ ThunkAction<Promise<UserCredential>, RootState, unknown, AuthenticateUser> {
     if (!response.user) {
       throw new Error('Authentication failed for an unknown reason')
     }
+    dispatch(push(getPath(['STEPS'], i18next.t)))
     return response.user as unknown as UserCredential
   }
 }
@@ -64,6 +70,7 @@ ThunkAction<Promise<UserCredential>, RootState, unknown, AuthenticateUser> {
 export interface RootState {
   firebase: FirebaseReducer.Reducer<bayes.maVoie.User>
   firestore: FirestoreReducer.Reducer
+  router: RouterState<unknown>
   user: bayes.maVoie.User
 }
 

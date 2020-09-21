@@ -1,5 +1,5 @@
 import {User} from '@firebase/auth-types'
-import {ConnectedRouter, connectRouter, routerMiddleware, RouterState} from 'connected-react-router'
+import {ConnectedRouter, connectRouter, routerMiddleware} from 'connected-react-router'
 import firebase from 'firebase/app'
 import {History, createBrowserHistory} from 'history'
 import React, {Suspense, useEffect, useState} from 'react'
@@ -81,10 +81,6 @@ interface AppState {
   store: Store<RootState, AllActions>
 }
 
-interface ReduxState extends RootState {
-  router: RouterState<unknown>
-}
-
 function createHistoryAndStore(): AppState {
   const history = createBrowserHistory()
 
@@ -95,7 +91,7 @@ function createHistoryAndStore(): AppState {
   ))(createStore)
 
   // Create the store that will be provided to connected components via Context.
-  const store = finalCreateStore<ReduxState, AllActions>(
+  const store = finalCreateStore<RootState, AllActions>(
     combineReducers({
       firebase: firebaseReducer,
       firestore: firestoreReducer,
