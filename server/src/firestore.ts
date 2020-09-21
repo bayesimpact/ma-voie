@@ -47,16 +47,22 @@ const registerUser = updateField('registeredAt')
 const validateUser = updateField('validatedAt')
 
 const incrementPartnerCount = (partnerId: string): Promise<FirebaseFirestore.WriteResult> =>
-  admin.firestore().doc(`partnerCounts/${partnerId}`).
-    set({users: admin.firestore.FieldValue.increment(1)}, {merge: true})
+  admin.firestore().doc('analytics/counts').
+    set({[partnerId]: admin.firestore.FieldValue.increment(1)}, {merge: true})
 
 const recomputePartnerCounts = async (): Promise<readonly FirebaseFirestore.WriteResult[]> => {
   const db = admin.firestore()
   // TODO(cyrille): Stop doing it this way if the collection ever gets too big.
   const {docs} = await db.collectionGroup('partners').get()
-  return await Promise.all(
-    Object.entries(groupBy(docs, doc => doc.data().partnerId)).map(([partnerId, docs]) =>
-      db.doc(`partnerCounts/${partnerId}`).set({users: docs.length}, {merge: true})))
+  const countByPartner: {[partnerId: string]: number} = Object.fromEntries(
+    Object.entries(groupBy(docs, doc => doc.data().partnerId)).
+      map(([partnerId, docs]) => [partnerId, docs.length]))
+  return await Promise.all([
+    db.doc('analytics/counts').set(countByPartner, {merge: true}),
+    // TODO(cyrille): Drop this once the other one is used in client.
+    ...Object.entries(countByPartner).map(([partnerId, users]) =>
+      db.doc(`partnerCounts/${partnerId}`).set({users}, {merge: true})),
+  ])
 }
 
 export {incrementPartnerCount, recomputePartnerCounts, registerUser, validateUser}
