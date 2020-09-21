@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react'
-import {useTranslation} from 'react-i18next'
+import {Trans, useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
 import {useFirebase, useFirestore} from 'react-redux-firebase'
 import {useHistory} from 'react-router'
@@ -36,6 +36,11 @@ const errorMessageStyle: React.CSSProperties = {
 const layoutStyle: React.CSSProperties = {
   marginBottom: 20,
 }
+const checkboxDivStyle: React.CSSProperties = {
+  alignItems: 'center',
+  display: 'flex',
+  marginTop: 10,
+}
 
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
@@ -46,7 +51,8 @@ const AccountPage = (): React.ReactElement => {
   const firestore = useFirestore()
 
   const userId = useUserId()
-  const {email, lastName, name} = useSelector(({firebase: {profile}}: RootState) => profile)
+  const {email, lastName, name, phone, jobSeeker, retraining} = useSelector(
+    ({firebase: {profile}}: RootState) => profile)
   const [inputName, setName] = useState(name || '')
   useEffect((): void => {
     name && setName(name)
@@ -62,10 +68,25 @@ const AccountPage = (): React.ReactElement => {
     email && setEmail(email)
   }, [email])
 
+  const [inputPhone, setPhone] = useState(phone || '')
+  useEffect((): void => {
+    phone && setPhone(phone)
+  }, [phone])
+
+  const [inputJobSeeker, setJobSeeker] = useState(jobSeeker || false)
+  const handleJobSeeker = useCallback((e): void => {
+    setJobSeeker(e.target.checked)
+  }, [setJobSeeker])
+
+  const [inputRetraining, setRetraining] = useState(retraining || false)
+  const handleRetraining = useCallback((e): void => {
+    setRetraining(e.target.checked)
+  }, [setRetraining])
+
   const [password, setPassword] = useState('')
   const [isErrorDisplayed, setIsErrorDisplayed] = useState(false)
   const [areErrorFields, setAreErrorFields] =
-    useState<{[K in 'email'|'lastName'|'name'|'password']?: boolean}>({})
+    useState<{[K in 'email'|'lastName'|'name'|'phone'|'password']?: boolean}>({})
   const [errorMessage, setErrorMessage] = useState('')
 
   const [updated, setUpdated] = useState(false)
@@ -87,6 +108,7 @@ const AccountPage = (): React.ReactElement => {
       lastName: !inputLastName,
       name: !inputName,
       password: !password && !userId,
+      phone: !inputPhone,
     }
     setAreErrorFields(errorsFields)
     if (Object.values(errorsFields).some(field => field)) {
@@ -97,6 +119,9 @@ const AccountPage = (): React.ReactElement => {
       ...name === inputName ? {} : {name: inputName},
       ...lastName === inputLastName ? {} : {lastName: inputLastName},
       ...email === inputEmail || userId ? {} : {email: inputEmail},
+      ...phone === inputPhone ? {} : {phone: inputPhone},
+      ...inputJobSeeker ? {jobSeeker: true} : {jobSeeker: false},
+      ...inputRetraining ? {retraining: true} : {retraining: false},
     }
     if (Object.keys(update).length) {
       // TODO(émilie): Move to actions.ts
@@ -114,10 +139,10 @@ const AccountPage = (): React.ReactElement => {
         setUpdated(true)
       }
     }
-  }, [email, firebase, firestore, name, inputEmail,
-    inputName, lastName, inputLastName, password, setErrorMessage, userId])
+  }, [email, firebase, firestore, name, inputEmail, inputJobSeeker, inputName, lastName,
+    inputLastName, inputPhone, inputRetraining, password, phone, setErrorMessage, userId])
   useFastForward(() => {
-    if (inputName && inputLastName && inputEmail && password) {
+    if (inputName && inputLastName && inputEmail && inputPhone && password) {
       onSave()
       return
     }
@@ -130,6 +155,9 @@ const AccountPage = (): React.ReactElement => {
     if (!inputEmail) {
       setEmail(getUniqueExampleEmail())
     }
+    if (!inputPhone) {
+      setPhone('0123456789')
+    }
     if (!password) {
       setPassword('password')
     }
@@ -137,7 +165,8 @@ const AccountPage = (): React.ReactElement => {
 
   const buttonStyle: React.CSSProperties = {
     marginTop: 20,
-    opacity: !inputName || !inputLastName || !inputEmail || (!password && !userId) ? 0.75 : 1,
+    opacity: !inputName || !inputLastName || !inputEmail ||
+      !inputPhone || (!password && !userId) ? 0.75 : 1,
   }
 
   const errorValidationStyle: React.CSSProperties = {
@@ -155,6 +184,10 @@ const AccountPage = (): React.ReactElement => {
   const inputEmailStyle: React.CSSProperties = {
     ...inputStyle,
     borderColor: areErrorFields.email ? colors.RED_ERROR : colors.SILVER_THREE,
+  }
+  const inputPhoneStyle: React.CSSProperties = {
+    ...inputStyle,
+    borderColor: areErrorFields.phone ? colors.RED_ERROR : colors.SILVER_THREE,
   }
   const inputPasswordStyle: React.CSSProperties = {
     ...inputStyle,
@@ -184,6 +217,13 @@ const AccountPage = (): React.ReactElement => {
     {areErrorFields.email ?
       <div style={errorMessageStyle}><sup>*</sup>{t('Champ obligatoire')}</div> :
       null}
+    <Input
+      placeholder={t('Numéro de téléphone')} style={inputPhoneStyle}
+      autoComplete="phone"
+      value={inputPhone} onChange={setPhone} />
+    {areErrorFields.phone ?
+      <div style={errorMessageStyle}><sup>*</sup>{t('Champ obligatoire')}</div> :
+      null}
     {userId ? null : <PasswordInput
       style={inputPasswordStyle} autoComplete="new-password"
       value={password} onChange={setPassword} />}
@@ -192,10 +232,26 @@ const AccountPage = (): React.ReactElement => {
         <sup>*</sup>{t('Champ obligatoire, vérifiez votre email')}
       </div> :
       null}
+    <div style={checkboxDivStyle}>
+      <input
+        id="job-seeker-checkbox" defaultChecked={inputJobSeeker}
+        onChange={handleJobSeeker} type="checkbox" />
+      <label htmlFor="job-seeker-checkbox">
+        <Trans>Je suis en recherche d'emploi</Trans>
+      </label>
+    </div>
+    <div style={checkboxDivStyle}>
+      <input
+        id="retraining-checkbox" defaultChecked={inputRetraining}
+        onChange={handleRetraining} type="checkbox" />
+      <label htmlFor="retraining-checkbox">
+        <Trans>Je suis en reconversion professionnelle</Trans>
+      </label>
+    </div>
     <Button type="secondLevel" onClick={onSave} style={buttonStyle} >
       {t('Valider')}
     </Button>
-    {updated ? t('Vos identifiants ont été mis à jour.') : null}
+    {updated ? t('Vos informations ont été mises à jour.') : null}
     {isErrorDisplayed ? <div style={errorValidationStyle}>
       {t('Veuillez saisir les champs obligatoires pour continuer')}
     </div> : null}
