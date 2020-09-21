@@ -67,15 +67,15 @@
         "userCount":1
     },
     {
-        "description":"  * Formation entièrement gratuite\n  * Lieu\u00A0: présentiel et en ligne\n  * Formation données par des Coaches Google Ateliers Numériques ou des partenaires du programme",
-        "discoverUrl":"https://learndigital.withgoogle.com/ateliersnumeriques",
+        "description":"  * Formations au numérique gratuites et ouvertes à tous\n  * Cours en ligne, sessions live ou conseils personnalisés par visio-conférence",
+        "discoverUrl":"https://g.co/ateliersnumeriques ",
         "isInternal":true,
         "logo":"google-ateliers-numerique.png",
         "name":"Google - Les ateliers numérique",
         "partnerId":"google-ateliers-numerique",
         "steps":["training"],
         "title":"Gratuit",
-        "url":"https://learndigital.withgoogle.com/ateliersnumeriques",
+        "url":"https://g.co/ateliersnumeriques ",
         "userCount":1
     },
     {
