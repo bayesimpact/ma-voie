@@ -5,6 +5,8 @@ import logoBayes from 'images/logo-bayes.png'
 import logoChance from 'images/logo-chance.svg'
 import logoGeneration from 'images/logo-generation.png'
 import logoJobready from 'images/logo-jobready.png'
+import logoInco from 'images/logo-inco.png'
+import logoGoogleAteliersNumériques from 'images/logo-google-ateliers-numerique.png'
 
 
 const isMobileVersion = window.outerWidth < 800
@@ -16,11 +18,17 @@ interface PartnerProps {
   url: string
 }
 
-const PARTNERS = [
+const FOUNDING_PARTNERS = [
   {image: logoChance, name: 'Chance', url: 'https://www.chance.co/'},
   {image: logoBayes, name: 'Bayes Impact', url: 'https://www.bayesimpact.org/fr/'},
   {image: logoGeneration, name: 'Generation', url: 'https://france.generation.org/'},
   {image: logoJobready, name: 'Jobready', url: 'https://www.jobready.fr/'},
+]
+
+const PARTNERS = [
+  {image: logoInco, name: 'Inco', url: 'https://www.academy.inco-group.co/?lang=fr'},
+  {image: logoGoogleAteliersNumériques, name: 'Google - Les ateliers numériques',
+    url: 'https://g.co/ateliersnumeriques'},
 ]
 
 const partnerCardStyle: React.CSSProperties = {
@@ -50,6 +58,11 @@ const textStyle: React.CSSProperties = {
   minHeight: 78,
   padding: '30px 0px 40px',
 }
+const textSecondaryStyle: React.CSSProperties = {
+  fontSize: 18,
+  maxWidth: 465,
+  padding: '30px 0px 40px',
+}
 const titleStyle: React.CSSProperties = {
   fontFamily: 'ProximaSoft',
   fontSize: isMobileVersion ? 37 : 47,
@@ -71,9 +84,18 @@ const PartnersSection = (): React.ReactElement => {
   const {t} = useTranslation()
   return <section style={containerStyle}>
     <div style={{margin: 'auto', maxWidth: 960}}>
-      <h2 style={titleStyle}>{t('Nos partenaires')}</h2>
+      <h2 style={titleStyle}>{t('Nos partenaires fondateurs')}</h2>
       <Trans style={textStyle}>$t(productName) est une initiative portée par quatre acteurs du
       secteur de l'emploi et de la technologie</Trans>
+      <div style={cardsStyle}>
+        {FOUNDING_PARTNERS.map(
+          (partner: PartnerProps, index: number): React.ReactElement => <PartnerCard
+            key={index} {...partner} />)}
+      </div>
+    </div>
+    <div style={{margin: 'auto', marginTop: 20, maxWidth: 960}}>
+      <h2 style={titleStyle}>{t('Nos partenaires')}</h2>
+      <Trans style={textSecondaryStyle}>Ils soutiennent $t(productName)</Trans>
       <div style={cardsStyle}>
         {PARTNERS.map(
           (partner: PartnerProps, index: number): React.ReactElement => <PartnerCard
