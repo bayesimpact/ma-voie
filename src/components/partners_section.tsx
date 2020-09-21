@@ -94,7 +94,7 @@ const PartnersSection = (): React.ReactElement => {
       </div>
     </div>
     <div style={{margin: 'auto', marginTop: 20, maxWidth: 960}}>
-      <h2 style={titleStyle}>{t('Nos partenaires')}</h2>
+      <h2 style={titleStyle}>{t('Nos partenaires certifiés')}</h2>
       <Trans style={textSecondaryStyle}>Ils soutiennent $t(productName)</Trans>
       <div style={cardsStyle}>
         {PARTNERS.map(
