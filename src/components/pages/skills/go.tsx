@@ -1,5 +1,7 @@
-import React from 'react'
+import React, {useCallback} from 'react'
 import {useTranslation, Trans} from 'react-i18next'
+
+import {useStepsUpdater} from 'store/selections'
 
 import Layout from 'components/layout'
 import StepValidationButton from 'components/step_validation_button'
@@ -20,6 +22,11 @@ const buttonContainerStyle: React.CSSProperties = {
 const SkillsGoPage = (): React.ReactElement => {
   const {t} = useTranslation()
   const bigTitle = t('Félicitations\u00A0!')
+  const stepsUpdater = useStepsUpdater()
+
+  const handleClick = useCallback((): void => {
+    stepsUpdater({training: {completed: 'notRequired'}})
+  }, [stepsUpdater])
 
   return <Layout header={t('Compétences')} bigTitle={bigTitle}>
     <Trans>
@@ -37,7 +44,7 @@ const SkillsGoPage = (): React.ReactElement => {
       </p>
     </Trans>
     <div style={buttonContainerStyle}>
-      <StepValidationButton stepId="skills" stepValue="notRequired">
+      <StepValidationButton stepId="skills" stepValue="notRequired" onClick={handleClick}>
         {t('C\'est parti\u00A0!')}
       </StepValidationButton>
     </div>

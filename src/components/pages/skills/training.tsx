@@ -36,7 +36,6 @@ const SkillsTrainingPage = (): React.ReactElement => {
       skill: lowerFirstLetter(firstNeededSkill),
     },
   )
-  // FIXME(émilie): button : save project state (unlock training)
   return <Layout header={t('Compétences')} bigTitle={bigTitle}>
     <Trans>
       <p style={paragraphStyle}>
