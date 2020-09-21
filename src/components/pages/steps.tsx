@@ -110,8 +110,8 @@ const StepsPage = (): React.ReactElement => {
   const lastStep = Steps[Steps.length - 1]
   const firstSteps = Steps.slice(0, -1)
   const stepListJoin = joinList(firstSteps.
-    filter(({stepId}) => !(steps?.[stepId]?.completed)).
-    map((step, index) => (index + 1).toString()), t)
+    map(({stepId}, index) => (steps?.[stepId]?.completed) ? '' : (index + 1).toString()).
+    filter((text) => !!text), t)
 
   const ArrowNextIcon = isMobileVersion ? ArrowDownIcon : ArrowRightIcon
 
