@@ -109,4 +109,4 @@ app.post('/user/:userId/confirm', ...checkForStepId, (request: Request, response
 app.all('*', (request: Request, response: Response) => response.status(404).send())
 
 export const user = functions.https.onRequest(app)
-export {updateCount, resetCount} from './count'
+export {updatePartnerCount, updateUserCount, resetCount} from './count'
