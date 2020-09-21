@@ -37,7 +37,7 @@ const Steps: readonly StepInfo[] = [
     page: ['TRAINING'],
     shortTitle: prepareT('Formations liées à votre projet'),
     stepId: 'training',
-    title: prepareT('Formations'),
+    title: prepareT('Évaluer vos besoins de formations liées à votre projet'),
   },
   {
     color: colors.LIGHT_SKY_BLUE,
