@@ -1,9 +1,10 @@
 import * as functions from 'firebase-functions'
 
-import {incrementPartnerCount, recomputePartnerCounts} from './firestore'
+import {incrementUserCount, incrementPartnerCount, recomputeCounts} from './firestore'
 
 // TODO(cyrille): Add tests.
-export const updateCount = functions.firestore.document('users/{userId}/partners/{partnerId}').
+export const updatePartnerCount = functions.firestore.
+  document('users/{userId}/partners/{partnerId}').
   onCreate(async snapshot => {
     const partnerId = snapshot.get('partnerId')
     if (!partnerId) {
@@ -16,11 +17,14 @@ export const updateCount = functions.firestore.document('users/{userId}/partners
     }
   })
 
+export const updateUserCount = functions.firestore.document('users/{userId}').
+  onCreate(incrementUserCount)
+
 const countSchedule = functions.config().count?.schedule || '5 0 * * *'
 export const resetCount = functions.pubsub.schedule(countSchedule).onRun(async () => {
   try {
-    await recomputePartnerCounts()
+    await recomputeCounts()
   } catch (error) {
-    functions.logger.error('Unable to recompute partner users counts', error)
+    functions.logger.error('Unable to recompute users counts', error)
   }
 })
