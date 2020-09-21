@@ -1,7 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react'
 import {useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
-import {useHistory} from 'react-router'
 import {Link} from 'react-router-dom'
 
 import {RootState, authenticateUser, useDispatch} from 'store/actions'
@@ -66,7 +65,6 @@ const LoginPage = (): React.ReactElement => {
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
-  const history = useHistory()
   const onSubmit = useCallback(async (): Promise<void> => {
     const errorsFields = {
       email: !inputEmail,
@@ -78,31 +76,27 @@ const LoginPage = (): React.ReactElement => {
     }
     try {
       await dispatch(authenticateUser({email: inputEmail, password, provider: 'password'}))
-      // TODO(cyrille): Push from redux action.
-      history.push(getPath(['STEPS'], t))
     } catch (error) {
       // TODO(cyrille): Set this in Redux.
       setErrorMessage(error.message)
     }
-  }, [dispatch, inputEmail, history, password, t])
+  }, [dispatch, inputEmail, password])
 
   const onSignInWithGoogle = useCallback(async () => {
     try {
       await dispatch(authenticateUser({provider: 'google'}))
-      history.push(getPath(['STEPS'], t))
     } catch (error) {
       setErrorMessage(error.message)
     }
-  }, [dispatch, history, t])
+  }, [dispatch])
 
   const onSignInWithFacebook = useCallback(async () => {
     try {
       await dispatch(authenticateUser({provider: 'facebook'}))
-      history.push(getPath(['STEPS'], t))
     } catch (error) {
       setErrorMessage(error.message)
     }
-  }, [dispatch, history, t])
+  }, [dispatch])
 
   const buttonStyle: React.CSSProperties = {
     marginTop: 20,
