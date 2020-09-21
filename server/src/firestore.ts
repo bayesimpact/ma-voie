@@ -46,23 +46,39 @@ const updateField = (field: 'registeredAt' | 'validatedAt') => async (
 const registerUser = updateField('registeredAt')
 const validateUser = updateField('validatedAt')
 
+const incrementUserCount = (): Promise<FirebaseFirestore.WriteResult> =>
+  admin.firestore().doc('analytics/counts').
+    set({total: admin.firestore.FieldValue.increment(1)}, {merge: true})
+
 const incrementPartnerCount = (partnerId: string): Promise<FirebaseFirestore.WriteResult> =>
   admin.firestore().doc('analytics/counts').
     set({[partnerId]: admin.firestore.FieldValue.increment(1)}, {merge: true})
 
-const recomputePartnerCounts = async (): Promise<readonly FirebaseFirestore.WriteResult[]> => {
-  const db = admin.firestore()
+const computePartnersCount = async (db: FirebaseFirestore.Firestore):
+Promise<{[partnerId: string]: number}> => {
   // TODO(cyrille): Stop doing it this way if the collection ever gets too big.
   const {docs} = await db.collectionGroup('partners').get()
-  const countByPartner: {[partnerId: string]: number} = Object.fromEntries(
+  return Object.fromEntries(
     Object.entries(groupBy(docs, doc => doc.data().partnerId)).
       map(([partnerId, docs]) => [partnerId, docs.length]))
+}
+
+const computeUserCount = async (db: FirebaseFirestore.Firestore): Promise<number> => {
+  const users = await db.collection('users').get()
+  return users.size
+}
+
+const recomputeCounts = async (): Promise<readonly FirebaseFirestore.WriteResult[]> => {
+  const db = admin.firestore()
+  const countByPartner = await computePartnersCount(db)
+  const total = await computeUserCount(db)
+
   return await Promise.all([
-    db.doc('analytics/counts').set(countByPartner, {merge: true}),
-    // TODO(cyrille): Drop this once the other one is used in client.
+    db.doc('analytics/counts').set({...countByPartner, total}, {merge: true}),
+    // TODO(cyrille): Drop this once the other one is used in client for partner counts.
     ...Object.entries(countByPartner).map(([partnerId, users]) =>
       db.doc(`partnerCounts/${partnerId}`).set({users}, {merge: true})),
   ])
 }
 
-export {incrementPartnerCount, recomputePartnerCounts, registerUser, validateUser}
+export {incrementPartnerCount, incrementUserCount, recomputeCounts, registerUser, validateUser}
