@@ -1,5 +1,5 @@
 import React, {useCallback, useMemo, useState} from 'react'
-import {useTranslation} from 'react-i18next'
+import {Trans, useTranslation} from 'react-i18next'
 import {useHistory} from 'react-router'
 
 import {useProject, useProjectUpdater, useSkillsList} from 'store/selections'
@@ -49,6 +49,10 @@ const SkillsListPage = (): React.ReactElement => {
   ), [skillsList])
 
   return <Layout header={t('Compétences')} title={title}>
+    <Trans parent="p">
+      Suivant votre réponse, on vous emmène à l’étape "formation"
+      {' '}ou "préparation d’entretien"&nbsp;!
+    </Trans>
     <CheckboxList
       list={checkboxListData} valuesSelected={valuesSelected} onChange={setValuesSelected} />
     <div style={buttonContainerStyle}>
