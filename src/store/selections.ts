@@ -92,13 +92,15 @@ const useSkillsList = (): readonly SkillType[] => {
 }
 
 const usePartnerCount = (partnerId: string): number => {
-  const countListener = useMemo(() => ({
-    collection: 'partnerCounts',
-    doc: partnerId,
-  }), [partnerId])
-  useFirestoreConnect(countListener)
-  return useSelector(({firestore: {data: {partnerCounts}}}) =>
-    partnerCounts?.[partnerId]?.users || 0)
+  useFirestoreConnect([`partnerCounts/${partnerId}`, 'analytics/counts'])
+  return useSelector(({firestore: {data: {analytics, partnerCounts}}}) =>
+    analytics?.counts?.[partnerId] || partnerCounts?.[partnerId]?.users || 0)
+}
+
+// TODO(cyrille): Use in the new splash.
+const useUserCount = (): number => {
+  useFirestoreConnect('analytics/counts')
+  return useSelector(({firestore: {data: {analytics}}}) => analytics?.counts?.total || 0)
 }
 
 const sortSteps = (first: bayes.maVoie.PartnerStep, second: bayes.maVoie.PartnerStep): number => {
@@ -167,4 +169,4 @@ const useCertifiedSteps = (): NonNullable<bayes.maVoie.Project['steps']> => {
 }
 
 export {useCertifiedSteps, usePartnerCount, useProject, useProjects, useProjectId,
-  useProjectUpdater, useSelector, useSkillsList, useStepsUpdater, useUserId}
+  useProjectUpdater, useSelector, useSkillsList, useStepsUpdater, useUserId, useUserCount}
