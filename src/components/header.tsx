@@ -1,14 +1,18 @@
 import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon'
 import MenuIcon from 'mdi-react/MenuIcon'
-import React, {useCallback} from 'react'
+import React, {useCallback, useState} from 'react'
 import {useTranslation} from 'react-i18next'
 import {useHistory} from 'react-router'
 import {Link} from 'react-router-dom'
 
 import {getPath} from 'store/url'
 
-import logoImage from 'images/logo-black.svg'
+import ResetProjectPopup from 'components/reset_project_popup'
 
+import logoImage from 'images/logo-black.svg'
+import reloadIcon from 'images/reload-ico.svg'
+
+const isMobileVersion = window.outerWidth < 800
 
 const headerContainerStyle: React.CSSProperties = {
   backgroundColor: '#fff',
@@ -69,9 +73,18 @@ interface Props {
 const Header = ({menuPosition, onMenuClick = 'project', title}: Props): React.ReactElement => {
   const {t} = useTranslation()
   const history = useHistory()
+  const [isPopupShown, setIsPopupShown] = useState(false)
   const goBackClick = useCallback((): void => {
     history.goBack()
   }, [history])
+  const onClose = useCallback((): void => {
+    setIsPopupShown(false)
+  }, [setIsPopupShown])
+
+  const handleResetClick = useCallback((): void => {
+    setIsPopupShown(true)
+  }, [setIsPopupShown])
+
   const menuIcon = onMenuClick === 'none' ? null :
     onMenuClick === 'project' || onMenuClick === 'site' ?
       <Link to={getPath([onMenuClick === 'project' ? 'MENU' : 'MENU_SITE'], t)} style={linkStyle}>
@@ -95,11 +108,12 @@ const Header = ({menuPosition, onMenuClick = 'project', title}: Props): React.Re
             <span style={betaStyle}>BETA</span>
           </Link>
           {menuPosition === 'right' ? menuIcon : null}
+          {isMobileVersion ? <img src={reloadIcon} onClick={handleResetClick} alt="" /> : null}
         </React.Fragment>
       }
     </div>
+    {isPopupShown ? <ResetProjectPopup onClose={onClose} /> : null}
   </div>
 }
-
 
 export default React.memo(Header)

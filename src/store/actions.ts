@@ -91,6 +91,21 @@ ThunkAction<Promise<void>, RootState, unknown, UpdateProject> {
   }
 }
 
+const resetProjectAction = ():
+ThunkAction<Promise<void>, RootState, unknown, Readonly<Action<'RESET_PROJECT'>>> => {
+  return async (dispatch, getState): Promise<void> => {
+    dispatch({type: 'RESET_PROJECT'})
+    const {firebase: {profile: {currentProject: projectId = '0', projects}}} = getState()
+    const firebase = getFirebase()
+    await firebase.updateProfile({
+      projects: {
+        ...projects,
+        [projectId]: {},
+      },
+    })
+  }
+}
+
 interface UpdateSteps extends Readonly<Action<'UPDATE_STEPS'>> {
   steps: NonNullable<bayes.maVoie.Project['steps']>
 }
@@ -146,4 +161,5 @@ export interface RootState {
   user: bayes.maVoie.User
 }
 
-export {clearDataAction, authenticateUser, linkPartner, logoutAction, updateProject, updateSteps}
+export {clearDataAction, authenticateUser, linkPartner,
+  logoutAction, resetProjectAction, updateProject, updateSteps}
