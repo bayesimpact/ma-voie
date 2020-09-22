@@ -1,6 +1,8 @@
 import React from 'react'
 import {Trans} from 'react-i18next'
 
+import {useUserCount} from 'store/selections'
+
 const isMobileVersion = window.outerWidth < 800
 
 const sectionStyle: React.CSSProperties = {
@@ -77,6 +79,7 @@ const linkPreSubscriptionStyle: React.CSSProperties = {
   textDecoration: 'underline',
 }
 const BeneficiariesSection = (): React.ReactElement => {
+  const remaining = Math.max(3, 100 - useUserCount())
   return <section style={sectionStyle}>
     <div style={contentStyle}>
       <Trans style={tagLineStyle} parent="h2">
@@ -101,7 +104,7 @@ const BeneficiariesSection = (): React.ReactElement => {
             <p><a target="_blank" rel="noopener noreferrer"
               href="https://circleswork.typeform.com/to/q2pRD966" style={linkPreSubscriptionStyle}>
              Inscrivez-vous</a> et devenez l'un des <span style={blockDescriptionEmphasisStyle}>100
-            premiers bénéficiaires</span> (places limitées).</p>
+            premiers bénéficiaires</span> (plus que {{remaining}} places disponibles).</p>
           </Trans>
         </div>
         <div style={blocDatesStyle}>
