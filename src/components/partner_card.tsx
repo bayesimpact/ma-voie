@@ -5,7 +5,7 @@ import {useFirestore} from 'react-redux-firebase'
 import {useHistory} from 'react-router'
 import sha1 from 'sha1'
 
-import {updateSteps, useDispatch} from 'store/actions'
+import {linkPartner, updateSteps, useDispatch} from 'store/actions'
 import {Props as PartnerProps} from 'store/partners'
 import {usePartnerCount, useSelector, useUserId} from 'store/selections'
 import {getPath} from 'store/url'
@@ -105,19 +105,10 @@ const PartnerCard = (props: Props): React.ReactElement => {
       onClick(partnerId)
     }
   }, [partnerId, onClick])
+  // TODO(cyrille): Get this from firestore if it already exists.
   const userPartnerId = sha1(userId + partnerId)
-  // TODO(cyrille): Move to action.
   const choosePartner = useCallback((): void => {
-    // TODO(cyrille): Do not try to set it if it's already there.
-    firestore.
-      collection('users').
-      doc(userId).
-      collection('partners').
-      doc(userPartnerId).
-      set({
-        partnerId,
-        userPartnerId,
-      })
+    dispatch(linkPartner(partnerId, userPartnerId))
     dispatch(updateSteps({[stepId]: {selectedPartnerId: partnerId}}))
     const parsedUrl = new URL(url)
     const query = new URLSearchParams(parsedUrl.search)
@@ -137,8 +128,7 @@ const PartnerCard = (props: Props): React.ReactElement => {
     if (stepId === 'interview') {
       history.push(getPath(['CONGRATULATIONS'], t))
     }
-  }, [dispatch, email, firestore, history, lastName, partnerId, stepId, t, url, userId,
-    userName, userPartnerId])
+  }, [dispatch, email, history, lastName, partnerId, stepId, t, url, userName, userPartnerId])
 
   return <section style={finalContainerStyle} onClick={handleClick} id={partnerId} data-partner>
     <div style={contentStyle}>

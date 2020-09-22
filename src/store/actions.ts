@@ -8,6 +8,7 @@ import {actionTypes} from 'redux-firestore'
 export type AllActions =
   | AuthenticateUser
   | ClearData
+  | LinkPartner
   | Logout
   | UpdateProject
 
@@ -108,10 +109,33 @@ ThunkAction<Promise<void>, RootState, unknown, UpdateSteps> {
   }
 }
 
+interface LinkPartner extends Readonly<Action<'LINK_PARTNER'>> {
+  partnerId: string
+  userPartnerId: string
+}
+
+function linkPartner(partnerId: string, userPartnerId: string):
+ThunkAction<Promise<string>, RootState, unknown, LinkPartner> {
+  return async (dispatch, getState): Promise<string> => {
+    const {firebase: {auth: {uid: userId}}} = getState()
+    dispatch({partnerId, type: 'LINK_PARTNER', userPartnerId})
+    await getFirebase().firestore().
+      collection('users').
+      doc(userId).
+      collection('partners').
+      doc(userPartnerId).
+      set({
+        partnerId,
+        userPartnerId,
+      })
+    return userPartnerId
+  }
+}
+
 export interface RootState {
   firebase: FirebaseReducer.Reducer<bayes.maVoie.User>
   firestore: FirestoreReducer.Reducer
   user: bayes.maVoie.User
 }
 
-export {clearDataAction, authenticateUser, logoutAction, updateProject, updateSteps}
+export {clearDataAction, authenticateUser, linkPartner, logoutAction, updateProject, updateSteps}
