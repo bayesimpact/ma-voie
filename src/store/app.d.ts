@@ -21,6 +21,9 @@ declare namespace bayes {
       lastName?: string
       name?: string
       userId?: string // Firebase unique ID for authentication
+      phone?: string
+      jobSeeker?: boolean
+      retraining?: boolean
     }
 
     // TODO(cyrille): Set profile as a property of User.
