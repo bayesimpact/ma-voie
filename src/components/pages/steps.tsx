@@ -98,14 +98,6 @@ const StepsPage = (): React.ReactElement => {
     setIsPopupShown(false)
   }, [setIsPopupShown])
 
-  useEffect((): void => {
-    if (isPopupShown) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'auto'
-    }
-  }, [isPopupShown])
-
   const openStep = Steps.find(({stepId}): boolean => !(steps?.[stepId]?.completed))
   const lastStep = Steps[Steps.length - 1]
   const firstSteps = Steps.slice(0, -1)
