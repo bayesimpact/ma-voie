@@ -5,8 +5,9 @@ import {useTranslation, Trans} from 'react-i18next'
 import {useLocation, useRouteMatch} from 'react-router'
 import {Redirect} from 'react-router-dom'
 
+import {updateSteps, useDispatch} from 'store/actions'
 import {prepareT} from 'store/i18n'
-import {useCertifiedSteps, useStepsUpdater} from 'store/selections'
+import {useCertifiedSteps} from 'store/selections'
 import {getPath} from 'store/url'
 import Partners, {Props as PartnerProps} from 'store/partners'
 import Steps, {StepInfo} from 'store/steps'
@@ -94,8 +95,10 @@ interface SelectedPartnerProps {
 const SelectedPartnerPageBase = ({partner, step: {stepId, title}}: SelectedPartnerProps):
 React.ReactElement => {
   const {t, t: translate} = useTranslation()
-  const stepsUpdater = useStepsUpdater()
-  const stopPartner = useCallback((): void => stepsUpdater({[stepId]: {}}), [stepsUpdater, stepId])
+  const dispatch = useDispatch()
+  const stopPartner = useCallback((): void => {
+    dispatch(updateSteps({[stepId]: {}}))
+  }, [dispatch, stepId])
   return <Layout header={translate(title || '')}>
     <div style={introStyle}>{t('Vous avez choisi\u00A0:')}</div>
     <PartnerCard {...partner} isSelected={true} stepId={stepId} />

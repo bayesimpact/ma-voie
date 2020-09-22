@@ -2,7 +2,7 @@ import React, {useCallback} from 'react'
 import {useTranslation} from 'react-i18next'
 import {Link} from 'react-router-dom'
 
-import {useStepsUpdater} from 'store/selections'
+import {updateSteps, useDispatch} from 'store/actions'
 import {getPath} from 'store/url'
 
 import Button, {ButtonType} from 'components/button'
@@ -21,12 +21,12 @@ interface ButtonProps {
 const StepValidationButton = (props: ButtonProps): React.ReactElement => {
   const {children, onClick, stepId, stepValue, type = 'secondLevel'} = props
   const {t} = useTranslation()
-  const stepsUpdater = useStepsUpdater()
+  const dispatch = useDispatch()
   const handleClick = useCallback((): void => {
     // TODO(cyrille): Make sure we want to completely override the step.
-    stepsUpdater({[stepId]: {completed: stepValue}})
+    dispatch(updateSteps({[stepId]: {completed: stepValue}}))
     onClick?.()
-  }, [onClick, stepId, stepsUpdater, stepValue])
+  }, [dispatch, onClick, stepId, stepValue])
 
   // TODO(cyrille): Allow a fade-out before redirect.
   return <Link to={getPath(['STEPS'], t)} style={linkStyle}>
