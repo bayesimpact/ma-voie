@@ -1,12 +1,10 @@
-import {UserCredential} from '@firebase/auth-types'
 import React, {useCallback, useEffect, useState} from 'react'
 import {useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
-import {useFirebase} from 'react-redux-firebase'
 import {useHistory} from 'react-router'
 import {Link} from 'react-router-dom'
 
-import {RootState} from 'store/actions'
+import {RootState, authenticateUser, useDispatch} from 'store/actions'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
@@ -52,13 +50,11 @@ const forgottenPasswordDivStyle: React.CSSProperties = {
   textAlign: 'center',
 }
 
-type AuthResult = {user: UserCredential}
-
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 const LoginPage = (): React.ReactElement => {
   const {t} = useTranslation()
-  const firebase = useFirebase()
+  const dispatch = useDispatch()
 
   const [areErrorFields, setAreErrorFields] = useState<{[K in 'email'|'password']?: boolean}>({})
 
@@ -71,7 +67,7 @@ const LoginPage = (): React.ReactElement => {
   const [errorMessage, setErrorMessage] = useState('')
 
   const history = useHistory()
-  const onSubmit = useCallback((): void => {
+  const onSubmit = useCallback(async (): Promise<void> => {
     const errorsFields = {
       email: !inputEmail,
       password: !password,
@@ -80,64 +76,33 @@ const LoginPage = (): React.ReactElement => {
     if (!inputEmail || !password) {
       return
     }
-    firebase.login({email: inputEmail, password}).
-      catch((error) => {
-        setErrorMessage(error.message)
-        return
-      }).
-      then((result) => {
-        if (!result) {
-          return
-        }
-        // TODO(émilie): result is of the form {user: UserCredential} but has type UserCredential
-        // in Typescript. Correct this when the bug is solved (as in Google/Facebook login).
-        // See https://github.com/prescottprue/react-redux-firebase/issues/996
-        const {user: {user: firebaseUser} = {}} = result as unknown as AuthResult
-        if (!firebaseUser) {
-          // This should never happen, see
-          // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
-          return
-        }
-        history.push(getPath(['STEPS'], t))
-      })
-  }, [firebase, inputEmail, history, password, setErrorMessage, t])
+    try {
+      await dispatch(authenticateUser({email: inputEmail, password, provider: 'password'}))
+      // TODO(cyrille): Push from redux action.
+      history.push(getPath(['STEPS'], t))
+    } catch (error) {
+      // TODO(cyrille): Set this in Redux.
+      setErrorMessage(error.message)
+    }
+  }, [dispatch, inputEmail, history, password, t])
 
-  // TODO(émilie): Move to actions.ts.
-  const onSignInWithGoogle = useCallback((): void => {
-    firebase.login({provider: 'google', type: 'popup'}).
-      then((result) => {
-        const firebaseUser = result.user
-        if (!firebaseUser) {
-          // This should never happen, see
-          // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
-          return
-        }
-        history.push(getPath(['STEPS'], t))
-      }).
-      catch((error) => {
-        setErrorMessage(error.message)
-        return
-      })
-  }, [firebase, history, t])
+  const onSignInWithGoogle = useCallback(async () => {
+    try {
+      await dispatch(authenticateUser({provider: 'google'}))
+      history.push(getPath(['STEPS'], t))
+    } catch (error) {
+      setErrorMessage(error.message)
+    }
+  }, [dispatch, history, t])
 
-  // TODO(émilie): Move to actions.ts.
-  // TODO(émilie): DRY with Google signin.
-  const onSignInWithFacebook = useCallback((): void => {
-    firebase.login({provider: 'facebook', type: 'popup'}).
-      then((result) => {
-        const firebaseUser = result.user
-        if (!firebaseUser) {
-          // This should never happen, see
-          // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithpopup
-          return
-        }
-        history.push(getPath(['STEPS'], t))
-      }).
-      catch((error) => {
-        setErrorMessage(error.message)
-        return
-      })
-  }, [firebase, history, t])
+  const onSignInWithFacebook = useCallback(async () => {
+    try {
+      await dispatch(authenticateUser({provider: 'facebook'}))
+      history.push(getPath(['STEPS'], t))
+    } catch (error) {
+      setErrorMessage(error.message)
+    }
+  }, [dispatch, history, t])
 
   const buttonStyle: React.CSSProperties = {
     marginTop: 20,
