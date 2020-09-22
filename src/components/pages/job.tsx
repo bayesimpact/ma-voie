@@ -4,7 +4,8 @@ import {useRouteMatch} from 'react-router'
 import {Redirect} from 'react-router-dom'
 
 import FadingLink, {useFadeInFadeOut} from 'hooks/fade'
-import {useCertifiedSteps, useProject, useProjectUpdater, useStepsUpdater} from 'store/selections'
+import {updateProject, useDispatch} from 'store/actions'
+import {useCertifiedSteps, useProject, useStepsUpdater} from 'store/selections'
 import Steps, {StepInfo} from 'store/steps'
 import {Page, getPath} from 'store/url'
 
@@ -53,7 +54,7 @@ const JobPage = (): React.ReactElement => {
       t('Pour quel métier souhaitez-vous retrouver un poste\u00A0?') :
     previousJob ? t("Avez vous validé votre métier lors de l'étape précédente\u00A0?") :
       t("Vous n'avez pas encore choisi de métier, choisissez en un avant de continuer")
-  const projectUpdater = useProjectUpdater()
+  const dispatch = useDispatch()
   const [job, setJob] = useState<bayes.maVoie.Job|null>(previousJob || null)
   useEffect(() => previousJob && setJob(previousJob), [previousJob])
   const {fadeTo, style} = useFadeInFadeOut()
@@ -67,12 +68,12 @@ const JobPage = (): React.ReactElement => {
     if (!job) {
       return
     }
-    projectUpdater({job})
+    dispatch(updateProject({job}))
     fadeTo([
       ...page || [],
       ...(stepId === 'definition' ? ['EXPERIENCE'] : stepId === 'skills' ? ['LIST'] : []) as Page,
     ])
-  }, [fadeTo, job, page, projectUpdater, stepId])
+  }, [dispatch, fadeTo, job, page, stepId])
 
   if (!step) {
     return <Redirect to={getPath(['STEPS'], t)} />

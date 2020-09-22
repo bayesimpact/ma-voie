@@ -11,14 +11,12 @@ const emptyArray = [] as const
 
 const useSelector = <T>(selector: (state: RootState) => T): T => genericUseSelector(selector)
 
-const useProjectId = (): string => {
-  const projects = useSelector((state) => state.firestore.data.projects)
-  if (!projects) {
-    return '0'
-  }
-  const projectKeys = Object.keys(projects)
-  return projectKeys[projectKeys.length - 1]
+const useUserId = (): string => {
+  return useSelector(({firebase: {auth: {uid}}}: RootState) => uid)
 }
+
+const useProjectId = (): string =>
+  useSelector((state) => state.firebase.profile.currentProject || '0')
 
 const useProjects = (): bayes.maVoie.User['projects'] => {
   return useSelector(({firebase: {profile: {projects}}}: RootState) => projects)
@@ -34,6 +32,7 @@ const useProject = (): bayes.maVoie.Project => {
   return projects[projectId]
 }
 
+// TODO(cyrille): Drop, since unused.
 const useProjectUpdater = (): ((updatedProject: Partial<bayes.maVoie.Project>) => void) => {
   const firestore = useFirestore()
   const userId = useUserId()
@@ -73,11 +72,6 @@ const useStepsUpdater = (): ((updatedStep: bayes.maVoie.Project['steps']) => voi
     }
     firestore.update(projectRefConfig, {projects: computedProjects})
   }, [firestore, project, projectId, projects, userId])
-}
-
-// TODO(cyrille): Move at the top of the file.
-const useUserId = (): string => {
-  return useSelector(({firebase: {auth: {uid}}}: RootState) => uid)
 }
 
 const useSkillsList = (): readonly SkillType[] => {

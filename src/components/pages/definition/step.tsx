@@ -3,8 +3,9 @@ import {useTranslation} from 'react-i18next'
 import {useHistory} from 'react-router'
 
 import {useFadeInFadeOut} from 'hooks/fade'
+import {useDispatch, updateProject} from 'store/actions'
 import {LocalizableOption, LocalizableString, localizeOptions} from 'store/i18n'
-import {useProject, useProjectId, useProjectUpdater, useUserId} from 'store/selections'
+import {useProject, useUserId} from 'store/selections'
 import {PageSegment, getPath} from 'store/url'
 
 import Select from 'components/select'
@@ -25,8 +26,7 @@ interface StepProps<K extends keyof bayes.maVoie.Project> {
 const DefinitionStepBase = <K extends keyof bayes.maVoie.Project>
 ({projectKey, bigTitle, title, options, redirect}: StepProps<K>): React.ReactElement => {
   const {t, t: translate} = useTranslation()
-  const projectId = useProjectId()
-  const projectUpdater = useProjectUpdater()
+  const dispatch = useDispatch()
   const project = useProject()
   const history = useHistory()
 
@@ -37,10 +37,10 @@ const DefinitionStepBase = <K extends keyof bayes.maVoie.Project>
     if (!value) {
       return
     }
-    projectUpdater({projectId, [projectKey]: value, userId})
+    dispatch(updateProject({[projectKey]: value, userId}))
     fadeOut(() => history.push(
       getPath(['DEFINITION', redirect(value as NonNullable<bayes.maVoie.Project[K]>, project)], t)))
-  }, [fadeOut, history, project, projectUpdater, projectId, projectKey, redirect, t, userId])
+  }, [dispatch, fadeOut, history, project, projectKey, redirect, t, userId])
 
   return <Layout
     header={t('Définition')} bigTitle={bigTitle && translate(bigTitle)}
