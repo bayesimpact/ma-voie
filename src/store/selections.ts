@@ -1,7 +1,7 @@
 import _flatMap from 'lodash/flatMap'
-import {useCallback, useEffect, useMemo, useState} from 'react'
+import {useEffect, useMemo, useState} from 'react'
 import {useSelector as genericUseSelector} from 'react-redux'
-import {useFirestore, useFirestoreConnect} from 'react-redux-firebase'
+import {useFirestoreConnect} from 'react-redux-firebase'
 
 import {SkillType, getSkills} from 'store/skills'
 
@@ -30,49 +30,6 @@ const useProject = (): bayes.maVoie.Project => {
     return {projectId, userId}
   }
   return projects[projectId]
-}
-
-// TODO(cyrille): Drop, since unused.
-const useProjectUpdater = (): ((updatedProject: Partial<bayes.maVoie.Project>) => void) => {
-  const firestore = useFirestore()
-  const userId = useUserId()
-  const projectId = useProjectId()
-  const project = useProject()
-  const projects = useProjects()
-  return useCallback((updatedProject: Partial<bayes.maVoie.Project>) => {
-    const projectRefConfig = {
-      collection: 'users',
-      doc: userId,
-    }
-    const computedProjects = {
-      ...projects,
-      [projectId]: {...project, ...updatedProject},
-    }
-    firestore.update(projectRefConfig, {projects: computedProjects})
-  }, [firestore, project, projectId, projects, userId])
-}
-
-// TODO(cyrille): Drop, since unused.
-const useStepsUpdater = (): ((updatedStep: bayes.maVoie.Project['steps']) => void) => {
-  const firestore = useFirestore()
-  const userId = useUserId()
-  const projectId = useProjectId()
-  const project = useProject()
-  const projects = useProjects()
-  return useCallback((updatedStep: bayes.maVoie.Project['steps']) => {
-    const projectRefConfig = {
-      collection: 'users',
-      doc: userId,
-    }
-    const computedProjects: bayes.maVoie.User['projects'] = {
-      ...projects,
-      [projectId]: {
-        ...project,
-        steps: {...project.steps, ...updatedStep},
-      },
-    }
-    firestore.update(projectRefConfig, {projects: computedProjects})
-  }, [firestore, project, projectId, projects, userId])
 }
 
 const useSkillsList = (): readonly SkillType[] => {
@@ -164,4 +121,4 @@ const useCertifiedSteps = (): NonNullable<bayes.maVoie.Project['steps']> => {
 }
 
 export {useCertifiedSteps, usePartnerCount, useProject, useProjects, useProjectId,
-  useProjectUpdater, useSelector, useSkillsList, useStepsUpdater, useUserId, useUserCount}
+  useSelector, useSkillsList, useUserId, useUserCount}
