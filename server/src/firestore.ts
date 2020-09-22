@@ -68,17 +68,12 @@ const computeUserCount = async (db: FirebaseFirestore.Firestore): Promise<number
   return users.size
 }
 
-const recomputeCounts = async (): Promise<readonly FirebaseFirestore.WriteResult[]> => {
+const recomputeCounts = async (): Promise<FirebaseFirestore.WriteResult> => {
   const db = admin.firestore()
   const countByPartner = await computePartnersCount(db)
   const total = await computeUserCount(db)
 
-  return await Promise.all([
-    db.doc('analytics/counts').set({...countByPartner, total}, {merge: true}),
-    // TODO(cyrille): Drop this once the other one is used in client for partner counts.
-    ...Object.entries(countByPartner).map(([partnerId, users]) =>
-      db.doc(`partnerCounts/${partnerId}`).set({users}, {merge: true})),
-  ])
+  return await db.doc('analytics/counts').set({...countByPartner, total}, {merge: true})
 }
 
 export {incrementPartnerCount, incrementUserCount, recomputeCounts, registerUser, validateUser}
