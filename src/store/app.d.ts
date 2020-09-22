@@ -28,7 +28,7 @@ declare namespace bayes {
 
     // TODO(cyrille): Set profile as a property of User.
     interface User extends Profile {
-      partners?: readonly PartnerIdentification[]
+      currentProject?: string
       projects?: {
         [projectId: string]: Project
       }
@@ -76,6 +76,7 @@ declare namespace bayes {
       projectId: string
       skills?: readonly string[]
       steps?: {readonly [stepId in StepId]?: ProjectStep}
+      // TODO(cyrille): Drop, since unused.
       userId?: string
     }
 
