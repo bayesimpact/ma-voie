@@ -49,7 +49,6 @@ const usePartnerCount = (partnerId: string): number => {
     analytics?.counts?.[partnerId] || partnerCounts?.[partnerId]?.users || 0)
 }
 
-// TODO(cyrille): Use in the new splash.
 const useUserCount = (): number => {
   useFirestoreConnect('analytics/counts')
   return useSelector(({firestore: {data: {analytics}}}) => analytics?.counts?.total || 0)
