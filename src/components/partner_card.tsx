@@ -5,8 +5,9 @@ import {useFirestore} from 'react-redux-firebase'
 import {useHistory} from 'react-router'
 import sha1 from 'sha1'
 
+import {updateSteps, useDispatch} from 'store/actions'
 import {Props as PartnerProps} from 'store/partners'
-import {usePartnerCount, useSelector, useStepsUpdater, useUserId} from 'store/selections'
+import {usePartnerCount, useSelector, useUserId} from 'store/selections'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
@@ -89,7 +90,7 @@ const PartnerCard = (props: Props): React.ReactElement => {
   const history = useHistory()
   const {email, lastName, name: userName} = useSelector(({firebase: {profile}}) =>
     profile as bayes.maVoie.User)
-  const stepsUpdater = useStepsUpdater()
+  const dispatch = useDispatch()
   const finalContainerStyle: React.CSSProperties = {
     ...containerStyle,
     ...style,
@@ -105,6 +106,7 @@ const PartnerCard = (props: Props): React.ReactElement => {
     }
   }, [partnerId, onClick])
   const userPartnerId = sha1(userId + partnerId)
+  // TODO(cyrille): Move to action.
   const choosePartner = useCallback((): void => {
     // TODO(cyrille): Do not try to set it if it's already there.
     firestore.
@@ -116,7 +118,7 @@ const PartnerCard = (props: Props): React.ReactElement => {
         partnerId,
         userPartnerId,
       })
-    stepsUpdater({[stepId]: {selectedPartnerId: partnerId}})
+    dispatch(updateSteps({[stepId]: {selectedPartnerId: partnerId}}))
     const parsedUrl = new URL(url)
     const query = new URLSearchParams(parsedUrl.search)
     Object.entries({
@@ -135,7 +137,7 @@ const PartnerCard = (props: Props): React.ReactElement => {
     if (stepId === 'interview') {
       history.push(getPath(['CONGRATULATIONS'], t))
     }
-  }, [email, firestore, history, lastName, partnerId, stepId, stepsUpdater, t, url, userId,
+  }, [dispatch, email, firestore, history, lastName, partnerId, stepId, t, url, userId,
     userName, userPartnerId])
 
   return <section style={finalContainerStyle} onClick={handleClick} id={partnerId} data-partner>

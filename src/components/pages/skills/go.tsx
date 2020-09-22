@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react'
 import {useTranslation, Trans} from 'react-i18next'
 
-import {useStepsUpdater} from 'store/selections'
+import {updateSteps, useDispatch} from 'store/actions'
 
 import Layout from 'components/layout'
 import StepValidationButton from 'components/step_validation_button'
@@ -22,11 +22,11 @@ const buttonContainerStyle: React.CSSProperties = {
 const SkillsGoPage = (): React.ReactElement => {
   const {t} = useTranslation()
   const bigTitle = t('Félicitations\u00A0!')
-  const stepsUpdater = useStepsUpdater()
+  const dispatch = useDispatch()
 
   const handleClick = useCallback((): void => {
-    stepsUpdater({training: {completed: 'notRequired'}})
-  }, [stepsUpdater])
+    dispatch(updateSteps({training: {completed: 'notRequired'}}))
+  }, [dispatch])
 
   return <Layout header={t('Compétences')} bigTitle={bigTitle}>
     <Trans>
