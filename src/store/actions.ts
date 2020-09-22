@@ -7,6 +7,7 @@ import {Action, Dispatch} from 'redux'
 import {ThunkAction, ThunkDispatch} from 'redux-thunk'
 import {Credentials, FirebaseReducer, FirestoreReducer, getFirebase} from 'react-redux-firebase'
 import {actionTypes} from 'redux-firestore'
+import sha1 from 'sha1'
 
 import {getPath} from 'store/url'
 
@@ -137,10 +138,17 @@ interface LinkPartner extends Readonly<Action<'LINK_PARTNER'>> {
   userPartnerId: string
 }
 
-function linkPartner(partnerId: string, userPartnerId: string):
+function linkPartner(partnerId: string):
 ThunkAction<Promise<string>, RootState, unknown, LinkPartner> {
   return async (dispatch, getState): Promise<string> => {
-    const {firebase: {auth: {uid: userId}}} = getState()
+    const {firebase: {auth: {uid: userId}}, firestore: {data: {partners = []}}} = getState()
+    const {userPartnerId: existingId} =
+      partners.find((partner: bayes.maVoie.PartnerIdentification) =>
+        partner.partnerId === partnerId) || {}
+    if (existingId) {
+      return existingId
+    }
+    const userPartnerId = sha1(userId + partnerId)
     dispatch({partnerId, type: 'LINK_PARTNER', userPartnerId})
     await getFirebase().firestore().
       collection('users').

@@ -2,11 +2,10 @@ import React, {useCallback} from 'react'
 import {Trans, useTranslation} from 'react-i18next'
 import ReactMarkdown from 'react-markdown'
 import {useHistory} from 'react-router'
-import sha1 from 'sha1'
 
 import {linkPartner, updateSteps, useDispatch} from 'store/actions'
 import {Props as PartnerProps} from 'store/partners'
-import {usePartnerCount, useSelector, useUserId} from 'store/selections'
+import {usePartnerCount, useSelector} from 'store/selections'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
@@ -84,7 +83,6 @@ const PartnerCard = (props: Props): React.ReactElement => {
     stepId, style, title} = props
   const {t} = useTranslation()
   const userCount = usePartnerCount(partnerId)
-  const userId = useUserId()
   const history = useHistory()
   const {email, lastName, name: userName} = useSelector(({firebase: {profile}}) =>
     profile as bayes.maVoie.User)
@@ -103,17 +101,15 @@ const PartnerCard = (props: Props): React.ReactElement => {
       onClick(partnerId)
     }
   }, [partnerId, onClick])
-  // TODO(cyrille): Get this from firestore if it already exists.
-  const userPartnerId = sha1(userId + partnerId)
-  const choosePartner = useCallback((): void => {
-    dispatch(linkPartner(partnerId, userPartnerId))
+  const choosePartner = useCallback(async (): Promise<void> => {
+    const maVoieId = await dispatch(linkPartner(partnerId))
     dispatch(updateSteps({[stepId]: {selectedPartnerId: partnerId}}))
     const parsedUrl = new URL(url)
     const query = new URLSearchParams(parsedUrl.search)
     Object.entries({
       email,
       lastName,
-      maVoieId: userPartnerId,
+      maVoieId,
       name: userName,
       stepId,
     }).
@@ -126,7 +122,7 @@ const PartnerCard = (props: Props): React.ReactElement => {
     if (stepId === 'interview') {
       history.push(getPath(['CONGRATULATIONS'], t))
     }
-  }, [dispatch, email, history, lastName, partnerId, stepId, t, url, userName, userPartnerId])
+  }, [dispatch, email, history, lastName, partnerId, stepId, t, url, userName])
 
   return <section style={finalContainerStyle} onClick={handleClick} id={partnerId} data-partner>
     <div style={contentStyle}>
