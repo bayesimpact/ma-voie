@@ -9,10 +9,11 @@ export type AllActions =
   | AuthenticateUser
   | ClearData
   | Logout
+  | UpdateProject
 
 // Type of the main dispatch function.
 export type DispatchAllActions =
-  & ThunkDispatch<RootState, unknown, AuthenticateUser>
+  & ThunkDispatch<RootState, unknown, AllActions>
   & Dispatch<AllActions>
 
 export const useDispatch: () => DispatchAllActions = genericUseDispatch
@@ -23,7 +24,6 @@ const logoutAction: Logout = {type: 'LOGOUT'}
 export type ClearDataType = '@@reduxFirestore/CLEAR_DATA'
 type ClearData = Readonly<Action<ClearDataType>>
 const clearDataAction: ClearData = {type: actionTypes.CLEAR_DATA as ClearDataType}
-
 
 interface PasswordAuthentication {
   email: string
@@ -61,10 +61,32 @@ ThunkAction<Promise<UserCredential>, RootState, unknown, AuthenticateUser> {
   }
 }
 
+export interface UpdateProject extends Readonly<Action<'UPDATE_PROJECT'>> {
+  project: Partial<bayes.maVoie.Project>
+}
+
+function updateProject(project: Partial<bayes.maVoie.Project>):
+ThunkAction<Promise<void>, RootState, unknown, UpdateProject> {
+  return async (dispatch, getState): Promise<void> => {
+    dispatch({project, type: 'UPDATE_PROJECT'})
+    const {firebase: {profile: {currentProject: projectId = '0', projects}}} = getState()
+    const firebase = getFirebase()
+    await firebase.updateProfile({
+      projects: {
+        ...projects,
+        [projectId]: {
+          ...projects?.[projectId],
+          ...project,
+        },
+      },
+    })
+  }
+}
+
 export interface RootState {
   firebase: FirebaseReducer.Reducer<bayes.maVoie.User>
   firestore: FirestoreReducer.Reducer
   user: bayes.maVoie.User
 }
 
-export {clearDataAction, authenticateUser, logoutAction}
+export {clearDataAction, authenticateUser, logoutAction, updateProject}

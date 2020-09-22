@@ -2,7 +2,7 @@ import React, {useCallback} from 'react'
 import {useTranslation, Trans} from 'react-i18next'
 import {Link} from 'react-router-dom'
 
-import {useProjectUpdater} from 'store/selections'
+import {useDispatch, updateProject} from 'store/actions'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
@@ -26,11 +26,11 @@ const buttonContainerStyle: React.CSSProperties = {
 // TOP LEVEL PAGE
 const LostPage = (): React.ReactElement => {
   const {t} = useTranslation()
-  const projectUpdater = useProjectUpdater()
+  const dispatch = useDispatch()
 
   const onClick = useCallback((): void => {
-    projectUpdater({hasNoClearJob: true})
-  }, [projectUpdater])
+    dispatch(updateProject({hasNoClearJob: true}))
+  }, [dispatch])
 
   return <Layout header={t('Définition')} bigTitle={t('Ne vous inquiétez pas, on est là\u00A0!')}>
     <Trans parent="p" style={contentStyle}>

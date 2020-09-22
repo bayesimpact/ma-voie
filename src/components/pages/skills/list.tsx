@@ -2,7 +2,8 @@ import React, {useCallback, useMemo, useState} from 'react'
 import {Trans, useTranslation} from 'react-i18next'
 import {useHistory} from 'react-router'
 
-import {useProject, useProjectUpdater, useSkillsList} from 'store/selections'
+import {useDispatch, updateProject} from 'store/actions'
+import {useProject, useSkillsList} from 'store/selections'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
@@ -24,7 +25,7 @@ const SkillsListPage = (): React.ReactElement => {
   const {t} = useTranslation()
   const title = t('Maîtrisez-vous les compétences suivantes\u00A0?')
 
-  const projectUpdater = useProjectUpdater()
+  const dispatch = useDispatch()
   const project = useProject()
   const history = useHistory()
   const skillsList = useSkillsList()
@@ -32,7 +33,7 @@ const SkillsListPage = (): React.ReactElement => {
   const [valuesSelected, setValuesSelected] = useState<readonly string[]>(project.skills || [])
 
   const handleClick = useCallback((): void => {
-    projectUpdater({skills: valuesSelected})
+    dispatch(updateProject({skills: valuesSelected}))
     const isMissingPrioritySkill = skillsList.some(({codeOgr, isPriority}) =>
       isPriority && !valuesSelected.includes(codeOgr))
     if (isMissingPrioritySkill) {
@@ -40,7 +41,7 @@ const SkillsListPage = (): React.ReactElement => {
       return
     }
     history.push(getPath(['SKILLS', 'GO'], t))
-  }, [history, projectUpdater, skillsList, t, valuesSelected])
+  }, [dispatch, history, skillsList, t, valuesSelected])
 
   const checkboxListData = useMemo(() => skillsList.map(({codeOgr, isPriority, name}) =>
     isPriority
