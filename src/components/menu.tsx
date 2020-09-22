@@ -5,13 +5,17 @@ import {useHistory} from 'react-router'
 import {Link} from 'react-router-dom'
 
 import {FirebaseAuth} from 'database/firebase'
-import {logoutAction, useDispatch, RootState} from 'store/actions'
+import {logoutAction, resetProjectAction, useDispatch, RootState} from 'store/actions'
 import {useProject, useProjects, useSelector, useUserId} from 'store/selections'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
 import {colorToAlpha} from 'components/colors'
+
 import avatarPlaceholder from 'images/avatar-placeholder.svg'
+import reloadIcon from 'images/reload-ico.svg'
+
+const isMobileVersion = window.outerWidth < 800
 
 const containerStyle: React.CSSProperties = {
   backgroundColor: colors.DARK_TEAL,
@@ -58,11 +62,11 @@ const jobContainerStyle: React.CSSProperties = {
 }
 const jobContentStyle: React.CSSProperties = {
   color: '#fff',
+  display: 'flex',
   fontSize: 16,
   fontWeight: 'bold',
-  paddingBottom: 19,
-  paddingLeft: 20,
-  paddingTop: 17,
+  justifyContent: 'space-between',
+  padding: '17px 20px 19px',
 }
 const buttonStyle: React.CSSProperties = {
   margin: '20px 30px 0',
@@ -98,6 +102,11 @@ const projectLinkStyle: React.CSSProperties = {
   color: '#fff',
   textDecoration: 'none',
 }
+const reloadImageStyle: React.CSSProperties = {
+  cursor: 'pointer',
+  height: 24,
+  width: 24,
+}
 
 interface MenuProps {
   onClose?: () => void
@@ -114,6 +123,7 @@ const Menu = ({onClose, style}: MenuProps): React.ReactElement => {
   const {lastName, name} = useSelector(({firebase: {profile}}: RootState) => profile)
   const currentProject = useProject()
   const projects = useProjects()
+  const dispatch = useDispatch()
 
   const isConnected = (userId !== undefined)
 
@@ -123,11 +133,16 @@ const Menu = ({onClose, style}: MenuProps): React.ReactElement => {
       filter((project: bayes.maVoie.Project) => project.job !== undefined)
     : null
 
-  const dispatch = useDispatch()
   const handleLogout = useCallback((): void => {
     dispatch(logoutAction)
     FirebaseAuth.signOut().then(() => history.push(getPath([], t)))
   }, [dispatch, history, t])
+
+  const handleResetClick = useCallback((): void => {
+    if (window.confirm(t('Êtes-vous sûr·e de vouloir recommencer à zéro\u00A0?'))) {
+      dispatch(resetProjectAction())
+    }
+  }, [dispatch, t])
 
   // TODO(émilie): Add the reset project option.
   return <nav style={{...containerStyle, ...style}}>
@@ -168,6 +183,8 @@ const Menu = ({onClose, style}: MenuProps): React.ReactElement => {
           // TODO(émilie): onClick, change current selected project
           return <div style={finalProjectStyle} key={project.projectId}>
             <Link to={getPath(['STEPS'], t)} style={projectLinkStyle}>{project.job?.name}</Link>
+            {isMobileVersion ? null :
+              <img src={reloadIcon} onClick={handleResetClick} style={reloadImageStyle} alt="" />}
           </div>
         })
         : null
