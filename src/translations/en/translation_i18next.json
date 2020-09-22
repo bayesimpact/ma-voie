@@ -157,6 +157,7 @@
   "{{userCount}} personne a choisi {{name}}": "{{userCount}} person chose {{name}}",
   "{{userCount}} personne a choisi {{name}}_plural": "{{userCount}} people chose {{name}}",
   "Évaluer vos besoins de formations liées à votre projet": "Évaluer vos besoins de formations liées à votre projet",
+  "Êtes-vous sûr·e de vouloir recommencer à zéro ?": "",
   "Être {{jobName}} requiert d'avoir des compétences comme {{skill}}": "Faire ce métier requiert d'avoir certaines compétences",
   "Être {{jobName}} requiert d'avoir des compétences comme {{skill}}_job": "Être {{jobName}} requiert d'avoir certaines compétences",
   "Être {{jobName}} requiert d'avoir des compétences comme {{skill}}_jobskill": "Être {{jobName}} requiert d'avoir des compétences comme {{skill}}",
