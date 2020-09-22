@@ -52,6 +52,7 @@ const useProjectUpdater = (): ((updatedProject: Partial<bayes.maVoie.Project>) =
   }, [firestore, project, projectId, projects, userId])
 }
 
+// TODO(cyrille): Drop, since unused.
 const useStepsUpdater = (): ((updatedStep: bayes.maVoie.Project['steps']) => void) => {
   const firestore = useFirestore()
   const userId = useUserId()

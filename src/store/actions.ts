@@ -15,6 +15,7 @@ export type AllActions =
   | ClearData
   | Logout
   | UpdateProject
+  | UpdateSteps
 
 // Type of the main dispatch function.
 export type DispatchAllActions =
@@ -89,6 +90,31 @@ ThunkAction<Promise<void>, RootState, unknown, UpdateProject> {
   }
 }
 
+interface UpdateSteps extends Readonly<Action<'UPDATE_STEPS'>> {
+  steps: NonNullable<bayes.maVoie.Project['steps']>
+}
+
+function updateSteps(steps: UpdateSteps['steps']):
+ThunkAction<Promise<void>, RootState, unknown, UpdateSteps> {
+  return async (dispatch, getState): Promise<void> => {
+    dispatch({steps, type: 'UPDATE_STEPS'})
+    const {firebase: {profile: {currentProject: projectId = '0', projects}}} = getState()
+    const firebase = getFirebase()
+    await firebase.updateProfile({
+      projects: {
+        ...projects,
+        [projectId]: {
+          ...projects?.[projectId],
+          steps: {
+            ...projects?.[projectId]?.steps,
+            ...steps,
+          },
+        },
+      },
+    })
+  }
+}
+
 export interface RootState {
   firebase: FirebaseReducer.Reducer<bayes.maVoie.User>
   firestore: FirestoreReducer.Reducer
@@ -96,4 +122,4 @@ export interface RootState {
   user: bayes.maVoie.User
 }
 
-export {clearDataAction, authenticateUser, logoutAction, updateProject}
+export {clearDataAction, authenticateUser, logoutAction, updateProject, updateSteps}
