@@ -117,7 +117,7 @@ const Menu = ({onClose, style}: MenuProps): React.ReactElement => {
 
   const isConnected = (userId !== undefined)
 
-  // TODO(émilie): Check if necessary to filter the joblessProject
+  // TODO(émilie): Check if necessary to filter the joblessProject.
   const jobProjects = projects
     ? Object.values(projects).
       filter((project: bayes.maVoie.Project) => project.job !== undefined)
@@ -129,6 +129,7 @@ const Menu = ({onClose, style}: MenuProps): React.ReactElement => {
     FirebaseAuth.signOut().then(() => history.push(getPath([], t)))
   }, [dispatch, history, t])
 
+  // TODO(émilie): Add the reset project option.
   return <nav style={{...containerStyle, ...style}}>
     {!isConnected ?
       onClose && <div onClick={onClose} style={notConnectedCloseStyle}>

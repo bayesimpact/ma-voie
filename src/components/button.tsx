@@ -17,6 +17,11 @@ const buttonStyle: React.CSSProperties = {
 }
 
 const buttonsStyle = {
+  danger: {
+    ...buttonStyle,
+    backgroundColor: colors.DANGER,
+    color: '#fff',
+  },
   discreet: {
     ...buttonStyle,
     backgroundColor: '#fff',
