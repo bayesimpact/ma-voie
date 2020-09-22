@@ -1,8 +1,9 @@
 import {UserCredential} from '@firebase/auth-types'
 import {CallHistoryMethodAction, RouterState, push} from 'connected-react-router'
-import i18next from 'i18next'
-import {Action, Dispatch} from 'redux'
+import {TFunction} from 'i18next'
+import {getI18n} from 'react-i18next'
 import {useDispatch as genericUseDispatch} from 'react-redux'
+import {Action, Dispatch} from 'redux'
 import {ThunkAction, ThunkDispatch} from 'redux-thunk'
 import {Credentials, FirebaseReducer, FirestoreReducer, getFirebase} from 'react-redux-firebase'
 import {actionTypes} from 'redux-firestore'
@@ -55,6 +56,7 @@ ThunkAction<Promise<UserCredential>, RootState, unknown, AllActions> {
     if (!response) {
       throw new Error('Authentication failed for an unknown reason')
     }
+    dispatch(push(getPath(['STEPS'], (...args: Parameters<TFunction>) => getI18n().t(...args))))
     if (auth.provider !== 'password') {
       return response as UserCredential
     }
@@ -64,7 +66,6 @@ ThunkAction<Promise<UserCredential>, RootState, unknown, AllActions> {
     if (!response.user) {
       throw new Error('Authentication failed for an unknown reason')
     }
-    dispatch(push(getPath(['STEPS'], i18next.t)))
     return response.user as unknown as UserCredential
   }
 }
