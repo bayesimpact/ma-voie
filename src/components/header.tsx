@@ -44,11 +44,19 @@ const logoStyle: React.CSSProperties = {
 }
 const linkLogoStyle: React.CSSProperties = {
   height: 30,
-  margin: 'auto',
   width: 49,
 }
 const clickableIconStyle: React.CSSProperties = {
   cursor: 'pointer',
+}
+const betaStyle: React.CSSProperties = {
+  color: colors.GREYISH_TEAL,
+  fontSize: 9,
+  marginTop: -3,
+}
+const divLogoStyle: React.CSSProperties = {
+  display: 'flex',
+  margin: 'auto',
 }
 interface Props {
   onMenuClick?: 'project' |'site' | 'none'| (() => void)
@@ -81,9 +89,12 @@ const Header = ({menuPosition, onMenuClick = 'project', title}: Props): React.Re
         </React.Fragment>
         : <React.Fragment>
           {menuPosition === 'left' ? menuIcon : null}
-          <Link to={getPath([], t)} style={linkLogoStyle}>
-            <img src={logoImage} alt={t('productName')} style={logoStyle} />
-          </Link>
+          <div style={divLogoStyle}>
+            <Link to={getPath([], t)} style={linkLogoStyle}>
+              <img src={logoImage} alt={t('productName')} style={logoStyle} />
+            </Link>
+            <div style={betaStyle}>BETA</div>
+          </div>
           {menuPosition === 'right' ? menuIcon : null}
         </React.Fragment>
       }
