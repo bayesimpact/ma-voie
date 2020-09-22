@@ -72,6 +72,10 @@ const blocDateSeparatorStyle: React.CSSProperties = {
   margin: isMobileVersion ? '15px 0' : '0 38px',
   width: 3,
 }
+const linkPreSubscriptionStyle: React.CSSProperties = {
+  color: 'white',
+  textDecoration: 'underline',
+}
 const BeneficiariesSection = (): React.ReactElement => {
   return <section style={sectionStyle}>
     <div style={contentStyle}>
@@ -83,16 +87,21 @@ const BeneficiariesSection = (): React.ReactElement => {
         <div style={blocDescriptionStyle}>
           <Trans style={textDescriptionStyle}>
             <p><span style={blockDescriptionEmphasisStyle}>De septembre à
-            novembre 2020</span>, lorsque les
-            conséquences de la crise seront encore plus visibles,
-            100 personnes - dont vous ferez peut-être partie -
-            pourront profiter du lancement de $t(productName).</p>
-            <p>$t(productName) invitera par ailleurs ces premières personnes
-            inscrites à participer à l'amélioration du parcours.</p>
-            <p><span style={blockDescriptionEmphasisStyle}>Vous serez
-            accompagné</span> tout au long du parcours
-            par les services d'appui les plus adaptés à votre
-            situation et à vos besoins.</p>
+            novembre 2020</span>, vous pourrez profiter en avant-première
+            du lancement de $t(productName).</p>
+            <p><span style={blockDescriptionEmphasisStyle}>$t(productName)
+            vous choisit</span>&nbsp;: si vous êtes parmi les 100 premiers inscrits,
+            demandeur d’emploi ou en reconversion.</p>
+            <p><span style={blockDescriptionEmphasisStyle}>$t(productName) vous
+            accompagne</span>&nbsp;: sur les 4 étapes clés de votre recherche
+            d’emploi grâce à ses partenaires certifiés.</p>
+            <p><span style={blockDescriptionEmphasisStyle}>$t(productName) vous
+            écoute</span>&nbsp;: votre retour d’expérience contribuera à améliorer
+            notre service.</p>
+            <p><a target="_blank" rel="noopener noreferrer"
+              href="https://circleswork.typeform.com/to/q2pRD966" style={linkPreSubscriptionStyle}>
+             Inscrivez-vous</a> et devenez l'un des <span style={blockDescriptionEmphasisStyle}>100
+            premiers bénéficiaires</span> (places limitées).</p>
           </Trans>
         </div>
         <div style={blocDatesStyle}>
