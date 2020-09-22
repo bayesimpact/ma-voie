@@ -16,6 +16,7 @@ module.exports = {
   cache: true,
   devtool: 'eval-source-map',
   entry: mapValues(entrypoints, ({entry, usesHotLoader}) => ([
+    '@babel/polyfill',
     ...usesHotLoader ? ['react-hot-loader/patch'] : [],
     'webpack-dev-server/client?http://0.0.0.0:0',
     ...usesHotLoader ? ['webpack/hot/only-dev-server'] : [],
