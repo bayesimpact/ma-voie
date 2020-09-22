@@ -1,6 +1,6 @@
 import _uniqueId from 'lodash/uniqueId'
 import CloseIcon from 'mdi-react/CloseIcon'
-import React, {useCallback, useState} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import {Trans, useTranslation} from 'react-i18next'
 import {Link} from 'react-router-dom'
 
@@ -75,6 +75,13 @@ const CreateAccountPopup = ({onClose, style}: Props): React.ReactElement => {
     e.stopPropagation()
     onClose()
   }, [onClose])
+
+  useEffect((): (() => void) => {
+    document.body.style.overflow = 'hidden'
+    return (): void => {
+      document.body.style.overflow = 'auto'
+    }
+  }, [])
 
   return <div
     style={globalStyle} onClick={handleClose} role="dialog" aria-modal={true}
