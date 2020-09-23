@@ -44,9 +44,8 @@ const useSkillsList = (): readonly SkillType[] => {
 }
 
 const usePartnerCount = (partnerId: string): number => {
-  useFirestoreConnect([`partnerCounts/${partnerId}`, 'analytics/counts'])
-  return useSelector(({firestore: {data: {analytics, partnerCounts}}}) =>
-    analytics?.counts?.[partnerId] || partnerCounts?.[partnerId]?.users || 0)
+  useFirestoreConnect('analytics/counts')
+  return useSelector(({firestore: {data: {analytics}}}) => analytics?.counts?.[partnerId] || 0)
 }
 
 const useUserCount = (): number => {

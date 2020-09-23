@@ -6,10 +6,6 @@ service cloud.firestore {
       allow read, write: if false
     }
 
-    match /partnerCounts/{partnerId} {
-      allow read: if true
-    }
-
     match /analytics/counts {
       allow read: if true
     }
