@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
+import {colorToAlpha} from 'components/colors'
 // TODO(pascal): Add a name for the color below then comment those lines with the new name.
 import orange6ArrowsImage from 'images/arrows-6.svg?stroke=#992f00'
 import orange13ArrowsImage from 'images/arrows-13.svg?stroke=#992f00'
@@ -97,6 +98,25 @@ const startButtonStyle: React.CSSProperties = {
 const startLinkStyle: React.CSSProperties = {
   textDecoration: 'none',
 }
+const orStyle: React.CSSProperties = {
+  borderBottom: `1px solid ${colorToAlpha('#fff', .5)}`,
+  lineHeight: '0.1em',
+  margin: '20px auto',
+  textAlign: 'center',
+  width: '50%',
+}
+const orTextStyle: React.CSSProperties = {
+  backgroundColor: colors.REDDISH_ORANGE,
+  padding: '0 10px',
+}
+const helpLinkStyle: React.CSSProperties = {
+  color: '#fff',
+  display: 'block',
+  fontSize: 15,
+  fontWeight: 'bold',
+  textAlign: 'center',
+  textDecoration: 'none',
+}
 
 // TODO(émilie): Delete this flag when live.
 const isLandingOnlyVersion = !window.location.href.includes('.bayes.org') &&
@@ -122,11 +142,19 @@ const HeaderSection = (): React.ReactElement => {
         recherche d'emploi en 4 étapes clés. <br />
         Simple. 100% en ligne. Personnalisé.
       </Trans>
-      {isLandingOnlyVersion ? null : <Link to={getPath(['STEPS'], t)} style={startLinkStyle}>
-        <Button type="firstLevel" style={startButtonStyle}>
-          {t('Commencer maintenant')}
-        </Button>
-      </Link>}
+      {isLandingOnlyVersion ? null :
+        <div>
+          <Link to={getPath(['STEPS'], t)} style={startLinkStyle}>
+            <Button type="firstLevel" style={startButtonStyle}>
+              {t('Commencer maintenant')}
+            </Button>
+          </Link>
+          <div style={orStyle}><span style={orTextStyle}>{t('ou')}</span></div>
+          <a href="https://calendly.com/mavoie/30min"
+            target="_blank" rel="noopener noreferrer" style={helpLinkStyle}>
+            {t("Demander l'aide d'un conseiller $t(productName)")}
+          </a>
+        </div>}
       {isMobileVersion ? null : <React.Fragment>
         <img src={orange13ArrowsImage} alt="" style={orange13ArrowsStyle} />
         <img src={orange6ArrowsImage} alt="" style={orange6ArrowsStyle} />
