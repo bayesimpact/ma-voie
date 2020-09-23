@@ -141,7 +141,7 @@ interface LinkPartner extends Readonly<Action<'LINK_PARTNER'>> {
 function linkPartner(partnerId: string):
 ThunkAction<Promise<string>, RootState, unknown, LinkPartner> {
   return async (dispatch, getState): Promise<string> => {
-    const {firebase: {auth: {uid: userId}}, firestore: {data: {partners = []}}} = getState()
+    const {firebase: {auth: {uid: userId}}, firestore: {ordered: {partners = []}}} = getState()
     const {userPartnerId: existingId} =
       partners.find((partner: bayes.maVoie.PartnerIdentification) =>
         partner.partnerId === partnerId) || {}
