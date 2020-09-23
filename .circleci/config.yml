@@ -9,6 +9,9 @@ jobs:
           # Allows to use previous cached version of the built Docker services.
           docker_layer_caching: true
       - run:
+          name: Check which parts of the CI should be run
+          command: .circleci/should_run_ci.sh "$CIRCLE_BRANCH" "$CIRCLE_TAG"
+      - run:
           name: Drop the override used for dev
           command: |
             rm docker-compose.override.yml
@@ -18,40 +21,44 @@ jobs:
       - run:
           name: Test and lint frontend client
           command: |
-            docker-compose build --pull test
-            docker-compose run --name test-$CIRCLE_BUILD_NUM test
-            docker cp test-$CIRCLE_BUILD_NUM:/usr/app/coverage /tmp/client_coverage
-            docker rm test-$CIRCLE_BUILD_NUM
-            test "$CIRCLE_BRANCH" == "master" && codecov -f /tmp/client_coverage/lcov.info -F frontend_client || echo "Skip Codecov"
+            test -e skip-client || (
+              docker-compose build --pull test
+              docker-compose run --name test-$CIRCLE_BUILD_NUM test
+              docker cp test-$CIRCLE_BUILD_NUM:/usr/app/coverage /tmp/client_coverage
+              docker rm test-$CIRCLE_BUILD_NUM
+              test "$CIRCLE_BRANCH" == "master" && codecov -f /tmp/client_coverage/lcov.info -F frontend_client || echo "Skip Codecov"
+            )
       - run:
           name: Test and lint Firebase server
           command: |
-            docker-compose build --pull server server-test
+            test -e skip-server || docker-compose build --pull server server-test
       - run:
           name: Deploy server
           command: |
-            if [ "$CIRCLE_BRANCH" == "master" ] || [[ "$CIRCLE_BRANCH" == *-test-auto-deploy ]] &&
-              ! git diff --exit-code HEAD^ -- server; then
-              docker-compose run --rm server npm run deploy -- --project=demo
-            fi
+            test -e skip-server || (
+              if ! git diff --exit-code HEAD^ -- server; then
+                docker-compose run --rm server npm run deploy -- --project=demo
+              fi
+            )
       - run:
           name: Build and release as a docker image
           command: |
-            TAG=$(.circleci/create-docker-tag.sh)
-            if [ -n "$TAG" ]; then
-              docker-compose build --build-arg GIT_SHA1=$CIRCLE_SHA1 --build-arg CLIENT_VERSION=prod.$CIRCLE_SHA1 nginx
-              echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
-              echo "Publish $TAG"
-              docker tag bayesimpact/ma-voie:$CIRCLE_BUILD_NUM bayesimpact/ma-voie:$TAG
-              docker tag bayesimpact/ma-voie-server:$CIRCLE_BUILD_NUM bayesimpact/ma-voie-server:$TAG
-              docker push bayesimpact/ma-voie:$TAG
-              gcloud --quiet auth configure-docker
-              DEMO_VARS=$(get_demo_vars)
-              # Start the demo server by pinging the right URL in the background.
-              START_DEMO_URL="https://$DEMO_HOST/start/$TAG?$DEMO_VARS"
-              echo Starting "$START_DEMO_URL"
-              curl -s "$START_DEMO_URL" -o /dev/null || echo Fail
-            fi
+            test -e skip-client || (
+              TAG=$(.circleci/create-docker-tag.sh)
+              if [ -n "$TAG" ]; then
+                docker-compose build --build-arg GIT_SHA1=$CIRCLE_SHA1 --build-arg CLIENT_VERSION=prod.$CIRCLE_SHA1 nginx
+                echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
+                echo "Publish $TAG"
+                docker tag bayesimpact/ma-voie:$CIRCLE_BUILD_NUM bayesimpact/ma-voie:$TAG
+                docker push bayesimpact/ma-voie:$TAG
+                gcloud --quiet auth configure-docker
+                DEMO_VARS=$(get_demo_vars)
+                # Start the demo server by pinging the right URL in the background.
+                START_DEMO_URL="https://$DEMO_HOST/start/$TAG?$DEMO_VARS"
+                echo Starting "$START_DEMO_URL"
+                curl -s "$START_DEMO_URL" -o /dev/null || echo Fail
+              fi
+            )
       - store_artifacts:
           path: /tmp/dist
           destination: demo
