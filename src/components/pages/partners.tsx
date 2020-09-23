@@ -7,7 +7,7 @@ import {Redirect} from 'react-router-dom'
 
 import {updateSteps, useDispatch} from 'store/actions'
 import {prepareT} from 'store/i18n'
-import {useCertifiedSteps} from 'store/selections'
+import {useCertifiedSteps, useProject} from 'store/selections'
 import {getPath} from 'store/url'
 import Partners, {Props as PartnerProps} from 'store/partners'
 import Steps, {StepInfo} from 'store/steps'
@@ -87,6 +87,27 @@ const stopButtonStyle: React.CSSProperties = {
   marginTop: 40,
 }
 
+const CPFContainerStyle: React.CSSProperties = {
+  backgroundColor: '#fff',
+  borderRadius: 20,
+  boxShadow: '0 4px 24px 0 rgba(0,0,0,.2)',
+  display: 'flex',
+  flexDirection: 'column',
+  fontSize: 13,
+  margin: '20px 0',
+  minWidth: 315,
+  overflow: 'hidden',
+  position: 'relative',
+}
+const innerCPFContainerStyle: React.CSSProperties = {
+  margin: '0px 30px 40px',
+}
+const CPFLinkStyle: React.CSSProperties = {
+  textDecoration: 'none',
+}
+const CPFButtonStyle: React.CSSProperties = {
+  marginTop: 20,
+}
 
 interface SelectedPartnerProps {
   partner: PartnerProps
@@ -116,6 +137,7 @@ const PartnersPage = (): React.ReactElement => {
   const {t, t: translate} = useTranslation()
   const {url} = useRouteMatch('/:step') || {}
   const {pathname} = useLocation()
+  const project = useProject()
   const [areExternalsShown, setAreExternalsShown] = useState(false)
   const toggleExternals = useCallback((): void => {
     setAreExternalsShown((a: boolean): boolean => !a)
@@ -181,18 +203,39 @@ const PartnersPage = (): React.ReactElement => {
       </StepValidationButton>
     </div>
   </React.Fragment>
+  // TODO(émilie) : Manage a desktop version for the CPF.
+  const CPFLInk = `https://www.moncompteformation.gouv.fr/espace-prive/html/#/formation/recherche?q={"nombreOccurences":10,"debutPagination":1,"displayName":"${project.job?.name}","sort":"SCORE","filters":{"price":{"minValue":0,"maxValue":10000,"step":500,"value":10000},"distance":{"minValue":0,"maxValue":1000,"defaultValue":500,"step":20,"value":500}},"where":{"area":0,"aroundMe":false,"modality":"2"},"_what":"${project.job?.name}"}`
+  const CPFPartner = <React.Fragment>
+    <div style={CPFContainerStyle}>
+      <div style={innerCPFContainerStyle}>
+        <Trans parent="h1">
+          Formations gratuites
+        </Trans>
+        <Trans parent="p">
+          Nous avons peut-être trouvé des formations disponibles gratuitement avec votre
+          compte personnel de formation. N'hésitez pas à en rechercher proches de votre domicile.
+        </Trans>
+        <a href={CPFLInk} target="_blank" rel="noopener noreferrer" style={CPFLinkStyle}>
+          <Button type="firstLevel" style={CPFButtonStyle}>Voir les formations</Button>
+        </a>
+      </div>
+    </div>
+  </React.Fragment>
   if (isMobileVersion) {
     return <Layout header={translate(shortTitle)} bigTitle={bigTitle}>
       <TabsNav tabs={tabs} />
-      {areInternalShown ? <div style={partnersContainerStyle} ref={partnersContainerRef}>
-        <div style={{flexShrink: 0, width: outerPadding}} />
-        {partners.map((partner) =>
-          <PartnerCard
-            key={partner.partnerId} {...partner}
-            style={partnerCardStyle} onClick={scrollToPartner} stepId={stepId} />,
-        )}
-        <div style={{flexShrink: 0, width: outerPadding - 20}} />
-      </div> : partners.map((partner) => <ExternalPartner
+      {areInternalShown ? <React.Fragment>
+        <div style={partnersContainerStyle} ref={partnersContainerRef}>
+          <div style={{flexShrink: 0, width: outerPadding}} />
+          {partners.map((partner) =>
+            <PartnerCard
+              key={partner.partnerId} {...partner}
+              style={partnerCardStyle} onClick={scrollToPartner} stepId={stepId} />,
+          )}
+          <div style={{flexShrink: 0, width: outerPadding - 20}} />
+        </div>
+        {stepId === 'training' ? CPFPartner : null}
+      </React.Fragment> : partners.map((partner) => <ExternalPartner
         key={partner.partnerId} {...partner} stepId={stepId}
         isOpen={currentPartner === partner.partnerId} onSelect={onSelect} />)}
       {hasNextStep ? autoValidation : null}
