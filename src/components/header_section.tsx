@@ -1,8 +1,10 @@
 import MenuIcon from 'mdi-react/MenuIcon'
-import React from 'react'
+import React, {useCallback} from 'react'
 import {Trans, useTranslation} from 'react-i18next'
+import {useFirestore} from 'react-redux-firebase'
 import {Link} from 'react-router-dom'
 
+import {useCalendlyCount} from 'store/selections'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
@@ -127,6 +129,15 @@ const isLandingOnlyVersion = !window.location.href.includes('.bayes.org') &&
 
 const HeaderSection = (): React.ReactElement => {
   const {t} = useTranslation()
+  const firestore = useFirestore()
+  const calendlyCount = useCalendlyCount()
+
+  const handleCalendlyClick = useCallback((): void => {
+    firestore.update({collection: 'analytics', doc: 'calendly'}, {value: calendlyCount + 1}).
+      catch(() => {
+        firestore.set({collection: 'analytics', doc: 'calendly'}, {value: calendlyCount + 1})
+      })
+  }, [calendlyCount, firestore])
 
   return <section style={sectionStyle}>
     {isMobileVersion && !isLandingOnlyVersion ? // TODO(émilie): Allow to sign in on desktop too.
@@ -153,7 +164,7 @@ const HeaderSection = (): React.ReactElement => {
             </Button>
           </Link>
           <div style={orStyle}><span style={orTextStyle}>{t('ou')}</span></div>
-          <a href="https://calendly.com/mavoie/30min"
+          <a href="https://calendly.com/mavoie/30min" onClick={handleCalendlyClick}
             target="_blank" rel="noopener noreferrer" style={helpLinkStyle}>
             {t("Demander l'aide d'un conseiller $t(productName)")}
           </a>
