@@ -98,6 +98,7 @@ const CPFContainerStyle: React.CSSProperties = {
   minWidth: 315,
   overflow: 'hidden',
   position: 'relative',
+  width: 315,
 }
 const innerCPFContainerStyle: React.CSSProperties = {
   margin: '0px 30px 40px',
@@ -255,6 +256,13 @@ const PartnersPage = (): React.ReactElement => {
       )}
       <div style={{flexShrink: 0, width: outerPadding - 20}} />
     </div>
+
+    {stepId === 'training' ?
+      <div style={partnersContainerStyle}>
+        <div style={{flexShrink: 0, width: outerPadding}} />
+        {CPFPartner}
+        <div style={{flexShrink: 0, width: outerPadding - 20}} />
+      </div> : null}
 
     {externalPartners.length ? <React.Fragment>
       <div style={hrStyle} />
