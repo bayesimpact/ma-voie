@@ -67,6 +67,12 @@ if [ -z "$SLACK_INTEGRATION_URL" ]; then
   exit 5
 fi
 
+if [ -z "$FIREBASE_TOKEN" ]; then
+  echo 'Set up a Firebase token first.'
+  echo '* Run `docker-compose run --rm server firebase login:ci --no-localhost`'
+  echo '* Follow the instructions there to get a token, and export it as FIREBASE_TOKEN'
+  exit 6
+fi
 
 readonly DOCKER_TAG="tag-$TAG"
 readonly DOCKER_REPO="bayesimpact/ma-voie"
@@ -93,7 +99,7 @@ fi
 
 echo 'Downloading the server Docker Image…'
 docker pull $DOCKER_SERVER_IMAGE
-docker run $DOCKER_SERVER_IMAGE npm run deploy -- --project=prod
+docker run -e FIREBASE_TOKEN $DOCKER_SERVER_IMAGE npm run deploy -- --project=prod
 
 # To get the files, this script downloads the Docker Images from Docker
 # Registry, then extract the html folder from the Docker Image (note that to do
