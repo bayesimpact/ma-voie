@@ -85,6 +85,7 @@ ThunkAction<Promise<void>, RootState, unknown, UpdateProject> {
       projects: {
         ...projects,
         [projectId]: {
+          projectId,
           ...projects?.[projectId],
           ...project,
         },
