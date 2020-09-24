@@ -110,15 +110,15 @@ const BeneficiariesSection = (): React.ReactElement => {
         <div style={blocDatesStyle}>
           <div style={blocDateStyle}>
             <Trans>
-              <span style={blockDatesDayStyle}>20</span> <br />
+              <span style={blockDatesDayStyle}>28</span> <br />
               septembre
             </Trans>
           </div>
           <div style={blocDateSeparatorStyle}>&nbsp;</div>
           <div style={blocDateStyle}>
             <Trans>
-              <span style={blockDatesDayStyle}>27</span> <br />
-              novembre
+              <span style={blockDatesDayStyle}>31</span> <br />
+              octobre
             </Trans>
           </div>
         </div>
