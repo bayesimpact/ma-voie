@@ -79,6 +79,12 @@ const cardsStyle: React.CSSProperties = {
   flexWrap: isMobileVersion ? 'wrap' : 'initial',
   justifyContent: 'space-between',
 }
+const cardsCertifiedStyle: React.CSSProperties = {
+  display: 'flex',
+  flexWrap: isMobileVersion ? 'wrap' : 'initial',
+  justifyContent: 'space-between',
+  width: isMobileVersion ? '100%' : '50%',
+}
 
 const PartnersSection = (): React.ReactElement => {
   const {t} = useTranslation()
@@ -93,10 +99,10 @@ const PartnersSection = (): React.ReactElement => {
             key={index} {...partner} />)}
       </div>
     </div>
-    <div style={{margin: 'auto', marginTop: 20, maxWidth: 960}}>
+    <div style={{margin: 'auto', marginTop: 80, maxWidth: 960}}>
       <h2 style={titleStyle}>{t('Nos partenaires certifiés')}</h2>
       <Trans style={textSecondaryStyle}>Ils soutiennent $t(productName)</Trans>
-      <div style={cardsStyle}>
+      <div style={cardsCertifiedStyle}>
         {PARTNERS.map(
           (partner: PartnerProps, index: number): React.ReactElement => <PartnerCard
             key={index} {...partner} />)}
