@@ -181,11 +181,13 @@ const Menu = ({onClose, style}: MenuProps): React.ReactElement => {
             borderLeft: (project.projectId === currentProject.projectId) ? '3px solid #fff' : 0,
           }
           // TODO(émilie): onClick, change current selected project
-          return <div style={finalProjectStyle} key={project.projectId}>
-            <Link to={getPath(['STEPS'], t)} style={projectLinkStyle}>{project.job?.name}</Link>
-            {isMobileVersion ? null :
-              <img src={reloadIcon} onClick={handleResetClick} style={reloadImageStyle} alt="" />}
-          </div>
+          return <React.Fragment key={`${userId}-${project.projectId}`}>
+            <div style={finalProjectStyle}>
+              <Link to={getPath(['STEPS'], t)} style={projectLinkStyle}>{project.job?.name}</Link>
+              {isMobileVersion ? null :
+                <img src={reloadIcon} onClick={handleResetClick} style={reloadImageStyle} alt="" />}
+            </div>
+          </React.Fragment>
         })
         : null
       }
