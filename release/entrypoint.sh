@@ -18,7 +18,7 @@ replace_string '6d5d1f5cb15e3cc946cbe3783e5f9e7f' '174aeb9469460975d8d6a14b31b6f
 replace_string '{"apiKey":"AIzaSyAGH7JHYblSrKJsBSdr5UG0ZEBNdj8QRBM","appId":"1:740445000971:web:f73319eae6caf130c5be0e","authDomain":"ma-voie.firebaseapp.com","databaseURL":"https://ma-voie.firebaseio.com","messagingSenderId":"740445000971","projectId":"ma-voie","storageBucket":"ma-voie.appspot.com"}' \
     '{"apiKey":"AIzaSyCPdmI7WHWy6McHgu53OdW_QToZCAxMuT8","authDomain":"ma-voie-demo.firebaseapp.com","databaseURL":"https://ma-voie-demo.firebaseio.com","projectId":"ma-voie-demo","storageBucket":"ma-voie-demo.appspot.com","messagingSenderId":"1010721781393","appId":"1:1010721781393:web:a125d44474595b3ad67130"}' \
     "$JS_APP_FILES"
-replace_string 'https://www.bob-emploi.fr/intro' 'https://https://branch-master.bob-demo.bayes.org/intro' "$JS_APP_FILES"
+replace_string 'https://www.bob-emploi.fr/intro' 'https://branch-master.bob-demo.bayes.org/intro' "$JS_APP_FILES"
 
 # TODO(pascal): Try to find a way to run the command if any.
 nginx -g 'daemon off;'
