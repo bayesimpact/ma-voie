@@ -43,6 +43,11 @@ const useSkillsList = (): readonly SkillType[] => {
   return skills
 }
 
+const useCalendlyCount = (): number => {
+  useFirestoreConnect('analytics/calendly')
+  return useSelector(({firestore: {data: {analytics}}}) => analytics?.calendly?.value || 0)
+}
+
 const usePartnerCount = (partnerId: string): number => {
   useFirestoreConnect('analytics/counts')
   return useSelector(({firestore: {data: {analytics}}}) => analytics?.counts?.[partnerId] || 0)
@@ -118,5 +123,5 @@ const useCertifiedSteps = (): NonNullable<bayes.maVoie.Project['steps']> => {
   return partnerSteps
 }
 
-export {useCertifiedSteps, usePartnerCount, useProject, useProjects, useProjectId,
-  useSelector, useSkillsList, useUserId, useUserCount}
+export {useCalendlyCount, useCertifiedSteps, usePartnerCount, useProject, useProjects,
+  useProjectId, useSelector, useSkillsList, useUserId, useUserCount}

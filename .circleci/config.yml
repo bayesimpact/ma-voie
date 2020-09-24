@@ -36,7 +36,7 @@ jobs:
           name: Deploy server
           command: |
             test -e skip-server || (
-              if ! git diff --exit-code HEAD^ -- server; then
+              if [[ "$CIRCLE_BRANCH" == 'master' ]] && ! git diff --exit-code HEAD^ -- server; then
                 docker-compose run --rm server npm run deploy -- --project=demo
               fi
             )
