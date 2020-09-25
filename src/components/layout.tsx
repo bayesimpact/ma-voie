@@ -51,10 +51,12 @@ const Layout = ({bigTitle, children, header, menu, style, title}: Props): React.
   const showMenu = useCallback((): void => setIsMenuShown(true), [])
   const hideMenu = useCallback((): void => setIsMenuShown(false), [])
   const menuStyle = useMemo((): React.CSSProperties => ({
+    minWidth: menuWidth,
+    position: isMenuAlwaysShown ? 'fixed' : 'relative',
     transform: `translateX(${isMenuShown ? 0 : 100}%)`,
     transition: '450ms',
     width: menuWidth,
-  }), [isMenuShown])
+  }), [isMenuAlwaysShown, isMenuShown])
   useEffect((): void => {
     setIsMenuShown(isMenuAlwaysShown)
   }, [isMenuAlwaysShown])
@@ -62,12 +64,17 @@ const Layout = ({bigTitle, children, header, menu, style, title}: Props): React.
   const layoutStyle = {
     ...containerStyle,
     ...style,
+    ...isMenuAlwaysShown ? {marginRight: 300, marginTop: 50} : {},
+  }
+
+  const headerStyle: React.CSSProperties = {
+    position: isMenuAlwaysShown ? 'fixed' : 'relative',
   }
   const mainContent = <React.Fragment>
     <Header
       title={header}
       onMenuClick={isMobileVersion ? menu : isMenuAlwaysShown ? 'none' : showMenu}
-      menuPosition={isMobileVersion ? 'left' : 'right'} />
+      menuPosition={isMobileVersion ? 'left' : 'right'} style={headerStyle} />
     <div style={layoutStyle}>
       {title || bigTitle ?
         <h1 style={h1Style}>
@@ -85,7 +92,10 @@ const Layout = ({bigTitle, children, header, menu, style, title}: Props): React.
   }
 
   const menuContainerStyle: React.CSSProperties = isMenuAlwaysShown ? {
+    position: 'fixed',
+    right: 0,
     width: menuWidth,
+    zIndex: 2,
   } : {
     bottom: 0,
     overflow: 'hidden',

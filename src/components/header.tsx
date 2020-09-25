@@ -17,6 +17,7 @@ const isMobileVersion = window.outerWidth < 800
 const headerContainerStyle: React.CSSProperties = {
   backgroundColor: '#fff',
   width: '100%',
+  zIndex: 1,
 }
 const headerStyle: React.CSSProperties = {
   alignItems: 'center',
@@ -67,10 +68,12 @@ interface Props {
   onMenuClick?: 'project' |'site' | 'none'| (() => void)
   menuPosition?: 'left' | 'right'
   title?: string
+  style?: React.CSSProperties
 }
 
 // Default menu used is the project one.
-const Header = ({menuPosition, onMenuClick = 'project', title}: Props): React.ReactElement => {
+const Header = ({menuPosition, onMenuClick = 'project', title, style}: Props):
+React.ReactElement => {
   const {t} = useTranslation()
   const history = useHistory()
   const [isPopupShown, setIsPopupShown] = useState(false)
@@ -85,6 +88,8 @@ const Header = ({menuPosition, onMenuClick = 'project', title}: Props): React.Re
     setIsPopupShown(true)
   }, [setIsPopupShown])
 
+  const finalHeaderContainerStyle = {...headerContainerStyle, ...style}
+
   const menuIcon = onMenuClick === 'none' ? null :
     onMenuClick === 'project' || onMenuClick === 'site' ?
       <Link to={getPath([onMenuClick === 'project' ? 'MENU' : 'MENU_SITE'], t)} style={linkStyle}>
@@ -92,7 +97,7 @@ const Header = ({menuPosition, onMenuClick = 'project', title}: Props): React.Re
       </Link> :
       <MenuIcon
         aria-label={t('menu')} onClick={onMenuClick} role="button" style={clickableIconStyle} />
-  return <div style={headerContainerStyle} role="banner">
+  return <div style={finalHeaderContainerStyle} role="banner">
     <div style={headerStyle}>
       {title ?
         <React.Fragment>

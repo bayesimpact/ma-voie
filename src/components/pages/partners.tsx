@@ -21,10 +21,11 @@ import TabsNav, {TabProps} from 'components/tabs_nav'
 
 
 const isMobileVersion = window.innerWidth <= 800
+const isMenuAlwaysShown = window.innerWidth > 1300
 
 const desktopLayoutStyle: React.CSSProperties = {
   margin: '0 auto',
-  maxWidth: 960,
+  maxWidth: isMenuAlwaysShown ? 'inherit' : 960,
 }
 const titleStyle: React.CSSProperties = {
   fontSize: 24,
@@ -248,20 +249,16 @@ const PartnersPage = (): React.ReactElement => {
     <h1 style={titleStyle}>{bigTitle}</h1>
     <h2 style={tabTitleStyle}>{TABS_WITHOUT_STEP[0].title}</h2>
     <div style={partnersContainerStyle} ref={partnersContainerRef}>
-      <div style={{flexShrink: 0, width: outerPadding}} />
       {partnersForStep?.filter(({isInternal}) => !!isInternal).map((partner) =>
         <PartnerCard
           key={partner.partnerId} {...partner}
           style={partnerCardStyle} stepId={stepId} />,
       )}
-      <div style={{flexShrink: 0, width: outerPadding - 20}} />
     </div>
 
     {stepId === 'training' ?
       <div style={partnersContainerStyle}>
-        <div style={{flexShrink: 0, width: outerPadding}} />
         {CPFPartner}
-        <div style={{flexShrink: 0, width: outerPadding - 20}} />
       </div> : null}
 
     {externalPartners.length ? <React.Fragment>
