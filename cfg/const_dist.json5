@@ -1,5 +1,5 @@
 {
-  amplitudeToken: 'd789e78c35cf582b8a59175137eb53cb',
+  amplitudeToken: '039e64319a02c90b21915451677416cd',
   firebase: '{"apiKey":"AIzaSyAGH7JHYblSrKJsBSdr5UG0ZEBNdj8QRBM","appId":"1:740445000971:web:f73319eae6caf130c5be0e","authDomain":"ma-voie.firebaseapp.com","databaseURL":"https://ma-voie.firebaseio.com","messagingSenderId":"740445000971","projectId":"ma-voie","storageBucket":"ma-voie.appspot.com"}',
   partnerUrls: '{"bob": "https://www.bob-emploi.fr/intro"}',
 }
