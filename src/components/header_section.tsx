@@ -123,8 +123,9 @@ const helpLinkStyle: React.CSSProperties = {
   textDecoration: 'none',
 }
 
-// TODO(émilie): Delete this flag when live.
-const isLandingOnlyVersion = !window.location.href.includes('.bayes.org') &&
+const isLandingOnlyVersion =
+  new Date() < new Date('2020-09-28T10:00:00') &&
+  !window.location.href.includes('.bayes.org') &&
   !window.location.search.includes('launched')
 
 const HeaderSection = (): React.ReactElement => {
