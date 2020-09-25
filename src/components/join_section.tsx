@@ -80,14 +80,11 @@ const supportStyle: React.CSSProperties = {
 const sectionStyle: React.CSSProperties = {
   padding: isMobileVersion ? '70px 35px 100px' : '70px 20px 100px',
 }
-const nonBreakStyle: React.CSSProperties = {
-  whiteSpace: 'nowrap',
-}
 const JoinSection = (): React.ReactElement => {
   const {t} = useTranslation()
   const serviceText = <Trans>
     <strong>Vous proposez un service d’accompagnement</strong> <br />
-    et souhaitez être référencé sur <span style={nonBreakStyle}>$t(productName)</span>&nbsp;?
+    et souhaitez être référencé sur $t(productName)&nbsp;?
   </Trans>
   const supportText = <Trans>
     Vous souhaitez soutenir $t(productName) <br />

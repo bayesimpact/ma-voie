@@ -115,6 +115,15 @@ describe('Translation files', (): void => {
         }
       })
 
+      it('should not have the product name directly in text', (): void => {
+        for (const key in file.resources) {
+          expect(key).not.to.match(/ma\s*voie/i)
+          if (key !== 'productName') {
+            expect(file.resources[key], key).not.to.match(/ma\s+voie/i)
+          }
+        }
+      })
+
       it('should not forget html tags in translation', (): void => {
         for (const key in file.resources) {
           const tags = []
