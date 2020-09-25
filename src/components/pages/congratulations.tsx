@@ -53,7 +53,7 @@ const CongratulationsPage = (): React.ReactElement => {
         Félicitations&nbsp;!
       </Trans>
       <Trans parent="p">
-        Une personne de Ma Voie va vous contacter très prochainement.<br /><br />
+        Une personne de $t(productName) va vous contacter très prochainement.<br /><br />
         Pensez à vérifier vos emails&nbsp;!
       </Trans>
     </div>

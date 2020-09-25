@@ -69,7 +69,7 @@ const paragrapheStyle: React.CSSProperties = {
 const TABS_WITHOUT_STEP: readonly TabProps[] = [
   {
     redirect: ['PARTNERS_INTERNAL'],
-    title: <Trans>Certifiés par Ma Voie</Trans>,
+    title: <Trans>Certifiés par $t(productName)</Trans>,
   },
   {
     redirect: ['PARTNERS_EXTERNAL'],
