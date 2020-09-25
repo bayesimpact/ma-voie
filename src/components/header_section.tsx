@@ -54,7 +54,6 @@ const subTagLineStyle: React.CSSProperties = {
 }
 const productNameStyle: React.CSSProperties = {
   color: '#fff',
-  whiteSpace: 'nowrap',
 }
 const orange6ArrowsStyle: React.CSSProperties = {
   bottom: -180,
