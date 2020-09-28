@@ -30,7 +30,7 @@ const stepsStyle: React.CSSProperties = isMobileVersion ? {
   maxWidth: 960,
 }
 const stepStyle: React.CSSProperties = isMobileVersion ? {} : {
-  height: 325,
+  height: 355,
   width: 250,
 }
 const lastStepContainerStyle: React.CSSProperties = isMobileVersion ? {
