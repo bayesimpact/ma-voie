@@ -32,7 +32,16 @@ service cloud.firestore {
           // the document ID should be the same as the userPartnerId
           && request.resource.id == request.resource.data.userPartnerId
           // the partnerId should be one of the pre-defined partner IDs.
-          && request.resource.data.partnerId in ['bob', 'chance', 'job-ready', 'generation']
+          && request.resource.data.partnerId in [
+            'bob',
+            'chance',
+            'generation',
+            'google-ateliers-numerique',
+            'inco-build-and-click',
+            'inco-get-into-tech',
+            'inco-in-code',
+            'job-ready'
+          ]
       }
     }
   }
