@@ -64,7 +64,7 @@ const Layout = ({bigTitle, children, header, menu, style, title}: Props): React.
   const layoutStyle = {
     ...containerStyle,
     ...style,
-    ...isMenuAlwaysShown ? {marginRight: 300, marginTop: 50} : {},
+    ...isMenuAlwaysShown ? {marginRight: 270, marginTop: 50} : {},
   }
 
   const headerStyle: React.CSSProperties = {

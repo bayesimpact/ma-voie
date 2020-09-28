@@ -21,11 +21,10 @@ import TabsNav, {TabProps} from 'components/tabs_nav'
 
 
 const isMobileVersion = window.innerWidth <= 800
-const isMenuAlwaysShown = window.innerWidth > 1300
 
 const desktopLayoutStyle: React.CSSProperties = {
   margin: '0 auto',
-  maxWidth: isMenuAlwaysShown ? 'inherit' : 960,
+  maxWidth: 940,
 }
 const titleStyle: React.CSSProperties = {
   fontSize: 24,
@@ -181,17 +180,16 @@ const PartnersPage = (): React.ReactElement => {
     }
     return <SelectedPartnerPage partner={selectedPartner} step={step} />
   }
-  // Extra padding addeded by a wrapper div in the Layout.
+  // Extra padding added by a wrapper div in the Layout.
   const outerPadding = 30
-  const partnersContainerStyle: React.CSSProperties = isMobileVersion ? {
+  const partnersContainerStyle: React.CSSProperties = {
     boxSizing: 'border-box',
     display: 'flex',
     margin: `0 ${-outerPadding}px`,
     overflow: 'scroll',
+    padding: isMobileVersion ? 0 : `0 ${outerPadding}px`,
     scrollBehavior: 'smooth',
-    width: '100vw',
-  } : {
-    display: 'flex',
+    width: isMobileVersion ? '100vw' : 'initial',
   }
   const bigTitle = prepareT('Voici les partenaires idéaux pour vous aider')
   const autoValidation = <React.Fragment>
@@ -227,7 +225,7 @@ const PartnersPage = (): React.ReactElement => {
     return <Layout header={translate(shortTitle)} bigTitle={bigTitle}>
       <TabsNav tabs={tabs} />
       {areInternalShown ? <React.Fragment>
-        <div style={partnersContainerStyle} ref={partnersContainerRef}>
+        <div className="no-scrollbars" style={partnersContainerStyle} ref={partnersContainerRef}>
           <div style={{flexShrink: 0, width: outerPadding}} />
           {partners.map((partner) =>
             <PartnerCard
@@ -254,6 +252,7 @@ const PartnersPage = (): React.ReactElement => {
           key={partner.partnerId} {...partner}
           style={partnerCardStyle} stepId={stepId} />,
       )}
+      <div style={{flex: 'none', width: outerPadding}} />
     </div>
 
     {stepId === 'training' ?
