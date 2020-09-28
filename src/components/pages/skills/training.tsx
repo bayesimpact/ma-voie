@@ -39,7 +39,7 @@ const SkillsTrainingPage = (): React.ReactElement => {
   return <Layout header={t('Compétences')} bigTitle={bigTitle}>
     <Trans>
       <p style={paragraphStyle}>
-        Nous allons faire tout en sorte pour que vous puissiez acquérir ces compétences
+        Nous allons tout faire en sorte pour que vous puissiez acquérir ces compétences
         avec les meilleurs&nbsp;!&nbsp;:)
       </p>
       <p style={paragraphStyle}>
