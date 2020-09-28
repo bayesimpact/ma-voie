@@ -18,7 +18,7 @@ const mainContentStyle: React.CSSProperties = {
 
 const containerStyle: React.CSSProperties = {
   fontFamily: 'ProximaSoft',
-  margin: isMobileVersion ? '0 auto' : '100px auto',
+  margin: isMobileVersion ? '0 auto' : '50px auto',
   maxWidth: 400,
   padding: '0 30px 50px',
 }
@@ -61,29 +61,35 @@ const Layout = ({bigTitle, children, header, menu, style, title}: Props): React.
     setIsMenuShown(isMenuAlwaysShown)
   }, [isMenuAlwaysShown])
 
+  const layoutWithoutMenuStyle = isMenuAlwaysShown ? {
+    paddingRight: 270,
+    paddingTop: 53,
+  } : {}
   const layoutStyle = {
     ...containerStyle,
     ...style,
-    ...isMenuAlwaysShown ? {marginRight: 270, marginTop: 50} : {},
   }
 
-  const headerStyle: React.CSSProperties = {
-    position: isMenuAlwaysShown ? 'fixed' : 'relative',
-  }
+  const headerStyle: React.CSSProperties = isMenuAlwaysShown ? {
+    position: 'fixed',
+    width: 'calc(100vw - 270px)',
+  } : {}
   const mainContent = <React.Fragment>
     <Header
       title={header}
       onMenuClick={isMobileVersion ? menu : isMenuAlwaysShown ? 'none' : showMenu}
       menuPosition={isMobileVersion ? 'left' : 'right'} style={headerStyle} />
-    <div style={layoutStyle}>
-      {title || bigTitle ?
-        <h1 style={h1Style}>
-          <span style={h1BigStyle}>{bigTitle}</span>
-          {title}
-        </h1>
-        : ''
-      }
-      {children}
+    <div style={layoutWithoutMenuStyle}>
+      <div style={layoutStyle}>
+        {title || bigTitle ?
+          <h1 style={h1Style}>
+            <span style={h1BigStyle}>{bigTitle}</span>
+            {title}
+          </h1>
+          : ''
+        }
+        {children}
+      </div>
     </div>
   </React.Fragment>
 
