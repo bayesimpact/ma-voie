@@ -4,7 +4,7 @@ import ReactDOMServer from 'react-dom/server'
 import {initReactI18next, useTranslation} from 'react-i18next'
 
 import faviconImage from 'images/favicon.png'
-import snippetImage from 'images/snippet.png'
+import snippetImage from 'images/snippet.jpg'
 
 interface TemplateProps {
   lang: 'fr' | 'en'
@@ -53,13 +53,14 @@ export const Template = (props: TemplateProps): React.ReactElement => {
       <meta property="og:type" content="website" />
       <meta
         property="og:title"
-        content={t("$t(productName) \u2014 Prenez le bon virage vers l'emploi")} />
+        content={t("$t(productName) \u2014 La plateforme qui optimise votre chemin vers l'emploi")}
+      />
       <meta
         property="og:description" name="description"
-        content={t("Sur la route de l'emploi et en ligne, $t(productName) vous offre un parcours " +
-          'adapté à vos besoins.')} />
+        content={t("Sur le chemin de l'emploi et en ligne, $t(productName) vous offre un " +
+          'parcours adapté à vos besoins.')} />
       <meta
-        property="og:image" content={config.canonicalUrl + snippetImage} />
+        property="og:image" name="image" content={config.canonicalUrl + snippetImage} />
       <meta property="og:url" content={config.canonicalUrl} />
 
       <link rel="icon" href={faviconImage} type="image/png" />

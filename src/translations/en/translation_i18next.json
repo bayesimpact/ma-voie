@@ -1,6 +1,6 @@
 {
   "$t(productName) est une initiative portée par quatre acteurs du secteur de l'emploi et de la technologie": "$t(productName) est une initiative portée par quatre acteurs du secteur de l'emploi et de la technologie",
-  "$t(productName) — Prenez le bon virage vers l'emploi": "$t(productName) — Prenez le bon virage vers l'emploi",
+  "$t(productName) — La plateforme qui optimise votre chemin vers l'emploi": "$t(productName) — La plateforme qui optimise votre chemin vers l'emploi",
   "<0>$t(productName)</0> vous accompagne dans votre <br/>recherche d'emploi en 4 étapes clés. <br/>Simple. 100% en ligne. Personnalisé.": "<0>$t(productName)</0> vous accompagne dans votre <br/>recherche d'emploi en 4 étapes clés. <br/>Simple. 100% en ligne. Personnalisé.",
   "<0>28</0> <br/>septembre": "<0>28</0> <br/>september",
   "<0>31</0> <br/>octobre": "<0>31</0> <br/>october",
@@ -115,7 +115,7 @@
   "Soutien": "Soutien",
   "Suivant votre réponse, on vous emmène à l’étape \"formation\" ou \"préparation d’entretien\" !": "Suivant votre réponse, on vous emmène à l’étape \"formation\" ou \"préparation d’entretien\"!",
   "Super !": "Great!",
-  "Sur la route de l'emploi et en ligne, $t(productName) vous offre un parcours adapté à vos besoins.": "Sur la route de l'emploi et en ligne, $t(productName) vous offre un parcours adapté à vos besoins.",
+  "Sur le chemin de l'emploi et en ligne, $t(productName) vous offre un parcours adapté à vos besoins.": "Sur le chemin de l'emploi et en ligne, $t(productName) vous offre un parcours adapté à vos besoins.",
   "Terminer l'étape {{steps}}": "Finish the step {{steps}}",
   "Terminer l'étape {{steps}}_plural": "Finish the steps {{steps}}",
   "Terminé": "Finished",
