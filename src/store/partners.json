@@ -15,14 +15,14 @@
     {
         "description":"**Get Into Tech**\n  * Intéressé par l'univers du web, vous voulez vous lancer mais vous avez besoin d'un coup de boost pour cibler la carrière qui vous convient vraiment ?\n  * Découvez **Get Into Tech**, 1 mois pour développer vos compétences techniques et booster votre orientation professionnelle dans le domaine du numérique.\n  * Durée 4 semaines. 100% en ligne.",
         "details":"",
-        "discoverUrl":"https://inco-group.co/fr/",
+        "discoverUrl":"https://www.academy.inco-group.co/?lang=fr",
         "isInternal":true,
         "logo":"inco.png",
         "name":"Inco - Get\u00A0Into\u00A0Tech",
         "partnerId":"inco-get-into-tech",
         "steps":["definition"],
         "title":"Gratuit",
-        "url":"https://inco-group.co/fr/",
+        "url":"https://inco-group.typeform.com/to/fusbYb",
         "userCount":0
     },
     {
@@ -81,27 +81,27 @@
     {
         "description":"**In Code**\n  * Devenez développeur et apprenez un des langages de programmation les plus en vogue !\n  * Construit sur un modèle blended - en présentiel et en ligne - INCODE vous permet d’acquérir en 400 heures toutes les compétences pour devenir développeur fullstack JavaScript et maîtriser les codes pour vous lancer en tant que développeur junior.\n  * Durée 3 mois. Blended (En ligne et présentiel)",
         "details":"",
-        "discoverUrl":"https://inco-group.co/fr/",
+        "discoverUrl":"https://www.academy.inco-group.co/?lang=fr",
         "isInternal":true,
         "logo":"inco.png",
         "name":"Inco - In\u00A0Code",
         "partnerId":"inco-in-code",
         "steps":["training"],
         "title":"Gratuit",
-        "url":"https://inco-group.co/fr/",
+        "url":"https://inco-group.typeform.com/to/KcU1lM",
         "userCount":0
     },
     {
         "description":"**Build and Click**\n  * Les clés pour devenir dessinateur-projeteur 3D avec REVIT ! Construit sur un modèle blended - en présentiel et en ligne - BUILD AND CLICK vous permet d’acquérir en 400 heures toutes les compétences pour devenir dessinateur-projeteur 3D et maîtriser le logiciel REVIT.\n   Durée 3 mois. Blended (En ligne et présentiel)",
         "details":"",
-        "discoverUrl":"https://inco-group.co/fr/",
+        "discoverUrl":"https://www.academy.inco-group.co/?lang=fr",
         "isInternal":true,
         "logo":"inco.png",
         "name":"Inco - Build\u00A0and\u00A0Click",
         "partnerId":"inco-build-and-click",
         "steps":["training"],
         "title":"Gratuit",
-        "url":"https://inco-group.co/fr/",
+        "url":"https://inco-group.typeform.com/to/y4Pqts",
         "userCount":0
     },
     {
