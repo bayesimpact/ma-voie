@@ -209,11 +209,12 @@ const PartnersPage = (): React.ReactElement => {
     <div style={CPFContainerStyle}>
       <div style={innerCPFContainerStyle}>
         <Trans parent="h1">
-          Formations gratuites
+          Formations gratuites avec votre CPF
         </Trans>
         <Trans parent="p">
           Nous avons peut-être trouvé des formations disponibles gratuitement avec votre
-          compte personnel de formation. N'hésitez pas à en rechercher proches de votre domicile.
+          compte personnel de formation (CPF). Saviez-vous que tous les ans, vous cumulez
+          des droits à la formation, que vous pouvez utiliser en quelques clics&nbsp;?
         </Trans>
         <a href={CPFLInk} target="_blank" rel="noopener noreferrer" style={CPFLinkStyle}>
           <Button type="firstLevel" style={CPFButtonStyle}>Voir les formations</Button>
