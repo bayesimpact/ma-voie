@@ -157,7 +157,7 @@ const HeaderSection = (): React.ReactElement => {
       <Trans style={subTagLineStyle}>
         <strong style={productNameStyle}>$t(productName)</strong> vous accompagne dans votre <br />
         recherche d'emploi en 4 étapes clés. <br />
-        Simple. 100% en ligne. Personnalisé.
+        Simple. Personnalisé. Sans se déplacer.
       </Trans>
       {isLandingOnlyVersion ? null :
         <div style={ctasDivStyle}>
