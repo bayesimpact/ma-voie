@@ -1,6 +1,12 @@
 import _without from 'lodash/without'
 import DoneIcon from 'mdi-react/DoneIcon'
+import MenuDownIcon from 'mdi-react/MenuDownIcon'
 import React, {useCallback, useState} from 'react'
+import {useTranslation} from 'react-i18next'
+
+import Button from 'components/button'
+
+const _MAX_NUMBER_ITEMS = 10
 
 const containerStyle: React.CSSProperties = {
   alignItems: 'center',
@@ -92,18 +98,26 @@ interface ListProps<T> {
   valuesSelected: readonly T[]
 }
 
+// TODO(sil): Fix "see more" button size.
 const CheckboxListBase = <T extends unknown = string>
 (props: ListProps<T>): React.ReactElement => {
   const {list, onChange, valuesSelected} = props
+  const {t} = useTranslation()
+  const [isExpanded, setIsExpanded] = useState(false)
+  const mainList = list.slice(0, _MAX_NUMBER_ITEMS)
+  const additionalList = list.slice(_MAX_NUMBER_ITEMS)
   const onSelect = useCallback((value: T): void => {
     const newValues = valuesSelected.includes(value) ?
       _without(valuesSelected, value) :
       [value].concat(valuesSelected)
     onChange(newValues)
   }, [onChange, valuesSelected])
+  const handleOpenClick = useCallback((): void => {
+    setIsExpanded(true)
+  }, [])
 
   return <React.Fragment>
-    {list.map(({label, value}, index: number) =>
+    {mainList.map(({label, value}, index: number) =>
       <CheckboxItem<T>
         value={value}
         key={index}
@@ -111,6 +125,18 @@ const CheckboxListBase = <T extends unknown = string>
         onSelect={onSelect}
         label={label} />,
     )}
+    {!additionalList.length ? null : isExpanded ? additionalList.map(
+      ({label, value}, index: number) =>
+        <CheckboxItem<T>
+          value={value}
+          key={`additional-${index}`}
+          isSelected={valuesSelected.includes(value)}
+          onSelect={onSelect}
+          label={label} />,
+    ) : <Button type="small" onClick={handleOpenClick}>
+      {t('Voir plus')}
+      <MenuDownIcon />
+    </Button>}
   </React.Fragment>
 }
 
