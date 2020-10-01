@@ -109,7 +109,7 @@ const AccountPage = (): React.ReactElement => {
       lastName: !inputLastName,
       name: !inputName,
       password: !password && !userId,
-      phone: !inputPhone,
+      phone: !inputPhone || inputPhone.length < 8,
     }
     setAreErrorFields(errorsFields)
     if (Object.values(errorsFields).some(field => field)) {
