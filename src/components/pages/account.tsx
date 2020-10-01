@@ -87,7 +87,7 @@ const AccountPage = (): React.ReactElement => {
   const [password, setPassword] = useState('')
   const [isErrorDisplayed, setIsErrorDisplayed] = useState(false)
   const [areErrorFields, setAreErrorFields] =
-    useState<{[K in 'email'|'lastName'|'name'|'phone'|'password']?: boolean}>({})
+    useState<{[K in 'email'|'lastName'|'name'|'password'|'phone'|'phoneLength']?: boolean}>({})
   const [errorMessage, setErrorMessage] = useState('')
 
   const [updated, setUpdated] = useState(false)
@@ -110,6 +110,7 @@ const AccountPage = (): React.ReactElement => {
       name: !inputName,
       password: !password && !userId,
       phone: !inputPhone,
+      phoneLength: !!inputPhone && inputPhone.length < 8,
     }
     setAreErrorFields(errorsFields)
     if (Object.values(errorsFields).some(field => field)) {
@@ -188,7 +189,8 @@ const AccountPage = (): React.ReactElement => {
   }
   const inputPhoneStyle: React.CSSProperties = {
     ...inputStyle,
-    borderColor: areErrorFields.phone ? colors.RED_ERROR : colors.SILVER_THREE,
+    borderColor: (areErrorFields.phone || areErrorFields.phoneLength) ?
+      colors.RED_ERROR : colors.SILVER_THREE,
   }
   const inputPasswordStyle: React.CSSProperties = {
     ...inputStyle,
@@ -224,7 +226,9 @@ const AccountPage = (): React.ReactElement => {
       value={inputPhone} onChange={setPhone} type="tel" />
     {areErrorFields.phone ?
       <div style={errorMessageStyle}><sup>*</sup>{t('Champ obligatoire')}</div> :
-      null}
+      areErrorFields.phoneLength ?
+        <div style={errorMessageStyle}><sup>*</sup>{t('Numéro de téléphone non valide')}</div> :
+        null}
     {userId ? null : <PasswordInput
       style={inputPasswordStyle} autoComplete="new-password"
       value={password} onChange={setPassword} />}
