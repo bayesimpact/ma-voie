@@ -83,7 +83,7 @@ const BeneficiariesSection = (): React.ReactElement => {
         <div style={blocDescriptionStyle}>
           <Trans style={textDescriptionStyle}>
             <p><span style={blockDescriptionEmphasisStyle}>De septembre à
-            novembre 2020</span>, vous pourrez profiter en avant-première
+            octobre 2020</span>, vous pourrez profiter en avant-première
             du lancement de $t(productName).</p>
             <p><span style={blockDescriptionEmphasisStyle}>$t(productName)
             vous choisit</span>&nbsp;: si vous êtes parmi les 100 premiers inscrits,
