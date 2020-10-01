@@ -95,8 +95,11 @@ const JoinSection = (): React.ReactElement => {
     <div style={{margin: 'auto', maxWidth: 960}}>
       <h2 style={titleStyle}>{t('Vous souhaitez nous rejoindre\u00A0?')}</h2>
       <div style={{display: 'flex', flexDirection: isMobileVersion ? 'column' : 'row'}}>
-        <JoinCard topic={t('Proposition de service')} text={serviceText} style={serviceStyle} />
-        <JoinCard topic={t('Soutien')} text={supportText} style={supportStyle} />
+        <JoinCard
+          topic={t('Je souhaite être référencé sur $t(productName)')} text={serviceText}
+          style={serviceStyle} />
+        <JoinCard
+          topic={t('Je soutiens $t(productName)')} text={supportText} style={supportStyle} />
       </div>
     </div>
   </section>
