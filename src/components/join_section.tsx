@@ -5,6 +5,7 @@ import {Trans, useTranslation} from 'react-i18next'
 const isMobileVersion = window.outerWidth < 800
 
 interface JoinCardProps {
+  callToAction: string
   topic: string
   text: React.ReactElement
   style: React.CSSProperties
@@ -29,8 +30,7 @@ const textStyle: React.CSSProperties = {
   textAlign: 'center',
 }
 
-const JoinCardBase = ({topic, text, style}: JoinCardProps): React.ReactElement => {
-  const {t} = useTranslation()
+const JoinCardBase = ({callToAction, topic, text, style}: JoinCardProps): React.ReactElement => {
   const containerStyle: React.CSSProperties = {
     alignItems: 'center',
     borderRadius: 20,
@@ -52,7 +52,7 @@ const JoinCardBase = ({topic, text, style}: JoinCardProps): React.ReactElement =
   return <div style={containerStyle}>
     <div style={textStyle}>{text}</div>
     <div style={buttonStyle} onClick={handleClick} role="link">
-      {t('contactEmail')}
+      {callToAction}
     </div>
   </div>
 }
@@ -95,8 +95,12 @@ const JoinSection = (): React.ReactElement => {
     <div style={{margin: 'auto', maxWidth: 960}}>
       <h2 style={titleStyle}>{t('Vous souhaitez nous rejoindre\u00A0?')}</h2>
       <div style={{display: 'flex', flexDirection: isMobileVersion ? 'column' : 'row'}}>
-        <JoinCard topic={t('Proposition de service')} text={serviceText} style={serviceStyle} />
-        <JoinCard topic={t('Soutien')} text={supportText} style={supportStyle} />
+        <JoinCard
+          topic={t('Proposition de service')} text={serviceText} style={serviceStyle}
+          callToAction={t('Je souhaite être référencé sur $t(productName)')} />
+        <JoinCard
+          topic={t('Soutien')} text={supportText} style={supportStyle}
+          callToAction={t('Je soutiens $t(productName)')} />
       </div>
     </div>
   </section>
