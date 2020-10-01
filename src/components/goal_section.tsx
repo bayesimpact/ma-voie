@@ -25,7 +25,7 @@ const CARDS: readonly (CardProps & {index?: never})[] = [
   {
     color: colors.LIGHT_TAN,
     content: <Trans parent={null}>
-      Une définition de votre <strong style={strongStyle}>projet professionnel</strong>
+      Définir votre <strong style={strongStyle}>projet professionnel</strong>
     </Trans>,
     icon: definitionIcon,
     name: prepareT('définition'),
@@ -33,7 +33,7 @@ const CARDS: readonly (CardProps & {index?: never})[] = [
   {
     color: colors.SILVER,
     content: <Trans parent={null}>
-      Une analyse de vos <strong style={strongStyle}>compétences</strong>
+      Analyser vos <strong style={strongStyle}>compétences</strong>
     </Trans>,
     icon: competencesIcon,
     name: prepareT('compétences'),
@@ -41,7 +41,7 @@ const CARDS: readonly (CardProps & {index?: never})[] = [
   {
     color: colors.LIGHT_SKY_BLUE,
     content: <Trans parent={null}>
-      Une évaluation de vos besoins de <strong style={strongStyle}>formation</strong>
+      Évaluer vos besoins de <strong style={strongStyle}>formation</strong>
     </Trans>,
     icon: formationIcon,
     name: prepareT('formation'),
@@ -49,8 +49,7 @@ const CARDS: readonly (CardProps & {index?: never})[] = [
   {
     color: colors.PALE_MAUVE,
     content: <Trans parent={null}>
-      Un <strong style={strongStyle}>soutien</strong> et une
-      {' '}<strong style={strongStyle}>préparation</strong> pour réussir vos entretiens
+      Vous préparer pour vos <strong style={strongStyle}>entretiens</strong>
     </Trans>,
     icon: valorisationIcon,
     name: prepareT('valorisation'),
