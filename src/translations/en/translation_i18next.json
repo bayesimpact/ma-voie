@@ -13,6 +13,7 @@
   "<0>Votre projet est clair et en plus vous avez les compétences essentielles !</0><1>Une formation n'est donc pas nécessaire pour vous.</1><2>Vous êtes prêt·e pour postuler au poste.</2><3>Et le mieux, c'est qu'on va vous aider à bien vous préparer :)</3>": "<0>Your project is clear and you have the required skills!</0><1>You don't need any training session.</1><2>You are ready to candidate for the job.</2><3>And we are going to help you to get prepared!</3>",
   "<strong>Vous proposez un service d’accompagnement</strong> <br/>et souhaitez être référencé sur $t(productName) ?": "<strong>Vous proposez un service d’accompagnement</strong> <br/>et souhaitez être référencé sur $t(productName)?",
   "Accueil": "Homepage",
+  "Adresse email incorrecte": "Invalid email address",
   "Annuler": "Cancel",
   "Arrêter maintenant": "Stop now",
   "Astuce": "Tip",
