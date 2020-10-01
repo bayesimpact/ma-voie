@@ -118,6 +118,7 @@ const helpLinkStyle: React.CSSProperties = {
   display: 'block',
   fontSize: 15,
   fontWeight: 'bold',
+  margin: 'auto',
   textAlign: 'center',
   textDecoration: 'none',
 }
@@ -166,10 +167,10 @@ const HeaderSection = (): React.ReactElement => {
             </Button>
           </Link>
           <div style={orStyle}><span style={orTextStyle}>{t('ou')}</span></div>
-          <a href="https://calendly.com/mavoie/30min" onClick={handleCalendlyClick}
+          <Trans parent="a" href="https://calendly.com/mavoie/30min" onClick={handleCalendlyClick}
             target="_blank" rel="noopener noreferrer" style={helpLinkStyle}>
-            {t("Demander l'aide d'un conseiller $t(productName)")}
-          </a>
+            Demander l'aide<br />d'un conseiller $t(productName)
+          </Trans>
         </div>}
       {isMobileVersion ? null : <React.Fragment>
         <img src={orange13ArrowsImage} alt="" style={orange13ArrowsStyle} />
