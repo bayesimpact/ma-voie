@@ -76,7 +76,7 @@ const BeneficiariesSection = (): React.ReactElement => {
   return <section style={sectionStyle}>
     <div style={contentStyle}>
       <Trans style={tagLineStyle} parent="h2">
-        On cherche nos <br />
+        Soyez parmi nos <br />
         100 premiers bénéficiaires
       </Trans>
       <div style={blocsStyle}>
