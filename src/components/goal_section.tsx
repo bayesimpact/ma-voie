@@ -185,9 +185,9 @@ const GoalSection = (): React.ReactElement => {
       <div style={presentationStyle}>
         <h2 style={titleStyle}>{t('Les quatre étapes-clés')}</h2>
         <Trans>
-          En fonction de votre situation, les partenaires certifiés
+          Selon de votre situation, les partenaires certifiés
           {' '}<strong style={strongStyle}>$t(productName)</strong>{' '}
-          vous accompagneront à chaque étape de votre parcours
+          vous accompagnent à chaque étape de votre parcours
         </Trans>
         {isMobileVersion ? null : <img style={arrowsStyle} src={grey6ArrowsImage} alt="" />}
       </div>
