@@ -192,7 +192,7 @@ const PartnersPage = (): React.ReactElement => {
     boxSizing: 'border-box',
     display: 'flex',
     margin: `0 ${-outerPadding}px`,
-    overflow: 'scroll',
+    overflowX: 'scroll',
     padding: isMobileVersion ? 0 : `0 ${outerPadding}px`,
     scrollBehavior: 'smooth',
     width: isMobileVersion ? '100vw' : 'initial',
