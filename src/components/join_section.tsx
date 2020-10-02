@@ -84,10 +84,10 @@ const JoinSection = (): React.ReactElement => {
   const {t} = useTranslation()
   const serviceText = <Trans>
     <strong>Vous proposez un service d’accompagnement</strong> <br />
-    et souhaitez être référencé sur $t(productName)&nbsp;?
+    et souhaitez être référencé sur <strong>$t(productName)</strong>&nbsp;?
   </Trans>
   const supportText = <Trans>
-    Vous souhaitez soutenir $t(productName) <br />
+    Vous souhaitez soutenir <strong>$t(productName)</strong> <br />
     <strong>Envoyez-nous un message</strong>
   </Trans>
 
