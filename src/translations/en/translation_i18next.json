@@ -38,7 +38,7 @@
   "Continuer avec Facebook": "Continue with Facebook",
   "Continuer avec Google": "Continue with Google",
   "Créer un compte": "Create an account",
-  "Demander l'aide<br/>d'un conseiller $t(productName)": "Demander l'aide<br/>d'un conseiller $t(productName)",
+  "Demander l'aide<br/>d'un conseiller <strong>$t(productName)</strong>": "Demander l'aide<br/>d'un conseiller <strong>$t(productName)</strong>",
   "Déconnexion": "Log out",
   "Découvrir": "Discover",
   "Définir votre <1>projet professionnel</1>": "Définir votre <1>projet professionnel</1>",

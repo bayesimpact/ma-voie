@@ -96,6 +96,14 @@ const startButtonStyle: React.CSSProperties = {
   margin: isMobileVersion ? '35px auto 0' : '35px 0 0',
   maxWidth: 270,
 }
+const helpButtonStyle: React.CSSProperties = {
+  background: 'none',
+  border: `1px solid ${colorToAlpha('#fff', .5)}`,
+  color: 'white',
+  fontSize: 15,
+  fontWeight: 'normal',
+  lineHeight: 1.2,
+}
 const ctasDivStyle: React.CSSProperties = {
   maxWidth: isMobileVersion ? '100%' : '270px',
 }
@@ -167,10 +175,14 @@ const HeaderSection = (): React.ReactElement => {
             </Button>
           </Link>
           <div style={orStyle}><span style={orTextStyle}>{t('ou')}</span></div>
-          <Trans parent="a" href="https://calendly.com/mavoie/30min" onClick={handleCalendlyClick}
+          <a href="https://calendly.com/mavoie/30min" onClick={handleCalendlyClick}
             target="_blank" rel="noopener noreferrer" style={helpLinkStyle}>
-            Demander l'aide<br />d'un conseiller $t(productName)
-          </Trans>
+            <Button type="variable" style={helpButtonStyle}>
+              <Trans parent="span">
+                Demander l'aide<br />d'un conseiller <strong>$t(productName)</strong>
+              </Trans>
+            </Button>
+          </a>
         </div>}
       {isMobileVersion ? null : <React.Fragment>
         <img src={orange13ArrowsImage} alt="" style={orange13ArrowsStyle} />
