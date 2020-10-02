@@ -218,7 +218,7 @@ const AccountPage = (): React.ReactElement => {
       autoComplete="email" disabled={userId ? true : false}
       value={inputEmail} onChange={setEmail} />
     {areErrorFields.email ?
-      <div style={errorMessageStyle}><sup>*</sup>{t('Champ obligatoire')}</div> :
+      <div style={errorMessageStyle}><sup>*</sup>{t('Adresse email incorrecte')}</div> :
       null}
     <Input
       placeholder={t('Numéro de téléphone')} style={inputPhoneStyle}

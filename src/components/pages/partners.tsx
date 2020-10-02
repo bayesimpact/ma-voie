@@ -19,6 +19,8 @@ import PartnerCard from 'components/partner_card'
 import StepValidationButton from 'components/step_validation_button'
 import TabsNav, {TabProps} from 'components/tabs_nav'
 
+import logoCPF from 'images/logo-mcf.svg'
+
 
 const isMobileVersion = window.innerWidth <= 800
 
@@ -108,6 +110,10 @@ const CPFLinkStyle: React.CSSProperties = {
 }
 const CPFButtonStyle: React.CSSProperties = {
   marginTop: 20,
+}
+const CPFTitleStyle: React.CSSProperties = {
+  padding: '20px 20px 0',
+  textAlign: 'center',
 }
 
 interface SelectedPartnerProps {
@@ -207,10 +213,11 @@ const PartnersPage = (): React.ReactElement => {
   const CPFLInk = `https://www.moncompteformation.gouv.fr/espace-prive/html/#/formation/recherche?q={"nombreOccurences":10,"debutPagination":1,"displayName":"${project.job?.name}","sort":"SCORE","filters":{"price":{"minValue":0,"maxValue":10000,"step":500,"value":10000},"distance":{"minValue":0,"maxValue":1000,"defaultValue":500,"step":20,"value":500}},"where":{"area":0,"aroundMe":false,"modality":"2"},"_what":"${project.job?.name}"}`
   const CPFPartner = <React.Fragment>
     <div style={CPFContainerStyle}>
+      <div style={CPFTitleStyle}>
+        <img src={logoCPF} alt={name} />
+        <h1>{t('Formations gratuites avec votre CPF')}</h1>
+      </div>
       <div style={innerCPFContainerStyle}>
-        <Trans parent="h1">
-          Formations gratuites avec votre CPF
-        </Trans>
         <Trans parent="p">
           Nous avons peut-être trouvé des formations disponibles gratuitement avec votre
           compte personnel de formation (CPF). Saviez-vous que tous les ans, vous cumulez
