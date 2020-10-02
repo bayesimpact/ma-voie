@@ -12,7 +12,7 @@ import {colorToAlpha} from 'components/colors'
 // TODO(pascal): Add a name for the color below then comment those lines with the new name.
 import orange6ArrowsImage from 'images/arrows-6.svg?stroke=#992f00'
 import orange13ArrowsImage from 'images/arrows-13.svg?stroke=#992f00'
-import logoImage from 'images/logo.svg'
+import logoImage from 'images/logo-beta.svg'
 import screenshotImage from 'images/screenshot.svg'
 
 const isMobileVersion = window.innerWidth <= 800
