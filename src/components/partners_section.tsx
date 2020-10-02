@@ -91,8 +91,8 @@ const PartnersSection = (): React.ReactElement => {
   return <section style={containerStyle}>
     <div style={{margin: 'auto', maxWidth: 960}}>
       <h2 style={titleStyle}>{t('Nos partenaires fondateurs')}</h2>
-      <Trans style={textStyle}>$t(productName) est une initiative portée par quatre acteurs du
-      secteur de l'emploi et de la technologie</Trans>
+      <Trans style={textStyle}><strong>$t(productName)</strong> est une initiative portée par
+      quatre acteurs du secteur de l'emploi et de la technologie</Trans>
       <div style={cardsStyle}>
         {FOUNDING_PARTNERS.map(
           (partner: PartnerProps, index: number): React.ReactElement => <PartnerCard
@@ -101,7 +101,7 @@ const PartnersSection = (): React.ReactElement => {
     </div>
     <div style={{margin: 'auto', marginTop: 80, maxWidth: 960}}>
       <h2 style={titleStyle}>{t('Nos partenaires certifiés')}</h2>
-      <Trans style={textSecondaryStyle}>Ils soutiennent $t(productName)</Trans>
+      <Trans style={textSecondaryStyle}>Ils soutiennent <strong>$t(productName)</strong></Trans>
       <div style={cardsCertifiedStyle}>
         {PARTNERS.map(
           (partner: PartnerProps, index: number): React.ReactElement => <PartnerCard
