@@ -29,17 +29,7 @@ module.exports = {
           path.join(__dirname, '../test/webpack'),
         ],
         test: /\.[jt]sx?$/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            plugins: [
-              '@babel/plugin-syntax-dynamic-import',
-              ['@babel/plugin-proposal-class-properties', {loose: false}],
-              ['@babel/plugin-proposal-optional-chaining', {loose: false}],
-            ],
-            presets: [['@babel/env', {modules: false}], '@babel/react', '@babel/typescript'],
-          },
-        },
+        use: 'babel-loader',
       },
     ],
   },
