@@ -89,7 +89,7 @@ const BeneficiariesSection = (): React.ReactElement => {
             vous choisit</span>&nbsp;: si vous êtes parmi les 100 premiers inscrits,
             demandeur d’emploi ou en reconversion.</p>
             <p><span style={blockDescriptionEmphasisStyle}>$t(productName) vous
-            accompagne</span>&nbsp;: sur les quatre étapes clés de votre recherche
+            accompagne</span>&nbsp;: sur les 4 étapes clés de votre recherche
             d’emploi grâce à ses partenaires certifiés.</p>
             <p><span style={blockDescriptionEmphasisStyle}>$t(productName) vous
             écoute</span>&nbsp;: votre retour d’expérience contribuera à améliorer
