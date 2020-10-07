@@ -182,7 +182,7 @@ const GoalSection = (): React.ReactElement => {
   return <section style={sectionStyle}>
     <div style={contentStyle}>
       <div style={presentationStyle}>
-        <h2 style={titleStyle}>{t('Quatre étapes-clés')}</h2>
+        <h2 style={titleStyle}>{t('4 étapes-clés')}</h2>
         <Trans>
           Selon votre situation, les partenaires certifiés
           {' '}<strong style={strongStyle}>$t(productName)</strong>{' '}
