@@ -184,7 +184,7 @@ const GoalSection = (): React.ReactElement => {
       <div style={presentationStyle}>
         <h2 style={titleStyle}>{t('Quatre étapes-clés')}</h2>
         <Trans>
-          Selon de votre situation, les partenaires certifiés
+          Selon votre situation, les partenaires certifiés
           {' '}<strong style={strongStyle}>$t(productName)</strong>{' '}
           vous accompagnent à chaque étape de votre parcours
         </Trans>
