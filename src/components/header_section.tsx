@@ -106,6 +106,7 @@ const helpButtonStyle: React.CSSProperties = {
 }
 const ctasDivStyle: React.CSSProperties = {
   maxWidth: isMobileVersion ? '100%' : '270px',
+  textAlign: 'center',
 }
 const startLinkStyle: React.CSSProperties = {
   textDecoration: 'none',
@@ -169,20 +170,19 @@ const HeaderSection = (): React.ReactElement => {
       </Trans>
       {isLandingOnlyVersion ? null :
         <div style={ctasDivStyle}>
-          <Link to={getPath(['STEPS'], t)} style={startLinkStyle}>
-            <Button type="firstLevel" style={startButtonStyle}>
-              {t('Commencer maintenant')}
-            </Button>
-          </Link>
-          <div style={orStyle}><span style={orTextStyle}>{t('ou')}</span></div>
           <a href="https://calendly.com/mavoie/30min" onClick={handleCalendlyClick}
-            target="_blank" rel="noopener noreferrer" style={helpLinkStyle}>
-            <Button type="variable" style={helpButtonStyle}>
-              <Trans parent="span">
-                Demander l'aide<br />d'un conseiller <strong>$t(productName)</strong>
-              </Trans>
+            target="_blank" rel="noopener noreferrer" style={startLinkStyle}>
+            <Button type="firstLevel" style={startButtonStyle}>
+              {t("Tester l'outil")}
             </Button>
           </a>
+          <Trans>avec un conseiller <strong>$t(productName)</strong></Trans>
+          <div style={orStyle}><span style={orTextStyle}>{t('ou')}</span></div>
+          <Link to={getPath(['STEPS'], t)} style={helpLinkStyle}>
+            <Button type="variable" style={helpButtonStyle}>
+              {t('Tester par moi-même')}
+            </Button>
+          </Link>
         </div>}
       {isMobileVersion ? null : <React.Fragment>
         <img src={orange13ArrowsImage} alt="" style={orange13ArrowsStyle} />
