@@ -1,4 +1,5 @@
 {
+  "$t(productName) vous appartient : dites-nous comment l'améliorer. Vos retours sont décisifs en tant que 100 premiers testeurs !": "$t(productName) vous appartient: dites-nous comment l'améliorer. Vos retours sont décisifs en tant que 100 premiers testeurs!",
   "$t(productName) — La plateforme qui optimise votre chemin vers l'emploi": "$t(productName) — La plateforme qui optimise votre chemin vers l'emploi",
   "4 étapes-clés": "4 étapes-clés",
   "<0>$t(productName)</0> vous accompagne dans votre <br/>recherche d'emploi en 4 étapes clés. <br/>Simple. Personnalisé. Sans se déplacer.": "<0>$t(productName)</0> vous accompagne dans votre <br/>recherche d'emploi en 4 étapes clés. <br/>Simple. Personnalisé. Sans se déplacer.",
@@ -39,6 +40,7 @@
   "Continuer avec Facebook": "Continue with Facebook",
   "Continuer avec Google": "Continue with Google",
   "Créer un compte": "Create an account",
+  "Donner mon avis": "Donner mon avis",
   "Déconnexion": "Log out",
   "Découvrir": "Discover",
   "Définir votre <1>projet professionnel</1>": "Définir votre <1>projet professionnel</1>",
@@ -104,6 +106,7 @@
   "Prénom": "First name",
   "Préparer vos entretiens": "Prepare for interviews",
   "Qu'en pensez-vous ?": "What do you think?",
+  "Que pensez-vous de $t(productName) ?": "Que pensez-vous de $t(productName)?",
   "Quel est votre projet ?": "What is your project?",
   "Quelle est votre expérience pour ce métier ?": "What is your experience for this job?",
   "Retour à l'accueil": "Go back home",
