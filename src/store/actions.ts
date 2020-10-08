@@ -5,7 +5,8 @@ import {getI18n} from 'react-i18next'
 import {useDispatch as genericUseDispatch} from 'react-redux'
 import {Action, Dispatch} from 'redux'
 import {ThunkAction, ThunkDispatch} from 'redux-thunk'
-import {Credentials, FirebaseReducer, FirestoreReducer, getFirebase} from 'react-redux-firebase'
+import {Credentials, ExtendedFirestoreInstance, FirebaseReducer, FirestoreReducer, getFirebase}
+  from 'react-redux-firebase'
 import {actionTypes} from 'redux-firestore'
 import sha1 from 'sha1'
 
@@ -164,6 +165,18 @@ ThunkAction<Promise<string>, RootState, unknown, LinkPartner> {
   }
 }
 
+const calendlyClickAction:
+ThunkAction<Promise<void>, RootState, unknown, Readonly<Action<'REQUEST_CALENDLY_CONTACT'>>> =
+  async (dispatch): Promise<void> => {
+    // TODO(émilie): delete cast
+    // see https://github.com/prescottprue/react-redux-firebase/issues/1012
+    const firestore = getFirebase().firestore as unknown as ExtendedFirestoreInstance
+    await getFirebase().firestore().
+      doc('analytics/calendly').
+      set({value: firestore.FieldValue.increment(1)}, {merge: true}).
+      then(() => dispatch({type: 'REQUEST_CALENDLY_CONTACT'}))
+  }
+
 export interface RootState {
   firebase: FirebaseReducer.Reducer<bayes.maVoie.User>
   firestore: FirestoreReducer.Reducer
@@ -171,5 +184,5 @@ export interface RootState {
   user: bayes.maVoie.User
 }
 
-export {clearDataAction, authenticateUser, linkPartner,
+export {calendlyClickAction, clearDataAction, authenticateUser, linkPartner,
   logoutAction, resetProjectAction, updateProject, updateSteps}
