@@ -5,7 +5,8 @@ import {useHistory} from 'react-router'
 import {Link} from 'react-router-dom'
 
 import {FirebaseAuth} from 'database/firebase'
-import {logoutAction, resetProjectAction, useDispatch, RootState} from 'store/actions'
+import {calendlyClickAction, logoutAction, resetProjectAction, useDispatch, RootState}
+  from 'store/actions'
 import {useProject, useProjects, useSelector, useUserId} from 'store/selections'
 import {getPath} from 'store/url'
 
@@ -75,9 +76,11 @@ const buttonStyle: React.CSSProperties = {
 }
 const linkStyle: React.CSSProperties = {
   color: '#fff',
+  fontSize: 14,
+  lineHeight: 1.2,
   textDecoration: 'none',
 }
-const newAccountDivContainerStyle: React.CSSProperties = {
+const buttonDivContainerStyle: React.CSSProperties = {
   bottom: 90,
   position: 'absolute',
   width: '100%',
@@ -144,6 +147,10 @@ const Menu = ({onClose, style}: MenuProps): React.ReactElement => {
     }
   }, [dispatch, t])
 
+  const handleCalendlyClick = useCallback((): void => {
+    dispatch(calendlyClickAction)
+  }, [dispatch])
+
   // TODO(émilie): Add the reset project option.
   return <nav style={{...containerStyle, ...style}}>
     {!isConnected ?
@@ -190,11 +197,18 @@ const Menu = ({onClose, style}: MenuProps): React.ReactElement => {
         : null
       }
     </div>
-    {!isConnected ? <div style={newAccountDivContainerStyle}>
-      <Link to={getPath(['ACCOUNT'], t)} style={linkStyle}>
-        <Button type="firstLevel" style={buttonStyle}>{t('Créer un compte')}</Button>
-      </Link>
-    </div> : null}
+    <div style={buttonDivContainerStyle}>
+      {!isConnected ?
+        <Link to={getPath(['ACCOUNT'], t)} style={linkStyle}>
+          <Button type="firstLevel" style={buttonStyle}>{t('Créer un compte')}</Button>
+        </Link>
+        : <a href="https://calendly.com/mavoie/30min" onClick={handleCalendlyClick}
+          target="_blank" rel="noopener noreferrer" style={linkStyle}>
+          <Button type="firstLevel" style={buttonStyle}>
+            {t('Contacter un conseiller $t(productName)')}
+          </Button>
+        </a>}
+    </div>
     <div style={returnDivContainerStyle}>
       <div style={returnDivStyle}>
         {isConnected ?
