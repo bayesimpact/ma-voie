@@ -27,6 +27,11 @@ const buttonsStyle = {
     backgroundColor: '#fff',
     color: colors.DARK_FOREST_GREEN,
   },
+  feedback: {
+    ...buttonStyle,
+    backgroundColor: colors.DARK_FOREST_GREEN,
+    color: '#fff',
+  },
   firstLevel: {
     ...buttonStyle,
     backgroundColor: colors.REDDISH_ORANGE,
