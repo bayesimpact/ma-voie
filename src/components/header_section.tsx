@@ -1,10 +1,9 @@
 import MenuIcon from 'mdi-react/MenuIcon'
 import React, {useCallback} from 'react'
 import {Trans, useTranslation} from 'react-i18next'
-import {useFirestore} from 'react-redux-firebase'
 import {Link} from 'react-router-dom'
 
-import {useCalendlyCount} from 'store/selections'
+import {calendlyClickAction, useDispatch} from 'store/actions'
 import {getPath} from 'store/url'
 
 import Button from 'components/button'
@@ -139,17 +138,11 @@ const isLandingOnlyVersion =
 
 const HeaderSection = (): React.ReactElement => {
   const {t} = useTranslation()
-  const firestore = useFirestore()
-  const calendlyCount = useCalendlyCount()
+  const dispatch = useDispatch()
 
-  // TODO(émilie): Move to actions.
   const handleCalendlyClick = useCallback((): void => {
-    firestore.update({collection: 'analytics', doc: 'calendly'}, {value: calendlyCount + 1}).
-      catch(() => {
-        firestore.doc('analytics/calendly').
-          set({value: firestore.FieldValue.increment(1)}, {merge: true})
-      })
-  }, [calendlyCount, firestore])
+    dispatch(calendlyClickAction())
+  }, [dispatch])
 
   return <section style={sectionStyle}>
     {isMobileVersion && !isLandingOnlyVersion ? // TODO(émilie): Allow to sign in on desktop too.
