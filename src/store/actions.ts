@@ -177,6 +177,12 @@ ThunkAction<Promise<void>, RootState, unknown, Readonly<Action<'REQUEST_CALENDLY
       then(() => dispatch({type: 'REQUEST_CALENDLY_CONTACT'}))
   }
 
+const feedbackClickAction:
+ThunkAction<Promise<void>, RootState, unknown, Readonly<Action<'FEEDBACK_CLICK'>>> =
+  async (dispatch): Promise<void> => {
+    getFirebase().updateProfile({feedback: true}).then(() => dispatch({type: 'FEEDBACK_CLICK'}))
+  }
+
 export interface RootState {
   firebase: FirebaseReducer.Reducer<bayes.maVoie.User>
   firestore: FirestoreReducer.Reducer
@@ -184,5 +190,5 @@ export interface RootState {
   user: bayes.maVoie.User
 }
 
-export {calendlyClickAction, clearDataAction, authenticateUser, linkPartner,
+export {calendlyClickAction, clearDataAction, authenticateUser, feedbackClickAction, linkPartner,
   logoutAction, resetProjectAction, updateProject, updateSteps}
