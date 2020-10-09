@@ -117,6 +117,7 @@ const AccountPage = (): React.ReactElement => {
       return
     }
     setIsErrorDisplayed(false)
+    const utmSource = localStorage.getItem('utm_source')
     const update = {
       ...name === inputName ? {} : {name: inputName},
       ...lastName === inputLastName ? {} : {lastName: inputLastName},
@@ -124,6 +125,7 @@ const AccountPage = (): React.ReactElement => {
       ...phone === inputPhone ? {} : {phone: inputPhone},
       ...inputJobSeeker ? {jobSeeker: true} : {jobSeeker: false},
       ...inputRetraining ? {retraining: true} : {retraining: false},
+      ...utmSource ? {source: utmSource} : {},
     }
     if (Object.keys(update).length) {
       // TODO(émilie): Move to actions.ts

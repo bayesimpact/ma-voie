@@ -98,7 +98,7 @@ const Layout = ({bigTitle, children, header, menu, style, title}: Props): React.
         }
         {children}
       </div>
-      {isFeedbackRequested ? <Feedback /> : null}
+      {isFeedbackRequested && isMobileVersion ? <Feedback /> : null}
     </div>
   </React.Fragment>
 
@@ -121,11 +121,7 @@ const Layout = ({bigTitle, children, header, menu, style, title}: Props): React.
     width: menuWidth,
   }
 
-  const divStyle = {
-    paddingBottom: isFeedbackRequested ? 150 : 0,
-    ...withMenuStyle,
-  }
-  return <div style={divStyle}>
+  return <div style={withMenuStyle}>
     <div style={mainContentStyle}>
       {mainContent}
     </div>

@@ -6,6 +6,8 @@ import {useWindowWidth} from 'hooks/resize'
 import Button from 'components/button'
 import {feedbackClickAction, useDispatch} from 'store/actions'
 
+const isMobileVersion = window.innerWidth <= 800
+
 const blockStyle: React.CSSProperties = {
   backgroundColor: colors.TURQUOISE_BLUE,
   borderTopLeftRadius: 15,
@@ -13,6 +15,13 @@ const blockStyle: React.CSSProperties = {
   bottom: 0,
   padding: '23px 40px',
   position: 'absolute',
+}
+const desktopWithoutMenuStyle: React.CSSProperties = {
+  ...blockStyle,
+  height: 145,
+  marginLeft: 'calc((100% - 625px) / 2)',
+  maxWidth: 625,
+  width: 625,
 }
 const desktopStyle: React.CSSProperties = {
   ...blockStyle,
@@ -123,21 +132,22 @@ const Feedback = (): React.ReactElement => {
   }, [])
 
   return <React.Fragment>
-    {isMenuAlwaysShown ? null : <div style={stickyDivStyle} onClick={scrollToInsert}>
+    {isMobileVersion ? <div style={stickyDivStyle} onClick={scrollToInsert}>
       <div style={questionDivStyle}>?</div>
       <div style={titleShortStyle}>{title}</div>
       <div style={arrowStyle}>&rsaquo;</div>
-    </div>}
-    <div style={isMenuAlwaysShown ? desktopStyle : blockStyle} ref={insertRef}>
+    </div> : null}
+    <div style={isMenuAlwaysShown ? desktopStyle :
+      isMobileVersion ? blockStyle : desktopWithoutMenuStyle} ref={insertRef}>
       <h1 style={isMenuAlwaysShown ? desktopTitleStyle : titleStyle}>{title}</h1>
-      <div style={isMenuAlwaysShown ? desktopTextContainerStyle : textContainerStyle}>
-        <Trans style={isMenuAlwaysShown ? desktopTextStyle : textStyle}>
+      <div style={isMobileVersion ? textContainerStyle : desktopTextContainerStyle}>
+        <Trans style={isMobileVersion ? textStyle : desktopTextStyle}>
           $t(productName) vous appartient&nbsp;: dites-nous comment l'améliorer.
           Vos retours sont décisifs en tant que 100 premiers testeurs&nbsp;!
         </Trans>
         <a href="https://forms.gle/zRi6q4g7foZGd1HEA" onClick={handleFeedbackClick}
           target="_blank" rel="noopener noreferrer" style={desktopLinkStyle}>
-          <Button type="feedback" style={isMenuAlwaysShown ? desktopButtonStyle : buttonStyle}>
+          <Button type="feedback" style={isMobileVersion ? buttonStyle : desktopButtonStyle}>
             {t('Donner mon avis')}
           </Button>
         </a>
