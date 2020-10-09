@@ -33,6 +33,7 @@ declare namespace bayes {
       projects?: {
         [projectId: string]: Project
       }
+      source?: string
     }
 
     type ProjectExperience =

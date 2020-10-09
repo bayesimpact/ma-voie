@@ -183,6 +183,13 @@ ThunkAction<Promise<void>, RootState, unknown, Readonly<Action<'FEEDBACK_CLICK'>
     getFirebase().updateProfile({feedback: true}).then(() => dispatch({type: 'FEEDBACK_CLICK'}))
   }
 
+function updateSource(source: string):
+ThunkAction<Promise<void>, RootState, unknown, Readonly<Action<'UPDATE_SOURCE'>>> {
+  return async (dispatch): Promise<void> => {
+    getFirebase().updateProfile({source}).then(() => dispatch({type: 'UPDATE_SOURCE'}))
+  }
+}
+
 export interface RootState {
   firebase: FirebaseReducer.Reducer<bayes.maVoie.User>
   firestore: FirestoreReducer.Reducer
@@ -191,4 +198,4 @@ export interface RootState {
 }
 
 export {calendlyClickAction, clearDataAction, authenticateUser, feedbackClickAction, linkPartner,
-  logoutAction, resetProjectAction, updateProject, updateSteps}
+  logoutAction, resetProjectAction, updateProject, updateSource, updateSteps}
