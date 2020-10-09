@@ -47,6 +47,14 @@ const App = (): React.ReactElement => {
   const {hash, pathname, search} = useLocation()
   const defineAndGetPath = useSubPathDefiner()
   useEffect((): void => logPage(pathname), [pathname])
+  useEffect((): void => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const utmSource = urlParams.get('utm_source')
+    if (!utmSource) {
+      return
+    }
+    localStorage.setItem('utm_source', utmSource)
+  }, [])
   // i18next-extract-mark-ns-start url
   return <Switch>
     <Route path={`/:step${defineAndGetPath('PARTNERS_INTERNAL')}`} component={PartnersPage} />

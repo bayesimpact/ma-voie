@@ -11,6 +11,7 @@ import PartnersSection from 'components/partners_section'
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 const SplashPage = (): React.ReactElement => {
+
   return <div style={{fontFamily: 'Lato, Helvetica'}}>
     <HeaderSection />
     <GoalSection />
