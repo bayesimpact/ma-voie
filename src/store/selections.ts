@@ -123,5 +123,8 @@ const useCertifiedSteps = (): NonNullable<bayes.maVoie.Project['steps']> => {
   return partnerSteps
 }
 
-export {useCalendlyCount, useCertifiedSteps, usePartnerCount, useProject, useProjects,
+const useFeedback = (): boolean =>
+  useSelector((state) => state.firebase.profile.feedback || false)
+
+export {useCalendlyCount, useCertifiedSteps, useFeedback, usePartnerCount, useProject, useProjects,
   useProjectId, useSelector, useSkillsList, useUserId, useUserCount}

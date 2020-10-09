@@ -2,8 +2,10 @@ import React, {useCallback, useEffect, useMemo, useState} from 'react'
 
 import {useWindowWidth} from 'hooks/resize'
 
+import Feedback from 'components/feedback'
 import Header from 'components/header'
 import Menu from 'components/menu'
+import {useFeedback, useUserId} from 'store/selections'
 
 const isMobileVersion = window.innerWidth <= 800
 const menuWidth = 270
@@ -11,6 +13,7 @@ const menuWidth = 270
 const withMenuStyle: React.CSSProperties = {
   display: 'flex',
   minHeight: '100vh',
+  position: 'relative',
 }
 const mainContentStyle: React.CSSProperties = {
   flex: 1,
@@ -45,6 +48,8 @@ interface Props {
 }
 
 const Layout = ({bigTitle, children, header, menu, style, title}: Props): React.ReactElement => {
+  const userId = useUserId()
+  const isFeedbackRequested = !useFeedback() && userId !== undefined
   const windowWidth = useWindowWidth()
   const isMenuAlwaysShown = windowWidth > 1300
   const [isMenuShown, setIsMenuShown] = useState(isMenuAlwaysShown)
@@ -61,10 +66,13 @@ const Layout = ({bigTitle, children, header, menu, style, title}: Props): React.
     setIsMenuShown(isMenuAlwaysShown)
   }, [isMenuAlwaysShown])
 
-  const layoutWithoutMenuStyle = isMenuAlwaysShown ? {
+  const layoutWithoutMenuStyle: React.CSSProperties = isMenuAlwaysShown ? {
     paddingRight: menuWidth,
     paddingTop: 53,
-  } : {}
+  } : {
+    paddingBottom: isFeedbackRequested ? 250 : 0,
+    position: 'relative',
+  }
   const layoutStyle = {
     ...containerStyle,
     ...style,
@@ -90,6 +98,7 @@ const Layout = ({bigTitle, children, header, menu, style, title}: Props): React.
         }
         {children}
       </div>
+      {isFeedbackRequested ? <Feedback /> : null}
     </div>
   </React.Fragment>
 
@@ -112,13 +121,18 @@ const Layout = ({bigTitle, children, header, menu, style, title}: Props): React.
     width: menuWidth,
   }
 
-  return <div style={withMenuStyle}>
+  const divStyle = {
+    paddingBottom: isFeedbackRequested ? 150 : 0,
+    ...withMenuStyle,
+  }
+  return <div style={divStyle}>
     <div style={mainContentStyle}>
       {mainContent}
     </div>
     <div style={menuContainerStyle}>
       <Menu onClose={isMenuAlwaysShown ? undefined : hideMenu} style={menuStyle} />
     </div>
+    {isFeedbackRequested ? <Feedback /> : null}
   </div>
 }
 
