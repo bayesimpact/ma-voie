@@ -67,10 +67,11 @@ const Layout = ({bigTitle, children, header, menu, style, title}: Props): React.
   }, [isMenuAlwaysShown])
 
   const layoutWithoutMenuStyle: React.CSSProperties = isMenuAlwaysShown ? {
+    paddingBottom: isFeedbackRequested ? 150 : 0,
     paddingRight: menuWidth,
     paddingTop: 53,
   } : {
-    paddingBottom: isFeedbackRequested ? 250 : 0,
+    paddingBottom: isFeedbackRequested ? 150 : 0,
     position: 'relative',
   }
   const layoutStyle = {
