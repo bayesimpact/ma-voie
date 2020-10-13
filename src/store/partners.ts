@@ -1,3 +1,8 @@
+import {useMemo} from 'react'
+import {useFirestoreConnect} from 'react-redux-firebase'
+
+import {useSelector} from 'store/selections'
+
 import Partners from './partners.json'
 
 export interface Props {
@@ -14,17 +19,29 @@ export interface Props {
   userCount?: number
 }
 
+interface StaticProps extends Omit<Props, 'steps'> {
+  steps: readonly string[]
+}
+
 const overridePartnerUrls = JSON.parse(config.partnerUrls)
 
-const PartnersWithAssets: readonly Readonly<Props>[] = Partners.
-  map(({logo, partnerId, steps, url, ...partner}) => ({
-    ...partner,
-    // Add logos in the /assets/logo folder when adding new ones.
-    logo: `${config.canonicalUrl}/assets/logo/${logo}`,
-    partnerId,
-    // TODO(pascal): Try to avoid this type cast.
-    steps: steps as readonly bayes.maVoie.StepId[],
-    url: overridePartnerUrls[partnerId] || url,
-  }))
+const addAssets = ({logo, partnerId, steps, url, ...partner}: StaticProps): Props => ({
+  ...partner,
+  // Add logos in the /assets/logo folder when adding new ones.
+  logo: `${config.canonicalUrl}/assets/logo/${logo}`,
+  partnerId,
+  // TODO(pascal): Try to avoid this type cast.
+  steps: steps as readonly bayes.maVoie.StepId[],
+  url: overridePartnerUrls[partnerId] || url,
+})
 
-export default PartnersWithAssets
+const usePartners = (): readonly Readonly<Props>[] => {
+  useFirestoreConnect('staticPartners')
+  const fromFirebase: undefined|readonly StaticProps[] =
+    useSelector(({firestore}) => firestore.ordered.staticPartners)
+  return useMemo(
+    () => (fromFirebase?.length ? fromFirebase : Partners).map(addAssets),
+    [fromFirebase])
+}
+
+export default usePartners
