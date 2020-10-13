@@ -9,7 +9,7 @@ import {updateSteps, useDispatch} from 'store/actions'
 import {prepareT} from 'store/i18n'
 import {useCertifiedSteps, useProject} from 'store/selections'
 import {getPath} from 'store/url'
-import Partners, {Props as PartnerProps} from 'store/partners'
+import usePartners, {Props as PartnerProps} from 'store/partners'
 import Steps, {StepInfo} from 'store/steps'
 
 import Button from 'components/button'
@@ -162,7 +162,8 @@ const PartnersPage = (): React.ReactElement => {
     redirect: [...page || [], ...redirect],
   })), [page])
   const areInternalShown = pathname.endsWith(getPath(['PARTNERS_INTERNAL'], t))
-  const partnersForStep = stepId && Partners.filter(({steps}) => steps.includes(stepId))
+  const allPartners = usePartners()
+  const partnersForStep = stepId && allPartners.filter(({steps}) => steps.includes(stepId))
   const partners = partnersForStep?.filter(({isInternal}) => !isInternal === !areInternalShown)
   const partnersContainerRef = useRef<HTMLDivElement>(null)
   const scrollToPartner = useCallback((currentPartner: string): void => {
@@ -179,7 +180,7 @@ const PartnersPage = (): React.ReactElement => {
   }
   const {isStarted, selectedPartnerId} = steps?.[stepId] || {}
   const selectedPartner = selectedPartnerId &&
-    Partners.find(({partnerId}) => partnerId === selectedPartnerId)
+    allPartners.find(({partnerId}) => partnerId === selectedPartnerId)
   if (isStarted && selectedPartner) {
     if (!areInternalShown) {
       return <Redirect to={getPath(['PARTNERS_INTERNAL'], t)} />

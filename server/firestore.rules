@@ -14,6 +14,10 @@ service cloud.firestore {
       allow read, write: if true
     }
 
+    match /staticPartners/{partnerId} {
+      allow read: if true
+    }
+
     match /users/{userId} {
       function isAuthUser() {
         return request.auth != null && request.auth.uid == userId;
