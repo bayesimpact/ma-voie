@@ -102,7 +102,9 @@ workflows:
   # This will run for all branches, but not for tags.
   build-test-publish:
     jobs:
-      - build-test-publish
+      - build-test-publish:
+          context:
+            - Docker
 
   # This will run for all tags, but not for branches.
   release:
@@ -113,10 +115,11 @@ workflows:
               only: /.*/
             branches:
               ignore: /.*/
+          context:
+            - Docker
       - wait-for-manual-approval:
           type: approval
           requires:
-            # TODO(pascal): Ping Slack to request a manual approval.
             - build-test-publish
           filters:
             tags:
