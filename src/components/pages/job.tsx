@@ -23,7 +23,7 @@ const inputStyle: React.CSSProperties = {
   fontFamily: 'ProximaSoft',
   fontSize: 16,
   height: 24,
-  lineHeight: 24,
+  lineHeight: '24px',
   padding: '18px 25px',
   width: 'calc(100% - 50px)',
 }
