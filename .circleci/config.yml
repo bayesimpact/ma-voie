@@ -8,6 +8,7 @@ jobs:
       - setup_remote_docker:
           # Allows to use previous cached version of the built Docker services.
           docker_layer_caching: true
+          version: 19.03.13
       - run:
           name: Check which parts of the CI should be run
           command: .circleci/should_run_ci.sh "$CIRCLE_BRANCH" "$CIRCLE_TAG"
@@ -95,6 +96,7 @@ jobs:
       - setup_remote_docker:
           # Allows to use previous cached version of the built Docker services.
           docker_layer_caching: true
+          version: 19.03.13
       - run: docker-compose build --pull test
 
 workflows:
