@@ -7,6 +7,7 @@ dist/
 *.sublime-workspace
 
 # Files containing personal credentials related to this project.
+/credentials
 /ssl
 
 # NPM Packages installed locally
@@ -14,3 +15,6 @@ dist/
 
 # Files generated automatically
 cfg/colors.json
+
+# Files generated manually
+/out
