@@ -27,6 +27,9 @@ services:
       - ./dist:/usr/app/dist
       # TODO(pascal): Create a @types/autocomplete.js npm package.
       - ./vendor/autocomplete.js.d.ts:/usr/app/node_modules/@types/autocomplete.js/index.d.ts
+      - ./analytics:/usr/app/analytics:ro
+      - ./credentials:/usr/app/credentials:ro
+      - ./out:/usr/app/out:rw
     environment:
       TUNNEL_TESTING:
       CLIENT_VERSION: dev
