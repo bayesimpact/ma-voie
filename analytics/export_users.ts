@@ -35,10 +35,10 @@ const exportUsers = async (): Promise<void> => {
   const users = await db.collection('users').get()
   const outputFile = await fs.open('out/ma-voie-users.csv', 'w')
   await outputFile.write(prepareCsvLine(fieldNames))
-  users.forEach(async (user) => {
+  await Promise.all(users.docs.map(async user => {
     const data = user.data() as User
     await outputFile.write(prepareCsvLine(fieldNames.map(name => fields[name](user, data))))
-  })
+  }))
   outputFile.close()
 }
 
