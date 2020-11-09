@@ -37,7 +37,7 @@
     },
     "resolveJsonModule": true,
     "strict": true,
-    "target": "esNext"
+    "target": "es2018"
   },
   "include": [
     "cfg/colors.json",
