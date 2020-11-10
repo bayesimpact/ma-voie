@@ -7,6 +7,7 @@
 // to fix it.
 import admin from 'firebase-admin'
 import {promises as fs} from 'fs'
+// eslint-disable-next-line import/no-unresolved
 import serviceAccount from './serviceAccountKey.json'
 
 type User = bayes.maVoie.User
@@ -21,25 +22,28 @@ const fields = {
   jobName: (user: unknown, data: User): string => data.projects?.[0]?.job?.jobGroup?.name || '',
   // Their objective.
   objective: (user: unknown, data: User): string => data.projects?.[0]?.objective || '',
+  // TODO(émilie): Cross the informations between partners collection and [step]Partner data
+  // to show the confirmation registration / validation for this partner & this user.
+  partners: (user: unknown, data: User, partners?: Partner[]): string =>
+    partners?.
+      filter((partner): partner is Partner & {steps: readonly PartnerStep[]} => !!partner?.steps).
+      map(partner => (partner.steps[0].stepId + ',' + partner?.partnerId)).
+      join(',') || '',
   // The time of registration of the user.
   registerTime: (user: admin.firestore.QueryDocumentSnapshot): string =>
     user.createTime.toDate().toISOString(),
-  // TODO(émilie): Cross the informations between partners collection and [step]Partner data
-  // to show the confirmation registration / validation for this partner & this user.
-  partners: (user: unknown, data: User, partners?: Partner[]): string => {
-    return partners?.map(partner => (partner?.steps ? partner.steps[0].stepId + ',' + partner?.partnerId : '')).filter(partner => partner.length > 0).join(',') || ''
-  },
   // Steps data
   ...Object.fromEntries(steps.flatMap((step: bayes.maVoie.StepId) => [
-      [
-        `${step}Partner`,
-        (user: unknown, data: User): string => data.projects?.[0].steps?.[step]?.selectedPartnerId || ''
-      ],
-      [
-        `${step}Completed`,
-        (user: unknown, data: User): string => data.projects?.[0].steps?.[step]?.completed || ''
-      ]
-    ]))
+    [
+      `${step}Partner`,
+      (user: unknown, data: User): string =>
+        data.projects?.[0].steps?.[step]?.selectedPartnerId || '',
+    ],
+    [
+      `${step}Completed`,
+      (user: unknown, data: User): string => data.projects?.[0].steps?.[step]?.completed || '',
+    ],
+  ])),
 }
 
 const fieldNames = Object.keys(fields) as readonly (keyof typeof fields)[]
@@ -59,7 +63,8 @@ const exportUsers = async (): Promise<void> => {
     const data = user.data() as User
     const userPartners = await db.collection('users/' + data.userId + '/partners').get()
     const partners = userPartners.docs.map(doc => doc.data() as Partner)
-    await outputFile.write(prepareCsvLine(fieldNames.map(name => fields[name](user, data, partners))))
+    await outputFile.write(
+      prepareCsvLine(fieldNames.map(name => fields[name](user, data, partners))))
   }))
   outputFile.close()
 }

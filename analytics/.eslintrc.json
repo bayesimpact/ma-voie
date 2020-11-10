@@ -1,0 +1,12 @@
+{
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
+  "env": {
+    "amd": true,
+    "es6": true,
+    "node": true
+  }
+}
