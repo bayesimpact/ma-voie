@@ -33,7 +33,8 @@ Hosting also deploys the `public` folder on `api.mavoie.org`, where there will s
 ## Environment variables
 
 We use https://firebase.google.com/docs/functions/config-env:
-To fetch configuration (e.g. basic authentication passwords), run
+
+To **fetch configuration** (e.g. basic authentication passwords), run
 
 ```
 docker-compose run --rm server firebase --project=$project functions:config:get $config
@@ -41,7 +42,7 @@ docker-compose run --rm server firebase --project=$project functions:config:get 
 
 Where `$project` is either `prod`, `demo` or `dev`, and `$config` is the config key you want (e.g. `basicauth` or `basicauth.job-ready`).
 
-To (re)create basic authentication passwords for all partners, run
+To (re)create basic authentication passwords **for all partners**, run
 
 ```
 docker-compose run --rm server firebase --project=$project functions:config:set $(python server/create_passwords.py)
@@ -49,10 +50,19 @@ docker-compose run --rm server firebase --project=$project functions:config:set 
 
 This will change all the passwords for all partners, so don't do it in production, unless you know what you're doing.
 
+If you need to set **for one partner**:
+
+```
+docker-compose run --rm server firebase --project=$project functions:config:set $credentials
+```
+Where credentials are the one of the partner, e.g `basicauth.job-ready=passwordForThisPartner`
+
 ## Add a new partner
 
 * Create it in `staticPartners`
-* Create its credentials (see paragraph above)
-* Add it in the `authorized rules` (in `firestore.rules`)
-* Send the credentials to the partner
+* Create it in `partners.json` file
+* Generate random credentials with this command: `python3 server/create_passwords.py` (extract the key of the concerning partner - launch it twice to get 2 credentials: 1 demo and 1 dev)
+* Add the credentials to the right environment (see above)
+* Add the partner in the `authorized rules` (in `firestore.rules`)
+* Send the credentials to the partner for demo / prod
 
