@@ -52,6 +52,7 @@ This will change all the passwords for all partners, so don't do it in productio
 ## Add a new partner
 
 * Create it in `staticPartners`
-* Create its credentials
-* Add it in the `authorized rules`
+* Create its credentials (see paragraph above)
+* Add it in the `authorized rules` (in `firestore.rules`)
+* Send the credentials to the partner
 
