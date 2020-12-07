@@ -24,6 +24,8 @@ const ComponentsPage = (): React.ReactElement => {
     <br />
     <Button type="menu" onClick={onClick}>Button menu</Button>
     <br />
+    <Button type="small" onClick={onClick}>Button small</Button>
+    <br />
     <Button type="danger" onClick={onClick}>Button danger</Button>
     <br />
     <Button type="feedback" onClick={onClick}>Button feedback</Button>
