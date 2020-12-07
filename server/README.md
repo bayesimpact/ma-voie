@@ -48,3 +48,10 @@ docker-compose run --rm server firebase --project=$project functions:config:set 
 ```
 
 This will change all the passwords for all partners, so don't do it in production, unless you know what you're doing.
+
+## Add a new partner
+
+* Create it in `staticPartners`
+* Create its credentials
+* Add it in the `authorized rules`
+
