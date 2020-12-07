@@ -39,7 +39,7 @@ To fetch configuration (e.g. basic authentication passwords), run
 docker-compose run --rm server firebase --project=$project functions:config:get $config
 ```
 
-Where `$project` is either `prod`, `demo` or `dev`, and `$config` is the config key you want (e.g. `basicauth`).
+Where `$project` is either `prod`, `demo` or `dev`, and `$config` is the config key you want (e.g. `basicauth` or `basicauth.job-ready`).
 
 To (re)create basic authentication passwords for all partners, run
 
