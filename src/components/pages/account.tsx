@@ -241,7 +241,7 @@ const AccountPage = (): React.ReactElement => {
       null}
     <label style={checkboxLabelStyle}>
       <input defaultChecked={inputJobSeeker} onChange={handleJobSeeker} type="checkbox" />
-      <Trans>Je suis en recherche d'emploi</Trans>
+      <Trans>Je suis demandeur d'emploi</Trans>
     </label>
     <label style={checkboxLabelStyle}>
       <input defaultChecked={inputRetraining} onChange={handleRetraining} type="checkbox" />
