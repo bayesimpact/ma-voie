@@ -142,5 +142,14 @@
         "steps":["interview"],
         "title": "Gratuit",
         "url":"http://dessinetoiunemploi.com/3-uniques-questions-a-preparer-lentretien/"
+    },
+    {
+        "description":"",
+        "logo":"",
+        "name":"Bonjour Sophy",
+        "partnerId":"bonjour-sophy",
+        "steps":[],
+        "title": "",
+        "url":""
     }
 ]

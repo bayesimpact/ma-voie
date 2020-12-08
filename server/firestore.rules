@@ -38,6 +38,7 @@ service cloud.firestore {
           // the partnerId should be one of the pre-defined partner IDs.
           && request.resource.data.partnerId in [
             'bob',
+            'bonjour-sophy',
             'chance',
             'generation',
             'google-ateliers-numerique',
