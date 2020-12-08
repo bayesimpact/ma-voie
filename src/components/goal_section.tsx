@@ -63,7 +63,7 @@ const cardPaddingWidth = 30
 const sectionStyle: React.CSSProperties = {
   color: colors.GREYISH_TEAL,
   fontSize: 18,
-  padding: isMobileVersion ? '0 35px' : '0 20px',
+  padding: isMobileVersion ? '0 35px' : '0 20px 60px',
 }
 const contentStyle: React.CSSProperties = {
   display: 'flex',
