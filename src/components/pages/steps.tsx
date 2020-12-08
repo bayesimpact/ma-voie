@@ -116,7 +116,7 @@ const StepsPage = (): React.ReactElement => {
         return <React.Fragment key={index}>
           {index ?
             <ArrowNextIcon style={arrowStyle} color={colors.SILVER_THREE} size={36} /> : null}
-          <div style={scrollableStepStyle} ref={getStepRef(index)}>
+          <div style={index ? scrollableStepStyle : undefined} ref={getStepRef(index)}>
             <Step
               index={index + 1} {...step} onClick={handleStepClick} isOpen={isOpen} isDone={isDone}
               style={stepStyle}>

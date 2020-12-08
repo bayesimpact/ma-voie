@@ -71,7 +71,7 @@ const Layout = ({bigTitle, children, header, menu, style, title}: Props): React.
     paddingRight: menuWidth,
     paddingTop: 53,
   } : {
-    paddingBottom: isFeedbackRequested ? 150 : 0,
+    paddingBottom: isFeedbackRequested ? isMobileVersion ? 300 : 150 : 0,
     position: 'relative',
   }
   const layoutStyle = {
