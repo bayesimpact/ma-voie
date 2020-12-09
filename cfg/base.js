@@ -88,6 +88,19 @@ module.exports = {
         ],
       },
       {
+        test: /favicon\.ico$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: '../',
+              publicPath: '/',
+            },
+          },
+        ],
+      },
+      {
         test: /\.(png|jpg|gif)(\?[\d&.=a-z]+)?$/,
         use: [
           {

@@ -3,7 +3,7 @@ import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import {initReactI18next, useTranslation} from 'react-i18next'
 
-import faviconImage from 'images/favicon.png'
+import faviconImage from 'images/favicon.ico'
 import snippetImage from 'images/snippet.jpg'
 
 interface TemplateProps {
@@ -63,7 +63,7 @@ export const Template = (props: TemplateProps): React.ReactElement => {
         property="og:image" name="image" content={config.canonicalUrl + snippetImage} />
       <meta property="og:url" content={config.canonicalUrl} />
 
-      <link rel="icon" href={faviconImage} type="image/png" />
+      <link rel="icon" href={faviconImage} type="image/x-icon" />
     </head>
     <body style={{margin: 0}}>
       <div id="app">{/* TODO(cyrille): Add a static element here. */}</div>
