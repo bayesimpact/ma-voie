@@ -19,6 +19,7 @@ declare namespace bayes {
     interface Profile {
       email?: string
       lastName?: string
+      legals?: boolean // The user accepted the legal mentions
       name?: string
       userId?: string // Firebase unique ID for authentication
       phone?: string

@@ -52,7 +52,8 @@ const AccountPage = (): React.ReactElement => {
   const firestore = useFirestore()
 
   const userId = useUserId()
-  const {email, lastName, name, phone, jobSeeker, retraining} = useSelector(
+  const isConnected = (userId !== undefined)
+  const {email, lastName, name, phone, jobSeeker, retraining, legals} = useSelector(
     ({firebase: {profile}}: RootState) => profile)
   const [inputName, setName] = useState(name || '')
   useEffect((): void => {
@@ -84,10 +85,16 @@ const AccountPage = (): React.ReactElement => {
     setRetraining(e.target.checked)
   }, [setRetraining])
 
+  const [inputLegals, setLegals] = useState(legals || false)
+  const handleLegals = useCallback((e): void => {
+    setLegals(e.target.checked)
+  }, [setLegals])
+
   const [password, setPassword] = useState('')
   const [isErrorDisplayed, setIsErrorDisplayed] = useState(false)
   const [areErrorFields, setAreErrorFields] =
-    useState<{[K in 'email'|'lastName'|'name'|'password'|'phone'|'phoneLength']?: boolean}>({})
+    useState<{[K in 'email'|'inputLegals'|'lastName'|'name'|'password'|'phone'|'phoneLength']?:
+      boolean}>({})
   const [errorMessage, setErrorMessage] = useState('')
 
   const [updated, setUpdated] = useState(false)
@@ -106,6 +113,7 @@ const AccountPage = (): React.ReactElement => {
     const isEmailValid = validateEmail(inputEmail)
     const errorsFields = {
       email: !inputEmail || !isEmailValid,
+      inputLegals: !inputLegals,
       lastName: !inputLastName,
       name: !inputName,
       password: !password && !userId,
@@ -126,6 +134,7 @@ const AccountPage = (): React.ReactElement => {
       ...inputJobSeeker ? {jobSeeker: true} : {jobSeeker: false},
       ...inputRetraining ? {retraining: true} : {retraining: false},
       ...utmSource ? {source: utmSource} : {},
+      legals: true,
     }
     if (Object.keys(update).length) {
       // TODO(émilie): Move to actions.ts
@@ -143,8 +152,9 @@ const AccountPage = (): React.ReactElement => {
         setUpdated(true)
       }
     }
-  }, [email, firebase, firestore, name, inputEmail, inputJobSeeker, inputName, lastName,
-    inputLastName, inputPhone, inputRetraining, password, phone, setErrorMessage, userId])
+  }, [email, firebase, firestore, name, inputEmail, inputJobSeeker, inputLegals, inputName,
+    lastName, inputLastName, inputPhone, inputRetraining, password, phone, setErrorMessage,
+    userId])
   useFastForward(() => {
     if (inputName && inputLastName && inputEmail && inputPhone && password) {
       onSave()
@@ -198,6 +208,10 @@ const AccountPage = (): React.ReactElement => {
     ...inputStyle,
     borderColor: areErrorFields.password ? colors.RED_ERROR : colors.SILVER_THREE,
   }
+  const inputLegalsStyle: React.CSSProperties = {
+    ...checkboxLabelStyle,
+    color: areErrorFields.inputLegals ? colors.RED_ERROR : 'inherit',
+  }
 
   // TODO(pascal): Investigate how much the layoutStyle is useful.
   return <LayoutSignIn bigTitle={t('Inscription')} style={layoutStyle}>
@@ -247,6 +261,11 @@ const AccountPage = (): React.ReactElement => {
       <input defaultChecked={inputRetraining} onChange={handleRetraining} type="checkbox" />
       <Trans>Je suis en reconversion professionnelle</Trans>
     </label>
+    {!isConnected || !inputLegals ?
+      <label style={inputLegalsStyle}>
+        <input onChange={handleLegals} type="checkbox" />
+        <Trans>J'ai lu et j'accepte les <a href="">Mentions légales</a></Trans>
+      </label> : null}
     <Button type="secondLevel" onClick={onSave} style={buttonStyle} >
       {t('Valider')}
     </Button>
