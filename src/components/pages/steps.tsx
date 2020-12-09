@@ -138,8 +138,7 @@ const StepsPage = (): React.ReactElement => {
             </Button>
           </div>
           <Trans count={stepListJoin.length} style={interviewDisclaimerStyle}>
-            Il est préférable de terminer
-            l'étape {{steps: stepListJoin}} avant
+            Terminez l'étape {{steps: stepListJoin}} avant
             de vous préparer pour les entretiens.
           </Trans>
         </React.Fragment> :
