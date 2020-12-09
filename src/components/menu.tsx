@@ -113,6 +113,7 @@ const returnDivStyle: React.CSSProperties = {
   fontSize: 16,
   height: 55,
   justifyContent: 'center',
+  textDecoration: 'none',
 }
 
 const projectLinkStyle: React.CSSProperties = {
@@ -230,13 +231,11 @@ const Menu = ({onClose, style}: MenuProps): React.ReactElement => {
       </a>
     </div>
     <div style={returnDivContainerStyle}>
-      <div style={returnDivStyle}>
-        {isConnected ?
-          <Link to={getPath([], t)} style={linkStyle} onClick={handleLogout}>
-            {t('Déconnexion')}
-          </Link>
-          : <Link to={getPath([], t)} style={linkStyle}>{t('Retour à l\'accueil')}</Link>}
-      </div>
+      {isConnected ?
+        <Link to={getPath([], t)} style={returnDivStyle} onClick={handleLogout}>
+          {t('Déconnexion')}
+        </Link>
+        : <Link to={getPath([], t)} style={returnDivStyle}>{t('Retour à l\'accueil')}</Link>}
     </div>
   </nav>
 }
