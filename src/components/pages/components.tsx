@@ -9,6 +9,7 @@ const onClick = (): void => window.alert('Bientôt disponible...')
 
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
+// TODO (émilie): To be deleted or moved somewhere not accessible in prod.
 const ComponentsPage = (): React.ReactElement => {
   return <Layout header="Header title" title="Layout title" bigTitle="Layout big title">
     <br />
@@ -23,6 +24,8 @@ const ComponentsPage = (): React.ReactElement => {
     <Button type="specific" onClick={onClick}>Button specific</Button>
     <br />
     <Button type="menu" onClick={onClick}>Button menu</Button>
+    <br />
+    <Button type="small" onClick={onClick}>Button small</Button>
     <br />
     <Button type="danger" onClick={onClick}>Button danger</Button>
     <br />
