@@ -15,7 +15,7 @@ import Steps, {StepInfo} from 'store/steps'
 import Button from 'components/button'
 import Layout from 'components/layout'
 import ExternalPartner from 'components/external_partner'
-import PartnerCard from 'components/partner_card'
+import PartnerCard, {PartnerIcon} from 'components/partner_card'
 import StepValidationButton from 'components/step_validation_button'
 import TabsNav, {TabProps} from 'components/tabs_nav'
 
@@ -166,14 +166,16 @@ const PartnersPage = (): React.ReactElement => {
   const partnersForStep = stepId && allPartners.filter(({steps}) => steps.includes(stepId))
   const partners = partnersForStep?.filter(({isInternal}) => !isInternal === !areInternalShown)
   const partnersContainerRef = useRef<HTMLDivElement>(null)
+  const [visiblePartner, setVisiblePartner] = useState(partners?.[0]?.partnerId || null)
   const scrollToPartner = useCallback((currentPartner: string): void => {
     if (!partners) {
       return
     }
     const position = Math.max(
       0, partners.findIndex(({partnerId}) => currentPartner === partnerId))
-    partnersContainerRef.current?.scrollTo(335 * position, 0)
-  }, [partners])
+    partnersContainerRef.current?.scrollTo(305 * position, 0)
+    setVisiblePartner(currentPartner)
+  }, [partners, setVisiblePartner])
   const steps = useCertifiedSteps()
   if (!url || !stepId || !partnersForStep || !partners || !step) {
     return <Redirect to={getPath([], t)} />
@@ -242,6 +244,12 @@ const PartnersPage = (): React.ReactElement => {
               style={partnerCardStyle} onClick={scrollToPartner} stepId={stepId} />,
           )}
           <div style={{flexShrink: 0, width: outerPadding - 20}} />
+        </div>
+        <div style={{display: 'flex', justifyContent: 'center', margin: '10px 0'}} >
+          {partners.map((partner) =>
+            <PartnerIcon {...partner} onClick={scrollToPartner} key={partner.partnerId}
+              isVisible={visiblePartner === partner.partnerId} />,
+          )}
         </div>
         {stepId === 'training' ? CPFPartner : null}
       </React.Fragment> : partners.map((partner) => <ExternalPartner
