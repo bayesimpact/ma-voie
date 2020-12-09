@@ -26,7 +26,6 @@ const containerStyle: React.CSSProperties = {
 const notConnectedCloseStyle: React.CSSProperties = {
   color: '#fff',
   cursor: 'pointer',
-  height: 110,
   paddingRight: 15,
   paddingTop: 20,
   textAlign: 'right',
@@ -70,20 +69,34 @@ const jobContentStyle: React.CSSProperties = {
   padding: '17px 20px 19px',
 }
 const buttonStyle: React.CSSProperties = {
-  fontSize: 14,
+  fontSize: 18,
   margin: '20px 30px 0',
   paddingLeft: 47,
   paddingRight: 44,
 }
 const linkStyle: React.CSSProperties = {
   color: '#fff',
-  fontSize: 14,
+  fontSize: 18,
   lineHeight: 1.2,
   textDecoration: 'none',
 }
-const buttonDivContainerStyle: React.CSSProperties = {
-  bottom: 90,
+const linkConnectStyle: React.CSSProperties = {
+  display: 'inline-block',
+  fontWeight: 'bold',
+  margin: '20px 0 0',
+  textAlign: 'center',
+  width: '100%',
+  ...linkStyle,
+}
+const linkCalendlyStyle: React.CSSProperties = {
+  bottom: 80,
   position: 'absolute',
+  width: '100%',
+  ...linkStyle,
+}
+const buttonDivContainerStyle: React.CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
   width: '100%',
 }
 const returnDivContainerStyle: React.CSSProperties = {
@@ -200,15 +213,21 @@ const Menu = ({onClose, style}: MenuProps): React.ReactElement => {
     </div>
     <div style={buttonDivContainerStyle}>
       {!isConnected ?
-        <Link to={getPath(['ACCOUNT'], t)} style={linkStyle}>
-          <Button type="firstLevel" style={buttonStyle}>{t('Créer un compte')}</Button>
-        </Link>
-        : <a href="https://calendly.com/mavoie/30min" onClick={handleCalendlyClick}
-          target="_blank" rel="noopener noreferrer" style={linkStyle}>
-          <Button type="firstLevel" style={buttonStyle}>
-            {t('Contacter un conseiller $t(productName)')}
-          </Button>
-        </a>}
+        <div>
+          <Link to={getPath(['ACCOUNT'], t)} style={linkStyle}>
+            <Button type="firstLevel" style={buttonStyle}>{t('Créer un compte')}</Button>
+          </Link>
+          <Link to={getPath(['LOGIN'], t)} style={linkConnectStyle}>
+            {t('Se connecter')}
+          </Link>
+        </div>
+        : null}
+      <a href="https://calendly.com/mavoie/30min" onClick={handleCalendlyClick}
+        target="_blank" rel="noopener noreferrer" style={linkCalendlyStyle}>
+        <Button type="variable" style={buttonStyle}>
+          {t('Contacter un conseiller')}
+        </Button>
+      </a>
     </div>
     <div style={returnDivContainerStyle}>
       <div style={returnDivStyle}>
