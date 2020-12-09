@@ -1,3 +1,4 @@
+import CircleIcon from 'mdi-react/CircleIcon'
 import React, {useCallback} from 'react'
 import {Trans, useTranslation} from 'react-i18next'
 import ReactMarkdown from 'react-markdown'
@@ -17,7 +18,7 @@ const containerStyle: React.CSSProperties = {
   display: 'flex',
   fontSize: 13,
   margin: '20px 0',
-  minWidth: 315,
+  minWidth: 285,
   overflow: 'hidden',
   position: 'relative',
 }
@@ -78,6 +79,36 @@ interface Props extends PartnerProps {
   stepId: bayes.maVoie.StepId
   style?: React.CSSProperties
 }
+
+const circleIconStyle: React.CSSProperties = {
+  color: colors.SILVER_THREE,
+  cursor: 'pointer',
+  display: 'block',
+  height: 9,
+  margin: '0px 4px',
+  width: 9,
+}
+const circleIconSelectedStyle: React.CSSProperties = {
+  ...circleIconStyle,
+  color: colors.DARK_FOREST_GREEN,
+}
+
+interface IconProps {
+  isVisible?: boolean
+  onClick?: (partnerId: string) => void
+  partnerId: string
+}
+const PartnerIcon = (props: IconProps): React.ReactElement => {
+  const {isVisible, onClick, partnerId} = props
+  const handleClick = useCallback((): void => {
+    if (onClick && partnerId) {
+      onClick(partnerId)
+    }
+  }, [partnerId, onClick])
+  return <CircleIcon onClick={handleClick}
+    style={isVisible ? circleIconSelectedStyle : circleIconStyle} />
+}
+
 const PartnerCard = (props: Props): React.ReactElement => {
   const {description, details, url, discoverUrl = url, isSelected, logo, name, onClick, partnerId,
     stepId, style, title} = props
@@ -154,3 +185,4 @@ const PartnerCard = (props: Props): React.ReactElement => {
   </section>
 }
 export default React.memo(PartnerCard)
+export {PartnerIcon}
