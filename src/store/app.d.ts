@@ -17,6 +17,7 @@ declare namespace bayes {
     }
 
     interface Profile {
+      areLegalMentionsAccepted?: boolean
       email?: string
       lastName?: string
       name?: string

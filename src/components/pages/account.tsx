@@ -3,6 +3,7 @@ import {Trans, useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
 import {useFirebase, useFirestore} from 'react-redux-firebase'
 import {useHistory} from 'react-router'
+import {Link} from 'react-router-dom'
 
 import {useFastForward} from 'hooks/fast_forward'
 import {RootState} from 'store/actions'
@@ -42,7 +43,9 @@ const checkboxLabelStyle: React.CSSProperties = {
   display: 'inline-flex',
   marginTop: 10,
 }
-
+const linkStyle: React.CSSProperties = {
+  color: colors.NEON_BLUE,
+}
 // This is a top level page and should never be nested in another one.
 // TOP LEVEL PAGE
 const AccountPage = (): React.ReactElement => {
@@ -52,8 +55,9 @@ const AccountPage = (): React.ReactElement => {
   const firestore = useFirestore()
 
   const userId = useUserId()
-  const {email, lastName, name, phone, jobSeeker, retraining} = useSelector(
-    ({firebase: {profile}}: RootState) => profile)
+  const isConnected = userId !== undefined
+  const {areLegalMentionsAccepted, email, lastName, name, phone, jobSeeker,
+    retraining} = useSelector(({firebase: {profile}}: RootState) => profile)
   const [inputName, setName] = useState(name || '')
   useEffect((): void => {
     name && setName(name)
@@ -84,10 +88,16 @@ const AccountPage = (): React.ReactElement => {
     setRetraining(e.target.checked)
   }, [setRetraining])
 
+  const [inputLegals, setLegals] = useState(areLegalMentionsAccepted || false)
+  const handleLegals = useCallback((e): void => {
+    setLegals(e.target.checked)
+  }, [])
+
   const [password, setPassword] = useState('')
   const [isErrorDisplayed, setIsErrorDisplayed] = useState(false)
   const [areErrorFields, setAreErrorFields] =
-    useState<{[K in 'email'|'lastName'|'name'|'password'|'phone'|'phoneLength']?: boolean}>({})
+    useState<{[K in 'email'|'inputLegals'|'lastName'|'name'|'password'|'phone'|'phoneLength']?:
+      boolean}>({})
   const [errorMessage, setErrorMessage] = useState('')
 
   const [updated, setUpdated] = useState(false)
@@ -106,6 +116,7 @@ const AccountPage = (): React.ReactElement => {
     const isEmailValid = validateEmail(inputEmail)
     const errorsFields = {
       email: !inputEmail || !isEmailValid,
+      inputLegals: !inputLegals,
       lastName: !inputLastName,
       name: !inputName,
       password: !password && !userId,
@@ -126,6 +137,7 @@ const AccountPage = (): React.ReactElement => {
       ...inputJobSeeker ? {jobSeeker: true} : {jobSeeker: false},
       ...inputRetraining ? {retraining: true} : {retraining: false},
       ...utmSource ? {source: utmSource} : {},
+      areLegalMentionsAccepted: inputLegals,
     }
     if (Object.keys(update).length) {
       // TODO(émilie): Move to actions.ts
@@ -143,8 +155,9 @@ const AccountPage = (): React.ReactElement => {
         setUpdated(true)
       }
     }
-  }, [email, firebase, firestore, name, inputEmail, inputJobSeeker, inputName, lastName,
-    inputLastName, inputPhone, inputRetraining, password, phone, setErrorMessage, userId])
+  }, [email, firebase, firestore, name, inputEmail, inputJobSeeker, inputLegals, inputName,
+    lastName, inputLastName, inputPhone, inputRetraining, password, phone, setErrorMessage,
+    userId])
   useFastForward(() => {
     if (inputName && inputLastName && inputEmail && inputPhone && password) {
       onSave()
@@ -198,6 +211,10 @@ const AccountPage = (): React.ReactElement => {
     ...inputStyle,
     borderColor: areErrorFields.password ? colors.RED_ERROR : colors.SILVER_THREE,
   }
+  const inputLegalsStyle: React.CSSProperties = {
+    ...checkboxLabelStyle,
+    color: areErrorFields.inputLegals ? colors.RED_ERROR : 'inherit',
+  }
 
   // TODO(pascal): Investigate how much the layoutStyle is useful.
   return <LayoutSignIn bigTitle={t('Inscription')} style={layoutStyle}>
@@ -247,6 +264,12 @@ const AccountPage = (): React.ReactElement => {
       <input defaultChecked={inputRetraining} onChange={handleRetraining} type="checkbox" />
       <Trans>Je suis en reconversion professionnelle</Trans>
     </label>
+    {!isConnected || !areLegalMentionsAccepted ?
+      <label style={inputLegalsStyle}>
+        <input onChange={handleLegals} type="checkbox" />
+        <Trans>J'ai lu et j'accepte les <Link to={getPath(['TERMS'], t)} style={linkStyle}>
+          Mentions légales</Link></Trans>
+      </label> : null}
     <Button type="secondLevel" onClick={onSave} style={buttonStyle} >
       {t('Valider')}
     </Button>
