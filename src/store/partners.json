@@ -62,7 +62,7 @@
         "logo":"generation.png",
         "name":"Génération",
         "partnerId":"generation",
-        "steps":["training"],
+        "steps":["definition", "training"],
         "title":"Gratuit",
         "url":"https://genrecruiting.generation.org/welcome?country=61&program=278&location=11184&",
         "userCount":1
