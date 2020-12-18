@@ -68,6 +68,16 @@
         "userCount":1
     },
     {
+        "description":"  * Formation entièrement gratuite au métier de Développeur.euse Full Stack Junior\n  * Durée : 16 mois (semaine 0, Bootcamp pré-alternance + 1 an d’alternance)\n  * Des ateliers ludiques et interactifs pour acquérir les compétences techniques et comportementales dont vous aurez besoin dans votre futur poste\n  * Un accompagnement par un.e mentor qui vous donnera des conseils personnalisés pour vous développer et vous aider à trouver votre contrat d’alternance\n  * Un jobdating lors duquel vous rencontrerez des entreprises qui cherchent à recruter des talents en alternance\n  * Plus de formations à venir.",
+        "discoverUrl":"https://france.generation.org/region-parisienne/developpeur-full-stack-junior/",
+        "logo":"generation.png",
+        "name":"Génération",
+        "partnerId":"generation-developpeur-fullstack",
+        "steps":["training"],
+        "title": "Gratuit",
+        "url":"https://gen.community/DFSJ-MaVoie"
+    },
+    {
         "description":"  * Formations au numérique gratuites et ouvertes à tous\n  * Cours en ligne, sessions live ou conseils personnalisés par visio-conférence",
         "discoverUrl":"https://g.co/ateliersnumeriques ",
         "isInternal":true,
