@@ -2,6 +2,7 @@ import React from 'react'
 import {Trans, useTranslation} from 'react-i18next'
 
 import logoBayes from 'images/logo-bayes.png'
+import logoBonjourSophy from 'images/logo-bonjour-sophy.png'
 import logoChance from 'images/logo-chance.svg'
 import logoGeneration from 'images/logo-generation.png'
 import logoJobready from 'images/logo-jobready.png'
@@ -29,6 +30,7 @@ const PARTNERS = [
   {image: logoInco, name: 'Inco', url: 'https://www.academy.inco-group.co/?lang=fr'},
   {image: logoGoogleAteliersNumériques, name: 'Google - Les ateliers numériques',
     url: 'https://g.co/ateliersnumeriques'},
+  {image: logoBonjourSophy, name: 'Bonjour Sophy', url: 'https://bonjoursophy.com'},
 ]
 
 const partnerCardStyle: React.CSSProperties = {
@@ -83,7 +85,7 @@ const cardsCertifiedStyle: React.CSSProperties = {
   display: 'flex',
   flexWrap: isMobileVersion ? 'wrap' : 'initial',
   justifyContent: 'space-between',
-  width: isMobileVersion ? '100%' : '50%',
+  width: isMobileVersion ? '100%' : '75%',
 }
 
 const PartnersSection = (): React.ReactElement => {
