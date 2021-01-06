@@ -57,7 +57,7 @@
     "eslint-plugin-react": "^7.x.x",
     "eslint-plugin-react-hooks": "^4.x.x",
     "eslint-plugin-react-perf": "^3.x.x",
-    "eslint-plugin-unicorn": "^21.x.x",
+    "eslint-plugin-unicorn": "^25.x.x",
     "eslint-plugin-you-dont-need-lodash-underscore": "^6.x.x",
     "esm": "3.2.25",
     "exports-loader": "^1.x.x",
