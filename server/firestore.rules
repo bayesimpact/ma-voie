@@ -41,6 +41,7 @@ service cloud.firestore {
             'bonjour-sophy',
             'chance',
             'generation',
+            'generation-developpeur-fullstack',
             'google-ateliers-numerique',
             'inco-build-and-click',
             'inco-get-into-tech',
