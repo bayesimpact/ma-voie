@@ -154,12 +154,13 @@
         "url":"http://dessinetoiunemploi.com/3-uniques-questions-a-preparer-lentretien/"
     },
     {
-        "description":"",
-        "logo":"",
-        "name":"Bonjour Sophy",
-        "partnerId":"bonjour-sophy",
-        "steps":[],
+        "description": "  * Le programme qui vous aide à découvrir et vivre votre mission de vie.\n  * Un parcours interactif et 100% confidentiel, articulé en 3 temps : se préparer, se connaître et s'affirmer\n  * Sophy, notre coach virtuelle, vous guidera avec bienveillance à travers nos ateliers individuels en ligne, composés d’exercices interactifs et accessibles à tous.",
+        "isInternal": true,
+        "logo": "bonjour-sophy.png",
+        "name": "Bonjour Sophy",
+        "partnerId": "bonjour-sophy",
+        "steps": ["definition"],
         "title": "",
-        "url":""
+        "url": "https://bonjoursophy.com"
     }
 ]
