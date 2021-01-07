@@ -163,5 +163,41 @@
         "steps": ["definition"],
         "title": "",
         "url": "https://bonjoursophy.com"
+    },
+    {
+        "description":"",
+        "details":"",
+        "discoverUrl": "",
+        "isInternal":true,
+        "logo":"",
+        "name":"OpenClassrooms - Prep'apprentissage",
+        "partnerId":"openclassrooms-prepapprentissage",
+        "steps":[],
+        "title": "",
+        "url": ""
+    },
+    {
+        "description":"",
+        "details":"",
+        "discoverUrl": "",
+        "isInternal":true,
+        "logo":"",
+        "name":"Openclassrooms - Élaboration de la stratégie de recherche d'emploi",
+        "partnerId":"openclassrooms-search",
+        "steps":[],
+        "title": "",
+        "url": ""
+    },
+    {
+        "description":"",
+        "details":"",
+        "discoverUrl": "",
+        "isInternal":true,
+        "logo":"",
+        "name":"Openclassrooms - Développement du réseau professionnel",
+        "partnerId":"openclassrooms-network",
+        "steps":[],
+        "title": "",
+        "url": ""
     }
 ]
