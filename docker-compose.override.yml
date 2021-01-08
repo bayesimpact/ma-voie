@@ -46,6 +46,9 @@ services:
       - ./server/tsconfig.json:/usr/app/tsconfig.json
       - ./server/public:/usr/app/public
       - ./server/src:/usr/app/src
+      - ./server/upload_partner.ts:/usr/app/upload_partner.ts
+      - ./credentials:/usr/app/credentials:ro
+      - ./src/store/partners.json:/usr/app/partners.json
   server-test:
     volumes:
       - ./server/package.json:/usr/app/package.json
