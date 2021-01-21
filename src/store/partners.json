@@ -2,7 +2,6 @@
     {
         "description":"  * Le parcours de coaching digital pour choisir le travail qui vous rendra heureux(se)\n  * Durée 3 mois. 100% en ligne.\n  * 24h d'autocoaching en ligne et 6 séances de vidéo-coaching individuelles avec un coach professionnel certifié\n  * Essai gratuit sur www.chance.co avec démarrage immédiat",
         "details":"Finançable CPF",
-        "discoverUrl":"https://www.chance.co/fr/parcours",
         "isInternal":true,
         "logo":"chance.svg",
         "name":"Chance",
@@ -15,7 +14,6 @@
     {
         "description":"**Get Into Tech**\n  * Intéressé par l'univers du web, vous voulez vous lancer mais vous avez besoin d'un coup de boost pour cibler la carrière qui vous convient vraiment ?\n  * Découvez **Get Into Tech**, 1 mois pour développer vos compétences techniques et booster votre orientation professionnelle dans le domaine du numérique.\n  * Durée 4 semaines. 100% en ligne.",
         "details":"",
-        "discoverUrl":"https://www.academy.inco-group.co/?lang=fr",
         "isInternal":true,
         "logo":"inco.png",
         "name":"Inco - Get\u00A0Into\u00A0Tech",
@@ -46,7 +44,6 @@
     {
         "description":"  * Identifiez et valorisez tous types d'expériences (personnelles, professionnelles, bénévolat... )\n  * Premières compétences transversales identifiées en moins de 10 minutes\n  * Référentiel de compétences transversales objectivé et reconnu par 30 entreprises\n  * Micro certifications exportables et valorisables sur CV, Linkedin...\n  * Programme en ligne\n  * Gratuit pour les utilisateurs de Mavoie",
         "details":"",
-        "discoverUrl":"https://www.jobready.fr",
         "isInternal":true,
         "logo":"jobready.png",
         "name":"Jobready",
@@ -57,7 +54,6 @@
     },
     {
         "description":"  * Formation entièrement gratuite au métier de Customer Care, la relation client 2.0\n  * Accompagnement au soft-skills et aux entretiens\n  * Coaching pendant 7 mois par un mentor\n  * Un job dating à la clé avec des partenaires employeurs !\n  * Durée\u00A0: 4 semaines\n  * Lieu\u00A0: en présentiel à Paris\n  * Plus de formations à venir",
-        "discoverUrl":"https://france.generation.org/programs/customer-care/",
         "isInternal":true,
         "logo":"generation.png",
         "name":"Génération",
@@ -69,7 +65,6 @@
     },
     {
         "description":"  * Formation entièrement gratuite au métier de Développeur.euse Full Stack Junior\n  * Durée : 16 mois (semaine 0, Bootcamp pré-alternance + 1 an d’alternance)\n  * Des ateliers ludiques et interactifs pour acquérir les compétences techniques et comportementales dont vous aurez besoin dans votre futur poste\n  * Un accompagnement par un.e mentor qui vous donnera des conseils personnalisés pour vous développer et vous aider à trouver votre contrat d’alternance\n  * Un jobdating lors duquel vous rencontrerez des entreprises qui cherchent à recruter des talents en alternance\n  * Plus de formations à venir.",
-        "discoverUrl":"https://france.generation.org/region-parisienne/developpeur-full-stack-junior/",
         "isInternal":true,
         "logo":"generation.png",
         "name":"Génération",
@@ -80,7 +75,6 @@
     },
     {
         "description":"  * Formations au numérique gratuites et ouvertes à tous\n  * Cours en ligne, sessions live ou conseils personnalisés par visio-conférence",
-        "discoverUrl":"https://g.co/ateliersnumeriques ",
         "isInternal":true,
         "logo":"google-ateliers-numerique.png",
         "name":"Google - Les\u00A0ateliers\u00A0numérique",
@@ -93,7 +87,6 @@
     {
         "description":"**In Code**\n  * Devenez développeur et apprenez un des langages de programmation les plus en vogue !\n  * Construit sur un modèle blended - en présentiel et en ligne - INCODE vous permet d’acquérir en 400 heures toutes les compétences pour devenir développeur fullstack JavaScript et maîtriser les codes pour vous lancer en tant que développeur junior.\n  * Durée 3 mois. Blended (En ligne et présentiel)",
         "details":"",
-        "discoverUrl":"https://www.academy.inco-group.co/?lang=fr",
         "isInternal":true,
         "logo":"inco.png",
         "name":"Inco - In\u00A0Code",
@@ -106,7 +99,6 @@
     {
         "description":"**Build and Click**\n  * Les clés pour devenir dessinateur-projeteur 3D avec REVIT ! Construit sur un modèle blended - en présentiel et en ligne - BUILD AND CLICK vous permet d’acquérir en 400 heures toutes les compétences pour devenir dessinateur-projeteur 3D et maîtriser le logiciel REVIT.\n   Durée 3 mois. Blended (En ligne et présentiel)",
         "details":"",
-        "discoverUrl":"https://www.academy.inco-group.co/?lang=fr",
         "isInternal":true,
         "logo":"inco.png",
         "name":"Inco - Build\u00A0and\u00A0Click",
@@ -127,7 +119,6 @@
     },
     {
         "description":"  * Le **coach gratuit** qui vous aide à comprendre et agir sur votre recherche d'emploi\n  * En moins de 10 minutes, Bob vous montre comment **débloquer** votre recherche d'emploi\n  * **Stratégies sur mesure** pour vous suggérer les meilleures actions à réaliser\n  * Totalement **gratuit** et **confidentiel**",
-        "discoverUrl": "https://www.bob-emploi.fr",
         "isInternal":true,
         "logo":"bob.png",
         "name":"Bob",
@@ -167,7 +158,6 @@
     {
         "description":"",
         "details":"",
-        "discoverUrl": "",
         "isInternal":true,
         "logo":"",
         "name":"OpenClassrooms - Prep'apprentissage",
@@ -179,7 +169,6 @@
     {
         "description":"",
         "details":"",
-        "discoverUrl": "",
         "isInternal":true,
         "logo":"",
         "name":"Openclassrooms - Élaboration de la stratégie de recherche d'emploi",
@@ -191,7 +180,6 @@
     {
         "description":"",
         "details":"",
-        "discoverUrl": "",
         "isInternal":true,
         "logo":"",
         "name":"Openclassrooms - Développement du réseau professionnel",

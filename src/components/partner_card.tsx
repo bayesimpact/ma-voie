@@ -110,8 +110,7 @@ const PartnerIcon = (props: IconProps): React.ReactElement => {
 }
 
 const PartnerCard = (props: Props): React.ReactElement => {
-  // TODO(émilie): drop discoverUrl.
-  const {description, details, url, discoverUrl = url, isSelected, logo, name, onClick, partnerId,
+  const {description, details, url, isSelected, logo, name, onClick, partnerId,
     stepId, style, title} = props
   const {t} = useTranslation()
   const userCount = usePartnerCount(partnerId)
@@ -171,7 +170,7 @@ const PartnerCard = (props: Props): React.ReactElement => {
         <a style={discreetAnchorStyle} href={url} rel="noopener noreferrer" target="_blank">
           <Button type="firstLevel">{t('Continuer')}</Button>
         </a> : <a
-          style={discreetAnchorStyle} href={discoverUrl} rel="noopener noreferrer"
+          style={discreetAnchorStyle} rel="noopener noreferrer"
           target="_blank" onClick={clickPartner}>
           <Button type="discreet">{t('Découvrir')}</Button>
         </a>}
