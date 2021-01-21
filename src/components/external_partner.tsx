@@ -1,9 +1,6 @@
 import React, {useCallback} from 'react'
 import {useTranslation} from 'react-i18next'
 import ReactMarkdown from 'react-markdown'
-import {Link} from 'react-router-dom'
-
-import {getPath} from 'store/url'
 
 import Button from 'components/button'
 import {Props as PartnerProps} from 'store/partners'
@@ -79,7 +76,7 @@ interface ExternalPartnerProps extends PartnerProps {
   stepId: bayes.maVoie.StepId
 }
 const ExternalPartner = (props: ExternalPartnerProps): React.ReactElement => {
-  const {isOpen, onSelect, partnerId, name, logo, details, description, url, stepId} = props
+  const {isOpen, onSelect, partnerId, name, logo, details, description, url} = props
 
   const {t} = useTranslation()
   const finalPartnerDetailsStyle = {
@@ -87,12 +84,6 @@ const ExternalPartner = (props: ExternalPartnerProps): React.ReactElement => {
     ...partnerDetailsStyle,
   }
   const handleOpen = useCallback((): void => onSelect(partnerId), [partnerId, onSelect])
-  const handleChoose = useCallback((): void => {
-    window.open(url, '_blank')
-  }, [url])
-
-  const choosePath = stepId === 'interview' ?
-    getPath(['CONGRATULATIONS'], t) : getPath(['STEPS'], t)
 
   return <div style={partnerContainerStyle}>
     <div style={partnerHeaderStyle} onClick={handleOpen}>
@@ -124,13 +115,6 @@ const ExternalPartner = (props: ExternalPartnerProps): React.ReactElement => {
           <a target="_blank" rel="noopener noreferrer" href={url} style={linkStyle}>
             <Button type="variable">{t('Découvrir')}</Button>
           </a>
-        </div>
-        <div style={partnerButtonStyle}>
-          <Link onClick={handleChoose} to={choosePath} style={linkStyle}>
-            <Button type="firstLevel">
-              {t('Choisir')}
-            </Button>
-          </Link>
         </div>
       </div>
     </div>
