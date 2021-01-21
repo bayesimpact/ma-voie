@@ -40,7 +40,7 @@ const titleDetailsContentStyle: React.CSSProperties = {
   marginTop: -3,
 }
 const imageStyle: React.CSSProperties = {
-  maxHeight: 32,
+  maxHeight: 48,
   maxWidth: 126,
 }
 const descriptionStyle: React.CSSProperties = {
