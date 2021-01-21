@@ -52,14 +52,22 @@ const Footer = (): React.ReactElement => {
   const {pathname} = useLocation()
   const splashPath = getPath(['SPLASH'], t)
   const termsPath = getPath(['TERMS'], t)
+  const missionPath = getPath(['MISSION'], t)
   const isSplash = pathname === splashPath
   const isTerms = pathname === termsPath
+  const isMission = pathname === missionPath
 
+  // TODO(émilie): scroll up to the top of the page when clicked on a link here.
   const nav = <div>
     <Link
       to={getPath(['SPLASH'], t)}
       style={isSplash ? footerLinkSelectedStyle : footerLinkStyle}>
       {t('Accueil')}
+    </Link>
+    <Link
+      to={getPath(['MISSION'], t)}
+      style={isMission ? footerLinkSelectedStyle : footerLinkStyle}>
+      {t('Notre mission')}
     </Link>
     <Link
       to={getPath(['TERMS'], t)}
