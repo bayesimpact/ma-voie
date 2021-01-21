@@ -8,7 +8,6 @@ import Partners from './partners.json'
 export interface Props {
   details?: string
   description?: string
-  discoverUrl?: string
   isInternal?: boolean
   logo: string
   name: string
