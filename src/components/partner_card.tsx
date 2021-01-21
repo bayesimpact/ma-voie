@@ -110,6 +110,7 @@ const PartnerIcon = (props: IconProps): React.ReactElement => {
 }
 
 const PartnerCard = (props: Props): React.ReactElement => {
+  // TODO(émilie): drop discoverUrl.
   const {description, details, url, discoverUrl = url, isSelected, logo, name, onClick, partnerId,
     stepId, style, title} = props
   const {t} = useTranslation()
@@ -132,7 +133,8 @@ const PartnerCard = (props: Props): React.ReactElement => {
       onClick(partnerId)
     }
   }, [partnerId, onClick])
-  const choosePartner = useCallback(async (): Promise<void> => {
+  const clickPartner = useCallback(async (event: React.MouseEvent): Promise<void> => {
+    event.preventDefault()
     const maVoieId = await dispatch(linkPartner(partnerId))
     dispatch(updateSteps({[stepId]: {selectedPartnerId: partnerId}}))
     const parsedUrl = new URL(url)
@@ -168,14 +170,11 @@ const PartnerCard = (props: Props): React.ReactElement => {
       {isSelected ?
         <a style={discreetAnchorStyle} href={url} rel="noopener noreferrer" target="_blank">
           <Button type="firstLevel">{t('Continuer')}</Button>
-        </a> : <React.Fragment>
-          <Button type="firstLevel" onClick={choosePartner}>{t('Choisir')}</Button>
-          <a
-            style={discreetAnchorStyle} href={discoverUrl} rel="noopener noreferrer"
-            target="_blank">
-            <Button type="discreet">{t('Découvrir')}</Button>
-          </a>
-        </React.Fragment>}
+        </a> : <a
+          style={discreetAnchorStyle} href={discoverUrl} rel="noopener noreferrer"
+          target="_blank" onClick={clickPartner}>
+          <Button type="discreet">{t('Découvrir')}</Button>
+        </a>}
     </div>
     {isSelected ?
       <div style={topInfoStyle}>{t('En cours')}</div> : userCount ?
