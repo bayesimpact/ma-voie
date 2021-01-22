@@ -51,9 +51,11 @@ const Footer = (): React.ReactElement => {
   const {t} = useTranslation()
   const {pathname} = useLocation()
   const splashPath = getPath(['SPLASH'], t)
+  const teamPath = getPath(['TEAM'], t)
   const termsPath = getPath(['TERMS'], t)
   const missionPath = getPath(['MISSION'], t)
   const isSplash = pathname === splashPath
+  const isTeam = pathname === teamPath
   const isTerms = pathname === termsPath
   const isMission = pathname === missionPath
 
@@ -68,6 +70,11 @@ const Footer = (): React.ReactElement => {
       to={getPath(['MISSION'], t)}
       style={isMission ? footerLinkSelectedStyle : footerLinkStyle}>
       {t('Notre mission')}
+    </Link>
+    <Link
+      to={getPath(['TEAM'], t)}
+      style={isTeam ? footerLinkSelectedStyle : footerLinkStyle}>
+      {t("L'équipe")}
     </Link>
     <Link
       to={getPath(['TERMS'], t)}
