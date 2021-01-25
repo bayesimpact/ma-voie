@@ -34,6 +34,7 @@ import SignupPage from 'components/pages/signup'
 import SkillsPage from 'components/pages/skills'
 import SplashPage from 'components/pages/splash'
 import StepsPage from 'components/pages/steps'
+import TeamPage from 'components/pages/team'
 import TermsPage from 'components/pages/terms'
 import TrainingPage from 'components/pages/training'
 
@@ -78,6 +79,7 @@ const App = (): React.ReactElement => {
     <Route path={defineAndGetPath('SIGNUP')} component={SignupPage} />
     <Route path={defineAndGetPath('SPLASH')} component={SplashPage} />
     <Route path={defineAndGetPath('STEPS')} component={StepsPage} />
+    <Route path={defineAndGetPath('TEAM')} component={TeamPage} />
     <Route path={defineAndGetPath('TERMS')} component={TermsPage} />
     <Route path={defineAndGetPath('COMPONENTS')} component={ComponentsPage} />
     <Redirect to={defineAndGetPath('SPLASH') + search + hash} />

@@ -51,26 +51,33 @@ const Footer = (): React.ReactElement => {
   const {t} = useTranslation()
   const {pathname} = useLocation()
   const splashPath = getPath(['SPLASH'], t)
+  const teamPath = getPath(['TEAM'], t)
   const termsPath = getPath(['TERMS'], t)
   const missionPath = getPath(['MISSION'], t)
   const isSplash = pathname === splashPath
+  const isTeam = pathname === teamPath
   const isTerms = pathname === termsPath
   const isMission = pathname === missionPath
 
   // TODO(émilie): scroll up to the top of the page when clicked on a link here.
   const nav = <div>
     <Link
-      to={getPath(['SPLASH'], t)}
+      to={splashPath}
       style={isSplash ? footerLinkSelectedStyle : footerLinkStyle}>
       {t('Accueil')}
     </Link>
     <Link
-      to={getPath(['MISSION'], t)}
+      to={missionPath}
       style={isMission ? footerLinkSelectedStyle : footerLinkStyle}>
       {t('Notre mission')}
     </Link>
     <Link
-      to={getPath(['TERMS'], t)}
+      to={teamPath}
+      style={isTeam ? footerLinkSelectedStyle : footerLinkStyle}>
+      {t("L'équipe")}
+    </Link>
+    <Link
+      to={termsPath}
       style={isTerms ? footerLinkSelectedStyle : footerLinkStyle}>
       {t('Mentions légales')}
     </Link>
