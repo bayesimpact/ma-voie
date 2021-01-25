@@ -54,18 +54,20 @@ const PartnerCardBase = ({image, name, url}: PartnerProps): React.ReactElement =
 }
 const PartnerCard = React.memo(PartnerCardBase)
 
-const textStyle: React.CSSProperties = {
+const textBaseStyle: React.CSSProperties = {
   fontSize: 18,
   maxWidth: 465,
   minHeight: 78,
   padding: '30px 0px 40px',
+  textAlign: 'left',
 }
-const textSecondaryStyle: React.CSSProperties = {
+const textSecondaryBaseStyle: React.CSSProperties = {
   fontSize: 18,
   maxWidth: 465,
   padding: '30px 0px 40px',
+  textAlign: 'left',
 }
-const titleStyle: React.CSSProperties = {
+const titleBaseStyle: React.CSSProperties = {
   fontFamily: 'ProximaSoft',
   fontSize: isMobileVersion ? 37 : 47,
   fontWeight: 'bold',
@@ -76,23 +78,46 @@ const containerStyle: React.CSSProperties = {
   color: '#fff',
   padding: isMobileVersion ? '70px 35px 110px' : '80px 20px 100px',
 }
-const cardsStyle: React.CSSProperties = {
+const cardsBaseStyle: React.CSSProperties = {
   display: 'flex',
   flexWrap: isMobileVersion ? 'wrap' : 'initial',
-  justifyContent: 'space-between',
 }
-const cardsCertifiedStyle: React.CSSProperties = {
+const cardsCertifiedBaseStyle: React.CSSProperties = {
   display: 'flex',
   flexWrap: isMobileVersion ? 'wrap' : 'initial',
   justifyContent: 'space-between',
   width: isMobileVersion ? '100%' : '75%',
 }
 
-const PartnersSection = (): React.ReactElement => {
+interface PartnersProps {
+  isCentered?: boolean
+  hideFoundersTitle?: boolean
+}
+const PartnersSection = ({isCentered, hideFoundersTitle}: PartnersProps): React.ReactElement => {
   const {t} = useTranslation()
+  const cardsStyle: React.CSSProperties = {
+    ...cardsBaseStyle,
+    justifyContent: isCentered ? 'space-around' : 'space-between',
+  }
+  const cardsCertifiedStyle: React.CSSProperties = {
+    ...cardsCertifiedBaseStyle,
+    ...isCentered ? {justifyContent: 'space-around', margin: 'auto'} : {},
+  }
+  const textStyle: React.CSSProperties = {
+    ...textBaseStyle,
+    ...isCentered ? {margin: 'auto', textAlign: 'center'} : {},
+  }
+  const titleStyle: React.CSSProperties = {
+    ...titleBaseStyle,
+    textAlign: isCentered ? 'center' : 'left',
+  }
+  const textSecondaryStyle: React.CSSProperties = {
+    ...textSecondaryBaseStyle,
+    ...isCentered ? {margin: 'auto', textAlign: 'center'} : {},
+  }
   return <section style={containerStyle}>
     <div style={{margin: 'auto', maxWidth: 960}}>
-      <h2 style={titleStyle}>{t('Nos partenaires fondateurs')}</h2>
+      {hideFoundersTitle ? null : <h2 style={titleStyle}>{t('Nos partenaires fondateurs')}</h2>}
       <Trans style={textStyle}><strong>$t(productName)</strong> est une initiative portée par
       quatre acteurs du secteur de l'emploi et de la technologie</Trans>
       <div style={cardsStyle}>
