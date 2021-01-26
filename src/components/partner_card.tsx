@@ -125,7 +125,7 @@ const PartnerCard = (props: Props): React.ReactElement => {
   const contentStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
-    margin: isSelected ? '60px 30px 45px' : '0 30px 50px',
+    margin: isSelected ? '60px 30px 70px' : '0 30px 75px',
   }
   const handleClick = useCallback((): void => {
     if (onClick && partnerId) {
@@ -172,7 +172,7 @@ const PartnerCard = (props: Props): React.ReactElement => {
         </a> : <a
           style={discreetAnchorStyle} rel="noopener noreferrer"
           target="_blank" onClick={clickPartner}>
-          <Button type="discreet">{t('Découvrir')}</Button>
+          <Button type="firstLevel">{t('Découvrir')}</Button>
         </a>}
     </div>
     {isSelected ?
