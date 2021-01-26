@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useCallback} from 'react'
 import {useTranslation} from 'react-i18next'
 import {useLocation} from 'react-router'
 import {Link} from 'react-router-dom'
@@ -59,25 +59,29 @@ const Footer = (): React.ReactElement => {
   const isTerms = pathname === termsPath
   const isMission = pathname === missionPath
 
+  const scrollToTop = useCallback((): void => {
+    window.scrollTo(0, 0)
+  }, [])
+
   // TODO(émilie): scroll up to the top of the page when clicked on a link here.
   const nav = <div>
     <Link
-      to={splashPath}
+      to={splashPath} onClick={scrollToTop}
       style={isSplash ? footerLinkSelectedStyle : footerLinkStyle}>
       {t('Accueil')}
     </Link>
     <Link
-      to={missionPath}
+      to={missionPath} onClick={scrollToTop}
       style={isMission ? footerLinkSelectedStyle : footerLinkStyle}>
       {t('Notre mission')}
     </Link>
     <Link
-      to={teamPath}
+      to={teamPath} onClick={scrollToTop}
       style={isTeam ? footerLinkSelectedStyle : footerLinkStyle}>
       {t("L'équipe")}
     </Link>
     <Link
-      to={termsPath}
+      to={termsPath} onClick={scrollToTop}
       style={isTerms ? footerLinkSelectedStyle : footerLinkStyle}>
       {t('Mentions légales')}
     </Link>
