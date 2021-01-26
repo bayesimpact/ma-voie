@@ -47,6 +47,10 @@ const footerLinkSelectedStyle: React.CSSProperties = {
   color: '#fff',
 }
 
+const scrollToTop = (): void => {
+  window.scrollTo(0, 0)
+}
+
 const Footer = (): React.ReactElement => {
   const {t} = useTranslation()
   const {pathname} = useLocation()
@@ -62,22 +66,22 @@ const Footer = (): React.ReactElement => {
   // TODO(émilie): scroll up to the top of the page when clicked on a link here.
   const nav = <div>
     <Link
-      to={splashPath}
+      to={splashPath} onClick={scrollToTop}
       style={isSplash ? footerLinkSelectedStyle : footerLinkStyle}>
       {t('Accueil')}
     </Link>
     <Link
-      to={missionPath}
+      to={missionPath} onClick={scrollToTop}
       style={isMission ? footerLinkSelectedStyle : footerLinkStyle}>
       {t('Notre mission')}
     </Link>
     <Link
-      to={teamPath}
+      to={teamPath} onClick={scrollToTop}
       style={isTeam ? footerLinkSelectedStyle : footerLinkStyle}>
       {t("L'équipe")}
     </Link>
     <Link
-      to={termsPath}
+      to={termsPath} onClick={scrollToTop}
       style={isTerms ? footerLinkSelectedStyle : footerLinkStyle}>
       {t('Mentions légales')}
     </Link>
