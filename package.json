@@ -129,7 +129,7 @@
     "unused-files-webpack-plugin": "^3.x.x",
     "url-loader": "^4.x.x",
     "webpack": "^4.x.x",
-    "webpack-cli": "^3.x.x",
+    "webpack-cli": "^4.x.x",
     "webpack-dev-server": "^3.x.x",
     "webpack-pwa-manifest": "^4.x.x",
     "whatwg-fetch": "^3.x.x"
@@ -142,7 +142,7 @@
     "check-types": "tsc",
     "checks": "run-s -nc lint check-types i18n:test-stable test test:node",
     "clean": "rimraf dist/*",
-    "dist": "npm run clean && REACT_WEBPACK_ENV=dist CLIENT_VERSION=$CLIENT_VERSION webpack --bail",
+    "dist": "npm run clean && REACT_WEBPACK_ENV=dist CLIENT_VERSION=$CLIENT_VERSION webpack",
     "fix:lint": "eslint . --ext js,jsx,ts,tsx --fix",
     "i18n": "babel --config-file ./i18n.babelrc.js 'src/**/*.{js,jsx,ts,tsx}' > /dev/null",
     "i18n:test": "run-s -c i18n:test-stable 'test:node -- --grep /translation/i'",
