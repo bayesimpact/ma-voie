@@ -37,6 +37,7 @@ const minify = {
 
 module.exports = {
   ...baseConfig,
+  bail: true,
   cache: false,
   devtool: 'source-map',
   entry: mapValues(entrypoints, ({entry}) => ['@babel/polyfill', 'whatwg-fetch'].concat([entry])),
