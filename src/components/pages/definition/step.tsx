@@ -8,7 +8,7 @@ import {LocalizableOption, LocalizableString, localizeOptions} from 'store/i18n'
 import {useProject, useUserId} from 'store/selections'
 import {PageSegment, getPath} from 'store/url'
 
-import Select from 'components/select'
+import {Select} from 'components/select'
 import Layout from 'components/layout'
 
 interface StepProps<K extends keyof bayes.maVoie.Project> {
