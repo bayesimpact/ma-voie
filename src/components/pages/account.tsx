@@ -7,6 +7,7 @@ import {Link} from 'react-router-dom'
 
 import {useFastForward} from 'hooks/fast_forward'
 import {RootState} from 'store/actions'
+import {LocalizableOption, localizeOptions, prepareT} from 'store/i18n'
 import {useUserId} from 'store/selections'
 import {getPath} from 'store/url'
 import {validateEmail} from 'store/validations'
@@ -15,8 +16,17 @@ import Button from 'components/button'
 import Input from 'components/input'
 import LayoutSignIn from 'components/layout_sign_in'
 import PasswordInput from 'components/password_input'
+import {SelectList} from 'components/select'
 
 const getUniqueExampleEmail = (): string => `test-${new Date().getTime()}@example.com`
+
+const DIPLOMA_OPTIONS: readonly LocalizableOption<bayes.maVoie.Diploma>[] = [
+  {name: prepareT('CAP - BEP'), value: 'cap-bep'},
+  {name: prepareT('Bac - Bac Pro'), value: 'bac'},
+  {name: prepareT('BTS - DUT - DEUG'), value: 'bac+2'},
+  {name: prepareT('Licence - Maîtrise'), value: 'bac+3'},
+  {name: prepareT('DEA - DESS - Master - PhD'), value: 'bac+5'},
+]
 
 const inputStyle: React.CSSProperties = {
   border: `1px solid ${colors.SILVER_THREE}`,
@@ -56,7 +66,7 @@ const AccountPage = (): React.ReactElement => {
 
   const userId = useUserId()
   const isConnected = userId !== undefined
-  const {areLegalMentionsAccepted, email, lastName, name, phone, jobSeeker,
+  const {areLegalMentionsAccepted, diploma, email, lastName, name, phone, jobSeeker,
     retraining} = useSelector(({firebase: {profile}}: RootState) => profile)
   const [inputName, setName] = useState(name || '')
   useEffect((): void => {
@@ -83,6 +93,11 @@ const AccountPage = (): React.ReactElement => {
     setJobSeeker(e.target.checked)
   }, [setJobSeeker])
 
+  const [inputDiploma, setInputDiploma] = useState(diploma || undefined)
+  const handleDiploma = useCallback((value: bayes.maVoie.Diploma): void => {
+    setInputDiploma(value)
+  }, [setInputDiploma])
+
   const [inputRetraining, setRetraining] = useState(retraining || false)
   const handleRetraining = useCallback((e): void => {
     setRetraining(e.target.checked)
@@ -96,8 +111,8 @@ const AccountPage = (): React.ReactElement => {
   const [password, setPassword] = useState('')
   const [isErrorDisplayed, setIsErrorDisplayed] = useState(false)
   const [areErrorFields, setAreErrorFields] =
-    useState<{[K in 'email'|'inputLegals'|'lastName'|'name'|'password'|'phone'|'phoneLength']?:
-      boolean}>({})
+    useState<{[K in 'diploma'|'email'|'inputLegals'|'lastName'|'name'|'password'|'phone'|
+    'phoneLength']?: boolean}>({})
   const [errorMessage, setErrorMessage] = useState('')
 
   const [updated, setUpdated] = useState(false)
@@ -115,6 +130,7 @@ const AccountPage = (): React.ReactElement => {
   const onSave = useCallback((): void => {
     const isEmailValid = validateEmail(inputEmail)
     const errorsFields = {
+      diploma: !inputDiploma,
       email: !inputEmail || !isEmailValid,
       inputLegals: !inputLegals,
       lastName: !inputLastName,
@@ -130,6 +146,7 @@ const AccountPage = (): React.ReactElement => {
     setIsErrorDisplayed(false)
     const utmSource = localStorage.getItem('utm_source')
     const update = {
+      ...diploma === inputDiploma ? {} : {diploma: inputDiploma},
       ...name === inputName ? {} : {name: inputName},
       ...lastName === inputLastName ? {} : {lastName: inputLastName},
       ...email === inputEmail || userId ? {} : {email: inputEmail},
@@ -155,11 +172,11 @@ const AccountPage = (): React.ReactElement => {
         setUpdated(true)
       }
     }
-  }, [email, firebase, firestore, name, inputEmail, inputJobSeeker, inputLegals, inputName,
-    lastName, inputLastName, inputPhone, inputRetraining, password, phone, setErrorMessage,
-    userId])
+  }, [diploma, email, firebase, firestore, name, inputDiploma, inputEmail, inputJobSeeker,
+    inputLegals, inputName, lastName, inputLastName, inputPhone, inputRetraining, password, phone,
+    setErrorMessage, userId])
   useFastForward(() => {
-    if (inputName && inputLastName && inputEmail && inputPhone && password) {
+    if (inputName && inputLastName && inputEmail && inputPhone && password && inputDiploma) {
       onSave()
       return
     }
@@ -178,8 +195,10 @@ const AccountPage = (): React.ReactElement => {
     if (!password) {
       setPassword('password')
     }
+    if (!inputDiploma) {
+      setInputDiploma('bac+2')
+    }
   })
-
   const buttonStyle: React.CSSProperties = {
     marginTop: 20,
     opacity: !inputName || !inputLastName || !inputEmail ||
@@ -190,6 +209,9 @@ const AccountPage = (): React.ReactElement => {
     color: colors.RED_ERROR,
   }
 
+  const inputDiplomaStyle: React.CSSProperties = {
+    borderColor: areErrorFields.diploma ? colors.RED_ERROR : colors.SILVER_THREE,
+  }
   const inputNameStyle: React.CSSProperties = {
     ...inputStyle,
     borderColor: areErrorFields.name ? colors.RED_ERROR : colors.SILVER_THREE,
@@ -256,6 +278,10 @@ const AccountPage = (): React.ReactElement => {
         <sup>*</sup>{t('Champ obligatoire, vérifiez votre email')}
       </div> :
       null}
+    <SelectList style={inputDiplomaStyle}
+      options={localizeOptions(t, DIPLOMA_OPTIONS)} onChange={handleDiploma}
+      placeholder={t('Plus haut diplôme obtenu')}
+      value={inputDiploma} />
     <label style={checkboxLabelStyle}>
       <input defaultChecked={inputJobSeeker} onChange={handleJobSeeker} type="checkbox" />
       <Trans>Je suis demandeur d'emploi</Trans>

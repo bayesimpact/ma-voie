@@ -3,6 +3,13 @@
 declare namespace bayes {
   namespace maVoie {
 
+    type Diploma =
+      | 'cap-bep'
+      | 'bac'
+      | 'bac+2'
+      | 'bac+3'
+      | 'bac+5'
+
     interface PartnerStep {
       projectId?: string
       registeredAt?: string
@@ -25,6 +32,7 @@ declare namespace bayes {
       phone?: string
       jobSeeker?: boolean
       retraining?: boolean
+      diploma?: Diploma
     }
 
     // TODO(cyrille): Set profile as a property of User.
