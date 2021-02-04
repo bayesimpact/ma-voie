@@ -3,6 +3,16 @@
 declare namespace bayes {
   namespace maVoie {
 
+    type Age =
+      | '0-20'
+      | '21-25'
+      | '26-30'
+      | '31-35'
+      | '36-40'
+      | '41-45'
+      | '46-50'
+      | '51+'
+
     type Diploma =
       | 'cap-bep'
       | 'bac'
@@ -24,6 +34,7 @@ declare namespace bayes {
     }
 
     interface Profile {
+      age?: Age
       areLegalMentionsAccepted?: boolean
       email?: string
       lastName?: string
