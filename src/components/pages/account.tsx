@@ -28,6 +28,17 @@ const DIPLOMA_OPTIONS: readonly LocalizableOption<bayes.maVoie.Diploma>[] = [
   {name: prepareT('DEA - DESS - Master - PhD'), value: 'bac+5'},
 ]
 
+const AGE_OPTIONS: readonly LocalizableOption<bayes.maVoie.Age>[] = [
+  {name: prepareT('Moins de 20 ans'), value: '0-20'},
+  {name: prepareT('Entre 21 et 25 ans'), value: '21-25'},
+  {name: prepareT('Entre 26 et 30 ans'), value: '26-30'},
+  {name: prepareT('Entre 31 et 35 ans'), value: '31-35'},
+  {name: prepareT('Entre 36 et 40 ans'), value: '36-40'},
+  {name: prepareT('Entre 41 et 45 ans'), value: '41-45'},
+  {name: prepareT('Entre 46 et 50 ans'), value: '46-50'},
+  {name: prepareT('Plus de 50 ans'), value: '51+'},
+]
+
 const inputStyle: React.CSSProperties = {
   border: `1px solid ${colors.SILVER_THREE}`,
   borderRadius: 15,
@@ -66,7 +77,7 @@ const AccountPage = (): React.ReactElement => {
 
   const userId = useUserId()
   const isConnected = userId !== undefined
-  const {areLegalMentionsAccepted, diploma, email, lastName, name, phone, jobSeeker,
+  const {age, areLegalMentionsAccepted, diploma, email, lastName, name, phone, jobSeeker,
     retraining} = useSelector(({firebase: {profile}}: RootState) => profile)
   const [inputName, setName] = useState(name || '')
   useEffect((): void => {
@@ -98,6 +109,11 @@ const AccountPage = (): React.ReactElement => {
     setInputDiploma(value)
   }, [setInputDiploma])
 
+  const [inputAge, setInputAge] = useState(age || undefined)
+  const handleAge = useCallback((value: bayes.maVoie.Age): void => {
+    setInputAge(value)
+  }, [setInputAge])
+
   const [inputRetraining, setRetraining] = useState(retraining || false)
   const handleRetraining = useCallback((e): void => {
     setRetraining(e.target.checked)
@@ -111,7 +127,7 @@ const AccountPage = (): React.ReactElement => {
   const [password, setPassword] = useState('')
   const [isErrorDisplayed, setIsErrorDisplayed] = useState(false)
   const [areErrorFields, setAreErrorFields] =
-    useState<{[K in 'diploma'|'email'|'inputLegals'|'lastName'|'name'|'password'|'phone'|
+    useState<{[K in 'age'|'diploma'|'email'|'inputLegals'|'lastName'|'name'|'password'|'phone'|
     'phoneLength']?: boolean}>({})
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -130,6 +146,7 @@ const AccountPage = (): React.ReactElement => {
   const onSave = useCallback((): void => {
     const isEmailValid = validateEmail(inputEmail)
     const errorsFields = {
+      age: !inputAge,
       diploma: !inputDiploma,
       email: !inputEmail || !isEmailValid,
       inputLegals: !inputLegals,
@@ -146,6 +163,7 @@ const AccountPage = (): React.ReactElement => {
     setIsErrorDisplayed(false)
     const utmSource = localStorage.getItem('utm_source')
     const update = {
+      ...age === inputAge ? {} : {age: inputAge},
       ...diploma === inputDiploma ? {} : {diploma: inputDiploma},
       ...name === inputName ? {} : {name: inputName},
       ...lastName === inputLastName ? {} : {lastName: inputLastName},
@@ -172,9 +190,9 @@ const AccountPage = (): React.ReactElement => {
         setUpdated(true)
       }
     }
-  }, [diploma, email, firebase, firestore, name, inputDiploma, inputEmail, inputJobSeeker,
-    inputLegals, inputName, lastName, inputLastName, inputPhone, inputRetraining, password, phone,
-    setErrorMessage, userId])
+  }, [age, diploma, email, firebase, firestore, name, inputAge, inputDiploma, inputEmail,
+    inputJobSeeker, inputLegals, inputName, lastName, inputLastName, inputPhone, inputRetraining,
+    password, phone, setErrorMessage, userId])
   useFastForward(() => {
     if (inputName && inputLastName && inputEmail && inputPhone && password && inputDiploma) {
       onSave()
@@ -198,6 +216,9 @@ const AccountPage = (): React.ReactElement => {
     if (!inputDiploma) {
       setInputDiploma('bac+2')
     }
+    if (!inputAge) {
+      setInputAge('21-25')
+    }
   })
   const buttonStyle: React.CSSProperties = {
     marginTop: 20,
@@ -209,6 +230,9 @@ const AccountPage = (): React.ReactElement => {
     color: colors.RED_ERROR,
   }
 
+  const inputAgeStyle: React.CSSProperties = {
+    borderColor: areErrorFields.age ? colors.RED_ERROR : colors.SILVER_THREE,
+  }
   const inputDiplomaStyle: React.CSSProperties = {
     borderColor: areErrorFields.diploma ? colors.RED_ERROR : colors.SILVER_THREE,
   }
@@ -278,6 +302,10 @@ const AccountPage = (): React.ReactElement => {
         <sup>*</sup>{t('Champ obligatoire, vérifiez votre email')}
       </div> :
       null}
+    <SelectList style={inputAgeStyle}
+      options={localizeOptions(t, AGE_OPTIONS)} onChange={handleAge}
+      placeholder={t("Votre tranche d'âge")}
+      value={inputAge} />
     <SelectList style={inputDiplomaStyle}
       options={localizeOptions(t, DIPLOMA_OPTIONS)} onChange={handleDiploma}
       placeholder={t('Plus haut diplôme obtenu')}
