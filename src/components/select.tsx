@@ -66,7 +66,7 @@ const valueContainerSelectStyle: React.CSSProperties = {
 const selectStyle: React.CSSProperties = {
   height: 61,
   lineHeight: '24px',
-  padding: '18px 25px',
+  padding: '18px 0',
   width: '100%',
 }
 
