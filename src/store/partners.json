@@ -33,15 +33,6 @@
     "url":"https://www.afpa.fr/id-metiers"
   },
   {
-    "description":"Pour ce cours en ligne \"OpenClassrooms\" on vous demande d'y consacrer une heure. Le cours est composé d'exercises, en quatre étapes\u00A0:\n\n1. J'explore qui je suis\n\n2. J'explore mon appétence professionnelle (ça veut dire vos goûts et vos préférences) \n\n3. Je me projette dans une situation professionnelle\n\n4. J'étudie la faisabilité (ça veut dire à quel point votre projet est-il réaliste\u00A0?)\n\nVous pouvez suivre le cours à votre rythme et selon vos besoins.",
-    "details":"Cours en ligne",
-    "logo":"openclassrooms.png",
-    "name":"OpenClassrooms",
-    "partnerId":"openclassrooms",
-    "steps":["definition"],
-    "url":"https://openclassrooms.com/fr/courses/3848146-definir-son-projet-professionnel"
-  },
-  {
     "description":"  * Identifiez et valorisez tous types d'expériences (personnelles, professionnelles, bénévolat... )\n  * Premières compétences transversales identifiées en moins de 10 minutes\n  * Référentiel de compétences transversales objectivé et reconnu par 30 entreprises\n  * Micro certifications exportables et valorisables sur CV, Linkedin...\n  * Programme en ligne\n  * Gratuit pour les utilisateurs de Mavoie",
     "details":"",
     "isInternal":true,
