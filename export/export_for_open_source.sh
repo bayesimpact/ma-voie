@@ -52,7 +52,7 @@ fi
 # Ensures the current branch contains 'export' which is necessary to trigger the
 # large test suite on CircleCI.
 GIT_BRANCH=$(git -C "${EXPORT_DIR}" rev-parse --abbrev-ref HEAD)
-if [[ "${GIT_BRANCH}" == "master" ]] ; then
+if [[ "${GIT_BRANCH}" == "main" ]] ; then
   if [ -z "$DRY_RUN" ]; then
     git -C "${EXPORT_DIR}" checkout -b export
   fi
@@ -100,11 +100,11 @@ echo -e "${GREEN}Export successful!${RESET_COLOR}"
 
 readonly COMMIT=$(git rev-parse --short HEAD)
 
-# Warn if the current git commit is not in the master branch.
-if git merge-base --is-ancestor $COMMIT origin/master; then
+# Warn if the current git commit is not in the main branch.
+if git merge-base --is-ancestor $COMMIT origin/main; then
     readonly MASTER_WARNING=""
 else
-    readonly MASTER_WARNING=", not currently in master, DO NOT SUBMIT"
+    readonly MASTER_WARNING=", not currently in main, DO NOT SUBMIT"
 fi
 
 

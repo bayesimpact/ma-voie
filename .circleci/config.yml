@@ -21,13 +21,14 @@ jobs:
           command: docker-compose build --pull dev
       - run:
           name: Test and lint frontend client
+          # TODO(émilie): use is_origin_default once docker-circleci is updated
           command: |
             test -e skip-client || (
               docker-compose build --pull test
               docker-compose run --name test-$CIRCLE_BUILD_NUM test
               docker cp test-$CIRCLE_BUILD_NUM:/usr/app/coverage /tmp/client_coverage
               docker rm test-$CIRCLE_BUILD_NUM
-              test "$CIRCLE_BRANCH" == "master" && codecov -f /tmp/client_coverage/lcov.info -F frontend_client || echo "Skip Codecov"
+              test "$CIRCLE_BRANCH" == "main" && codecov -f /tmp/client_coverage/lcov.info -F frontend_client || echo "Skip Codecov"
             )
       - run:
           name: Test and lint Firebase server
@@ -37,7 +38,7 @@ jobs:
           name: Deploy server
           command: |
             test -e skip-server || (
-              if [[ "$CIRCLE_BRANCH" == 'master' ]] && ! git diff --exit-code HEAD^ -- server; then
+              if [[ "$CIRCLE_BRANCH" == 'main' ]] && ! git diff --exit-code HEAD^ -- server; then
                 docker-compose run --rm server npm run deploy -- --project=demo
               fi
             )
@@ -154,7 +155,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
     jobs:
       - check-recent-todos
 
@@ -162,4 +163,4 @@ experimental:
   notify:
     branches:
       only:
-        - master
+        - main

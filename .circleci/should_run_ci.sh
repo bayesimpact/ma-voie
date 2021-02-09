@@ -4,8 +4,8 @@ readonly TAG=$2
 
 set -x
 
-if [ "$BRANCH" == "master" ] || [ -n "$TAG" ]; then
-  # Run all tests on master and frontend tags.
+if [ "$BRANCH" == "main" ] || [ -n "$TAG" ]; then
+  # Run all tests on main and frontend tags.
   exit
 fi
 
@@ -22,8 +22,8 @@ if [ "$(git ls-remote --heads origin "$BRANCH" | cut -f1)" != "$(git rev-parse H
   exit
 fi
 
-# Find the most recent commit that was in master (considered as green).
-readonly LAST_GREEN="$(git merge-base HEAD origin/master)"
+# Find the most recent commit that was in main (considered as green).
+readonly LAST_GREEN="$(git merge-base HEAD origin/main)"
 readonly DIFF_FILES=$(mktemp)
 git diff --name-only "${LAST_GREEN}" "${BRANCH}"> "${DIFF_FILES}"
 
