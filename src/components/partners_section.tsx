@@ -8,6 +8,7 @@ import logoGeneration from 'images/logo-generation.png'
 import logoJobready from 'images/logo-jobready.png'
 import logoInco from 'images/logo-inco.png'
 import logoGoogleAteliersNumériques from 'images/logo-google-ateliers-numerique.png'
+import logoOpenClassrooms from 'images/logo-openclassrooms.png'
 
 
 const isMobileVersion = window.outerWidth < 800
@@ -31,6 +32,7 @@ const PARTNERS = [
   {image: logoGoogleAteliersNumériques, name: 'Google - Les ateliers numériques',
     url: 'https://g.co/ateliersnumeriques'},
   {image: logoBonjourSophy, name: 'Bonjour Sophy', url: 'https://bonjoursophy.com'},
+  {image: logoOpenClassrooms, name: 'OpenClassrooms', url: 'https://openclassrooms.com/fr/'},
 ]
 
 const partnerCardStyle: React.CSSProperties = {
@@ -86,7 +88,6 @@ const cardsCertifiedBaseStyle: React.CSSProperties = {
   display: 'flex',
   flexWrap: isMobileVersion ? 'wrap' : 'initial',
   justifyContent: 'space-between',
-  width: isMobileVersion ? '100%' : '75%',
 }
 
 interface PartnersProps {
