@@ -54,10 +54,10 @@
   },
   "private": true,
   "apidoc": {
-    "name": "Ma Voie",
+    "name": "MaVoie",
     "version": "0.1.0",
     "description": "API for back-end interaction with partners",
-    "title": "Ma Voie API documentation",
+    "title": "MaVoie API documentation",
     "url" : "https://api.mavoie.org"
   }
 }

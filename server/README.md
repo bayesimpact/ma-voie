@@ -1,6 +1,6 @@
-# Ma Voie Server
+# MaVoie Server
 
-Make a simple API for Ma Voie partners to update the relevant info in users.
+Make a simple API for MaVoie partners to update the relevant info in users.
 
 ## Development
 
