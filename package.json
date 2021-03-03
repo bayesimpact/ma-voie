@@ -134,7 +134,7 @@
     "webpack-pwa-manifest": "^4.x.x",
     "whatwg-fetch": "^3.x.x"
   },
-  "description": "Sur la route de l'emploi et en ligne, Ma Voie vous offre un parcours adapté à vos besoins.",
+  "description": "Sur la route de l'emploi et en ligne, MaVoie vous offre un parcours adapté à vos besoins.",
   "name": "MaVoie",
   "private": true,
   "scripts": {
