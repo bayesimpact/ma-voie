@@ -11,6 +11,12 @@ import mission2Image from 'images/mission-img2.jpg'
 import mission3Image from 'images/mission-img3.png'
 import mission4Image from 'images/mission-img4.png'
 
+const videosChapterStyle: React.CSSProperties = {
+  fontFamily: 'Lato, Helvetica',
+  marginTop: -50,
+  padding: '0 20px 100px',
+  textAlign: 'center',
+}
 const chapterStyle: React.CSSProperties = {
   fontFamily: 'Lato, Helvetica',
   padding: '55px 20px 100px',
@@ -171,6 +177,21 @@ const MissionPage = (): React.ReactElement => {
         </Trans>
       </div>
     </section>
+
+    <section style={videosChapterStyle}>
+      <div style={contentStyle}>
+        <h2 style={chapterTitleStyle}>
+          {t('Retrouvez $t(productName) en vidéos')}
+        </h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/reZ6ammSBFY"
+          frameBorder="0"
+          allowFullScreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/VUxfFdJIHGE"
+          frameBorder="0"
+          allowFullScreen></iframe>
+      </div>
+    </section>
+
     <Footer />
   </React.Fragment>
 }
