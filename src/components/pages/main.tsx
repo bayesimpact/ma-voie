@@ -3,6 +3,7 @@ import {ConnectedRouter, connectRouter, routerMiddleware} from 'connected-react-
 import firebase from 'firebase/app'
 import {History, createBrowserHistory} from 'history'
 import React, {Suspense, useEffect, useState} from 'react'
+import TagManager from 'react-gtm-module'
 import {Provider} from 'react-redux'
 import {FirebaseReducer, ReactReduxFirebaseProvider, firebaseReducer} from 'react-redux-firebase'
 import {actionTypes, createFirestoreInstance, firestoreReducer} from 'redux-firestore'
@@ -87,7 +88,10 @@ const App = (): React.ReactElement => {
   // i18next-extract-mark-ns-stop url
 }
 const MemoApp = React.memo(App)
-
+const tagManagerArgs = {
+  gtmId: 'GTM-N9SWSWB',
+}
+TagManager.initialize(tagManagerArgs)
 interface AppState {
   history: History
   store: Store<RootState, AllActions>
