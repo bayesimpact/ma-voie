@@ -4,11 +4,11 @@ import firebase from 'firebase/app'
 import {History, createBrowserHistory} from 'history'
 import React, {Suspense, useEffect, useState} from 'react'
 import {Provider} from 'react-redux'
-import {ReactReduxFirebaseProvider, firebaseReducer} from 'react-redux-firebase'
+import {FirebaseReducer, ReactReduxFirebaseProvider, firebaseReducer} from 'react-redux-firebase'
 import {actionTypes, createFirestoreInstance, firestoreReducer} from 'redux-firestore'
 import {useLocation} from 'react-router'
 import {Switch, Redirect, Route} from 'react-router-dom'
-import {Store, createStore, applyMiddleware, combineReducers} from 'redux'
+import {Reducer, Store, createStore, applyMiddleware, combineReducers} from 'redux'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 
@@ -105,7 +105,7 @@ function createHistoryAndStore(): AppState {
   // Create the store that will be provided to connected components via Context.
   const store = finalCreateStore<RootState, AllActions>(
     combineReducers({
-      firebase: firebaseReducer,
+      firebase: firebaseReducer as Reducer<FirebaseReducer.Reducer<bayes.maVoie.User>>,
       firestore: firestoreReducer,
       router: connectRouter(history),
       user,
@@ -116,7 +116,7 @@ function createHistoryAndStore(): AppState {
       const {user: newUser} =
         require('store/app_reducer')
       store.replaceReducer(combineReducers({
-        firebase: firebaseReducer,
+        firebase: firebaseReducer as Reducer<FirebaseReducer.Reducer<bayes.maVoie.User>>,
         firestore: firestoreReducer,
         router: connectRouter(history),
         user: newUser as typeof user,
