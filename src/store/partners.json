@@ -147,11 +147,11 @@
     "url": "https://bonjoursophy.com"
   },
   {
-    "description":"**OpenClassrooms Prép'Apprentissage**\n  * En 4 mois, découvrez, testez et choisissez un métier d'avenir. Dans la foulée, OpenClassrooms vous aide à trouver un contrat d'apprentissage pour l'apprendre gratuitement.\n  * 4 métiers : Développeur-se Web, Technicien-ne informatique, Attaché-e commercial-e, Gestionnaire de paie\n  * 100% en ligne, plateforme accessible 24h/24 et 7j/7, accompagnement par un mentor, un coach en orientation professionnelle et un coach en insertion professionnelle",
+    "description":"**Prép'Apprentissage**\n  * En 4 mois, découvrez, testez et choisissez un métier d'avenir. Dans la foulée, OpenClassrooms vous aide à trouver un contrat d'apprentissage pour l'apprendre gratuitement.\n  * 4 métiers : Développeur-se Web, Technicien-ne informatique, Attaché-e commercial-e, Gestionnaire de paie\n  * 100% en ligne, plateforme accessible 24h/24 et 7j/7, accompagnement par un mentor, un coach en orientation professionnelle et un coach en insertion professionnelle",
     "details":"",
     "isInternal":true,
     "logo":"openclassrooms.png",
-    "name":"OpenClassrooms - Prep'apprentissage",
+    "name":"Prep'apprentissage",
     "partnerId":"openclassrooms-prepapprentissage",
     "steps":["definition"],
     "title": "Gratuit",
