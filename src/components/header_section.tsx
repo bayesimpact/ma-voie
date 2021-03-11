@@ -91,20 +91,21 @@ const menuLinkStyle: React.CSSProperties = {
   top: 22,
 }
 const startButtonStyle: React.CSSProperties = {
-  backgroundColor: colors.DARK_FOREST_GREEN,
+  borderColor: colors.DARK_TEAL,
   margin: isMobileVersion ? '35px auto 0' : '35px 0 0',
-  maxWidth: 270,
+  maxWidth: 350,
 }
 const helpButtonStyle: React.CSSProperties = {
-  background: 'none',
-  border: `1px solid ${colorToAlpha('#fff', .5)}`,
-  color: 'white',
+  backgroundColor: colorToAlpha('#fff', .5),
+  borderColor: colorToAlpha('#fff', .5),
+  borderWidth: 2,
+  color: colors.DARK_FOREST_GREEN,
   fontSize: 15,
   fontWeight: 'normal',
   lineHeight: 1.2,
 }
 const ctasDivStyle: React.CSSProperties = {
-  maxWidth: isMobileVersion ? '100%' : '270px',
+  maxWidth: isMobileVersion ? '100%' : '350px',
   textAlign: 'center',
 }
 const startLinkStyle: React.CSSProperties = {
@@ -165,15 +166,15 @@ const HeaderSection = (): React.ReactElement => {
         <div style={ctasDivStyle}>
           <a href="https://calendly.com/mavoie/30min" onClick={handleCalendlyClick}
             target="_blank" rel="noopener noreferrer" style={startLinkStyle}>
-            <Button type="firstLevel" style={startButtonStyle}>
-              {t("Tester l'outil")}
+            <Button type="menu" style={startButtonStyle}>
+              {t("Je m'oriente avec un spécialiste")}
             </Button>
           </a>
           <Trans>avec un conseiller <strong>$t(productName)</strong></Trans>
           <div style={orStyle}><span style={orTextStyle}>{t('ou')}</span></div>
           <Link to={getPath(['STEPS'], t)} style={helpLinkStyle}>
             <Button type="variable" style={helpButtonStyle}>
-              {t('Tester par moi-même')}
+              {t("Je m'oriente moi-même")}
             </Button>
           </Link>
         </div>}
