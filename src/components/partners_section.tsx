@@ -8,6 +8,7 @@ import logoGeneration from 'images/logo-generation.png'
 import logoJobready from 'images/logo-jobready.png'
 import logoInco from 'images/logo-inco.png'
 import logoGoogleAteliersNumériques from 'images/logo-google-ateliers-numerique.png'
+import logoKonexio from 'images/logo-konexio.png'
 import logoOpenClassrooms from 'images/logo-openclassrooms.png'
 
 
@@ -33,6 +34,7 @@ const PARTNERS = [
     url: 'https://g.co/ateliersnumeriques'},
   {image: logoBonjourSophy, name: 'Bonjour Sophy', url: 'https://bonjoursophy.com'},
   {image: logoOpenClassrooms, name: 'OpenClassrooms', url: 'https://openclassrooms.com/fr/'},
+  {image: logoKonexio, name: 'Konexio', url: 'https://www.konexio.eu/'},
 ]
 
 const partnerCardStyle: React.CSSProperties = {
@@ -42,7 +44,7 @@ const partnerCardStyle: React.CSSProperties = {
   display: 'flex',
   height: isMobileVersion ? 64 : 99,
   justifyContent: 'center',
-  marginBottom: isMobileVersion ? 20 : 0,
+  marginBottom: isMobileVersion ? 20 : 40,
   width: isMobileVersion ? 142 : 219,
 }
 const partnerImageStyle: React.CSSProperties = {
@@ -103,6 +105,7 @@ const PartnersSection = ({isCentered, hideFoundersTitle}: PartnersProps): React.
   const cardsCertifiedStyle: React.CSSProperties = {
     ...cardsCertifiedBaseStyle,
     ...isCentered ? {justifyContent: 'space-around', margin: 'auto'} : {},
+    flexWrap: 'wrap',
   }
   const textStyle: React.CSSProperties = {
     ...textBaseStyle,
