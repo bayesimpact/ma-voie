@@ -170,7 +170,6 @@ const HeaderSection = (): React.ReactElement => {
               {t("Je m'oriente avec un spécialiste")}
             </Button>
           </a>
-          <Trans>avec un conseiller <strong>$t(productName)</strong></Trans>
           <div style={orStyle}><span style={orTextStyle}>{t('ou')}</span></div>
           <Link to={getPath(['STEPS'], t)} style={helpLinkStyle}>
             <Button type="variable" style={helpButtonStyle}>
