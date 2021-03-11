@@ -280,7 +280,7 @@ const AccountPage = (): React.ReactElement => {
       null}
     <Input
       placeholder={t('Email')} style={inputEmailStyle}
-      autoComplete="email" disabled={userId ? true : false}
+      autoComplete="email" disabled={!!(userId && email)}
       value={inputEmail} onChange={setEmail} />
     {areErrorFields.email ?
       <div style={errorMessageStyle}><sup>*</sup>{t('Adresse email incorrecte')}</div> :
