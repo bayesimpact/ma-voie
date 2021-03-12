@@ -1,4 +1,4 @@
-# ma-voie
+# MaVoie
 TODO(cyrille): Add a description.
 
 ### Running the application locally (development mode)

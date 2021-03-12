@@ -1,8 +1,0 @@
-# List of the files we knowingly excluded from whitelist.txt.
-# The files listed here won't issue a warning for not being exported.
-
-# We don't want to show our export process.
-/export/
-
-# OpenSource repo has its own config.
-/.circleci
