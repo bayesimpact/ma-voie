@@ -47,7 +47,7 @@ if [[ -z "$GITHUB_TOKEN" ]]; then
   readonly GIT_ORIGIN_WITH_WRITE_PERMISSION="origin"
   echo "WARNING: No github token has been set. You'll need write access to the origin repo to complete this script successfully."
 else
-  readonly GIT_ORIGIN_WITH_WRITE_PERMISSION="https://$GITHUB_TOKEN@github.com/bayesimpact/ma-voie-internal.git"
+  readonly GIT_ORIGIN_WITH_WRITE_PERMISSION="https://$GITHUB_TOKEN@github.com/bayesimpact/ma-voie.git"
 fi
 
 if ! command -v aws >/dev/null 2>&1; then
