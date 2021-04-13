@@ -70,6 +70,7 @@ const topInfoStyle: React.CSSProperties = {
 }
 const discreetAnchorStyle: React.CSSProperties = {
   color: 'inherit',
+  cursor: 'pointer',
   textDecoration: 'none',
 }
 
