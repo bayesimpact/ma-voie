@@ -3,7 +3,7 @@
 npm run -s build
 # typescript transpiles to the lib folder.
 readonly REQUIRED_LIBS=$(grep -hor 'require.*' lib/ |
-    sed -e 's/require("//' -e 's/");//' |
+    sed -e 's/require("//' -e 's/"))\?;//' |
     grep -v '^\.' |
     sort | uniq)
 readonly DEPENDENCIES=$(jq -r '.dependencies|keys|.[]' package.json)
