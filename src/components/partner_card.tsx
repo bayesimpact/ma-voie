@@ -58,7 +58,7 @@ const infoStyle: React.CSSProperties = {
   color: '#fff',
   fontWeight: 'bold',
   left: 0,
-  padding: '12px 60px',
+  padding: '12px 15px',
   position: 'absolute',
   right: 0,
   textAlign: 'center',
