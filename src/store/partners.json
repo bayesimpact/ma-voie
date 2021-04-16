@@ -163,18 +163,29 @@
     "isInternal":true,
     "logo":"openclassrooms.png",
     "name":"Les programmes 100% financés",
-    "partnerId":"openclassrooms-search",
+    "partnerId":"openclassrooms-training",
     "steps":["training"],
     "title": "Gratuit",
     "url": "http://oc.cm/3oHgHjd"
   },
   {
-    "description":"**OpenClassrooms Développez votre réseau professionnel**\n  * Vous avez un projet professionnel et connaissez vos compétences. Il faut maintenant entrer dans le concret en préparant votre recherche d'emploi !\n  * À la fin du cours, vous serez capable de rédiger efficacement votre CV, maîtriser votre e-réputation, optimiser votre profil sur LinkedIn, composer votre ePortfolio, sdapter vos outils de recherche d’emploi à votre projet\n  * 8 heures, 100% en ligne, 100% gratuit. Ce cours est ouvert à tous",
+    "description":"**OpenClassrooms Développez votre réseau professionnel**\n  * Dans ce cours, vous découvrirez tout ce que le networking a à vous offrir. Vous apprendrez comment développer votre réseau, comment utiliser les médias sociaux pour approcher les bonnes personnes de manière stratégique et comment entretenir ce réseau dans le temps.\n  * Vous êtes prêt à réseauter ? À rencontrer de nouvelles personnes ? À découvrir une nouvelle stratégie pour vous créer de nouvelles opportunités ? Alors vous êtes au bon endroit !\n  * 10 heures, 100% en ligne, 100% gratuit. Ce cours est ouvert à tous.",
     "details":"",
     "isInternal":true,
     "logo":"openclassrooms.png",
     "name":"Openclassrooms - Développement du réseau professionnel",
     "partnerId":"openclassrooms-network",
+    "steps":["interview"],
+    "title": "Gratuit",
+    "url": "http://oc.cm/36Ci0JQ"
+  },
+  {
+    "description":"**OpenClassrooms Élaborez votre stratégie de recherche d'emploi**\n  * Vous avez un projet professionnel et connaissez vos compétences. Il faut maintenant entrer dans le concret en préparant votre recherche d'emploi !\n  * À la fin du cours, vous serez capable de rédiger efficacement votre CV, maîtriser votre e-réputation, optimiser votre profil sur LinkedIn, composer votre ePortfolio, sdapter vos outils de recherche d’emploi à votre projet\n  * 8 heures, 100% en ligne, 100% gratuit. Ce cours est ouvert à tous",
+    "details":"",
+    "isInternal":true,
+    "logo":"openclassrooms.png",
+    "name":"Openclassrooms - Stratégie de recherche d'emploi",
+    "partnerId":"openclassrooms-search",
     "steps":["interview"],
     "title": "Gratuit",
     "url": "http://oc.cm/39Fj7dJ"
