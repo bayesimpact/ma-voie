@@ -46,6 +46,7 @@ service cloud.firestore {
             'openclassrooms-network',
             'openclassrooms-prepapprentissage',
             'openclassrooms-search',
+            'openclassrooms-training',
             'inco-build-and-click',
             'inco-get-into-tech',
             'inco-in-code',
