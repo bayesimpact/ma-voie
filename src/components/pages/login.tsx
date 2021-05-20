@@ -86,17 +86,21 @@ const LoginPage = (): React.ReactElement => {
     try {
       await dispatch(authenticateUser({provider: 'google'}))
     } catch (error) {
-      setErrorMessage(error.message)
+      setErrorMessage(t("Une erreur d'authentification est survenue."))
+      // eslint-disable-next-line no-console
+      console.log(error.message)
     }
-  }, [dispatch])
+  }, [dispatch, t])
 
   const onSignInWithFacebook = useCallback(async () => {
     try {
       await dispatch(authenticateUser({provider: 'facebook'}))
     } catch (error) {
-      setErrorMessage(error.message)
+      setErrorMessage(t("Une erreur d'authentification est survenue."))
+      // eslint-disable-next-line no-console
+      console.log(error.message)
     }
-  }, [dispatch])
+  }, [dispatch, t])
 
   const buttonStyle: React.CSSProperties = {
     marginTop: 20,
