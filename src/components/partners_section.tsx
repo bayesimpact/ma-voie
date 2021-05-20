@@ -9,7 +9,10 @@ import logoJobready from 'images/logo-jobready.png'
 import logoInco from 'images/logo-inco.png'
 import logoGoogleAteliersNumériques from 'images/logo-google-ateliers-numerique.png'
 import logoKonexio from 'images/logo-konexio.png'
+import logoMakesense from 'images/logo-makesense.png'
 import logoOpenClassrooms from 'images/logo-openclassrooms.png'
+import logoShareit from 'images/logo-shareit.png'
+import logoStationF from 'images/logo-stationf.png'
 
 
 const isMobileVersion = window.outerWidth < 800
@@ -35,6 +38,9 @@ const PARTNERS = [
   {image: logoBonjourSophy, name: 'Bonjour Sophy', url: 'https://bonjoursophy.com'},
   {image: logoOpenClassrooms, name: 'OpenClassrooms', url: 'https://openclassrooms.com/fr/'},
   {image: logoKonexio, name: 'Konexio', url: 'https://www.konexio.eu/'},
+  {image: logoMakesense, name: 'Make Sense', url: 'https://www.makesense.org/'},
+  {image: logoShareit, name: 'Share It', url: 'https://www.share-it.io/'},
+  {image: logoStationF, name: 'Station F', url: 'https://www.stationf.co/'},
 ]
 
 const partnerCardStyle: React.CSSProperties = {
