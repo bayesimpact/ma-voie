@@ -10,6 +10,8 @@ import Button from 'components/button'
 import {colorToAlpha} from 'components/colors'
 import iconDance from 'images/icon-dance.svg'
 
+const isMobileVersion = window.innerWidth <= 800
+
 const stopPropagation = (e: React.MouseEvent<HTMLDivElement>): void => {
   e.stopPropagation()
 }
@@ -17,14 +19,14 @@ const stopPropagation = (e: React.MouseEvent<HTMLDivElement>): void => {
 const popupContainerStyle: React.CSSProperties = {
   backgroundColor: colorToAlpha(colors.TURQUOISE_BLUE, 0.88),
   color: colors.DARK_FOREST_GREEN,
-  height: '100vh',
   left: 0,
   padding: '0 30px',
-  position: 'fixed',
   right: 0,
   top: 0,
   // Move on top of the menu.
   zIndex: 3,
+  ...isMobileVersion ? {height: '200vh', position: 'absolute'} :
+    {height: '100vh', position: 'fixed'},
 }
 const popupStyle: React.CSSProperties = {
   backgroundColor: '#fff',
@@ -77,7 +79,9 @@ const CreateAccountPopup = ({onClose, style}: Props): React.ReactElement => {
   }, [onClose])
 
   useEffect((): (() => void) => {
-    document.body.style.overflow = 'hidden'
+    if (!isMobileVersion) {
+      document.body.style.overflow = 'hidden'
+    }
     return (): void => {
       document.body.style.overflow = 'auto'
     }
