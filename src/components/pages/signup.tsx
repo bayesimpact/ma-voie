@@ -64,8 +64,8 @@ const SignupPage = (): React.ReactElement => {
         history.push(getPath(['ACCOUNT'], t))
       }).
       catch((error) => {
-        setErrorMessage(error.message)
-        return
+        setErrorMessage(t("Une erreur d'authentification est survenue."))
+        throw error.message
       })
   }, [firebase, history, t, updateUser])
 
@@ -83,8 +83,8 @@ const SignupPage = (): React.ReactElement => {
         history.push(getPath(['ACCOUNT'], t))
       }).
       catch((error) => {
-        setErrorMessage(error.message)
-        return
+        setErrorMessage(t("Une erreur d'authentification est survenue."))
+        throw error.message
       })
   }, [firebase, history, t, updateUser])
 
