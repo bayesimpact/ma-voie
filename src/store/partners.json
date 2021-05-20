@@ -55,6 +55,16 @@
     "userCount":1
   },
   {
+    "description":"  * Vous souhaitez être formé·e gratuitement puis embauché·e immédiatement dans le secteur de la grande distribution ?\n  * Une formation rapide gratuite et rémunérée\n  * Un emploi garanti en sortie de formation : spécialisation sur un des 5 métiers proposés (poissonier·e, charchutier·e, boulanger·e, patissier·e et primeur) que vous aurez découvert\n  * Un accompagnement de 7 mois par un mentor\n  * Durée : 3 semaines.\n  * Lieu : présentiel (IDF) et à distance\n  * La formation est accessible à tou·te·s demandeur·euse·s d'emploi de 18 à 30 ans inscrit·e·s au Pôle Emploi, sans prérequis technique, de diplôme ou d’expérience.",
+    "isInternal":true,
+    "logo":"generation.png",
+    "name":"Génération",
+    "partnerId":"generation-grande-distribution",
+    "steps":["training"],
+    "title": "Gratuit",
+    "url":"https://genrecruiting.generation.org/welcome?country=61&program=234&location=11184&recruitingPartner=MAVOIE&localRecruitmentChannel=MAVOIE21EPV"
+  },
+  {
     "description":"  * Formation entièrement gratuite au métier de Développeur.euse Full Stack Junior\n  * Durée : 16 mois (semaine 0, Bootcamp pré-alternance + 1 an d’alternance)\n  * Des ateliers ludiques et interactifs pour acquérir les compétences techniques et comportementales dont vous aurez besoin dans votre futur poste\n  * Un accompagnement par un.e mentor qui vous donnera des conseils personnalisés pour vous développer et vous aider à trouver votre contrat d’alternance\n  * Un jobdating lors duquel vous rencontrerez des entreprises qui cherchent à recruter des talents en alternance\n  * Plus de formations à venir.",
     "isInternal":true,
     "logo":"generation.png",
