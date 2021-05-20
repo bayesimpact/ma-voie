@@ -139,6 +139,9 @@
   "description": "Sur la route de l'emploi et en ligne, MaVoie vous offre un parcours adapté à vos besoins.",
   "name": "MaVoie",
   "private": true,
+  "resolutions": {
+    "@types/anymatch": "<3.0.0"
+  },
   "scripts": {
     "analytics:export-user": "ts-node --files -r esm analytics/export_users.ts",
     "check-types": "tsc",
