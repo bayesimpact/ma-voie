@@ -12,7 +12,9 @@ import Footer from 'components/footer'
 import PartnersSection from 'components/partners_section'
 import orange13ArrowsImage from 'images/arrows-13.svg?stroke=#992f00'
 import logoImage from 'images/logo.svg'
+import celesteImage from 'images/celeste.jpg'
 import yifsinImage from 'images/yifsin.jpg'
+import mejdaImage from 'images/mejda.jpg'
 import philippeImage from 'images/philippe.png'
 
 
@@ -72,6 +74,7 @@ const whiteTriangleStyle: React.CSSProperties = {
 const cardsContainerStyle: React.CSSProperties = {
   alignItems: 'stretch',
   display: 'flex',
+  flexWrap: 'wrap',
   justifyContent: 'space-between',
 }
 const cardStyle: React.CSSProperties = {
@@ -81,6 +84,7 @@ const cardStyle: React.CSSProperties = {
   boxSizing: 'border-box',
   display: 'flex',
   flexDirection: 'column',
+  marginBottom: 20,
   padding: '20px 20px 15px',
   width: 330,
 }
@@ -145,6 +149,32 @@ const PEOPLE = [{
   linkedin: 'https://www.linkedin.com/in/yifsin-nouar-571137187/',
   name: 'Yifsin',
   role: prepareT('Customer success manager'),
+  twitter: 'https://twitter.com/mavoie_org/',
+},
+{
+  description: prepareT("Passionnée par l'univers des réseaux sociaux depuis l'époque de l'ADSL," +
+    ' Mejda a pour ambition de nouer le dialogue avec les jeunes là où ils sont\u00A0: Facebook, ' +
+    'Instagram, Twitter, Linkedin et même TikTok.'),
+  dream: prepareT('Son rêve\u00A0? Réduire les inégalités des chances en donnant les clés ' +
+    'à chaque jeune.'),
+  id: 'mejda',
+  image: mejdaImage,
+  linkedin: 'https://www.linkedin.com/company/mavoie-org',
+  name: 'Mejda',
+  role: prepareT('Community manager'),
+  twitter: 'https://twitter.com/mavoie_org/',
+},
+{
+  description: prepareT('Avec un parcours atypique et engagé, Celeste a découvert le Produit ' +
+    "et c'était le coup de foudre. Parce que construire un produit c'est aller rencontrer ceux " +
+    ' qui le recherchent, tester des idées, se tromper, en trouver des meilleures avec eux.'),
+  dream: prepareT('Son rêve\u00A0? Créer un service qui soit accessible, égalitaire, respectueux ' +
+    'des histoires et des parcours de tous.'),
+  id: 'celeste',
+  image: celesteImage,
+  linkedin: 'https://www.linkedin.com/company/mavoie-org',
+  name: 'Céleste',
+  role: prepareT('Product manager'),
   twitter: 'https://twitter.com/mavoie_org/',
 },
 ] as const
