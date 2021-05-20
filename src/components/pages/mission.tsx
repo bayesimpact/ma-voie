@@ -190,6 +190,9 @@ const MissionPage = (): React.ReactElement => {
           <iframe height="315px" width="100%" src="https://www.youtube.com/embed/VUxfFdJIHGE"
             frameBorder="0"
             allowFullScreen title={t('Témoignages au sujet de $t(productName)')}></iframe>
+          <iframe height="315px" width="100%" src="https://www.youtube.com/embed/AB4TQjZHC4E"
+            frameBorder="0"
+            allowFullScreen title={t('Témoignages au sujet de $t(productName)')}></iframe>
         </div>
       </div>
     </section>
