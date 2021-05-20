@@ -42,6 +42,7 @@ service cloud.firestore {
             'chance',
             'generation',
             'generation-developpeur-fullstack',
+            'generation-grande-distribution',
             'google-ateliers-numerique',
             'openclassrooms-network',
             'openclassrooms-prepapprentissage',
