@@ -181,8 +181,8 @@ const AccountPage = (): React.ReactElement => {
           then(
             () => setUpdated(true),
             (error) => {
-              setErrorMessage(error.message)
-              return
+              setErrorMessage(t("Une erreur d'authentification est survenue."))
+              throw error.message
             },
           )
       } else {
@@ -192,7 +192,7 @@ const AccountPage = (): React.ReactElement => {
     }
   }, [age, diploma, email, firebase, firestore, name, inputAge, inputDiploma, inputEmail,
     inputJobSeeker, inputLegals, inputName, lastName, inputLastName, inputPhone, inputRetraining,
-    password, phone, setErrorMessage, userId])
+    password, phone, setErrorMessage, t, userId])
   useFastForward(() => {
     if (inputName && inputLastName && inputEmail && inputPhone && password && inputDiploma) {
       onSave()
