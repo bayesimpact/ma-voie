@@ -19,6 +19,7 @@ const popupContainerStyle: React.CSSProperties = {
   color: colors.DARK_FOREST_GREEN,
   height: '100vh',
   left: 0,
+  overflow: 'auto',
   padding: '0 30px',
   position: 'fixed',
   right: 0,
