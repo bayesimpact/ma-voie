@@ -1,0 +1,5 @@
+version: "3"
+services:
+  ma-voie:
+    image: bayesimpact/ma-voie
+    main_branch: main
