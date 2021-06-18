@@ -2,7 +2,7 @@ const {expect} = require('chai')
 const glob = require('glob')
 const path = require('path')
 require('json5/lib/register')
-const babelExtractConfig = require('../../i18n.babelrc.js')
+const babelExtractConfig = require('../../i18n.babelrc')
 
 const extractedLangs: ReadonlySet<string> = new Set(babelExtractConfig.plugins.
   find((plugin: unknown[]) => plugin[0] === 'i18next-extract')[1].locales)
