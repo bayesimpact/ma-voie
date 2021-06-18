@@ -247,6 +247,7 @@ const AccountPage = (): React.ReactElement => {
   const inputEmailStyle: React.CSSProperties = {
     ...inputStyle,
     borderColor: areErrorFields.email ? colors.RED_ERROR : colors.SILVER_THREE,
+    textTransform: 'lowercase',
   }
   const inputPhoneStyle: React.CSSProperties = {
     ...inputStyle,
