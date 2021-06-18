@@ -262,6 +262,10 @@ const AccountPage = (): React.ReactElement => {
     color: areErrorFields.inputLegals ? colors.RED_ERROR : 'inherit',
   }
 
+  const onEmailChange = useCallback((email: string) => {
+    setEmail(email.toLocaleLowerCase())
+  }, [setEmail])
+
   // TODO(pascal): Investigate how much the layoutStyle is useful.
   return <LayoutSignIn bigTitle={t('Inscription')} style={layoutStyle}>
     <Input
@@ -281,7 +285,7 @@ const AccountPage = (): React.ReactElement => {
     <Input
       placeholder={t('Email')} style={inputEmailStyle}
       autoComplete="email" disabled={!!(userId && email)}
-      value={inputEmail} onChange={setEmail} />
+      value={inputEmail} onChange={onEmailChange} onChangeDelayMillisecs={1000} />
     {areErrorFields.email ?
       <div style={errorMessageStyle}><sup>*</sup>{t('Adresse email incorrecte')}</div> :
       null}
