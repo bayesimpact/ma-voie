@@ -149,7 +149,7 @@ const AccountPage = (): React.ReactElement => {
       age: !inputAge,
       diploma: !inputDiploma,
       email: !inputEmail || !isEmailValid,
-      inputLegals: !inputLegals,
+      ...isConnected ? {} : {inputLegals: !inputLegals},
       lastName: !inputLastName,
       name: !inputName,
       password: !password && !userId,
@@ -172,7 +172,7 @@ const AccountPage = (): React.ReactElement => {
       ...inputJobSeeker ? {jobSeeker: true} : {jobSeeker: false},
       ...inputRetraining ? {retraining: true} : {retraining: false},
       ...utmSource ? {source: utmSource} : {},
-      areLegalMentionsAccepted: inputLegals,
+      ...(!isConnected || !areLegalMentionsAccepted) ? {areLegalMentionsAccepted: inputLegals} : {},
     }
     if (Object.keys(update).length) {
       // TODO(émilie): Move to actions.ts
@@ -192,7 +192,7 @@ const AccountPage = (): React.ReactElement => {
     }
   }, [age, diploma, email, firebase, firestore, name, inputAge, inputDiploma, inputEmail,
     inputJobSeeker, inputLegals, inputName, lastName, inputLastName, inputPhone, inputRetraining,
-    password, phone, setErrorMessage, t, userId])
+    password, phone, setErrorMessage, t, userId, isConnected, areLegalMentionsAccepted])
   useFastForward(() => {
     if (inputName && inputLastName && inputEmail && inputPhone && password && inputDiploma) {
       onSave()
