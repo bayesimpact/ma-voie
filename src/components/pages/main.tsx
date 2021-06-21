@@ -7,7 +7,7 @@ import TagManager from 'react-gtm-module'
 import {Provider} from 'react-redux'
 import {FirebaseReducer, ReactReduxFirebaseProvider, firebaseReducer} from 'react-redux-firebase'
 import {actionTypes, createFirestoreInstance, firestoreReducer} from 'redux-firestore'
-import {useLocation} from 'react-router'
+import {useLocation, RouteProps} from 'react-router'
 import {Switch, Redirect, Route} from 'react-router-dom'
 import {Reducer, Store, createStore, applyMiddleware, combineReducers} from 'redux'
 import {composeWithDevTools} from 'redux-devtools-extension'
@@ -17,6 +17,7 @@ import {logPage} from 'analytics/amplitude'
 import {AllActions, ClearDataType, RootState} from 'store/actions'
 import {localStorageMiddleware, user} from 'store/app_reducer'
 import {init as i18nInit} from 'store/i18n'
+import {useUserId} from 'store/selections'
 import {useSubPathDefiner} from 'store/url'
 
 import AccountPage from 'components/pages/account'
@@ -46,8 +47,19 @@ require('styles/app.css')
 
 i18nInit()
 
+const ConnectedRoute = (props: Readonly<RouteProps>): React.ReactElement => {
+  const isConnected = useUserId() !== undefined
+  const defineAndGetPath = useSubPathDefiner()
+  if (isConnected) {
+    return <Route {...props} />
+  }
+  return <Route path={defineAndGetPath('SPLASH')} component={SplashPage} />
+}
+
 const App = (): React.ReactElement => {
   const {hash, pathname, search} = useLocation()
+  const userId = useUserId()
+  const isConnected = userId !== undefined
   const defineAndGetPath = useSubPathDefiner()
   useEffect((): void => logPage(pathname), [pathname])
   useEffect((): void => {
@@ -60,24 +72,27 @@ const App = (): React.ReactElement => {
   }, [])
   // i18next-extract-mark-ns-start url
   return <Switch>
-    <Route path={`/:step${defineAndGetPath('PARTNERS_INTERNAL')}`} component={PartnersPage} />
-    <Route path={`/:step${defineAndGetPath('PARTNERS_EXTERNAL')}`} component={PartnersPage} />
-    <Route path={`/:step${defineAndGetPath('JOB')}`} component={JobPage} />
+    <ConnectedRoute
+      path={`/:step${defineAndGetPath('PARTNERS_INTERNAL')}`} component={PartnersPage} />
+    <ConnectedRoute
+      path={`/:step${defineAndGetPath('PARTNERS_EXTERNAL')}`} component={PartnersPage} />
+    <ConnectedRoute path={`/:step${defineAndGetPath('JOB')}`} component={JobPage} />
     <Route path={defineAndGetPath('ACCOUNT')} component={AccountPage} />
     <Route path={defineAndGetPath('CONGRATULATIONS')} component={CongratulationsPage} />
-    <Route path={defineAndGetPath('LOGIN')} component={LoginPage} />
-    <Route path={defineAndGetPath('DEFINITION')} component={DefinitionPage} />
-    <Route path={defineAndGetPath('SKILLS')} component={SkillsPage} />
-    <Route path={defineAndGetPath('TRAINING')} component={TrainingPage} />
-    <Route path={defineAndGetPath('INTERVIEW')}>
-      <Redirect to={`${defineAndGetPath('INTERVIEW')}${defineAndGetPath('PARTNERS_INTERNAL')}`} />
-    </Route>
+    {isConnected ? null : <Route path={defineAndGetPath('LOGIN')} component={LoginPage} />}
+    <ConnectedRoute path={defineAndGetPath('DEFINITION')} component={DefinitionPage} />
+    <ConnectedRoute path={defineAndGetPath('SKILLS')} component={SkillsPage} />
+    <ConnectedRoute path={defineAndGetPath('TRAINING')} component={TrainingPage} />
+    <ConnectedRoute path={defineAndGetPath('INTERVIEW')}>
+      <Redirect
+        to={`${defineAndGetPath('INTERVIEW')}${defineAndGetPath('PARTNERS_INTERNAL')}`} />
+    </ConnectedRoute>
     <Route path={defineAndGetPath('FORGOT_PASSWORD')} component={ForgotPasswordPage} />
     <Route path={defineAndGetPath('MENU')} component={MenuPage} />
     <Route path={defineAndGetPath('MENU_SITE')} component={MenuSitePage} />
     <Route path={defineAndGetPath('MISSION')} component={MissionPage} />
     <Route path={defineAndGetPath('PASSWORD')} component={PasswordPage} />
-    <Route path={defineAndGetPath('SIGNUP')} component={SignupPage} />
+    {isConnected ? null : <Route path={defineAndGetPath('SIGNUP')} component={SignupPage} />}
     <Route path={defineAndGetPath('SPLASH')} component={SplashPage} />
     <Route path={defineAndGetPath('STEPS')} component={StepsPage} />
     <Route path={defineAndGetPath('TEAM')} component={TeamPage} />

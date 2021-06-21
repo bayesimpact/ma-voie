@@ -156,6 +156,7 @@
   "Réinitialisez votre mot de passe pour <1>{{email}}</1>.": "Reset your password for <1>{{email}}</1>.",
   "S'il a changé, il est encore temps de le modifier": "S'il a changé, il est encore temps de le modifier",
   "S'inscrire avec un email": "Sign up with email",
+  "SPLASH": "homepage",
   "Se connecter": "Log in",
   "Selon votre situation, les partenaires certifiés <2>$t(productName)</2> vous accompagnent à chaque étape de votre parcours": "Selon votre situation, les partenaires certifiés <2>$t(productName)</2> vous accompagnent à chaque étape de votre parcours",
   "Si vous pensez avoir déjà réussi cette étape, cliquez sur \"Je l'ai fait moi-même\" pour passer à l'étape suivante.": "If you think you already succeeded in this step, click on \"I already did it\" to go next step.",
