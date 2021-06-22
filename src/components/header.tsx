@@ -5,6 +5,7 @@ import {useTranslation} from 'react-i18next'
 import {useHistory} from 'react-router'
 import {Link} from 'react-router-dom'
 
+import {useUserId} from 'store/selections'
 import {getPath} from 'store/url'
 
 import ResetProjectPopup from 'components/reset_project_popup'
@@ -76,6 +77,7 @@ const Header = ({menuPosition, onMenuClick = 'project', title, style}: Props):
 React.ReactElement => {
   const {t} = useTranslation()
   const history = useHistory()
+  const isConnected = useUserId() !== undefined
   const [isPopupShown, setIsPopupShown] = useState(false)
   const goBackClick = useCallback((): void => {
     history.goBack()
@@ -113,7 +115,8 @@ React.ReactElement => {
             <span style={betaStyle}>BETA</span>
           </Link>
           {menuPosition === 'right' ? menuIcon : null}
-          {isMobileVersion ? <img src={reloadIcon} onClick={handleResetClick} alt="" /> : null}
+          {isMobileVersion && isConnected ?
+            <img src={reloadIcon} onClick={handleResetClick} alt="" /> : null}
         </React.Fragment>
       }
     </div>
