@@ -77,10 +77,19 @@ const LoginPage = (): React.ReactElement => {
     try {
       await dispatch(authenticateUser({email: inputEmail, password, provider: 'password'}))
     } catch (error) {
-      // TODO(cyrille): Set this in Redux.
-      setErrorMessage(error.message)
+      switch (error?.code) {
+        case 'auth/invalid-email':
+          setErrorMessage(t("L'adresse email est incorrecte"))
+          break
+        case 'auth/user-not-found':
+          setErrorMessage(t("Il n'y a pas d'utilisateur avec cette adresse email"))
+          break
+        default:
+          // TODO(cyrille): Set this in Redux.
+          setErrorMessage(error.message)
+      }
     }
-  }, [dispatch, inputEmail, password])
+  }, [dispatch, inputEmail, password, t])
 
   const onSignInWithGoogle = useCallback(async () => {
     try {
