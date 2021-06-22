@@ -67,7 +67,7 @@
     "firebase-admin": "9.3.0",
     "firebase-tools": "^9.x.x",
     "html-webpack-plugin": "^4.x.x",
-    "i18next": "^19.x.x",
+    "i18next": "^20.x.x",
     "i18next-browser-languagedetector": "^6.x.x",
     "imagemin": "^7.x.x",
     "imagemin-mozjpeg": "^9.x.x",
