@@ -10,7 +10,7 @@ COPY .eslintrc.json .eslintignore server/.firebaserc server/entrypoint.sh server
 COPY server/src src/
 
 FROM base AS test
-RUN apt-get update -qqy && apt-get install -qqy jq openjdk-8-jdk-headless && \
+RUN apt-get update -qqy && apt-get install -qqy jq default-jre && \
   node_modules/.bin/firebase emulators:exec --only firestore 'echo "Emulator preloaded"'
 
 COPY .eslintrc.json .eslintignore server/.firebaserc server/clean_dependencies.sh server/entrypoint.sh server/firebase.json server/firestore.indexes.json server/firestore.rules server/tsconfig.json ./
