@@ -1,5 +1,4 @@
-ARG REACT_BASE_TAG
-FROM bayesimpact/react-base:${REACT_BASE_TAG:-latest} as base
+FROM bayesimpact/react-base:node-14 as base
 
 COPY server/package.json .
 RUN node node_modules/.bin/yarn-lazy-lock && yarn install

@@ -52,6 +52,9 @@
     "ts-node": "^8.x.x",
     "typescript": "^3.8.0"
   },
+  "engines": {
+    "node": "^14.x.x"
+  },
   "private": true,
   "apidoc": {
     "name": "MaVoie",
