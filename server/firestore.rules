@@ -48,6 +48,7 @@ service cloud.firestore {
             'openclassrooms-prepapprentissage',
             'openclassrooms-search',
             'openclassrooms-training',
+            'oreegami-marketing-digital',
             'inco-build-and-click',
             'inco-get-into-tech',
             'job-ready'

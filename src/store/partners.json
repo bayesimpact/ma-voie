@@ -179,6 +179,16 @@
     "url": "http://oc.cm/3oHgHjd"
   },
   {
+    "description":"- Formez-vous gratuitement au marketing digital avec des intervenants experts du secteur.\n\n- Bénéficiez de coaching individuel et ateliers collectifs par des coachs certifiées\n\n- Appliquez les compétences acquises via un cas pratique réel, visant à construire la stratégie digitale d'une entreprise\n\n- 3 mois de bootcamp pour être opérationnel dans des métiers recherchés sur le marché.\n\n- 12 mois d’alternance pour intégrer vos apprentissages et valider la formation",
+    "isInternal":true,
+    "logo":"oreegami.png",
+    "name":"Oreegami\u00A0-\u00A0Marketing\u00A0digital",
+    "partnerId":"oreegami-marketing-digital",
+    "steps":["training"],
+    "title": "Gratuit",
+    "url":"https://www.oreegami.com/"
+  },
+  {
     "description":"**OpenClassrooms Développez votre réseau professionnel**\n  * Dans ce cours, vous découvrirez tout ce que le networking a à vous offrir. Vous apprendrez comment développer votre réseau, comment utiliser les médias sociaux pour approcher les bonnes personnes de manière stratégique et comment entretenir ce réseau dans le temps.\n  * Vous êtes prêt à réseauter ? À rencontrer de nouvelles personnes ? À découvrir une nouvelle stratégie pour vous créer de nouvelles opportunités ? Alors vous êtes au bon endroit !\n  * 10 heures, 100% en ligne, 100% gratuit. Ce cours est ouvert à tous.",
     "details":"",
     "isInternal":true,
