@@ -3,3 +3,7 @@ services:
   ma-voie:
     image: bayesimpact/ma-voie
     main_branch: main
+    github_repo: bayesimpact/ma-voie-internal
+    config_path: demo/ma-voie-demo.docker-compose.yml
+    ci_headers:
+      Circle-Token: $CIRCLE_API_TOKEN
