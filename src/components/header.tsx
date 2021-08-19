@@ -58,13 +58,6 @@ const linkLogoStyle: React.CSSProperties = {
 const clickableIconStyle: React.CSSProperties = {
   cursor: 'pointer',
 }
-const betaStyle: React.CSSProperties = {
-  color: colors.GREYISH_TEAL,
-  display: 'block',
-  fontSize: 9,
-  marginTop: -3,
-  textDecoration: 'none',
-}
 interface Props {
   onMenuClick?: 'project' |'site' | 'none'| (() => void)
   menuPosition?: 'left' | 'right'
@@ -112,7 +105,6 @@ React.ReactElement => {
           {menuPosition === 'left' ? menuIcon : null}
           <Link to={getPath([], t)} style={linkLogoStyle}>
             <img src={logoImage} alt={t('productName')} style={logoStyle} />
-            <span style={betaStyle}>BETA</span>
           </Link>
           {menuPosition === 'right' ? menuIcon : null}
           {isMobileVersion && isConnected ?
