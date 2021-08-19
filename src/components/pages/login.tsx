@@ -84,6 +84,10 @@ const LoginPage = (): React.ReactElement => {
         case 'auth/user-not-found':
           setErrorMessage(t("Il n'y a pas d'utilisateur avec cette adresse email"))
           break
+        case 'auth/wrong-password':
+          setErrorMessage(t('Le mot de passe est incorrect. Avez-vous essayé une connexion ' +
+            'avec les réseaux sociaux\u00A0?'))
+          break
         default:
           // TODO(cyrille): Set this in Redux.
           setErrorMessage(error.message)
