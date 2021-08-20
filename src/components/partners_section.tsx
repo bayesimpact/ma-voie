@@ -3,6 +3,7 @@ import {Trans, useTranslation} from 'react-i18next'
 
 import logoBayes from 'images/logo-bayes.png'
 import logoBonjourSophy from 'images/logo-bonjour-sophy.png'
+import logoCaisseEpargne from 'images/logo-caisse-epargne.png'
 import logoChance from 'images/logo-chance.svg'
 import logoGeneration from 'images/logo-generation.png'
 import logoJobready from 'images/logo-jobready.png'
@@ -41,6 +42,10 @@ const PARTNERS = [
   {image: logoMakesense, name: 'Make Sense', url: 'https://www.makesense.org/'},
   {image: logoShareit, name: 'Share It', url: 'https://www.share-it.io/'},
   {image: logoStationF, name: 'Station F', url: 'https://stationf.co/'},
+]
+
+const SPONSORS = [
+  {image: logoCaisseEpargne, name: "Caisse d'épargne", url: 'https://www.caisse-epargne.fr/ile-de-france/'},
 ]
 
 const partnerCardStyle: React.CSSProperties = {
@@ -113,6 +118,12 @@ const PartnersSection = ({isCentered, hideFoundersTitle}: PartnersProps): React.
     ...isCentered ? {justifyContent: 'space-around', margin: 'auto'} : {},
     flexWrap: 'wrap',
   }
+  const cardsSponsorsStyle: React.CSSProperties = {
+    ...cardsCertifiedBaseStyle,
+    ...isCentered ? {justifyContent: 'space-around', margin: 'auto'} : {},
+    flexWrap: 'wrap',
+    paddingTop: 40,
+  }
   const textStyle: React.CSSProperties = {
     ...textBaseStyle,
     ...isCentered ? {margin: 'auto', textAlign: 'center'} : {},
@@ -143,6 +154,14 @@ const PartnersSection = ({isCentered, hideFoundersTitle}: PartnersProps): React.
         {PARTNERS.map(
           (partner: PartnerProps, index: number): React.ReactElement => <PartnerCard
             key={index} {...partner} />)}
+      </div>
+    </div>
+    <div style={{margin: 'auto', marginTop: 80, maxWidth: 960}}>
+      <h2 style={titleStyle}>{t('Nos sponsors')}</h2>
+      <div style={cardsSponsorsStyle}>
+        {SPONSORS.map(
+          (sponsor: PartnerProps, index: number): React.ReactElement => <PartnerCard
+            key={index} {...sponsor} />)}
       </div>
     </div>
   </section>
