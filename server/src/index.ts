@@ -3,9 +3,8 @@
  */
 import * as bodyParser from 'body-parser'
 import * as functions from 'firebase-functions'
-import * as express from 'express'
-import {NextFunction, Request, Response} from 'express'
-import * as BasicAuth from 'express-basic-auth'
+import express, {NextFunction, Request, Response} from 'express'
+import BasicAuth from 'express-basic-auth'
 
 import {registerUser, validateUser} from './firestore'
 

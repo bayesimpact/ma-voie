@@ -10,7 +10,8 @@
     "deploy": "firebase deploy",
     "logs": "firebase functions:log",
     "predeploy": "npm run apidoc",
-    "test": "firebase emulators:exec --only firestore 'mocha test/*.ts --require ts-node/register'"
+    "test": "firebase emulators:exec --only firestore 'mocha test/*.ts --require ts-node/register'",
+    "upload": "GOOGLE_APPLICATION_CREDENTIALS='./credentials/serviceAccountKey.json' ts-node upload_partner.ts"
   },
   "main": "lib/index.js",
   "dependencies": {
