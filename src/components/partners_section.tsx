@@ -6,9 +6,10 @@ import logoBonjourSophy from 'images/logo-bonjour-sophy.png'
 import logoCaisseEpargne from 'images/logo-caisse-epargne.png'
 import logoChance from 'images/logo-chance.svg'
 import logoGeneration from 'images/logo-generation.png'
-import logoJobready from 'images/logo-jobready.png'
-import logoInco from 'images/logo-inco.png'
 import logoGoogleAteliersNumériques from 'images/logo-google-ateliers-numerique.png'
+import logoInco from 'images/logo-inco.png'
+import logoJobready from 'images/logo-jobready.png'
+import logoHenriLachmann from 'images/logo-henri-lachmann.png'
 import logoKonexio from 'images/logo-konexio.png'
 import logoMakesense from 'images/logo-makesense.png'
 import logoOpenClassrooms from 'images/logo-openclassrooms.png'
@@ -46,6 +47,7 @@ const PARTNERS = [
 
 const SPONSORS = [
   {image: logoCaisseEpargne, name: "Caisse d'épargne", url: 'https://www.caisse-epargne.fr/ile-de-france/'},
+  {image: logoHenriLachmann, name: 'Fondation Henri Lachmann', url: 'https://www.institutdefrance.fr/lesfondations/prix-fondations-fondation-henri-lachmann/'},
 ]
 
 const partnerCardStyle: React.CSSProperties = {
@@ -98,9 +100,8 @@ const cardsBaseStyle: React.CSSProperties = {
   flexWrap: isMobileVersion ? 'wrap' : 'initial',
 }
 const cardsCertifiedBaseStyle: React.CSSProperties = {
-  display: 'flex',
-  flexWrap: isMobileVersion ? 'wrap' : 'initial',
-  justifyContent: 'space-between',
+  display: 'grid',
+  gridTemplateColumns: isMobileVersion ? '1fr 1fr' : '1fr 1fr 1fr 1fr',
 }
 
 interface PartnersProps {
@@ -115,13 +116,10 @@ const PartnersSection = ({isCentered, hideFoundersTitle}: PartnersProps): React.
   }
   const cardsCertifiedStyle: React.CSSProperties = {
     ...cardsCertifiedBaseStyle,
-    ...isCentered ? {justifyContent: 'space-around', margin: 'auto'} : {},
     flexWrap: 'wrap',
   }
   const cardsSponsorsStyle: React.CSSProperties = {
     ...cardsCertifiedBaseStyle,
-    ...isCentered ? {justifyContent: 'space-around', margin: 'auto'} : {},
-    flexWrap: 'wrap',
     paddingTop: 40,
   }
   const textStyle: React.CSSProperties = {
