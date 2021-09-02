@@ -13,8 +13,6 @@ const TrainingPage = (): React.ReactElement => {
   const {training: {completed = false, selectedPartnerId = null} = {}} = useCertifiedSteps()
   // i18next-extract-mark-ns-start url
   return <Switch>
-    {selectedPartnerId && !completed ?
-      <Redirect to={defineAndGetPath('PARTNERS_INTERNAL')} /> : null}
     {selectedPartnerId && completed ? <Redirect to={getPath(['STEPS'], t)} /> : null}
     <Route path={defineAndGetPath('WHICH')} component={WhichPage} />
     <Redirect to={defineAndGetPath('WHICH')} />
