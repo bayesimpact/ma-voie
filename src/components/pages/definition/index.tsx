@@ -19,8 +19,6 @@ const DefinitionPage = (): React.ReactElement => {
   const {definition: {completed = false, selectedPartnerId = null} = {}} = useCertifiedSteps()
   // i18next-extract-mark-ns-start url
   return <Switch>
-    {selectedPartnerId && !completed ?
-      <Redirect to={defineAndGetPath('PARTNERS_INTERNAL')} /> : null}
     {selectedPartnerId && completed ? <Redirect to={getPath(['STEPS'], t)} /> : null}
     <Route path={defineAndGetPath('EXPERIENCE')} component={ExperiencePage} />
     <Route path={defineAndGetPath('GO')} component={GoPage} />
