@@ -134,6 +134,23 @@ function createHistoryAndStore(): AppState {
   }
   return {history, store}
 }
+
+interface GAEvent {
+  event: string
+  [property: string]: string|number|undefined
+}
+
+type GAData = GAEvent | IArguments
+type WindowWithGA = (typeof window) & {
+  dataLayer: GAData[]
+}
+
+const windowGA = window as WindowWithGA
+function gtag(): void {
+  // eslint-disable-next-line prefer-rest-params
+  windowGA.dataLayer.push(arguments)
+}
+
 // The app that will be augmented by top level wrappers.
 const WrappedApp = (): React.ReactElement => {
   const [{history, store}] = useState(createHistoryAndStore)
@@ -153,6 +170,17 @@ const WrappedApp = (): React.ReactElement => {
     dispatch: store.dispatch,
     firebase,
   }
+
+  const googleJs = document.createElement('script')
+  googleJs.setAttribute('async', '')
+  googleJs.setAttribute('src', `https://www.googletagmanager.com/gtag/js?id=${config.googleUAID}`)
+  document.head.appendChild(googleJs)
+  windowGA.dataLayer = windowGA.dataLayer || []
+  // @ts-ignore
+  gtag('js', new Date())
+  // @ts-ignore
+  gtag('config', config.googleUAID)
+
   // TODO(pascal): Add a scroll-up on page change.
   return <Provider store={store}>
     <ConnectedRouter history={history}>
