@@ -59,15 +59,16 @@ const App = (): React.ReactElement => {
       return
     }
     localStorage.setItem('utm_source', utmSource)
-    // eslint-disable-next-line
+    // eslint-disable-next-line no-console
     console.log('config')
     // @ts-ignore
     window.axeptioSettings = {
       clientId: config.axeptioClientId,
       // clientId: "6143060f7d0d6631a194f2d9",
       cookiesVersion: 'ga_only',
-    }
-    (function(d: any,s: any) {
+    };
+    // @ts-ignore
+    (function(d, s): void {
       const t = d.getElementsByTagName(s)[0],
         e = d.createElement(s)
       // @ts-ignore
