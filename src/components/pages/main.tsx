@@ -59,23 +59,24 @@ const App = (): React.ReactElement => {
       return
     }
     localStorage.setItem('utm_source', utmSource)
-    console.log("config")
+    // eslint-disable-next-line
+    console.log('config')
     // @ts-ignore
     window.axeptioSettings = {
       clientId: config.axeptioClientId,
       // clientId: "6143060f7d0d6631a194f2d9",
-      cookiesVersion: "ga_only",
+      cookiesVersion: 'ga_only',
     }
-    (function(d: any, s: any) {
-      var t = d.getElementsByTagName(s)[0],
-        e = d.createElement(s);
+    (function(d: any,s: any) {
+      const t = d.getElementsByTagName(s)[0],
+        e = d.createElement(s)
       // @ts-ignore
-      e.async = true;
+      e.async = true
       // @ts-ignore
-      e.src = "//static.axept.io/sdk.js";
+      e.src = '//static.axept.io/sdk.js'
       // @ts-ignore
-      t.parentNode.insertBefore(e, t);
-    })(document, "script")
+      t.parentNode.insertBefore(e, t)
+    })(document, 'script')
   }, [])
   // i18next-extract-mark-ns-start url
   return <Switch>
