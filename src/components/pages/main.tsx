@@ -66,7 +66,7 @@ const App = (): React.ReactElement => {
       // clientId: "6143060f7d0d6631a194f2d9",
       cookiesVersion: "ga_only",
     }
-    (function(d, s) {
+    (function(d: any, s: any) {
       var t = d.getElementsByTagName(s)[0],
         e = d.createElement(s);
       // @ts-ignore
