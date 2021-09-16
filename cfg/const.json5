@@ -4,6 +4,7 @@
   contactEmail: 'contact@mavoie.org',
   firebase: '{"apiKey":"AIzaSyAv_sTtQXwkcjU2SupRh3-Tr-p8CZ4k0Ak","appId":"1:1035404917368:web:523db46846c3aa92d8cb8d","authDomain":"ma-voie-dev.firebaseapp.com","databaseURL":"https://ma-voie-dev.firebaseio.com","messagingSenderId":"1035404917368","projectId":"ma-voie-dev","storageBucket":"ma-voie-dev.appspot.com"}',
   googleUAID: 'G-SMDX3JJ535',
+  axeptioClientId: '6143060f7d0d6631a194f2d9',
   partnerUrls: '{"bob": "https://localhost.bob-dev.bayes.org:3000/intro"}',
   sentryDsn: 'https://dcffd91beab148b08d4e5bb5db2b3220@o87797.ingest.sentry.io/5352067',
 }

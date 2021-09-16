@@ -60,6 +60,7 @@ declare const config: {
   googleUAID: string
   partnerUrls: string
   sentryDsn: string
+  axeptioClientId: string
 }
 
 type GetProps<T> = T extends React.ComponentType<infer Props> ? Props : never
