@@ -57,7 +57,6 @@ jobs:
                   docker tag bayesimpact/ma-voie-server:$CIRCLE_BUILD_NUM bayesimpact/ma-voie-server:$TAG
                   docker push bayesimpact/ma-voie-server:$TAG
                 fi
-                gcloud --quiet auth configure-docker
                 DEMO_VARS=$(get_demo_vars)
                 # Start the demo server by pinging the right URL in the background.
                 START_DEMO_URL="https://$DEMO_HOST/start/$TAG?$DEMO_VARS"
