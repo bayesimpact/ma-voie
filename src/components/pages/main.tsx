@@ -155,13 +155,13 @@ const WrappedApp = (): React.ReactElement => {
   }
   // @ts-ignore
   window.dataLayer = {
-    js: new Date(),
     config: 'G-SMDX3JJ535',
+    js: new Date(),
   }
 
   const googleJs = document.createElement('script')
   googleJs.setAttribute('async', '')
-  googleJs.setAttribute('src', `https://www.googletagmanager.com/gtag/js?id=G-SMDX3JJ535`)
+  googleJs.setAttribute('src', 'https://www.googletagmanager.com/gtag/js?id=G-SMDX3JJ535')
   document.head.appendChild(googleJs)
 
   // @ts-ignore
