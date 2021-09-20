@@ -274,13 +274,17 @@ const WrappedApp = (): React.ReactElement => {
   gtag('js', new Date())
   // @ts-ignore
   gtag('config', config.googleUAID)
-
+  // eslint-disable-next-line no-console
+  console.log('Test in Preview Test Mode', config)
+  // eslint-disable-next-line no-console
+  console.log('Testing')
   // @ts-ignore
   window.axeptioSettings = {
-    clientId: config.axeptioClientId,
-    // clientId: '6143060f7d0d6631a194f2d9',
+    // clientId: config.axeptioClientId,
+    clientId: '6143060f7d0d6631a194f2d9',
     cookiesVersion: 'ga_only',
   }
+
   /* AxeptIO Config */
   const axeptioJs = document.createElement('script')
   axeptioJs.setAttribute('async', '')
