@@ -275,7 +275,7 @@ const WrappedApp = (): React.ReactElement => {
   // @ts-ignore
   gtag('config', config.googleUAID)
   // eslint-disable-next-line no-console
-  console.log('Test in Preview Test Mode', config)
+  console.log('Test in Preview Test Mode', config.axeptioClientId)
   // eslint-disable-next-line no-console
   console.log('Testing')
   // @ts-ignore
