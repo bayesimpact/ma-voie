@@ -153,6 +153,29 @@ const WrappedApp = (): React.ReactElement => {
     dispatch: store.dispatch,
     firebase,
   }
+  // @ts-ignore
+  window.dataLayer = {
+    js: new Date(),
+    config: 'G-SMDX3JJ535',
+  }
+
+  const googleJs = document.createElement('script')
+  googleJs.setAttribute('async', '')
+  googleJs.setAttribute('src', `https://www.googletagmanager.com/gtag/js?id=G-SMDX3JJ535`)
+  document.head.appendChild(googleJs)
+
+  // @ts-ignore
+  window.axeptioSettings = {
+    clientId: '6143060f7d0d6631a194f2d9',
+    cookiesVersion: 'ga_only',
+  }
+
+  /* AxeptIO Config */
+  const axeptioJs = document.createElement('script')
+  axeptioJs.setAttribute('async', '')
+  axeptioJs.setAttribute('src', 'https://static.axept.io/sdk.js')
+  document.head.appendChild(axeptioJs)
+
   // TODO(pascal): Add a scroll-up on page change.
   return <Provider store={store}>
     <ConnectedRouter history={history}>
