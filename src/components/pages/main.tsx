@@ -280,11 +280,11 @@ const WrappedApp = (): React.ReactElement => {
     clientId: config.axeptioClientId,
     // clientId: '6143060f7d0d6631a194f2d9',
     cookiesVersion: 'ga_only',
-  };
+  }
   /* AxeptIO Config */
   const axeptioJs = document.createElement('script')
   axeptioJs.setAttribute('async', '')
-  axeptioJs.setAttribute('src', '//static.axept.io/sdk.js')
+  axeptioJs.setAttribute('src', 'https://static.axept.io/sdk.js')
   document.head.appendChild(axeptioJs)
 
   // TODO(pascal): Add a scroll-up on page change.
