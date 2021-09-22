@@ -280,8 +280,7 @@ const WrappedApp = (): React.ReactElement => {
   console.log('Testing')
   // @ts-ignore
   window.axeptioSettings = {
-    // clientId: config.axeptioClientId,
-    clientId: '6143060f7d0d6631a194f2d9',
+    clientId: config.axeptioClientId,
     cookiesVersion: 'ga_only',
   }
 
@@ -290,6 +289,12 @@ const WrappedApp = (): React.ReactElement => {
   axeptioJs.setAttribute('async', '')
   axeptioJs.setAttribute('src', 'https://static.axept.io/sdk.js')
   document.head.appendChild(axeptioJs)
+
+  /* Auto Pilot Config */
+  const autopilotJs = document.createElement('script')
+  autopilotJs.setAttribute('async', '')
+  autopilotJs.setAttribute('src', 'https://fastfinch.co/anywhere/275cb238a5ce440198d265b1931d6b113fe2b83923fa4bfcad2ffe19c01edfe1')
+  document.head.appendChild(autopilotJs)
 
   // TODO(pascal): Add a scroll-up on page change.
   return <Provider store={store}>
