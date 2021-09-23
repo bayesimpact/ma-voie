@@ -159,11 +159,6 @@ const WrappedApp = (): React.ReactElement => {
     js: new Date(),
   }
 
-  const googleJs = document.createElement('script')
-  googleJs.setAttribute('async', '')
-  googleJs.setAttribute('src', 'https://www.googletagmanager.com/gtag/js?id=G-SMDX3JJ535')
-  document.head.appendChild(googleJs)
-
   // @ts-ignore
   window.axeptioSettings = {
     clientId: '6143060f7d0d6631a194f2d9',
@@ -175,6 +170,29 @@ const WrappedApp = (): React.ReactElement => {
   axeptioJs.setAttribute('async', '')
   axeptioJs.setAttribute('src', 'https://static.axept.io/sdk.js')
   document.head.appendChild(axeptioJs)
+
+  // @ts-ignore
+  void 0 === window._axcb && (window._axcb = [])
+  // @ts-ignore
+  window._axcb.push(function(axeptio) {
+  // @ts-ignore
+    axeptio.on('cookies:complete', function(choices) {
+      if (choices.google_analytics) {
+        /* Google Analytics Config */
+        const googleJs = document.createElement('script')
+        googleJs.setAttribute('async', '')
+        googleJs.setAttribute('src', 'https://www.googletagmanager.com/gtag/js?id=G-SMDX3JJ535')
+        document.head.appendChild(googleJs)
+      }
+      if (choices.autopilot) {
+        /* Auto Pilot Config */
+        const autopilotJs = document.createElement('script')
+        autopilotJs.setAttribute('async', '')
+        autopilotJs.setAttribute('src', 'https://fastfinch.co/anywhere/275cb238a5ce440198d265b1931d6b113fe2b83923fa4bfcad2ffe19c01edfe1')
+        document.head.appendChild(autopilotJs)
+      }
+    })
+  })
 
   // TODO(pascal): Add a scroll-up on page change.
   return <Provider store={store}>
