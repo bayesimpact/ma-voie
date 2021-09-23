@@ -59,99 +59,6 @@ const App = (): React.ReactElement => {
       return
     }
     localStorage.setItem('utm_source', utmSource)
-    // eslint-disable-next-line no-console
-    console.log('config')
-    // @ts-ignore
-    // window.axeptioSettings = {
-    //   clientId: config.axeptioClientId,
-    //   // clientId: '6143060f7d0d6631a194f2d9',
-    //   cookiesVersion: 'ga_only',
-    // };
-
-    // /* Axept Io config */
-    // // @ts-ignore
-    // (function(d, s): void {
-    //   const t = d.getElementsByTagName(s)[0],
-    //     e = d.createElement(s)
-    //   // @ts-ignore
-    //   e.async = true
-    //   // @ts-ignore
-    //   e.src = '//static.axept.io/sdk.js'
-    //   // @ts-ignore
-    //   t.parentNode.insertBefore(e, t)
-    // })(document, 'script');
-
-    // /* AutoPilot Script */
-    // // @ts-ignore
-    // (function(o): void {
-    //   const b = 'https://fastfinch.co/anywhere/',
-    //     t = '275cb238a5ce440198d265b1931d6b113fe2b83923fa4bfcad2ffe19c01edfe1',
-    //     // @ts-ignore
-    //     a = (window.AutopilotAnywhere = {
-    //       _runQueue: [],
-    //       run: function(): void {
-    //         // eslint-disable-next-line prefer-rest-params
-    //         this._runQueue.push(arguments)
-    //       },
-    //     }),
-    //     c = encodeURIComponent,
-    //     s = 'SCRIPT',
-    //     d = document,
-    //     l = d.getElementsByTagName(s)[0],
-    //     p =
-    //       't=' +
-    //       c(d.title || '') +
-    //       '&u=' +
-    //       c(d.location.href || '') +
-    //       '&r=' +
-    //       c(d.referrer || '') +
-    //       '&gdpr=2',
-    //     j = 'text/javascript',
-    //     // @ts-ignore
-    //     z
-    //   let y = null
-    //   // @ts-ignore
-    //   if (!window.Autopilot) window.Autopilot = a
-    //   // @ts-ignore
-    //   if (o.app) p = 'devmode=true&' + p
-    //   // @ts-ignore
-    //   z = function(src, asy): void {
-    //     const e = d.createElement(s)
-    //     // @ts-ignore
-    //     e.src = src
-    //     // @ts-ignore
-    //     e.type = j
-    //     // @ts-ignore
-    //     e.async = asy
-    //     // @ts-ignore
-    //     l.parentNode.insertBefore(e, l)
-    //   }
-    //   y = function(): void {
-    //     // @ts-ignore
-    //     z(b + t + '?' + p, true)
-    //   }
-    //   // @ts-ignore
-    //   window.Autopilot.GDPRCookieOptIn = function(): void {
-    //     // @ts-ignore
-    //     z(b + t + '?' + p + '&optin=1', false)
-    //     // @ts-ignore
-    //     window.Autopilot.GDPROptedIn = true
-    //   }
-    //   // @ts-ignore
-    //   window.Autopilot.GDPRCookieOptOut = function(): void {
-    //     // @ts-ignore
-    //     z(b + t + '?' + p + '&optout=1', false)
-    //     // @ts-ignore
-    //     window.Autopilot.GDPROptedIn = false
-    //   }
-    //   // @ts-ignore
-    //   if (window.attachEvent) {
-    //     // @ts-ignore
-    //     window.attachEvent('onload', y)
-    //   } else {
-    //     window.addEventListener('load', y, false)
-    //   }
-    // })({})
   }, [])
   // i18next-extract-mark-ns-start url
   return <Switch>
@@ -264,24 +171,10 @@ const WrappedApp = (): React.ReactElement => {
     firebase,
   }
 
-  /* Google Analytics Config */
-  const googleJs = document.createElement('script')
-  googleJs.setAttribute('async', '')
-  googleJs.setAttribute('src', `https://www.googletagmanager.com/gtag/js?id=${config.googleUAID}`)
-  document.head.appendChild(googleJs)
-  windowGA.dataLayer = windowGA.dataLayer || []
-  // @ts-ignore
-  gtag('js', new Date())
-  // @ts-ignore
-  gtag('config', config.googleUAID)
-  // eslint-disable-next-line no-console
-  console.log('Test in Preview Test Mode', config.axeptioClientId)
-  // eslint-disable-next-line no-console
-  console.log('Testing')
   // @ts-ignore
   window.axeptioSettings = {
     clientId: config.axeptioClientId,
-    cookiesVersion: 'ga_only',
+    cookiesVersion: 'custom',
   }
 
   /* AxeptIO Config */
@@ -289,12 +182,33 @@ const WrappedApp = (): React.ReactElement => {
   axeptioJs.setAttribute('async', '')
   axeptioJs.setAttribute('src', 'https://static.axept.io/sdk.js')
   document.head.appendChild(axeptioJs)
-
-  /* Auto Pilot Config */
-  const autopilotJs = document.createElement('script')
-  autopilotJs.setAttribute('async', '')
-  autopilotJs.setAttribute('src', 'https://fastfinch.co/anywhere/275cb238a5ce440198d265b1931d6b113fe2b83923fa4bfcad2ffe19c01edfe1')
-  document.head.appendChild(autopilotJs)
+  // @ts-ignore
+  void 0 === window._axcb && (window._axcb = [])
+  // @ts-ignore
+  window._axcb.push(function(axeptio) {
+  // @ts-ignore
+    axeptio.on('cookies:complete', function(choices) {
+      if (choices.google_analytics) {
+        /* Google Analytics Config */
+        const googleJs = document.createElement('script')
+        googleJs.setAttribute('async', '')
+        googleJs.setAttribute('src', `https://www.googletagmanager.com/gtag/js?id=${config.googleUAID}`)
+        document.head.appendChild(googleJs)
+        windowGA.dataLayer = windowGA.dataLayer || []
+        // @ts-ignore
+        gtag('js', new Date())
+        // @ts-ignore
+        gtag('config', config.googleUAID)
+      }
+      if (choices.autopilot) {
+        /* Auto Pilot Config */
+        const autopilotJs = document.createElement('script')
+        autopilotJs.setAttribute('async', '')
+        autopilotJs.setAttribute('src', 'https://fastfinch.co/anywhere/275cb238a5ce440198d265b1931d6b113fe2b83923fa4bfcad2ffe19c01edfe1')
+        document.head.appendChild(autopilotJs)
+      }
+    })
+  })
 
   // TODO(pascal): Add a scroll-up on page change.
   return <Provider store={store}>
