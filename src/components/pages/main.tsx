@@ -1,6 +1,7 @@
 import {User} from '@firebase/auth-types'
 import {ConnectedRouter, connectRouter, routerMiddleware} from 'connected-react-router'
 import firebase from 'firebase/app'
+import ReactGA from 'react-ga'
 import {History, createBrowserHistory} from 'history'
 import React, {Suspense, useEffect, useState} from 'react'
 import TagManager from 'react-gtm-module'
@@ -179,10 +180,8 @@ const WrappedApp = (): React.ReactElement => {
     axeptio.on('cookies:complete', function(choices) {
       if (choices.google_analytics) {
         /* Google Analytics Config */
-        const googleJs = document.createElement('script')
-        googleJs.setAttribute('async', '')
-        googleJs.setAttribute('src', 'https://www.googletagmanager.com/gtag/js?id=G-SMDX3JJ535')
-        document.head.appendChild(googleJs)
+        ReactGA.initialize('G-SMDX3JJ535')
+        ReactGA.pageview(window.location.pathname + window.location.search)
       }
       if (choices.autopilot) {
         /* Auto Pilot Config */
