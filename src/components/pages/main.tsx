@@ -2,6 +2,7 @@ import {User} from '@firebase/auth-types'
 import {ConnectedRouter, connectRouter, routerMiddleware} from 'connected-react-router'
 import firebase from 'firebase/app'
 import ReactGA from 'react-ga'
+import ReactPixel from 'react-facebook-pixel'
 import {History, createBrowserHistory} from 'history'
 import React, {Suspense, useEffect, useState} from 'react'
 import TagManager from 'react-gtm-module'
@@ -189,6 +190,11 @@ const WrappedApp = (): React.ReactElement => {
         autopilotJs.setAttribute('async', '')
         autopilotJs.setAttribute('src', 'https://fastfinch.co/anywhere/275cb238a5ce440198d265b1931d6b113fe2b83923fa4bfcad2ffe19c01edfe1')
         document.head.appendChild(autopilotJs)
+      }
+      if (choices.facebook_pixel) {
+        /* Facebook Pixel Config */
+        ReactPixel.init('164192945537808')
+        ReactPixel.pageView()
       }
     })
   })
