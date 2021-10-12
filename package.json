@@ -156,7 +156,7 @@
     "i18n:test-stable": "./diff_i18n_folder.sh",
     "lint": "run-s lint:*",
     "lint:config": "pjv && ./jsonlint.sh package.json",
-    "lint:js": "eslint .",
+    "lint:js": "eslint . --ext js,json5,jsx,ts,tsx",
     "lint:jscolor": "./check-color-config.sh",
     "serve": "REACT_WEBPACK_ENV=dev node server.js",
     "serve:dist": "REACT_WEBPACK_ENV=dist node server.js",
