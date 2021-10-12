@@ -104,6 +104,7 @@
     "react": "^17.x.x",
     "react-dom": "^17.x.x",
     "react-ga": "^3.3.0",
+    "react-facebook-pixel": "^1.0.4",
     "react-gtm-module": "^2.x.x",
     "react-hot-loader": "^4.x.x",
     "react-i18next": "^11.x.x",

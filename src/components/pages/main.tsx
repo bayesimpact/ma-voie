@@ -190,6 +190,11 @@ const WrappedApp = (): React.ReactElement => {
         autopilotJs.setAttribute('src', 'https://fastfinch.co/anywhere/275cb238a5ce440198d265b1931d6b113fe2b83923fa4bfcad2ffe19c01edfe1')
         document.head.appendChild(autopilotJs)
       }
+      if (choices.facebook_pixel) {
+        /* Facebook Pixel Config */
+        ReactPixel.init('164192945537808')
+        ReactPixel.pageView()
+      }
     })
   })
 
