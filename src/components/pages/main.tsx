@@ -200,7 +200,7 @@ const WrappedApp = (): React.ReactElement => {
       if (!choices.facebook_pixel) {
         axeptio.overlayOpenCookies()
       }
-      
+
     })
   })
 
