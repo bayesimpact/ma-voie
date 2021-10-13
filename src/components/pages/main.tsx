@@ -164,7 +164,7 @@ const WrappedApp = (): React.ReactElement => {
   // @ts-ignore
   window.axeptioSettings = {
     clientId: '6143060f7d0d6631a194f2d9',
-    cookiesVersion: 'custom',
+    cookiesVersion: 'custom_release',
   }
 
   /* AxeptIO Config */
