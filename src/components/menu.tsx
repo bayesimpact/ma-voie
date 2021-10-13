@@ -223,7 +223,7 @@ const Menu = ({onClose, style}: MenuProps): React.ReactElement => {
           </Link>
         </div>
         : null}
-      <a href="https://calendly.com/mavoie/30min" onClick={handleCalendlyClick}
+      <a href="https://app.livestorm.co/association-mavoie/mavoie-des-solutions-concretes-de-retour-a-lemploi?type=detailed" onClick={handleCalendlyClick}
         target="_blank" rel="noopener noreferrer" style={linkCalendlyStyle}>
         <Button type="variable" style={buttonStyle}>
           {t('Contacter un conseiller')}

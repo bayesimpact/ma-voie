@@ -164,7 +164,7 @@ const HeaderSection = (): React.ReactElement => {
       </Trans>
       {isLandingOnlyVersion ? null :
         <div style={ctasDivStyle}>
-          <a href="https://calendly.com/mavoie/30min" onClick={handleCalendlyClick}
+          <a href="https://app.livestorm.co/association-mavoie/mavoie-des-solutions-concretes-de-retour-a-lemploi?type=detailed" onClick={handleCalendlyClick}
             target="_blank" rel="noopener noreferrer" style={startLinkStyle}>
             <Button type="menu" style={startButtonStyle}>
               {t("Je m'oriente avec un spécialiste")}
