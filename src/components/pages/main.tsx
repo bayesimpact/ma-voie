@@ -196,11 +196,6 @@ const WrappedApp = (): React.ReactElement => {
         ReactPixel.init('164192945537808')
         ReactPixel.pageView()
       }
-
-      if (!choices.facebook_pixel) {
-        axeptio.overlayOpenCookies()
-      }
-
     })
   })
 
