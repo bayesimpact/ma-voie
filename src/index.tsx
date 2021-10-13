@@ -59,6 +59,7 @@ export const Template = (props: TemplateProps): React.ReactElement => {
         property="og:description" name="description"
         content={t("Sur le chemin de l'emploi et en ligne, $t(productName) vous offre un " +
           'parcours adapté à vos besoins.')} />
+      <meta name="facebook-domain-verification" content="gr00ynfmkbvgci37cj8598a9wy33rq" />
       <meta
         property="og:image" name="image" content={config.canonicalUrl + snippetImage} />
       <meta property="og:url" content={config.canonicalUrl} />
