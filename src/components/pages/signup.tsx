@@ -95,10 +95,10 @@ const SignupPage = (): React.ReactElement => {
       </ButtonWithIcon>
     </Link>
     <ButtonWithIcon type="facebook" style={buttonStyle} onClick={onSignInWithFacebook}>
-      {t('Continuer avec Facebook')}
+      S'inscrire avec Facebook
     </ButtonWithIcon>
     <ButtonWithIcon type="google" style={buttonStyle} onClick={onSignInWithGoogle}>
-      {t('Continuer avec Google')}
+      S'inscrire avec Google
     </ButtonWithIcon>
     {errorMessage ? <div style={errorValidationStyle}>
       {errorMessage}

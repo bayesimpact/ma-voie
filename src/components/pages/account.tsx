@@ -329,7 +329,7 @@ const AccountPage = (): React.ReactElement => {
           Mentions légales</Link></Trans>
       </label> : null}
     <Button type="secondLevel" onClick={onSave} style={buttonStyle} >
-      {t('Valider')}
+      S'inscrire
     </Button>
     {updated ? t('Vos informations ont été mises à jour.') : null}
     {isErrorDisplayed ? <div style={errorValidationStyle}>
