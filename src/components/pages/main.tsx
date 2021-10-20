@@ -1,7 +1,6 @@
 import {User} from '@firebase/auth-types'
 import {ConnectedRouter, connectRouter, routerMiddleware} from 'connected-react-router'
 import firebase from 'firebase/app'
-import ReactGA from 'react-ga'
 import ReactPixel from 'react-facebook-pixel'
 import {History, createBrowserHistory} from 'history'
 import React, {Suspense, useEffect, useState} from 'react'
@@ -96,8 +95,6 @@ const App = (): React.ReactElement => {
   // i18next-extract-mark-ns-stop url
 }
 const MemoApp = React.memo(App)
-const tagManagerArgs = {gtmId: 'GTM-N9SWSWB'}
-TagManager.initialize(tagManagerArgs)
 
 interface AppState {
   history: History
@@ -180,9 +177,9 @@ const WrappedApp = (): React.ReactElement => {
   // @ts-ignore
     axeptio.on('cookies:complete', function(choices) {
       if (choices.google_analytics) {
-        /* Google Analytics Config */
-        ReactGA.initialize('G-SMDX3JJ535')
-        ReactGA.pageview(window.location.pathname + window.location.search)
+        /* Google Tag Manager Config */
+        const tagManagerArgs = {gtmId: 'GTM-N9SWSWB'}
+        TagManager.initialize(tagManagerArgs)
       }
       if (choices.autopilot) {
         /* Auto Pilot Config */
