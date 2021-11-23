@@ -72,6 +72,7 @@ export const Template = (props: TemplateProps): React.ReactElement => {
           backgroundImage: "url('https://firebasestorage.googleapis.com/v0/b/mavoie-development.appspot.com/o/public%2Fassets%2FBgHomepageDesktop.svg?alt=media')",
           backgroundRepeat: 'no-repeat',
           backgroundSize: '100%',
+          heigh: "400px"
         }}
       >
         <section style={{padding: '2vh', textAlign: 'center'}}>
@@ -87,20 +88,20 @@ export const Template = (props: TemplateProps): React.ReactElement => {
             animationDuration: '1000ms',
             animationFillMode: 'both',
             animationIterationCount: '1',
+            padding: "32px",
             opacity: '1',
+            textAlign: 'center',
           }}
         >
-          <section style={{color: 'white'}}>{`
-            Le site est momentanément indisponible, veuillez nous en excuser. 🙏🏾
-
-            MaVoie a changé sa peau... le nouveau site est en route. 🥳 
-            
-            Dans quelques minutes il sera là, donc revenez vite ou cliquez sur le lien ci-dessous. 
-            
+          <section style={{color: 'white'}}>{`Le site est momentanément indisponible, veuillez nous en excuser. 🙏🏾`}
+            <br />
+            {`MaVoie a changé sa peau... le nouveau site est en route. 🥳 `}
+            <br />
+            {`Dans quelques minutes il sera là, donc revenez vite ou cliquez sur le lien ci-dessous.`} 
+            <br />
             👇
-            
-            www.mavoie.org
-            `}
+            <br />
+            <a href="www.mavoie.org">www.mavoie.org</a>
           </section>
         </div>
       </div>
