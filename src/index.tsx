@@ -6,6 +6,8 @@ import {initReactI18next, useTranslation} from 'react-i18next'
 import faviconImage from 'images/favicon.ico'
 import snippetImage from 'images/snippet.jpg'
 
+/* eslint-disable jsx-a11y/accessible-emoji */
+
 interface TemplateProps {
   lang: 'fr' | 'en'
   snippetImage: string
@@ -72,7 +74,7 @@ export const Template = (props: TemplateProps): React.ReactElement => {
           backgroundImage: "url('https://firebasestorage.googleapis.com/v0/b/mavoie-development.appspot.com/o/public%2Fassets%2FBgHomepageDesktop.svg?alt=media')",
           backgroundRepeat: 'no-repeat',
           backgroundSize: '100%',
-          heigh: "400px"
+          height: '400px',
         }}
       >
         <section style={{padding: '2vh', textAlign: 'center'}}>
@@ -88,18 +90,19 @@ export const Template = (props: TemplateProps): React.ReactElement => {
             animationDuration: '1000ms',
             animationFillMode: 'both',
             animationIterationCount: '1',
-            padding: "32px",
             opacity: '1',
+            padding: '32px',
             textAlign: 'center',
           }}
         >
-          <section style={{color: 'white'}}>{`Le site est momentanément indisponible, veuillez nous en excuser. 🙏🏾`}
+          <section style={{color: 'white'}}>
+            Le site est momentanément indisponible, veuillez nous en excuser. 🙏🏾
             <br />
-            {`MaVoie a changé sa peau... le nouveau site est en route. 🥳 `}
+            MaVoie a changé sa peau... le nouveau site est en route. 🥳
             <br />
-            {`Dans quelques minutes il sera là, donc revenez vite ou cliquez sur le lien ci-dessous.`} 
+            Dans quelques minutes il sera là, donc revenez vite ou cliquez sur le lien ci-dessous.
             <br />
-            👇
+            <span ariaLabel="img">👇</span>
             <br />
             <a href="www.mavoie.org">www.mavoie.org</a>
           </section>
