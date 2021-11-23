@@ -48,7 +48,7 @@ require('styles/app.css')
 
 i18nInit()
 
-const MaintenanceApp = React.ReactElement => (
+const MaintenanceApp = (): React.ReactElement => (
   <div>
     This page is a maintenance page
   </div>
