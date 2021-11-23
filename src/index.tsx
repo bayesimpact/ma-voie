@@ -102,7 +102,7 @@ export const Template = (props: TemplateProps): React.ReactElement => {
             <br />
             Dans quelques minutes il sera là, donc revenez vite ou cliquez sur le lien ci-dessous.
             <br />
-            <span ariaLabel="img">👇</span>
+            <span>👇</span>
             <br />
             <a href="www.mavoie.org">www.mavoie.org</a>
           </section>
