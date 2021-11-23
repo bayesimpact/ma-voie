@@ -67,7 +67,9 @@ export const Template = (props: TemplateProps): React.ReactElement => {
       <link rel="icon" href={faviconImage} type="image/x-icon" />
     </head>
     <body style={{margin: 0}}>
-      <div id="app">{/* TODO(cyrille): Add a static element here. */}</div>
+      <div>
+        Maintenance Page
+      </div>
     </body>
   </html>
 }
