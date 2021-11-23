@@ -68,13 +68,13 @@ export const Template = (props: TemplateProps): React.ReactElement => {
     </head>
     <body style={{margin: 0}}>
       <div
-        style="
-          background-image: url('https://firebasestorage.googleapis.com/v0/b/mavoie-development.appspot.com/o/public%2Fassets%2FBgHomepageDesktop.svg?alt=media');
-          background-repeat: no-repeat;
-          background-size: 100%;
-        "
+        style={{
+          backgroundImage: "url('https://firebasestorage.googleapis.com/v0/b/mavoie-development.appspot.com/o/public%2Fassets%2FBgHomepageDesktop.svg?alt=media')",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "100%"
+        }}
       >
-        <section style="text-align: center; padding: 2vh">
+        <section style={{textAlign: "center", "padding": 2vh}}>
           <img
             src="https://firebasestorage.googleapis.com/v0/b/mavoie-development.appspot.com/o/public%2Fassets%2Flogo-mv.svg?alt=media"
             alt="Logo Ma voie"
@@ -82,16 +82,15 @@ export const Template = (props: TemplateProps): React.ReactElement => {
           />
         </section>
         <div
-          style="
-            animation-fill-mode: both;
-            animation-duration: 1000ms;
-            animation-delay: 0ms;
-            animation-iteration-count: 1;
-            opacity: 1;
-            animation-name: react-reveal-507076456111602-1;
-          "
+          style={{
+            animationFillMode: "both",
+            animationDuration: "1000ms",
+            animationDelay: "0ms",
+            animationIterationCount: "1",
+            opacity: "1",
+          }}
         >
-          <section style="color: white">{`
+          <section style={{color: white}}>{`
             Le site est momentanément indisponible, veuillez nous en excuser. 🙏🏾
 
             MaVoie a changé sa peau... le nouveau site est en route. 🥳 
