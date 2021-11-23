@@ -90,7 +90,7 @@ export const Template = (props: TemplateProps): React.ReactElement => {
             opacity: '1',
           }}
         >
-          <section style={{color: white}}>{`
+          <section style={{color: 'white'}}>{`
             Le site est momentanément indisponible, veuillez nous en excuser. 🙏🏾
 
             MaVoie a changé sa peau... le nouveau site est en route. 🥳 
