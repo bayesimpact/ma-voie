@@ -48,6 +48,12 @@ require('styles/app.css')
 
 i18nInit()
 
+const MaintenanceApp = React.ReactElement => (
+  <div>
+    This page is a maintenance page
+  </div>
+)
+
 const App = (): React.ReactElement => {
   const {hash, pathname, search} = useLocation()
   const isConnected = useUserId() !== undefined
@@ -210,4 +216,4 @@ const WrappedApp = (): React.ReactElement => {
 }
 const MemoWrappedApp = React.memo(WrappedApp)
 
-export {MemoWrappedApp as App}
+export {MaintenanceApp as App}

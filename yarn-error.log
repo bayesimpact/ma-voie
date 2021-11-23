@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js fix:lint
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js lint
 
 PATH: 
   C:\Users\Mehdi\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Mehdi\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Java\jdk1.8.0_171\bin;C:\Users\Mehdi\AppData\Local\Android\Sdk\platform-tools;C:\WINDOWS\system32;C:\Program Files\Gradle\bin;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\Yarn\bin;C:\Program Files\Calibre2;C:\WINDOWS\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\MongoDB\Server\4.4\bin;C:\Users\Mehdi\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\Program Files\Microsoft VS Code\bin;C:\Users\Mehdi\AppData\Local\Yarn\bin;C:\Users\Mehdi\AppData\Local\Microsoft\WindowsApps;C:\Users\Mehdi\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Mehdi\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
@@ -120,7 +120,6 @@ npm manifest:
       "react": "^17.x.x",
       "react-dom": "^17.x.x",
       "react-facebook-pixel": "^1.0.4",
-      "react-ga": "^3.3.0",
       "react-gtm-module": "^2.x.x",
       "react-hot-loader": "^4.x.x",
       "react-i18next": "^11.x.x",
@@ -194,7 +193,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: C:\WINDOWS\system32\cmd.exe
-  Arguments: /d /s /c eslint . --ext js,jsx,ts,tsx --fix
+  Arguments: /d /s /c run-s lint:*
   Directory: D:\Depot Code\MaVoie Work\ma-voie
   Output:
   
