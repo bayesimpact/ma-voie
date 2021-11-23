@@ -74,7 +74,7 @@ export const Template = (props: TemplateProps): React.ReactElement => {
           backgroundSize: "100%"
         }}
       >
-        <section style={{textAlign: "center", "padding": 2vh}}>
+        <section style={{textAlign: "center", padding: "2vh"}}>
           <img
             src="https://firebasestorage.googleapis.com/v0/b/mavoie-development.appspot.com/o/public%2Fassets%2Flogo-mv.svg?alt=media"
             alt="Logo Ma voie"
