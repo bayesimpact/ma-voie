@@ -71,7 +71,7 @@ export const Template = (props: TemplateProps): React.ReactElement => {
     <body style={{margin: 0}}>
       <div
         style={{
-          backgroundColor: '#013332',
+          backgroundColor: 'green',
           height: '100vh',
         }}
       >
