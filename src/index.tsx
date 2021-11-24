@@ -91,7 +91,7 @@ export const Template = (props: TemplateProps): React.ReactElement => {
             textAlign: 'center',
           }}
         >
-          <section style={{color: 'white', fontSize: '32px', width: '100%'}}>
+          <section style={{color: 'white', fontSize: '20px', width: '100%'}}>
             Le site est momentanément indisponible, veuillez nous en excuser. 🙏🏾
             <br />
             <br />
