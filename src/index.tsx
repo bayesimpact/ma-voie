@@ -71,36 +71,33 @@ export const Template = (props: TemplateProps): React.ReactElement => {
     <body style={{margin: 0}}>
       <div
         style={{
-          backgroundImage: "url('https://firebasestorage.googleapis.com/v0/b/mavoie-development.appspot.com/o/public%2Fassets%2FBgHomepageDesktop.svg?alt=media')",
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: '100%',
-          height: '400px',
+          backgroundColor: '#013332',
+          height: '100vh',
         }}
       >
-        <section style={{padding: '2vh', textAlign: 'center'}}>
+        <section style={{height: '70px', padding: '2vh', textAlign: 'center'}}>
           <img
             src="https://firebasestorage.googleapis.com/v0/b/mavoie-development.appspot.com/o/public%2Fassets%2Flogo-mv.svg?alt=media"
             alt="Logo Ma voie"
-            style={{width: '5%'}}
+            style={{width: '75px'}}
           />
         </section>
         <div
           style={{
-            animationDelay: '0ms',
-            animationDuration: '1000ms',
-            animationFillMode: 'both',
-            animationIterationCount: '1',
-            opacity: '1',
+            alignItems: 'center',
+            display: 'flex',
+            height: '50%',
             padding: '32px',
             textAlign: 'center',
           }}
         >
-          <section style={{color: 'white'}}>
+          <section style={{color: 'white', fontSize: '32px', width: '100%'}}>
             Le site est momentanément indisponible, veuillez nous en excuser. 🙏🏾
             <br />
-            MaVoie a changé sa peau... le nouveau site est en route. 🥳
+            <b>MaVoie</b> fait peau neuve... le nouveau site est en route.
             <br />
-            Dans quelques minutes il sera là, donc revenez vite ou cliquez sur le lien ci-dessous.
+            Il sera là dans quelques heures au plus tard,
+             donc revenez vite ou cliquez sur le lien ci-dessous.
             <br />
             <span>👇</span>
             <br />
