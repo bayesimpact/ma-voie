@@ -71,7 +71,7 @@ export const Template = (props: TemplateProps): React.ReactElement => {
     <body style={{margin: 0}}>
       <div
         style={{
-          backgroundColor: 'green',
+          backgroundColor: 'rgb(1, 51, 50)',
           height: '100vh',
         }}
       >
@@ -94,12 +94,16 @@ export const Template = (props: TemplateProps): React.ReactElement => {
           <section style={{color: 'white', fontSize: '32px', width: '100%'}}>
             Le site est momentanément indisponible, veuillez nous en excuser. 🙏🏾
             <br />
+            <br />
             <b>MaVoie</b> fait peau neuve... le nouveau site est en route.
+            <br />
             <br />
             Il sera là dans quelques heures au plus tard,
              donc revenez vite ou cliquez sur le lien ci-dessous.
             <br />
+            <br />
             <span>👇</span>
+            <br />
             <br />
             <a href="www.mavoie.org">www.mavoie.org</a>
           </section>
