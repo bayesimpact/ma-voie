@@ -87,7 +87,7 @@ export const Template = (props: TemplateProps): React.ReactElement => {
             alignItems: 'center',
             display: 'flex',
             height: '50%',
-            padding: '32px',
+            padding: '20px',
             textAlign: 'center',
           }}
         >
