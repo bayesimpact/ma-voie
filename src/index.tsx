@@ -105,7 +105,7 @@ export const Template = (props: TemplateProps): React.ReactElement => {
             <span>👇</span>
             <br />
             <br />
-            <a style={{color: 'white'}} href="www.mavoie.org">www.mavoie.org</a>
+            <a style={{color: 'white'}} href="https://www.mavoie.org">www.mavoie.org</a>
           </section>
         </div>
       </div>
