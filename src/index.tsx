@@ -6,6 +6,8 @@ import {initReactI18next, useTranslation} from 'react-i18next'
 import faviconImage from 'images/favicon.ico'
 import snippetImage from 'images/snippet.jpg'
 
+/* eslint-disable jsx-a11y/accessible-emoji */
+
 interface TemplateProps {
   lang: 'fr' | 'en'
   snippetImage: string
@@ -67,7 +69,46 @@ export const Template = (props: TemplateProps): React.ReactElement => {
       <link rel="icon" href={faviconImage} type="image/x-icon" />
     </head>
     <body style={{margin: 0}}>
-      <div id="app">{/* TODO(cyrille): Add a static element here. */}</div>
+      <div
+        style={{
+          backgroundColor: 'rgb(1, 51, 50)',
+          height: '100vh',
+        }}
+      >
+        <section style={{height: '70px', padding: '2vh', textAlign: 'center'}}>
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/mavoie-development.appspot.com/o/public%2Fassets%2Flogo-mv.svg?alt=media"
+            alt="Logo Ma voie"
+            style={{width: '75px'}}
+          />
+        </section>
+        <div
+          style={{
+            alignItems: 'center',
+            display: 'flex',
+            height: '50%',
+            padding: '20px',
+            textAlign: 'center',
+          }}
+        >
+          <section style={{color: 'white', fontSize: '20px', width: '100%'}}>
+            Le site est momentanément indisponible, veuillez nous en excuser. 🙏🏾
+            <br />
+            <br />
+            <b>MaVoie</b> fait peau neuve... le nouveau site est en route.
+            <br />
+            <br />
+            Il sera là dans quelques heures au plus tard,
+             donc revenez vite ou cliquez sur le lien ci-dessous.
+            <br />
+            <br />
+            <span>👇</span>
+            <br />
+            <br />
+            <a style={{color: 'white'}} href="https://www.mavoie.org">www.mavoie.org</a>
+          </section>
+        </div>
+      </div>
     </body>
   </html>
 }
